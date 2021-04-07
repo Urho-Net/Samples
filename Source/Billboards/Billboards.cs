@@ -40,11 +40,11 @@ namespace Billboards
             CreateScene();
             if (isMobile)
             {
-                SimpleCreateInstructionsWithWasd("\nButton to toggle debug geometry");
+                SimpleCreateInstructionsWithWasd("Button to toggle debug geometry");
             }
             else
             {
-                SimpleCreateInstructionsWithWasd("\nSpace to toggle debug geometry");
+                SimpleCreateInstructionsWithWasd("Space to toggle debug geometry");
             }
             SetupViewport();
             SubscribeToEvents();

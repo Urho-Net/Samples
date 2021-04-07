@@ -71,11 +71,11 @@ namespace CharacterDemo
             CreateCharacter();
             if (isMobile)
             {
-				SimpleCreateInstructionsWithWasd("\nButton to jump, Button to toggle 1st/3rd person");
+				SimpleCreateInstructionsWithWasd("Button to jump, Button to toggle 1st/3rd person");
             }
             else
             {
-                SimpleCreateInstructionsWithWasd("\nSpace to jump, F to toggle 1st/3rd person\nF5 to save scene, F7 to load");
+                SimpleCreateInstructionsWithWasd("Space to jump, F to toggle 1st/3rd person\nF5 to save scene, F7 to load");
             }
             SubscribeToEvents();
 
@@ -211,11 +211,11 @@ namespace CharacterDemo
                     if (touch != null && input.GetKeyPress(Key.G))
                         touch.UseGyroscope = !touch.UseGyroscope;
 
-                    if (input.GetKeyPress(Key.F5))
+                    if (!isMobile && input.GetKeyPress(Key.F5))
                     {
                         scene.SaveXml(FileSystem.UserDocumentsDir + "temp/Data/Scenes/CharacterDemo.xml", "\t");
                     }
-                    if (input.GetKeyPress(Key.F7))
+                    if (!isMobile && input.GetKeyPress(Key.F7))
                     {
                         scene.LoadXml(FileSystem.UserDocumentsDir + "temp/Data/Scenes/CharacterDemo.xml");
                         Node characterNode = scene.GetChild("Jack", true);

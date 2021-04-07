@@ -98,11 +98,12 @@ namespace UrhoNetSamples
             layout.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             layout.Size = new IntVector2(width, height);
             layout.SetStyleAuto();
+            layout.SetFocus(true);
 
             listView = layout.CreateChild<ListView>(new StringHash("ListView"));
             listView.MinSize = new IntVector2(width, height);
             listView.SetStyleAuto();
-
+            listView.SetFocus(true);
             Input.SetMouseVisible(true);
 
         }

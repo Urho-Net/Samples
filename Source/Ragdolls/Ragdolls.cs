@@ -39,25 +39,50 @@ namespace Ragdolls
 			base.Start();
 			Graphics.WindowTitle = "Ragdolls";
 			CreateScene();
-			SimpleCreateInstructionsWithWasd(     
-				"\nLMB to spawn physics objects\n" +
-				"F5 to save scene, F7 to load\n" +
-				"Space to toggle physics debug geometry");
+			            if (isMobile)
+            {
+                SimpleCreateInstructionsWithWasd(
+                    "Button to spawn physics objects\n" +
+                    "Button to toggle physics debug geometry");
+            }
+            else
+            {
+                SimpleCreateInstructionsWithWasd(
+                    "LMB to spawn physics objects\n" +
+                    "F5 to save scene, F7 to load\n" +
+                    "Space to toggle physics debug geometry");
+            }
+
 			SetupViewport();
 			SubscribeToEvents();
 		}
 
-		void SubscribeToEvents()
-		{
-			Engine.PostRenderUpdate+= (args =>
-				{
-					// If draw debug mode is enabled, draw viewport debug geometry, which will show eg. drawable bounding boxes and skeleton
-					// bones. Note that debug geometry has to be separately requested each frame. Disable depth test so that we can see the
-					// bones properly
-					if (drawDebug)
-						Renderer.DrawDebugGeometry(false);
-				});
-		}
+
+        protected override void Stop()
+        {
+            UnSubscribeFromEvents();
+            base.Stop();
+        }
+
+
+        void SubscribeToEvents()
+        {
+            Engine.PostRenderUpdate += OnPostRenderUpdate;
+        }
+
+        void UnSubscribeFromEvents()
+        {
+            Engine.PostRenderUpdate -= OnPostRenderUpdate;
+        }
+
+        private void OnPostRenderUpdate(PostRenderUpdateEventArgs obj)
+        {
+            // If draw debug mode is enabled, draw viewport debug geometry, which will show eg. drawable bounding boxes and skeleton
+            // bones. Note that debug geometry has to be separately requested each frame. Disable depth test so that we can see the
+            // bones properly
+            if (drawDebug)
+                Renderer.DrawDebugGeometry(false);
+        }
 
 		protected override void OnUpdate(float timeStep)
 		{
@@ -69,10 +94,10 @@ namespace Ragdolls
 				SpawnObject();
 
 			// Check for loading / saving the scene
-			if (input.GetKeyPress(Key.F5))
+			if (!isMobile && input.GetKeyPress(Key.F5))
 				scene.SaveXml(FileSystem.ProgramDir + "Data/Scenes/Ragdolls.xml", "\t");
 
-			if (input.GetKeyPress(Key.F7))
+			if (!isMobile && input.GetKeyPress(Key.F7))
 				scene.LoadXml(FileSystem.ProgramDir + "Data/Scenes/Ragdolls.xml");
 
 			if (Input.GetKeyPress(Key.Space))

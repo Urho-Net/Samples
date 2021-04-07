@@ -47,11 +47,11 @@ namespace DynamicGeometry
             CreateScene();
             if (isMobile)
             {
-				SimpleCreateInstructionsWithWasd("\nToggle button to toggle animation");
+				SimpleCreateInstructionsWithWasd("Toggle button to toggle animation");
             }
             else
             {
-                SimpleCreateInstructionsWithWasd("\nSpace to toggle animation");
+                SimpleCreateInstructionsWithWasd("Space to toggle animation");
             }
             SetupViewport();
         }

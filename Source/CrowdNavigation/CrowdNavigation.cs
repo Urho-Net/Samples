@@ -46,6 +46,12 @@ namespace CrowdNavigation
             SubscribeToEvents();
         }
 
+        protected override void Stop()
+        {
+            UnSubscribeFromEvents();
+            base.Stop();
+        }
+
         void CreateUI()
         {
             var cache = ResourceCache;
@@ -56,32 +62,45 @@ namespace CrowdNavigation
             Cursor cursor = new Cursor();
             cursor.SetStyleAuto(style);
             UI.Cursor = cursor;
-
             // Set starting position of the cursor at the rendering window center
             var graphics = Graphics;
             cursor.SetPosition(graphics.Width / 2, graphics.Height / 2);
 
-            // Construct new Text object, set string to display and font to use
-            var instructionText = new Text();
+            UI.Cursor.Visible = true;
 
-            instructionText.Value =
-                "Use WASD keys to move, RMB to rotate view\n" +
-                "LMB to set destination, SHIFT+LMB to spawn a Jack\n" +
-                "CTRL+LMB to teleport main agent\n" +
+            if (isMobile)
+            {
+                SimpleCreateInstructionsWithWasd("Button to set destination\nButton to spawn a Jack\n" +
+                "Button to add obstacles or remove obstacles/agents\n" +
+                "Space to toggle debug geometry");
+            }
+            else
+            {
+                SimpleCreateInstructionsWithWasd("LMB to set destination, SHIFT+LMB to spawn a Jack\n" +
                 "MMB to add obstacles or remove obstacles/agents\n" +
                 "F5 to save scene, F7 to load\n" +
-                "Space to toggle debug geometry";
+                "Space to toggle debug geometry");
+            }
 
-            instructionText.SetFont(cache.GetFont("Fonts/Anonymous Pro.ttf"), 15);
-            // The text has multiple rows. Center them in relation to each other
-            instructionText.TextAlignment = HorizontalAlignment.Center;
-
-            // Position the text relative to the screen center
-            instructionText.HorizontalAlignment = HorizontalAlignment.Center;
-            instructionText.VerticalAlignment = VerticalAlignment.Center;
-            instructionText.SetPosition(0, UI.Root.Height / 4);
-            UI.Root.AddChild(instructionText);
         }
+
+
+        void SubscribeToEvents()
+        {
+            Engine.PostRenderUpdate += OnPostRenderUpdate;
+
+            crowdManager.CrowdAgentFailure += OnCrowdAgentFailure;
+
+            crowdManager.CrowdAgentReposition += OnCrowdAgentReposition;
+        }
+
+        void UnSubscribeFromEvents()
+        {
+            Engine.PostRenderUpdate -= OnPostRenderUpdate;
+            crowdManager.CrowdAgentFailure -= OnCrowdAgentFailure;
+            crowdManager.CrowdAgentReposition -= OnCrowdAgentReposition;
+        }
+
 
         protected override void OnUpdate(float timeStep)
         {
@@ -89,62 +108,64 @@ namespace CrowdNavigation
             base.OnUpdate(timeStep);
         }
 
-        void SubscribeToEvents()
+        private void OnCrowdAgentReposition(CrowdAgentRepositionEventArgs args)
         {
-            Engine.PostRenderUpdate += (args =>
-                 {
-                     if (drawDebug)
-                     {
-                        // Visualize navigation mesh, obstacles and off-mesh connections
-                        scene.GetComponent<DynamicNavigationMesh>().DrawDebugGeometry(true);
-                        // Visualize agents' path and position to reach
-                        crowdManager.DrawDebugGeometry(true);
-                     }
-                 });
+            string WALKING_ANI = "Models/Jack_Walk.ani";
 
-            crowdManager.CrowdAgentFailure += (args =>
-                 {
-                     Node node = args.Node;
-                     CrowdAgentState agentState = (CrowdAgentState)args.CrowdAgentState;
+            Node node = args.Node;
+            Vector3 velocity = args.Velocity;
 
-                     // If the agent's state is invalid, likely from spawning on the side of a box, find a point in a larger area
-                     if (agentState == CrowdAgentState.StateInvalid)
-                     {
-                         // Get a point on the navmesh using more generous extents
-                         Vector3 newPos = scene.GetComponent<DynamicNavigationMesh>().FindNearestPoint(node.Position, new Vector3(5.0f, 5.0f, 5.0f));
-                         // Set the new node position, CrowdAgent component will automatically reset the state of the agent
-                         node.Position = newPos;
-                     }
-                 });
+            // Only Jack agent has animation controller
+            AnimationController animCtrl = node.GetComponent<AnimationController>();
+            if (animCtrl != null)
+            {
+                float speed = velocity.Length;
+                if (animCtrl.IsPlaying(WALKING_ANI))
+                {
+                    float speedRatio = speed / args.CrowdAgent.MaxSpeed;
+                    // Face the direction of its velocity but moderate the turning speed based on the speed ratio as we do not have timeStep here
+                    node.Rotation = Quaternion.Slerp(node.Rotation, Quaternion.FromRotationTo(Vector3.UnitZ, velocity), 10f * args.TimeStep * speedRatio);
+                    // Throttle the animation speed based on agent speed ratio (ratio = 1 is full throttle)
+                    animCtrl.SetSpeed(WALKING_ANI, speedRatio);
+                }
+                else
+                    animCtrl.Play(WALKING_ANI, 0, true, 0.1f);
 
-            crowdManager.CrowdAgentReposition += (args =>
-                 {
-                     string WALKING_ANI = "Models/Jack_Walk.ani";
+                // If speed is too low then stopping the animation
+                if (speed < args.CrowdAgent.Radius)
+                    animCtrl.Stop(WALKING_ANI, 0.8f);
+            }
 
-                     Node node = args.Node;
-                     Vector3 velocity = args.Velocity;
+        }
 
-                    // Only Jack agent has animation controller
-                    AnimationController animCtrl = node.GetComponent<AnimationController>();
-                     if (animCtrl != null)
-                     {
-                         float speed = velocity.Length;
-                         if (animCtrl.IsPlaying(WALKING_ANI))
-                         {
-                             float speedRatio = speed / args.CrowdAgent.MaxSpeed;
-                            // Face the direction of its velocity but moderate the turning speed based on the speed ratio as we do not have timeStep here
-                            node.Rotation = Quaternion.Slerp(node.Rotation, Quaternion.FromRotationTo(Vector3.UnitZ, velocity), 10f * args.TimeStep * speedRatio);
-                            // Throttle the animation speed based on agent speed ratio (ratio = 1 is full throttle)
-                            animCtrl.SetSpeed(WALKING_ANI, speedRatio);
-                         }
-                         else
-                             animCtrl.Play(WALKING_ANI, 0, true, 0.1f);
+        private void OnCrowdAgentFailure(CrowdAgentFailureEventArgs args)
+        {
 
-                        // If speed is too low then stopping the animation
-                        if (speed < args.CrowdAgent.Radius)
-                             animCtrl.Stop(WALKING_ANI, 0.8f);
-                     }
-                 });
+            Node node = args.Node;
+            CrowdAgentState agentState = (CrowdAgentState)args.CrowdAgentState;
+
+            // If the agent's state is invalid, likely from spawning on the side of a box, find a point in a larger area
+            if (agentState == CrowdAgentState.StateInvalid)
+            {
+                // Get a point on the navmesh using more generous extents
+                Vector3 newPos = scene.GetComponent<DynamicNavigationMesh>().FindNearestPoint(node.Position, new Vector3(5.0f, 5.0f, 5.0f));
+                // Set the new node position, CrowdAgent component will automatically reset the state of the agent
+                node.Position = newPos;
+            }
+
+        }
+
+        private void OnPostRenderUpdate(PostRenderUpdateEventArgs obj)
+        {
+
+            if (drawDebug)
+            {
+                // Visualize navigation mesh, obstacles and off-mesh connections
+                scene.GetComponent<DynamicNavigationMesh>().DrawDebugGeometry(true);
+                // Visualize agents' path and position to reach
+                crowdManager.DrawDebugGeometry(true);
+            }
+
         }
 
         void MoveCamera(float timeStep)
@@ -192,10 +213,10 @@ namespace CrowdNavigation
 
             // Check for loading/saving the scene. Save the scene to the file Data/Scenes/CrowdNavigation.xml relative to the executable
             // directory
-            if (input.GetKeyPress(Key.F5))
+            if (!isMobile && input.GetKeyPress(Key.F5))
                 scene.SaveXml(FileSystem.UserDocumentsDir + "temp/Data/Scenes/CrowdNavigation.xml");
 
-            if (input.GetKeyPress(Key.F7))
+            if (!isMobile && input.GetKeyPress(Key.F7))
                 scene.LoadXml(FileSystem.UserDocumentsDir + "temp/Data/Scenes/CrowdNavigation.xml");
 
             // Toggle debug geometry with space
@@ -479,7 +500,7 @@ namespace CrowdNavigation
             "                <attribute name=\"Horiz Alignment\" value=\"Center\" />" +
             "                <attribute name=\"Vert Alignment\" value=\"Center\" />" +
             "                <attribute name=\"Color\" value=\"0 0 0 1\" />" +
-            "                <attribute name=\"Text\" value=\"Teleport\" />" +
+            "                <attribute name=\"Text\" value=\"Spawn\" />" +
             "            </element>" +
             "            <element type=\"Text\">" +
             "                <attribute name=\"Name\" value=\"KeyBinding\" />" +

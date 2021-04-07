@@ -40,15 +40,13 @@ namespace Charts
 		[Preserve]
 		public Charts() : base(new ApplicationOptions(assetsFolder: "Data;CoreData")) { }
 
-		private static ApplicationOptions SetOptions(ApplicationOptions options)
-		{
-			options.TouchEmulation = true;
-			return options;
-		}
 
 		protected override async void Start()
 		{
 			base.Start();
+			
+			SimpleCreateInstructions();
+
 			Graphics.WindowTitle = "Charts Sample";
 			Input.TouchEnd+= OnTouched;
 

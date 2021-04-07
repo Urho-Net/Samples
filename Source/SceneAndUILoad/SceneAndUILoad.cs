@@ -25,100 +25,114 @@ using UrhoNetSamples;
 using Urho;
 using Urho.Resources;
 using Urho.Gui;
-
+using System;
 
 namespace SceneAndUILoad
 {
-	public class SceneAndUILoad : Sample
-	{
+    public class SceneAndUILoad : Sample
+    {
 
-		public SceneAndUILoad() : base(new ApplicationOptions(assetsFolder: "Data;CoreData")) { }
+        public SceneAndUILoad() : base(new ApplicationOptions(assetsFolder: "Data;CoreData")) { }
 
-		protected override void Start()
-		{
-			base.Start();
+        protected override void Start()
+        {
+            base.Start();
 
-			// Create the scene content
-			CreateScene();
+            // Create the scene content
+            CreateScene();
 
-			// Create the UI content
-			CreateUI();
+            // Create the UI content
+            CreateUI();
 
-			// Setup the viewport for displaying the scene
-			SetupViewport();
+            // Setup the viewport for displaying the scene
+            SetupViewport();
 
-		}
+        }
 
-		void CreateScene()
-		{
-			var cache = ResourceCache;
+        protected override void Stop()
+        {
+            // UnSubscribe from button actions 
+            Button button1 = UI.Root.GetChild("ToggleLight1", true) as Button;
+            Button button2 = UI.Root.GetChild("ToggleLight2", true) as Button ;
 
-			scene = new Scene();
+            button1.Released -= ToggleLight1;
+            button2.Released -= ToggleLight2;
 
-			// Load scene content prepared in the editor (XML format). GetFile() returns an open file from the resource system
-			// which scene.LoadXML() will read
-			scene.LoadXmlFromCache(cache, "Scenes/SceneLoadExample.xml");
+            base.Stop();
+        }
 
-			// Create the camera (not included in the scene file)
-			CameraNode = scene.CreateChild("Camera");
-			CameraNode.CreateComponent<Camera>();
+        void CreateScene()
+        {
+            var cache = ResourceCache;
 
-			// Set an initial position for the camera scene node above the plane
-			CameraNode.Position = new Vector3(0.0f, 2.0f, -10.0f);
-		}
+            scene = new Scene();
 
-		void CreateUI()
-		{
-			var cache = ResourceCache;
+            // Load scene content prepared in the editor (XML format). GetFile() returns an open file from the resource system
+            // which scene.LoadXML() will read
+            scene.LoadXmlFromCache(cache, "Scenes/SceneLoadExample.xml");
 
-			// Set up global UI style into the root UI element
-			XmlFile style = cache.GetXmlFile("UI/DefaultStyle.xml");
-			UI.Root.SetDefaultStyle(style);
+            // Create the camera (not included in the scene file)
+            CameraNode = scene.CreateChild("Camera");
+            CameraNode.CreateComponent<Camera>();
 
-			// Create a Cursor UI element because we want to be able to hide and show it at will. When hidden, the mouse cursor will
-			// control the camera, and when visible, it will interact with the UI
-			Cursor cursor=new Cursor();
-			cursor.SetStyleAuto(null);
-			UI.Cursor=cursor;
-			// Set starting position of the cursor at the rendering window center
-			var graphics = Graphics;
-			cursor.SetPosition(graphics.Width / 2, graphics.Height / 2);
+            // Set an initial position for the camera scene node above the plane
+            CameraNode.Position = new Vector3(0.0f, 2.0f, -10.0f);
+        }
 
-			// Load UI content prepared in the editor and add to the UI hierarchy
-			UI.LoadLayoutToElement(UI.Root, cache, "UI/UILoadExample.xml");
+        void CreateUI()
+        {
+            var cache = ResourceCache;
 
-			// Subscribe to button actions (toggle scene lights when pressed then released)
-			var button1 = (Button) UI.Root.GetChild("ToggleLight1", true);
-			var button2 = (Button) UI.Root.GetChild("ToggleLight2", true);
+            // Set up global UI style into the root UI element
+            XmlFile style = cache.GetXmlFile("UI/DefaultStyle.xml");
+            UI.Root.SetDefaultStyle(style);
 
-			button1.Released += (args => ToggleLight1 ());
-			button2.Released += (args => ToggleLight2 ());
-		}
+            // Create a Cursor UI element because we want to be able to hide and show it at will. When hidden, the mouse cursor will
+            // control the camera, and when visible, it will interact with the UI
+            Cursor cursor = new Cursor();
+            cursor.SetStyleAuto(null);
+            UI.Cursor = cursor;
+            // Set starting position of the cursor at the rendering window center
+            var graphics = Graphics;
+            cursor.SetPosition(graphics.Width / 2, graphics.Height / 2);
 
-		protected override void OnUpdate(float timeStep)
-		{
-			base.OnUpdate(timeStep);
-			SimpleMoveCamera2D(timeStep);
-		}
+            // Load UI content prepared in the editor and add to the UI hierarchy
+            UI.LoadLayoutToElement(UI.Root, cache, "UI/UILoadExample.xml");
 
-		void SetupViewport()
-		{
-			var renderer = Renderer;
-			renderer.SetViewport(0, new Viewport(Context, scene, CameraNode.GetComponent<Camera>(), null));
-		}
+            // Subscribe to button actions (toggle scene lights when pressed then released)
+            var button1 = (Button)UI.Root.GetChild("ToggleLight1", true);
+            var button2 = (Button)UI.Root.GetChild("ToggleLight2", true);
 
-		void ToggleLight1()
-		{
-			Node lightNode = scene.GetChild("Light1", true);
-			if (lightNode != null)
-				lightNode.Enabled = !lightNode.Enabled;
-		}
+            button1.Released += ToggleLight1;
+            button2.Released += ToggleLight2;
 
-		void ToggleLight2()
-		{
-			Node lightNode = scene.GetChild("Light2", true);
-			if (lightNode != null)
-				lightNode.Enabled = !lightNode.Enabled;
-		}
-	}
+            SimpleCreateInstructionsWithWasd();
+        }
+
+        protected override void OnUpdate(float timeStep)
+        {
+            base.OnUpdate(timeStep);
+            SimpleMoveCamera2D(timeStep);
+        }
+
+        void SetupViewport()
+        {
+            var renderer = Renderer;
+            renderer.SetViewport(0, new Viewport(Context, scene, CameraNode.GetComponent<Camera>(), null));
+        }
+
+        void ToggleLight1(ReleasedEventArgs obj)
+        {
+            Node lightNode = scene.GetChild("Light1", true);
+            if (lightNode != null)
+                lightNode.Enabled = !lightNode.Enabled;
+        }
+
+        void ToggleLight2(ReleasedEventArgs obj)
+        {
+            Node lightNode = scene.GetChild("Light2", true);
+            if (lightNode != null)
+                lightNode.Enabled = !lightNode.Enabled;
+        }
+    }
 }

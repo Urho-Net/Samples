@@ -134,24 +134,118 @@ namespace Actions
             catch (OperationCanceledException) { }
         }
 
-        // protected override string JoystickLayoutPatch =>
-        //     "<patch>" +
-        //     "    <remove sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/attribute[@name='Is Visible']\" />" +
-        //     "    <replace sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/element[./attribute[@name='Name' and @value='Label']]/attribute[@name='Text']/@value\">G</replace>" +
-        //     "    <add sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]\">" +
-        //     "        <element type=\"Text\">" +
-        //     "            <attribute name=\"Name\" value=\"KeyBinding\" />" +
-        //     "            <attribute name=\"Text\" value=\"G\" />" +
-        //     "        </element>" +
-        //     "    </add>" +
-        //     "    <remove sel=\"/element/element[./attribute[@name='Name' and @value='Button1']]/attribute[@name='Is Visible']\" />" +
-        //     "    <replace sel=\"/element/element[./attribute[@name='Name' and @value='Button1']]/element[./attribute[@name='Name' and @value='Label']]/attribute[@name='Text']/@value\">Q</replace>" +
-        //     "    <add sel=\"/element/element[./attribute[@name='Name' and @value='Button1']]\">" +
-        //     "        <element type=\"Text\">" +
-        //     "            <attribute name=\"Name\" value=\"KeyBinding\" />" +
-        //     "            <attribute name=\"Text\" value=\"Q\" />" +
-        //     "        </element>" +
-        //     "    </add>" +
-        //     "</patch>";
+        /// <summary>
+        /// Set custom Joystick layout for mobile platforms
+        /// </summary>
+        protected override string JoystickLayoutPatch =>
+            "<patch>" +
+            "    <add sel=\"/element\">" +
+            "        <element type=\"Button\">" +
+            "            <attribute name=\"Name\" value=\"Button3\" />" +
+            "            <attribute name=\"Position\" value=\"-340 -180\" />" +
+            "            <attribute name=\"Size\" value=\"144 144\" />" +
+            "            <attribute name=\"Horiz Alignment\" value=\"Right\" />" +
+            "            <attribute name=\"Vert Alignment\" value=\"Bottom\" />" +
+            "            <attribute name=\"Texture\" value=\"Texture2D;Textures/TouchInput.png\" />" +
+            "            <attribute name=\"Image Rect\" value=\"96 0 192 96\" />" +
+            "            <attribute name=\"Hover Image Offset\" value=\"0 0\" />" +
+            "            <attribute name=\"Pressed Image Offset\" value=\"0 0\" />" +
+            "            <element type=\"Text\">" +
+            "                <attribute name=\"Name\" value=\"Label\" />" +
+            "                <attribute name=\"Horiz Alignment\" value=\"Center\" />" +
+            "                <attribute name=\"Vert Alignment\" value=\"Center\" />" +
+            "                <attribute name=\"Color\" value=\"0 0 0 1\" />" +
+            "                <attribute name=\"Text\" value=\"W\" />" +
+            "            </element>" +
+            "            <element type=\"Text\">" +
+            "                <attribute name=\"Name\" value=\"KeyBinding\" />" +
+            "                <attribute name=\"Text\" value=\"W\" />" +
+            "            </element>" +
+            "        </element>" +   
+            "        <element type=\"Button\">" +
+            "            <attribute name=\"Name\" value=\"Button4\" />" +
+            "            <attribute name=\"Position\" value=\"-340 -34\" />" +
+            "            <attribute name=\"Size\" value=\"144 144\" />" +
+            "            <attribute name=\"Horiz Alignment\" value=\"Right\" />" +
+            "            <attribute name=\"Vert Alignment\" value=\"Bottom\" />" +
+            "            <attribute name=\"Texture\" value=\"Texture2D;Textures/TouchInput.png\" />" +
+            "            <attribute name=\"Image Rect\" value=\"96 0 192 96\" />" +
+            "            <attribute name=\"Hover Image Offset\" value=\"0 0\" />" +
+            "            <attribute name=\"Pressed Image Offset\" value=\"0 0\" />" +
+            "            <element type=\"Text\">" +
+            "                <attribute name=\"Name\" value=\"Label\" />" +
+            "                <attribute name=\"Horiz Alignment\" value=\"Center\" />" +
+            "                <attribute name=\"Vert Alignment\" value=\"Center\" />" +
+            "                <attribute name=\"Color\" value=\"0 0 0 1\" />" +
+            "                <attribute name=\"Text\" value=\"S\" />" +
+            "            </element>" +
+            "            <element type=\"Text\">" +
+            "                <attribute name=\"Name\" value=\"KeyBinding\" />" +
+            "                <attribute name=\"Text\" value=\"S\" />" +
+            "            </element>" +
+            "        </element>" +               
+            "        <element type=\"Button\">" +
+            "            <attribute name=\"Name\" value=\"Button5\" />" +
+            "            <attribute name=\"Position\" value=\"-190 -180\" />" +
+            "            <attribute name=\"Size\" value=\"144 144\" />" +
+            "            <attribute name=\"Horiz Alignment\" value=\"Right\" />" +
+            "            <attribute name=\"Vert Alignment\" value=\"Bottom\" />" +
+            "            <attribute name=\"Texture\" value=\"Texture2D;Textures/TouchInput.png\" />" +
+            "            <attribute name=\"Image Rect\" value=\"96 0 192 96\" />" +
+            "            <attribute name=\"Hover Image Offset\" value=\"0 0\" />" +
+            "            <attribute name=\"Pressed Image Offset\" value=\"0 0\" />" +
+            "            <element type=\"Text\">" +
+            "                <attribute name=\"Name\" value=\"Label\" />" +
+            "                <attribute name=\"Horiz Alignment\" value=\"Center\" />" +
+            "                <attribute name=\"Vert Alignment\" value=\"Center\" />" +
+            "                <attribute name=\"Color\" value=\"0 0 0 1\" />" +
+            "                <attribute name=\"Text\" value=\"Q\" />" +
+            "            </element>" +
+            "            <element type=\"Text\">" +
+            "                <attribute name=\"Name\" value=\"KeyBinding\" />" +
+            "                <attribute name=\"Text\" value=\"Q\" />" +
+            "            </element>" +
+            "        </element>" +
+            "        <element type=\"Button\">" +
+            "            <attribute name=\"Name\" value=\"Button6\" />" +
+            "            <attribute name=\"Position\" value=\"-190 -34\" />" +
+            "            <attribute name=\"Size\" value=\"144 144\" />" +
+            "            <attribute name=\"Horiz Alignment\" value=\"Right\" />" +
+            "            <attribute name=\"Vert Alignment\" value=\"Bottom\" />" +
+            "            <attribute name=\"Texture\" value=\"Texture2D;Textures/TouchInput.png\" />" +
+            "            <attribute name=\"Image Rect\" value=\"96 0 192 96\" />" +
+            "            <attribute name=\"Hover Image Offset\" value=\"0 0\" />" +
+            "            <attribute name=\"Pressed Image Offset\" value=\"0 0\" />" +
+            "            <element type=\"Text\">" +
+            "                <attribute name=\"Name\" value=\"Label\" />" +
+            "                <attribute name=\"Horiz Alignment\" value=\"Center\" />" +
+            "                <attribute name=\"Vert Alignment\" value=\"Center\" />" +
+            "                <attribute name=\"Color\" value=\"0 0 0 1\" />" +
+            "                <attribute name=\"Text\" value=\"E\" />" +
+            "            </element>" +
+            "            <element type=\"Text\">" +
+            "                <attribute name=\"Name\" value=\"KeyBinding\" />" +
+            "                <attribute name=\"Text\" value=\"E\" />" +
+            "            </element>" +
+            "        </element>" +                  
+            "    </add>" +
+            "    <remove sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/attribute[@name='Is Visible']\" />" +
+            "    <replace sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/element[./attribute[@name='Name' and @value='Label']]/attribute[@name='Text']/@value\">R</replace>" +
+            "    <add sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]\">" +
+            "        <element type=\"Text\">" +
+            "            <attribute name=\"Name\" value=\"KeyBinding\" />" +
+            "            <attribute name=\"Text\" value=\"R\" />" +
+            "        </element>" +
+            "    </add>" +
+            "    <remove sel=\"/element/element[./attribute[@name='Name' and @value='Button1']]/attribute[@name='Is Visible']\" />" +
+            "    <replace sel=\"/element/element[./attribute[@name='Name' and @value='Button1']]/element[./attribute[@name='Name' and @value='Label']]/attribute[@name='Text']/@value\">G</replace>" +
+            "    <add sel=\"/element/element[./attribute[@name='Name' and @value='Button1']]\">" +
+            "        <element type=\"Text\">" +
+            "            <attribute name=\"Name\" value=\"KeyBinding\" />" +
+            "            <attribute name=\"Text\" value=\"G\" />" +
+            "        </element>" +
+            "    </add>" +
+            "</patch>";
+
     }
 }

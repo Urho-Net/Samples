@@ -284,23 +284,41 @@ namespace UrhoNetSamples
 
         protected void SimpleCreateInstructionsWithWasd(string extra = "")
         {
+            string text = "";
+
             if (isMobile)
             {
-                SimpleCreateInstructions("Use virtual joystick to move \nPress <<<< in the top left screen\nTo go back to the main list\n" + extra);
+                text = "Use virtual joystick to move";
             }
             else
             {
-                SimpleCreateInstructions("Use WASD keys and mouse/touch to move \nPress Esacpe to go back to the main List\n" + extra);
+                text = "Use WASD keys and mouse/touch to move";
             }
+
+            if(extra != "")
+            {
+                text +="\n";
+            }
+
+            SimpleCreateInstructions(text + extra);
         }
 
         protected void SimpleCreateInstructions(string text = "")
         {
+            if (isMobile)
+            {
+                text += "\nPress <<<< in the top left screen\nTo go back to the main list";
+            }
+            else
+            {
+                text += "\nPress Esacpe to go back to the main List";
+            }
+
             var textElement = new Text()
             {
                 Value = text,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center
+                VerticalAlignment = VerticalAlignment.Bottom
             };
             textElement.SetFont(Application.ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 25);
             Application.UI.Root.AddChild(textElement);
