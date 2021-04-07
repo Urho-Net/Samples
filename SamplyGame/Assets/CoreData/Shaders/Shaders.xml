@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<shaders>
+	<shader vs="LitSolid" vsdefines="" ps="LitSolid" psdefines="DIFFMAP EMISSIVEMAP HEIGHTFOG" />
+	<shader vs="LitSolid" vsdefines="ENVCUBEMAP" ps="LitSolid" psdefines="ENVCUBEMAP HEIGHTFOG" />
+	<shader vs="Unlit" vsdefines="NOUV" ps="Unlit" psdefines="HEIGHTFOG" />
+	<shader vs="Shadow" vsdefines="" ps="Shadow" psdefines="" />
+	<shader vs="Shadow" vsdefines="SKINNED" ps="Shadow" psdefines="" />
+	<shader vs="LitSolid" vsdefines="NOUV PERPIXEL SHADOW SPOTLIGHT" ps="LitSolid" psdefines="AMBIENT HEIGHTFOG PCF_SHADOW PERPIXEL SHADOW SPECULAR SPOTLIGHT" />
+	<shader vs="LitSolid" vsdefines="NOUV PERPIXEL SHADOW SKINNED SPOTLIGHT" ps="LitSolid" psdefines="AMBIENT HEIGHTFOG PCF_SHADOW PERPIXEL SHADOW SPECULAR SPOTLIGHT" />
+	<shader vs="Stencil" vsdefines="" ps="Stencil" psdefines="" />
+	<shader vs="LitSolid" vsdefines="NORMALMAP PERPIXEL SHADOW SPOTLIGHT" ps="LitSolid" psdefines="DIFFMAP HEIGHTFOG NORMALMAP PCF_SHADOW PERPIXEL SHADOW SPECMAP SPECULAR SPOTLIGHT" />
+	<shader vs="LitSolid" vsdefines="PERPIXEL SHADOW SPOTLIGHT" ps="LitSolid" psdefines="HEIGHTFOG PCF_SHADOW PERPIXEL SHADOW SPECULAR SPOTLIGHT" />
+	<shader vs="LitSolid" vsdefines="PERPIXEL SHADOW SPOTLIGHT" ps="LitSolid" psdefines="DIFFMAP HEIGHTFOG PCF_SHADOW PERPIXEL SHADOW SPECULAR SPOTLIGHT" />
+	<shader vs="LitSolid" vsdefines="NOUV PERPIXEL SPOTLIGHT" ps="LitSolid" psdefines="AMBIENT HEIGHTFOG PERPIXEL SPECULAR SPOTLIGHT" />
+	<shader vs="LitSolid" vsdefines="NOUV PERPIXEL SKINNED SPOTLIGHT" ps="LitSolid" psdefines="AMBIENT HEIGHTFOG PERPIXEL SPECULAR SPOTLIGHT" />
+	<shader vs="LitSolid" vsdefines="NORMALMAP PERPIXEL SPOTLIGHT" ps="LitSolid" psdefines="DIFFMAP HEIGHTFOG NORMALMAP PERPIXEL SPECMAP SPECULAR SPOTLIGHT" />
+	<shader vs="LitSolid" vsdefines="NOUV PERPIXEL SPOTLIGHT" ps="LitSolid" psdefines="HEIGHTFOG PERPIXEL SPECULAR SPOTLIGHT" />
+	<shader vs="LitSolid" vsdefines="PERPIXEL SPOTLIGHT" ps="LitSolid" psdefines="HEIGHTFOG PERPIXEL SPECULAR SPOTLIGHT" />
+	<shader vs="LitSolid" vsdefines="NOUV PERPIXEL SKINNED SPOTLIGHT" ps="LitSolid" psdefines="HEIGHTFOG PERPIXEL SPECULAR SPOTLIGHT" />
+	<shader vs="LitSolid" vsdefines="NOUV PERPIXEL SHADOW SPOTLIGHT" ps="LitSolid" psdefines="HEIGHTFOG PCF_SHADOW PERPIXEL SHADOW SPECULAR SPOTLIGHT" />
+	<shader vs="LitSolid" vsdefines="NOUV PERPIXEL SHADOW SKINNED SPOTLIGHT" ps="LitSolid" psdefines="HEIGHTFOG PCF_SHADOW PERPIXEL SHADOW SPECULAR SPOTLIGHT" />
+	<shader vs="Unlit" vsdefines="" ps="Unlit" psdefines="DIFFMAP HEIGHTFOG" />
+	<shader vs="LitSolid" vsdefines="NOUV" ps="LitSolid" psdefines="HEIGHTFOG" />
+	<shader vs="FXAA3" vsdefines="" ps="FXAA3" psdefines="FXAA_QUALITY_PRESET=12" />
+	<shader vs="BloomHDR" vsdefines="BRIGHT" ps="BloomHDR" psdefines="BRIGHT" />
+	<shader vs="CopyFramebuffer" vsdefines="" ps="CopyFramebuffer" psdefines="" />
+	<shader vs="BloomHDR" vsdefines="BLUR16" ps="BloomHDR" psdefines="BLUR16" />
+	<shader vs="BloomHDR" vsdefines="COMBINE16" ps="BloomHDR" psdefines="COMBINE16" />
+	<shader vs="BloomHDR" vsdefines="BLUR8" ps="BloomHDR" psdefines="BLUR8" />
+	<shader vs="BloomHDR" vsdefines="COMBINE8" ps="BloomHDR" psdefines="COMBINE8" />
+	<shader vs="BloomHDR" vsdefines="BLUR4" ps="BloomHDR" psdefines="BLUR4" />
+	<shader vs="BloomHDR" vsdefines="COMBINE4" ps="BloomHDR" psdefines="COMBINE4" />
+	<shader vs="BloomHDR" vsdefines="BLUR2" ps="BloomHDR" psdefines="BLUR2" />
+	<shader vs="BloomHDR" vsdefines="COMBINE2" ps="BloomHDR" psdefines="COMBINE2" />
+	<shader vs="Basic" vsdefines="DIFFMAP VERTEXCOLOR" ps="Basic" psdefines="ALPHAMAP VERTEXCOLOR" />
+	<shader vs="LitSolid" vsdefines="NOUV SKINNED" ps="LitSolid" psdefines="HEIGHTFOG" />
+	<shader vs="Unlit" vsdefines="BILLBOARD VERTEXCOLOR" ps="Unlit" psdefines="DIFFMAP HEIGHTFOG VERTEXCOLOR" />
+	<shader vs="LitSolid" vsdefines="DIRLIGHT NOUV PERPIXEL" ps="LitSolid" psdefines="AMBIENT DIRLIGHT HEIGHTFOG PERPIXEL SPECULAR" />
+	<shader vs="LitSolid" vsdefines="DIRLIGHT NOUV PERPIXEL SKINNED" ps="LitSolid" psdefines="AMBIENT DIRLIGHT HEIGHTFOG PERPIXEL SPECULAR" />
+	<shader vs="LitSolid" vsdefines="DIRLIGHT PERPIXEL" ps="LitSolid" psdefines="DIRLIGHT HEIGHTFOG PERPIXEL SPECULAR" />
+	<shader vs="LitSolid" vsdefines="DIRLIGHT NOUV PERPIXEL" ps="LitSolid" psdefines="DIRLIGHT HEIGHTFOG PERPIXEL SPECULAR" />
+	<shader vs="Unlit" vsdefines="VERTEXCOLOR" ps="Unlit" psdefines="DIFFMAP HEIGHTFOG VERTEXCOLOR" />
+	<shader vs="LitSolid" vsdefines="ENVCUBEMAP INSTANCED" ps="LitSolid" psdefines="ENVCUBEMAP HEIGHTFOG" />
+	<shader vs="LitSolid" vsdefines="DIRLIGHT INSTANCED PERPIXEL" ps="LitSolid" psdefines="DIRLIGHT HEIGHTFOG PERPIXEL SPECULAR" />
+	<shader vs="LitSolid" vsdefines="DIRLIGHT PERPIXEL" ps="LitSolid" psdefines="DIFFMAP DIRLIGHT HEIGHTFOG PERPIXEL SPECULAR" />
+	<shader vs="LitSolid" vsdefines="PERPIXEL POINTLIGHT" ps="LitSolid" psdefines="HEIGHTFOG PERPIXEL POINTLIGHT SPECULAR" />
+	<shader vs="LitSolid" vsdefines="NOUV PERPIXEL POINTLIGHT SKINNED" ps="LitSolid" psdefines="HEIGHTFOG PERPIXEL POINTLIGHT SPECULAR" />
+	<shader vs="LitSolid" vsdefines="NOUV PERPIXEL POINTLIGHT" ps="LitSolid" psdefines="HEIGHTFOG PERPIXEL POINTLIGHT SPECULAR" />
+	<shader vs="LitSolid" vsdefines="PERPIXEL POINTLIGHT" ps="LitSolid" psdefines="DIFFMAP HEIGHTFOG PERPIXEL POINTLIGHT SPECULAR" />
+	<shader vs="Unlit" vsdefines="BILLBOARD VERTEXCOLOR" ps="Unlit" psdefines="DIFFMAP VERTEXCOLOR" />
+	<shader vs="LitSolid" vsdefines="INSTANCED" ps="LitSolid" psdefines="DIFFMAP EMISSIVEMAP HEIGHTFOG" />
+	<shader vs="LitSolid" vsdefines="DIRLIGHT INSTANCED PERPIXEL" ps="LitSolid" psdefines="DIFFMAP DIRLIGHT HEIGHTFOG PERPIXEL SPECULAR" />
+	<shader vs="Unlit" vsdefines="" ps="Unlit" psdefines="DIFFMAP" />
+	<shader vs="LitSolid" vsdefines="INSTANCED PERPIXEL POINTLIGHT" ps="LitSolid" psdefines="DIFFMAP HEIGHTFOG PERPIXEL POINTLIGHT SPECULAR" />
+	<shader vs="LitSolid" vsdefines="DIRLIGHT INSTANCED NOUV PERPIXEL" ps="LitSolid" psdefines="AMBIENT DIRLIGHT HEIGHTFOG PERPIXEL SPECULAR" />
+	<shader vs="LitSolid" vsdefines="INSTANCED NOUV PERPIXEL POINTLIGHT" ps="LitSolid" psdefines="HEIGHTFOG PERPIXEL POINTLIGHT SPECULAR" />
+	<shader vs="LitSolid" vsdefines="INSTANCED PERPIXEL POINTLIGHT" ps="LitSolid" psdefines="HEIGHTFOG PERPIXEL POINTLIGHT SPECULAR" />
+	<shader vs="LitSolid" vsdefines="ENVCUBEMAP" ps="LitSolid" psdefines="ENVCUBEMAP" />
+	<shader vs="LitSolid" vsdefines="DIRLIGHT PERPIXEL" ps="LitSolid" psdefines="DIRLIGHT PERPIXEL SPECULAR" />
+	<shader vs="Unlit" vsdefines="DIRBILLBOARD VERTEXCOLOR" ps="Unlit" psdefines="DIFFMAP HEIGHTFOG VERTEXCOLOR" />
+	<shader vs="LitSolid" vsdefines="ENVCUBEMAP INSTANCED" ps="LitSolid" psdefines="ENVCUBEMAP" />
+	<shader vs="LitSolid" vsdefines="DIRLIGHT INSTANCED PERPIXEL" ps="LitSolid" psdefines="DIRLIGHT PERPIXEL SPECULAR" />
+	<shader vs="LitSolid" vsdefines="INSTANCED PERPIXEL POINTLIGHT" ps="LitSolid" psdefines="PERPIXEL POINTLIGHT SPECULAR" />
+	<shader vs="LitSolid" vsdefines="PERPIXEL POINTLIGHT" ps="LitSolid" psdefines="PERPIXEL POINTLIGHT SPECULAR" />
+</shaders>

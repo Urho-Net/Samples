@@ -1,0 +1,56 @@
+<renderpath>
+    <!-- not concerned with high resolution for blurring, use 1/4 size -->
+    <rendertarget name="blurh" tag="Underwater" sizedivisor="4 4" format="rgba" filter="true" />
+    <rendertarget name="blurv" tag="Underwater" sizedivisor="4 4" format="rgba" filter="true" />
+
+<!-- 
+//=========================================================================
+// sigma and blursize info:
+// http://callumhay.blogspot.com/2010/09/gaussian-blur-shader-glsl.html
+// uniform float sigma;     // The sigma value for the gaussian function: higher value means more blur
+//                          // A good value for 9x9 is around 3 to 5
+//                          // A good value for 7x7 is around 2.5 to 4
+//                          // A good value for 5x5 is around 2 to 3.5
+//                          // ... play around with this based on what you need :)
+// 
+// uniform float blurSize;  // This should usually be equal to
+//                          // 1.0f / texture_pixel_width for a horizontal blur, and
+//                          // 1.0f / texture_pixel_height for a vertical blur.
+// 
+//========================================================================== -->
+    <!-- blur -->
+    <command type="quad" tag="Underwater" vs="Blur" ps="Blur" psdefines="BLUR3" output="blurh">
+        <parameter name="BlurHInvSize" value="0.00125 0.00167" /> 
+        <parameter name="BlurDir" value="1.0 0.0" />
+        <parameter name="BlurRadius" value="4.0" />
+        <parameter name="BlurSigma" value="1.0" />
+        <texture unit="diffuse" name="viewport" />
+    </command>
+    <command type="quad" tag="Underwater" vs="Blur" ps="Blur" psdefines="BLUR3" output="blurv">
+        <parameter name="BlurHInvSize" value="0.00125 0.00167" /> 
+        <parameter name="BlurDir" value="0.0 1.0" />
+        <parameter name="BlurRadius" value="4.0" />
+        <parameter name="BlurSigma" value="1.0" />
+        <texture unit="diffuse" name="blurh" />
+    </command>
+    <command type="quad" tag="Underwater" vs="Blur" ps="Blur" psdefines="BLUR3" output="blurh">
+        <parameter name="BlurHInvSize" value="0.00125 0.00167" /> 
+        <parameter name="BlurDir" value="1.0 0.0" />
+        <parameter name="BlurRadius" value="4.0" />
+        <parameter name="BlurSigma" value="1.0" />
+        <texture unit="diffuse" name="blurv" />
+    </command>
+    <command type="quad" tag="Underwater" vs="Blur" ps="Blur" psdefines="BLUR3" output="blurv">
+        <parameter name="BlurHInvSize" value="0.00125 0.00167" /> 
+        <parameter name="BlurDir" value="0.0 1.0" />
+        <parameter name="BlurRadius" value="4.0" />
+        <parameter name="BlurSigma" value="1.0" />
+        <texture unit="diffuse" name="blurh" />
+    </command>
+
+    <!-- under water tinting -->
+    <command type="quad" tag="Underwater" vs="UnderWater" ps="UnderWater" blend="replace" output="viewport">
+        <parameter name="WaterTint" value="0.6 0.6 1.1" />
+        <texture unit="diffuse" name="blurv" />
+    </command>
+</renderpath>
