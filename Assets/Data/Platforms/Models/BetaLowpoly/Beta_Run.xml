@@ -1,0 +1,4 @@
+<animation>
+    <trigger normalizedtime="0.31" type="String" value="LeftFoot" />
+    <trigger normalizedtime="0.86" type="String" value="RightFoot" />
+</animation>

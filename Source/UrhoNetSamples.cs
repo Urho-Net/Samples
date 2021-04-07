@@ -1,0 +1,208 @@
+// Copyright (c) 2020-2021 Eli Aloni (a.k.a  elix22)
+// Copyright (c) 2008-2015 the Urho3D project.
+// Copyright (c) 2015 Xamarin Inc
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+//
+using Urho;
+using Urho.Gui;
+using Urho.Resources;
+using Urho.IO;
+using System;
+using System.Globalization;
+using System.Linq;
+using System.Collections.Generic;
+
+using StaticScene;
+using System.Collections;
+
+namespace UrhoNetSamples
+{
+    public class UrhoNetSamples : SampleApplication
+    {
+
+        ListView listView;
+
+        bool isMobile = false;
+
+        Type[] samples;
+
+        Dictionary<string, Type> samplesList = new Dictionary<string, Type>();
+
+        public class TypeComparer : IComparer<Type>
+        {
+            public int Compare(Type x, Type y)
+            {
+                return (new CaseInsensitiveComparer()).Compare(x.ToString(), y.ToString());
+            }
+        }
+
+
+
+        public UrhoNetSamples() : base(new ApplicationOptions(assetsFolder: "Data;CoreData;Data/FlappyUrho") { ResizableWindow = true }) { }
+
+
+
+        protected override void Start()
+        {
+            base.Start();
+
+            Input.KeyDown += HandleKeyDown;
+
+            isMobile = (Platform == Platforms.iOS || Platform == Platforms.Android);
+
+            if (isMobile)
+            {
+                Input.SetScreenJoystickVisible(screenJoystickIndex, false);
+            }
+
+            CreateUI();
+
+            FindAvailableSamples();
+
+            PopulateSamplesList();
+        }
+
+
+        void CreateUI()
+        {
+            var graphics = Graphics;
+            UIElement root = UI.Root;
+            var cache = ResourceCache;
+            XmlFile uiStyle = cache.GetXmlFile("UI/DefaultStyle.xml");
+            // Set style to the UI root so that elements will inherit it
+            root.SetDefaultStyle(uiStyle);
+
+            int width = Graphics.Width;
+            int height = Graphics.Height;
+
+            var layout = root.CreateChild<UIElement>(new StringHash("UIElement"));
+            listViewHolder_ = layout;
+            layout.LayoutMode = LayoutMode.Vertical;
+            layout.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
+            layout.Size = new IntVector2(width, height);
+            layout.SetStyleAuto();
+
+            listView = layout.CreateChild<ListView>(new StringHash("ListView"));
+            listView.MinSize = new IntVector2(width, height);
+            listView.SetStyleAuto();
+
+            Input.SetMouseVisible(true);
+
+        }
+
+        string ExtractSampleName(Type sample)
+        {
+            return sample.ToString().Split('.')[1];
+        }
+        void FindAvailableSamples()
+        {
+            samples = typeof(Sample).Assembly.GetTypes().Where(t => t.IsSubclassOf(typeof(Sample)) && t != typeof(Sample)).ToArray();
+
+            Array.Sort(samples, new TypeComparer());
+
+            foreach (var sample in samples)
+            {
+                samplesList[ExtractSampleName(sample)] = sample;
+            }
+
+        }
+
+        void PopulateSamplesList()
+        {
+            foreach (var sample in samples)
+            {
+                ListAddSampleEntry(ExtractSampleName(sample));
+            }
+        }
+
+        void ListAddSampleEntry(string name)
+        {
+            Button button = new Button();
+            button.MinHeight = 80;
+            button.SetStyleAuto();
+            button.Name = name;
+
+            button.Released += OnEntrySelected;
+
+            var title = button.CreateChild<Text>(new StringHash("Text"));
+            title.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
+            title.Value = name;
+            title.SetFont(ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 40);
+
+            listView.AddItem(button);
+        }
+
+        private void OnEntrySelected(ReleasedEventArgs obj)
+        {
+            Button button = obj.Element as Button;
+            string name = button?.Name;
+
+            currentSample = (Sample)Activator.CreateInstance(samplesList[name]);
+
+            if (currentSample != null)
+            {
+                UI.Root.RemoveChild(listViewHolder_);
+                listViewHolder_ = null;
+                currentSample.Run();
+                currentSample.backButton.Released += OnBackButtonReleased;
+                Graphics.WindowTitle = name;
+            }
+
+        }
+
+        private void OnBackButtonReleased(ReleasedEventArgs obj)
+        {
+            ExitSample();
+        }
+
+        void ExitSample()
+        {
+            if (currentSample != null)
+            {
+                currentSample.backButton.Released -= OnBackButtonReleased;
+                currentSample.Exit();
+                currentSample.UnSubscribeFromAllEvents();
+                currentSample.Dispose();
+                currentSample = null;
+                UI.Root.RemoveAllChildren();
+                CreateUI();
+                PopulateSamplesList();
+                Graphics.WindowTitle = "Urho.Net Samples";
+            }
+        }
+        void HandleKeyDown(KeyDownEventArgs e)
+        {
+
+            switch (e.Key)
+            {
+                case Key.Esc:
+                    if (currentSample != null)
+                    {
+                        ExitSample();
+                    }
+                    else
+                    {
+                        Exit();
+                    }
+                    return;
+            }
+        }
+    }
+}

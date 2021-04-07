@@ -1,0 +1,9 @@
+<material>
+    <technique name="Techniques/TerrainBlend.xml" />
+    <texture unit="0" name="Offroad/Terrain/TerrainWeightsRace-256.png" />
+    <texture unit="1" name="Offroad/Textures/terraindetail_dirt.jpg" />
+    <texture unit="2" name="Offroad/Textures/terraindetail_rock.png" />
+    <texture unit="3" name="Offroad/Textures/terraindetail_grass22.png" />
+    <parameter name="MatSpecColor" value="0 0 0 16" />
+    <parameter name="DetailTiling" value="32 32" />
+</material>
