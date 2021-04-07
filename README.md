@@ -1,2 +1,2 @@
 # FeatureSamples
-Urho.Net feature samples , all of them combined under a single project
+This directory contains the various samples that showcase the features of Urho.Net.
