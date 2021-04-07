@@ -43,7 +43,7 @@ namespace UrhoNetSamples
 
 
 
-		private protected Sample currentSample = null;
+		protected Sample currentSample = null;
 
 		
         protected UIElement listViewHolder_ = null;
