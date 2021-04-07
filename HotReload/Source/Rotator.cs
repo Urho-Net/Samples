@@ -53,7 +53,7 @@ namespace HotReload
 
         protected override void OnUpdate(float timeStep)
         {
-            Node.Rotate(new Quaternion(
+            Node?.Rotate(new Quaternion(
                 RotationSpeed.X * timeStep,
                 RotationSpeed.Y * timeStep,
                 RotationSpeed.Z * timeStep),

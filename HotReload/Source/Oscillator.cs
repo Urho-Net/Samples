@@ -18,24 +18,24 @@ namespace HotReload
 
         float totalTime = 0f;
 
-    	public override void OnDeserialize(IComponentDeserializer d)
-		{
-			movementVector = d.Deserialize<Vector3>(nameof(movementVector));
+        public override void OnDeserialize(IComponentDeserializer d)
+        {
+            movementVector = d.Deserialize<Vector3>(nameof(movementVector));
             movementFactor = d.Deserialize<float>(nameof(movementFactor));
             period = d.Deserialize<float>(nameof(period));
             Node.Position = d.Deserialize<Vector3>(nameof(Node.Position));
             Node.Rotation = d.Deserialize<Quaternion>(nameof(Node.Rotation));
-		}
+        }
 
-		public override void OnSerialize(IComponentSerializer s)
-		{
-			s.Serialize(nameof(movementVector), movementVector);
+        public override void OnSerialize(IComponentSerializer s)
+        {
+            s.Serialize(nameof(movementVector), movementVector);
             s.Serialize(nameof(movementFactor), movementFactor);
             s.Serialize(nameof(period), period);
-            s.Serialize(nameof(Node.Position),  Node.Position);
-            s.Serialize(nameof(Node.Rotation),  Node.Rotation);
-           
-		}
+            s.Serialize(nameof(Node.Position), Node.Position);
+            s.Serialize(nameof(Node.Rotation), Node.Rotation);
+
+        }
 
         private void InitiaizeVariables()
         {
@@ -73,8 +73,8 @@ namespace HotReload
             movementFactor = rawSineWave / 2f + 0.5f;
 
             Vector3 offset = movementFactor * movementVector;
-            Node.Position = startingPosition + offset;
-
+            if (Node != null)
+                Node.Position = startingPosition + offset;
         }
 
 
