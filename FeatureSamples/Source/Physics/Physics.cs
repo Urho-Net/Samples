@@ -93,10 +93,23 @@ namespace Physics
                 SpawnObject();
 
             if (!isMobile && input.GetKeyPress(Key.F5))
-                scene.SaveXml(FileSystem.ProgramDir + "Data/Scenes/Physics.xml");
+            {
+                string path = FileSystem.CurrentDir + "Assets/Data/Scenes";
+                if (!FileSystem.DirExists(path))
+                {
+                    FileSystem.CreateDir(path);
+                }
+                scene.SaveXml(path + "/Physics.xml");
+            }
 
             if (!isMobile && input.GetKeyPress(Key.F7))
-                scene.LoadXml(FileSystem.ProgramDir + "Data/Scenes/Physics.xml");
+            {
+                string path = FileSystem.CurrentDir + "Assets/Data/Scenes/Physics.xml";
+                if (FileSystem.FileExists(path))
+                {
+                    scene.LoadXml(path);
+                }
+            }
 
             if (input.GetKeyPress(Key.Space))
                 drawDebug = !drawDebug;

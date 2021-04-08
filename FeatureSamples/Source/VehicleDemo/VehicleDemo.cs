@@ -47,7 +47,14 @@ namespace VehicleDemo
             CreateVehicle();
 
             // Create the UI content
-            SimpleCreateInstructionsWithWasd("\nF5 to save scene, F7 to load");
+            if (isMobile)
+            {
+                SimpleCreateInstructionsWithWasd();
+            }
+            else
+            {
+                SimpleCreateInstructionsWithWasd("F5 to save scene, F7 to load");
+            }
 
             // Subscribe to necessary events
             SubscribeToEvents();
@@ -149,7 +156,7 @@ namespace VehicleDemo
                     vehicle.Controls.Pitch = MathHelper.Clamp(vehicle.Controls.Pitch, 0.0f, 80.0f);
 
                     // Check for loading / saving the scene
-                    if (input.GetKeyPress(Key.F5))
+                    if (!isMobile && input.GetKeyPress(Key.F5))
                     {
                         string path = FileSystem.CurrentDir + "Assets/Data/Scenes";
                         if (!FileSystem.DirExists(path))
@@ -158,14 +165,22 @@ namespace VehicleDemo
                         }
                         scene.SaveXml(path + "/VehicleDemo.xml");
                     }
-                    if (input.GetKeyPress(Key.F7))
+                    if (!isMobile && input.GetKeyPress(Key.F7))
                     {
-                        scene.LoadXml(FileSystem.CurrentDir + "Assets/Data/Scenes/VehicleDemo.xml");
-                        // After loading we have to reacquire the weak pointer to the Vehicle component, as it has been recreated
-                        // Simply find the vehicle's scene node by name as there's only one of them
-                        Node vehicleNode = scene.GetChild("Vehicle", true);
-                        if (vehicleNode != null)
-                            vehicle = vehicleNode.GetComponent<Vehicle>();
+                        string path = FileSystem.CurrentDir + "Assets/Data/Scenes/VehicleDemo.xml";
+                        if (FileSystem.FileExists(path))
+                        {
+                            scene.GetComponent<PhysicsWorld>().PhysicsPreStep -= OnFixedUpdate;
+                            scene.LoadXml(path);
+                            scene.GetComponent<PhysicsWorld>().PhysicsPreStep += OnFixedUpdate;
+                            // After loading we have to reacquire the weak pointer to the Vehicle component, as it has been recreated
+                            // Simply find the vehicle's scene node by name as there's only one of them
+                            Node vehicleNode = scene.GetChild("Vehicle", true);
+                            if (vehicleNode != null)
+                            {
+                                vehicle = vehicleNode.GetComponent<Vehicle>();
+                            }
+                        }
                     }
                 }
                 else

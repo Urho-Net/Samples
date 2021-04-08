@@ -54,7 +54,7 @@ namespace KinematicCharacterDemo
             }
             else
             {
-                SimpleCreateInstructionsWithWasd("Space to jump, F to toggle 1st/3rd person\nF5 to save scene, F7 to load");
+                SimpleCreateInstructionsWithWasd("Space to jump, F to toggle 1st/3rd person");
             }
             SubscribeToEvents();
 
@@ -183,20 +183,31 @@ namespace KinematicCharacterDemo
                     if (touch != null && input.GetKeyPress(Key.G))
                         touch.UseGyroscope = !touch.UseGyroscope;
 
+                    /* TBD ELI , not working for KinematicCharacter ,  needs some debug session
                     if (!isMobile && input.GetKeyPress(Key.F5))
                     {
-                        scene.SaveXml(FileSystem.UserDocumentsDir + "temp/Data/Scenes/CharacterDemo.xml", "\t");
+                        string path = FileSystem.CurrentDir + "Assets/Data/Scenes";
+                        if (!FileSystem.DirExists(path))
+                        {
+                            FileSystem.CreateDir(path);
+                        }
+                        scene.SaveXml(path + "/KinematicCharacterDemo.xml");
                     }
                     if (!isMobile && input.GetKeyPress(Key.F7))
                     {
-                        scene.LoadXml(FileSystem.UserDocumentsDir + "temp/Data/Scenes/CharacterDemo.xml");
-                        Node characterNode = scene.GetChild("Jack", true);
-                        if (characterNode != null)
+                        string path = FileSystem.CurrentDir + "Assets/Data/Scenes/KinematicCharacterDemo.xml";
+                        if (FileSystem.FileExists(path))
                         {
-                            character = characterNode.GetComponent<KinematicCharacter>();
+                            scene.LoadXml(path);
+                            Node characterNode = scene.GetChild("Jack", true);
+                            if (characterNode != null)
+                            {
+                                character = characterNode.GetComponent<KinematicCharacter>();
+                            }
+                            physicsWorld = scene.CreateComponent<PhysicsWorld>();
                         }
-                        physicsWorld = scene.CreateComponent<PhysicsWorld>();
                     }
+                    */
                 }
 
                 // Set rotation already here so that it's updated every rendering frame instead of every physics frame

@@ -82,26 +82,13 @@ namespace UrhoNetSamples
 
         void CreateUI()
         {
-            var graphics = Graphics;
-            UIElement root = UI.Root;
-            var cache = ResourceCache;
-            XmlFile uiStyle = cache.GetXmlFile("UI/DefaultStyle.xml");
+            XmlFile uiStyle = ResourceCache.GetXmlFile("UI/DefaultStyle.xml");
             // Set style to the UI root so that elements will inherit it
-            root.SetDefaultStyle(uiStyle);
+            UI.Root.SetDefaultStyle(uiStyle);
 
-            int width = Graphics.Width;
-            int height = Graphics.Height;
-
-            var layout = root.CreateChild<UIElement>(new StringHash("UIElement"));
-            listViewHolder_ = layout;
-            layout.LayoutMode = LayoutMode.Vertical;
-            layout.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
-            layout.Size = new IntVector2(width, height);
-            layout.SetStyleAuto();
-            layout.SetFocus(true);
-
-            listView = layout.CreateChild<ListView>(new StringHash("ListView"));
-            listView.MinSize = new IntVector2(width, height);
+            listView = UI.Root.CreateChild<ListView>(new StringHash("ListView"));
+            listView.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
+            listView.MinSize = new IntVector2(Graphics.Width, Graphics.Height);
             listView.SetStyleAuto();
             listView.SetFocus(true);
             Input.SetMouseVisible(true);
@@ -159,8 +146,8 @@ namespace UrhoNetSamples
 
             if (currentSample != null)
             {
-                UI.Root.RemoveChild(listViewHolder_);
-                listViewHolder_ = null;
+                UI.Root.RemoveChild(listView);
+                listView = null;
                 currentSample.Run();
                 currentSample.backButton.Released += OnBackButtonReleased;
                 Graphics.WindowTitle = name;

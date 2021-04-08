@@ -71,7 +71,11 @@ namespace UrhoNetSamples
         protected MonoDebugHud MonoDebugHud { get; set; }
 
         [Preserve]
-        protected Sample(ApplicationOptions options = null) { }
+        protected Sample(ApplicationOptions options = null) 
+        { 
+            // This one is not used because Sample is inherited from Component and not Application .
+            // if you want to add a resource path , add it in UrhoNetSamples.cs
+        }
 
         static string DefaultJoystickLayout = "";
 
@@ -318,7 +322,7 @@ namespace UrhoNetSamples
             {
                 Value = text,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Bottom
+                VerticalAlignment = VerticalAlignment.Top
             };
             textElement.SetFont(Application.ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 25);
             Application.UI.Root.AddChild(textElement);

@@ -132,7 +132,7 @@ namespace MaterialAnimation
             CameraNode.CreateComponent<Camera>();
 
             // Set an initial position for the camera scene node above the plane
-            CameraNode.Position = (new Vector3(0.0f, 5.0f, 0.0f));
+            CameraNode.Position = (new Vector3(0.0f, 5.0f,-50.0f));
         }
     }
 }

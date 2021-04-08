@@ -71,7 +71,7 @@ namespace CharacterDemo
             CreateCharacter();
             if (isMobile)
             {
-				SimpleCreateInstructionsWithWasd("Button to jump, Button to toggle 1st/3rd person");
+                SimpleCreateInstructionsWithWasd("Button to jump, Button to toggle 1st/3rd person");
             }
             else
             {
@@ -213,18 +213,28 @@ namespace CharacterDemo
 
                     if (!isMobile && input.GetKeyPress(Key.F5))
                     {
-                        scene.SaveXml(FileSystem.UserDocumentsDir + "temp/Data/Scenes/CharacterDemo.xml", "\t");
+
+                        string path = FileSystem.CurrentDir + "Assets/Data/Scenes";
+                        if (!FileSystem.DirExists(path))
+                        {
+                            FileSystem.CreateDir(path);
+                        }
+                        scene.SaveXml(path + "/CharacterDemo.xml");
                     }
                     if (!isMobile && input.GetKeyPress(Key.F7))
                     {
-                        scene.LoadXml(FileSystem.UserDocumentsDir + "temp/Data/Scenes/CharacterDemo.xml");
-                        Node characterNode = scene.GetChild("Jack", true);
-                        if (characterNode != null)
+                        string path = FileSystem.CurrentDir + "Assets/Data/Scenes/CharacterDemo.xml";
+                        if (FileSystem.FileExists(path))
                         {
-                            character = characterNode.GetComponent<Character>();
+                            scene.LoadXml(path);
+                            Node characterNode = scene.GetChild("Jack", true);
+                            if (characterNode != null)
+                            {
+                                character = characterNode.GetComponent<Character>();
+                            }
+                            physicsWorld = scene.CreateComponent<PhysicsWorld>();
+                            physicsWorld.PhysicsPreStep += (HandlePhysicsPreStep);
                         }
-                        physicsWorld = scene.CreateComponent<PhysicsWorld>();
-                        physicsWorld.PhysicsPreStep += (HandlePhysicsPreStep);
                     }
                 }
 
