@@ -343,7 +343,7 @@ namespace UrhoNetSamples
             logoSprite.SetScale(256.0f / w);
             logoSprite.SetSize(w, h);
             logoSprite.SetHotSpot(0, h);
-            logoSprite.SetAlignment(HorizontalAlignment.Left, VerticalAlignment.Bottom);
+            logoSprite.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Bottom);
             logoSprite.Opacity = 0.75f;
             logoSprite.Priority = -100;
         }
