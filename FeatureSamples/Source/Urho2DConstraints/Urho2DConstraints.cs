@@ -44,7 +44,7 @@ namespace Urho2DConstraints
         {
             base.Start();
             CreateScene();
-            SimpleCreateInstructionsWithWasd(", Use PageUp PageDown to zoom.\n Space to toggle debug geometry and joints - F5 to save the scene.");
+            SimpleCreateInstructionsWithWasd(", Use PageUp PageDown to zoom.\n Space to toggle debug geometry and joints");
             Input.SetMouseVisible(true, false);
             SetupViewport();
             SubscribeToEvents();
@@ -105,11 +105,6 @@ namespace Urho2DConstraints
             if (input.GetKeyPress(Key.Space))
                 drawDebug = !drawDebug;
 
-            // Save scene
-            if (input.GetKeyPress(Key.F5))
-            {
-                scene.SaveXml(FileSystem.CurrentDir + "Assets/Data/Scenes/Constraints.xml", "\t");
-            }
         }
 
         void HandleTouchBegin(TouchBeginEventArgs args)

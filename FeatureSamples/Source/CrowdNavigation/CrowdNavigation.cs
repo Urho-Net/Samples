@@ -89,16 +89,21 @@ namespace CrowdNavigation
         {
             Engine.PostRenderUpdate += OnPostRenderUpdate;
 
-            crowdManager.CrowdAgentFailure += OnCrowdAgentFailure;
-
-            crowdManager.CrowdAgentReposition += OnCrowdAgentReposition;
+            if (crowdManager != null)
+            {
+                crowdManager.CrowdAgentFailure += OnCrowdAgentFailure;
+                crowdManager.CrowdAgentReposition += OnCrowdAgentReposition;
+            }
         }
 
         void UnSubscribeFromEvents()
         {
             Engine.PostRenderUpdate -= OnPostRenderUpdate;
-            crowdManager.CrowdAgentFailure -= OnCrowdAgentFailure;
-            crowdManager.CrowdAgentReposition -= OnCrowdAgentReposition;
+            if (crowdManager != null)
+            {
+                crowdManager.CrowdAgentFailure -= OnCrowdAgentFailure;
+                crowdManager.CrowdAgentReposition -= OnCrowdAgentReposition;
+            }
         }
 
 
@@ -214,10 +219,26 @@ namespace CrowdNavigation
             // Check for loading/saving the scene. Save the scene to the file Data/Scenes/CrowdNavigation.xml relative to the executable
             // directory
             if (!isMobile && input.GetKeyPress(Key.F5))
-                scene.SaveXml(FileSystem.UserDocumentsDir + "temp/Data/Scenes/CrowdNavigation.xml");
+            {
+                string path = FileSystem.CurrentDir + "Assets/Data/Scenes";
+                if (!FileSystem.DirExists(path))
+                {
+                    FileSystem.CreateDir(path);
+                }
+                scene.SaveXml(path + "/CrowdNavigation.xml");
+            }
 
             if (!isMobile && input.GetKeyPress(Key.F7))
-                scene.LoadXml(FileSystem.UserDocumentsDir + "temp/Data/Scenes/CrowdNavigation.xml");
+            {
+                string path = FileSystem.CurrentDir + "Assets/Data/Scenes/CrowdNavigation.xml";
+                if (FileSystem.FileExists(path))
+                {
+                    UnSubscribeFromEvents();
+                    scene.LoadXml(path);
+                    crowdManager = scene.GetComponent<CrowdManager>();
+                    SubscribeToEvents();
+                }
+            }
 
             // Toggle debug geometry with space
             if (input.GetKeyPress(Key.Space))

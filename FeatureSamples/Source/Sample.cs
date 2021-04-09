@@ -71,7 +71,11 @@ namespace UrhoNetSamples
         protected MonoDebugHud MonoDebugHud { get; set; }
 
         [Preserve]
-        protected Sample(ApplicationOptions options = null) { }
+        protected Sample(ApplicationOptions options = null) 
+        { 
+            // This one is not used because Sample is inherited from Component and not Application .
+            // if you want to add a resource path , add it in UrhoNetSamples.cs
+        }
 
         static string DefaultJoystickLayout = "";
 
@@ -318,7 +322,7 @@ namespace UrhoNetSamples
             {
                 Value = text,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Bottom
+                VerticalAlignment = VerticalAlignment.Top
             };
             textElement.SetFont(Application.ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 25);
             Application.UI.Root.AddChild(textElement);
@@ -339,7 +343,7 @@ namespace UrhoNetSamples
             logoSprite.SetScale(256.0f / w);
             logoSprite.SetSize(w, h);
             logoSprite.SetHotSpot(0, h);
-            logoSprite.SetAlignment(HorizontalAlignment.Left, VerticalAlignment.Bottom);
+            logoSprite.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Bottom);
             logoSprite.Opacity = 0.75f;
             logoSprite.Priority = -100;
         }

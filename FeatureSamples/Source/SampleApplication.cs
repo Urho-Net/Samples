@@ -45,8 +45,6 @@ namespace UrhoNetSamples
 
 		protected Sample currentSample = null;
 
-		
-        protected UIElement listViewHolder_ = null;
 
 		[Preserve]
 		protected SampleApplication(ApplicationOptions options = null) : base(options) {}
