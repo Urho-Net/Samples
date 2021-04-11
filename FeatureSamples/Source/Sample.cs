@@ -60,7 +60,7 @@ namespace UrhoNetSamples
 
         protected Network Network;
 
-
+        protected Log Log;
         public Button backButton;
 
         protected const float TouchSensitivity = 2;
@@ -147,8 +147,7 @@ namespace UrhoNetSamples
             FileSystem = Application.FileSystem;
             Engine = Application.Engine;
             Network = Application.Network;
-
-            Urho.LogSharp.LogLevel = LogSharpLevel.Error;
+            Log = Application.Log;
 
             this.ReceiveSceneUpdates = true;
 

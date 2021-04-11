@@ -40,7 +40,9 @@ namespace VehicleDemo
         {
             base.Start();
 
-            // Create static scene content
+          //  LogSharp.LogLevel = LogSharpLevel.Debug;
+
+            //Create scene content
             CreateScene();
 
             // Create the controllable vehicle
@@ -156,36 +158,62 @@ namespace VehicleDemo
                     vehicle.Controls.Pitch = MathHelper.Clamp(vehicle.Controls.Pitch, 0.0f, 80.0f);
 
                     // Check for loading / saving the scene
+                    // currently saving is only supported on desktop
                     if (!isMobile && input.GetKeyPress(Key.F5))
                     {
-                        string path = FileSystem.CurrentDir + "Assets/Data/Scenes";
+                        string path = FileSystem.ProgramDir + "Assets/Data/Scenes";
                         if (!FileSystem.DirExists(path))
                         {
                             FileSystem.CreateDir(path);
                         }
                         scene.SaveXml(path + "/VehicleDemo.xml");
                     }
-                    if (!isMobile && input.GetKeyPress(Key.F7))
+                    if (input.GetKeyPress(Key.F7))
                     {
-                        string path = FileSystem.CurrentDir + "Assets/Data/Scenes/VehicleDemo.xml";
-                        if (FileSystem.FileExists(path))
-                        {
-                            scene.GetComponent<PhysicsWorld>().PhysicsPreStep -= OnFixedUpdate;
-                            scene.LoadXml(path);
-                            scene.GetComponent<PhysicsWorld>().PhysicsPreStep += OnFixedUpdate;
-                            // After loading we have to reacquire the weak pointer to the Vehicle component, as it has been recreated
-                            // Simply find the vehicle's scene node by name as there's only one of them
-                            Node vehicleNode = scene.GetChild("Vehicle", true);
-                            if (vehicleNode != null)
-                            {
-                                vehicle = vehicleNode.GetComponent<Vehicle>();
-                            }
-                        }
+                        LoadScene();
                     }
                 }
                 else
                     vehicle.Controls.Set(Vehicle.CtrlForward | Vehicle.CtrlBack | Vehicle.CtrlLeft | Vehicle.CtrlRight, false);
             }
+        }
+
+        void LoadScene()
+        {
+            scene = scene ?? new Scene();
+
+            string path = "";
+
+            if (isMobile)
+            {
+                path = FileSystem.ProgramDir + "Data/Scenes";
+            }
+            else
+            {
+                path = FileSystem.ProgramDir + "Assets/Data/Scenes";
+            }
+
+            path +="/VehicleDemo.xml";
+
+            scene.LoadXml(path);
+
+            if (CameraNode == null)
+            {
+                CameraNode = new Node();
+                Camera camera = CameraNode.CreateComponent<Camera>();
+                camera.FarClip = 500.0f;
+                Renderer.SetViewport(0, new Viewport(Context, scene, camera, null));
+            }
+
+            scene.GetComponent<PhysicsWorld>().PhysicsPreStep += OnFixedUpdate;
+            // After loading we have to reacquire the weak pointer to the Vehicle component, as it has been recreated
+            // Simply find the vehicle's scene node by name as there's only one of them
+            Node vehicleNode = scene.GetChild("Vehicle", true);
+            if (vehicleNode != null)
+            {
+                vehicle = vehicleNode.GetComponent<Vehicle>();
+            }
+
         }
 
         void CreateVehicle()

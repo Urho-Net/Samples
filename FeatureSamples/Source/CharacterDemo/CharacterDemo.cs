@@ -91,22 +91,22 @@ namespace CharacterDemo
 
         void SubscribeToEvents()
         {
-            Engine.PostUpdate += HandlePostUpdate;
-            physicsWorld.PhysicsPreStep += HandlePhysicsPreStep;
+            Engine.PostUpdate += OnPostUpdate;
+            physicsWorld.PhysicsPreStep += OnPhysicsPreStep;
         }
 
         void UnSubscribeFromEvents()
         {
-            Engine.PostUpdate -= HandlePostUpdate;
-            physicsWorld.PhysicsPreStep -= HandlePhysicsPreStep;
+            Engine.PostUpdate -= OnPostUpdate;
+            physicsWorld.PhysicsPreStep -= OnPhysicsPreStep;
         }
 
-        void HandlePhysicsPreStep(PhysicsPreStepEventArgs args)
+        void OnPhysicsPreStep(PhysicsPreStepEventArgs args)
         {
             character?.FixedUpdate(args.TimeStep);
         }
 
-        void HandlePostUpdate(PostUpdateEventArgs args)
+        void OnPostUpdate(PostUpdateEventArgs args)
         {
 
             if (character == null)
@@ -233,7 +233,7 @@ namespace CharacterDemo
                                 character = characterNode.GetComponent<Character>();
                             }
                             physicsWorld = scene.CreateComponent<PhysicsWorld>();
-                            physicsWorld.PhysicsPreStep += (HandlePhysicsPreStep);
+                            physicsWorld.PhysicsPreStep += (OnPhysicsPreStep);
                         }
                     }
                 }

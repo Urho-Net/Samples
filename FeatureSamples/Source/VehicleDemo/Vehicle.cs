@@ -23,7 +23,6 @@
 
 using System;
 using Urho;
-using Urho.Resources;
 using Urho.Physics;
 
 namespace VehicleDemo
@@ -64,50 +63,38 @@ namespace VehicleDemo
         RigidBody rearRightBody;
 
         // IDs of the wheel scene nodes for serialization.
+        [SerializeField]
         uint frontLeftId;
+        [SerializeField]
         uint frontRightId;
+        [SerializeField]
         uint rearLeftId;
+        [SerializeField]
         uint rearRightId;
 
         /// Current left/right steering amount (-1 to 1.)
         float steering;
 
+
         public Vehicle(IntPtr handle) : base(handle) { }
 
         public Vehicle() { }
 
-        public override void OnDeserialize(IComponentDeserializer d)
-        {
-            frontLeftId = d.Deserialize<uint>(nameof(frontLeftId));
-            frontRightId = d.Deserialize<uint>(nameof(frontRightId));
-            rearLeftId = d.Deserialize<uint>(nameof(rearLeftId));
-            rearRightId = d.Deserialize<uint>(nameof(rearRightId));
-        }
-
-        public override void OnSerialize(IComponentSerializer s)
-        {
-            s.Serialize(nameof(frontLeftId), frontLeftId);
-            s.Serialize(nameof(frontRightId), frontRightId);
-            s.Serialize(nameof(rearLeftId), rearLeftId);
-            s.Serialize(nameof(rearRightId), rearRightId);
-        }
-
-
         public void FixedUpdate(float timeStep)
         {
-			// check if not null , can happen after loading a scene 
-			// TBD elix - will be handeled differently once the serialization/deserialization will be implemented 
-            frontLeft = frontLeft??Scene.GetNode(frontLeftId);
-            frontRight = frontRight??Scene.GetNode(frontRightId);
-            rearLeft = rearLeft??Scene.GetNode(rearLeftId);
-            rearRight = rearRight??Scene.GetNode(rearRightId);
-            hullBody = hullBody??Node.GetComponent<RigidBody>();
-			frontLeftAxis = frontLeftAxis??frontLeft?.GetComponent<Constraint>();
-            frontRightAxis = frontRightAxis??frontRight?.GetComponent<Constraint>();
-            frontLeftBody = frontLeftBody??frontLeft?.GetComponent<RigidBody>();
-            frontRightBody = frontRightBody??frontRight?.GetComponent<RigidBody>();
-            rearLeftBody = rearLeftBody??rearLeft?.GetComponent<RigidBody>();
-            rearRightBody = rearRightBody??rearRight?.GetComponent<RigidBody>();
+            // check if not null , can happen after loading a scene 
+            // TBD elix - will be handeled differently once the serialization/deserialization will be implemented 
+            frontLeft = frontLeft ?? Scene.GetNode(frontLeftId);
+            frontRight = frontRight ?? Scene.GetNode(frontRightId);
+            rearLeft = rearLeft ?? Scene.GetNode(rearLeftId);
+            rearRight = rearRight ?? Scene.GetNode(rearRightId);
+            hullBody = hullBody ?? Node.GetComponent<RigidBody>();
+            frontLeftAxis = frontLeftAxis ?? frontLeft?.GetComponent<Constraint>();
+            frontRightAxis = frontRightAxis ?? frontRight?.GetComponent<Constraint>();
+            frontLeftBody = frontLeftBody ?? frontLeft?.GetComponent<RigidBody>();
+            frontRightBody = frontRightBody ?? frontRight?.GetComponent<RigidBody>();
+            rearLeftBody = rearLeftBody ?? rearLeft?.GetComponent<RigidBody>();
+            rearRightBody = rearRightBody ?? rearRight?.GetComponent<RigidBody>();
 
 
             float newSteering = 0.0f;
