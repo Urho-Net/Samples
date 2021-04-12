@@ -195,6 +195,8 @@ namespace VehicleDemo
 
             path +="/VehicleDemo.xml";
 
+            if (!FileSystem.FileExists(path))return;
+
             scene.LoadXml(path);
 
             // Camera is not part of the scene , so check if it is not created yet.
