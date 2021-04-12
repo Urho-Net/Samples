@@ -85,14 +85,22 @@ namespace UrhoNetSamples
             XmlFile uiStyle = ResourceCache.GetXmlFile("UI/DefaultStyle.xml");
             // Set style to the UI root so that elements will inherit it
             UI.Root.SetDefaultStyle(uiStyle);
+            
 
             listView = UI.Root.CreateChild<ListView>(new StringHash("ListView"));
             listView.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
-            listView.MinSize = new IntVector2(Graphics.Width, Graphics.Height);
+            listView.Size = new IntVector2(Graphics.Width, Graphics.Height);
             listView.SetStyleAuto();
             listView.SetFocus(true);
             Input.SetMouseVisible(true);
 
+            UI.Root.Resized += OnUIResized;
+
+        }
+
+        private void OnUIResized(ResizedEventArgs obj)
+        {
+            listView.Size = new IntVector2(Graphics.Width, Graphics.Height);
         }
 
         string ExtractSampleName(Type sample)
@@ -148,6 +156,7 @@ namespace UrhoNetSamples
             {
                 UI.Root.RemoveChild(listView);
                 listView = null;
+                UI.Root.Resized -= OnUIResized;
                 currentSample.Run();
                 currentSample.backButton.Released += OnBackButtonReleased;
                 Graphics.WindowTitle = name;
