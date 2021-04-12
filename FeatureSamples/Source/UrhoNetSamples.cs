@@ -84,7 +84,7 @@ namespace UrhoNetSamples
             XmlFile uiStyle = ResourceCache.GetXmlFile("UI/DefaultStyle.xml");
             // Set style to the UI root so that elements will inherit it
             UI.Root.SetDefaultStyle(uiStyle);
-            
+
 
             listView = UI.Root.CreateChild<ListView>(new StringHash("ListView"));
             listView.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
@@ -117,7 +117,7 @@ namespace UrhoNetSamples
                 string SampleName = ExtractSampleName(sample);
 
                 // PBRMaterials doesn't work well on mobiles
-                if(isMobile && SampleName == "PBRMaterials")continue;
+                if (isMobile && SampleName == "PBRMaterials") continue;
 
                 samplesList[SampleName] = sample;
             }
@@ -128,7 +128,12 @@ namespace UrhoNetSamples
         {
             foreach (var sample in samples)
             {
-                ListAddSampleEntry(ExtractSampleName(sample));
+                string SampleName = ExtractSampleName(sample);
+
+                // PBRMaterials doesn't work well on mobiles
+                if (isMobile && SampleName == "PBRMaterials") continue;
+
+                ListAddSampleEntry(SampleName);
             }
         }
 
