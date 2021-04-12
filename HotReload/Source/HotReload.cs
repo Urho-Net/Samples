@@ -150,20 +150,21 @@ namespace HotReload
 
             if (input.GetKeyPress(Key.F5))
             {
-                if (!FileSystem.DirExists(FileSystem.UserDocumentsDir + "HotReloadDemo/Scenes"))
+                string path = FileSystem.ProgramDir + "Assets/Data/Scenes";
+                if (!FileSystem.DirExists(path))
                 {
-                    FileSystem.CreateDir(FileSystem.UserDocumentsDir + "HotReloadDemo/Scenes");
+                    FileSystem.CreateDir(path);
                 }
-                scene.SaveXml(FileSystem.UserDocumentsDir + "HotReloadDemo/Scenes/HotReloadDemo.xml");
+                scene.SaveXml(path + "/HotReloadDemo.xml");
             }
 
 
             if (input.GetKeyPress(Key.F7))
             {
-
-                if (FileSystem.FileExists(FileSystem.UserDocumentsDir + "HotReloadDemo/Scenes/HotReloadDemo.xml"))
+                 string filePath = FileSystem.ProgramDir + "Assets/Data/Scenes/HotReloadDemo.xml";
+                if (FileSystem.FileExists(filePath))
                 {
-                    scene.LoadXml(FileSystem.UserDocumentsDir + "HotReloadDemo/Scenes/HotReloadDemo.xml");
+                    scene.LoadXml(filePath);
                     dynamicComponentManager.SetScene(scene);
 
                     CameraNode = scene.GetChild("camera");

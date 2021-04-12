@@ -197,6 +197,7 @@ namespace VehicleDemo
 
             scene.LoadXml(path);
 
+            // Camera is not part of the scene , so check if it is not created yet.
             if (CameraNode == null)
             {
                 CameraNode = new Node();

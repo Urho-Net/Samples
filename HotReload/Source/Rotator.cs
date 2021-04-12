@@ -9,6 +9,7 @@ namespace HotReload
     class Rotator : Component
     {
 
+        [SerializeField]
         private Vector3 RotationSpeed;
 
         private void InitiaizeVariables()
@@ -24,17 +25,18 @@ namespace HotReload
 
     	public override void OnDeserialize(IComponentDeserializer d)
 		{
-			RotationSpeed = d.Deserialize<Vector3>(nameof(RotationSpeed));
+            // Public fields and fields that are marked with [SerializeField] attribute , are Deserialized automatically.
+
             Node.Position = d.Deserialize<Vector3>(nameof(Node.Position));
             Node.Rotation = d.Deserialize<Quaternion>(nameof(Node.Rotation));
 		}
 
 		public override void OnSerialize(IComponentSerializer s)
 		{
-			s.Serialize(nameof(RotationSpeed), RotationSpeed);
+             // Public fields and fields that are marked with [SerializeField] attribute , are Serialized automatically.
+
             s.Serialize(nameof(Node.Position),  Node.Position);
             s.Serialize(nameof(Node.Rotation),  Node.Rotation);
-           
 		}
 
         public Rotator(IntPtr handle) : base(handle)
