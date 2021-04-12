@@ -1,6 +1,5 @@
 // Copyright (c) 2020-2021 Eli Aloni (a.k.a  elix22)
-// Copyright (c) 2008-2015 the Urho3D project.
-// Copyright (c) 2015 Xamarin Inc
+// Copyright (c) 2008-2020 the Urho3D project.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -115,7 +114,12 @@ namespace UrhoNetSamples
 
             foreach (var sample in samples)
             {
-                samplesList[ExtractSampleName(sample)] = sample;
+                string SampleName = ExtractSampleName(sample);
+
+                // PBRMaterials doesn't work well on mobiles
+                if(isMobile && SampleName == "PBRMaterials")continue;
+
+                samplesList[SampleName] = sample;
             }
 
         }
