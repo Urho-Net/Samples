@@ -29,6 +29,7 @@ using Urho.Gui;
 using Urho.IO;
 using Urho.Network;
 using Urho.Resources;
+using System;
 
 namespace Chat
 {
@@ -68,8 +69,15 @@ namespace Chat
             base.Start();
             Input.SetMouseVisible(true, false);
             CreateUI();
-            SubscribeToEvents();  
+            SubscribeToEvents();
         }
+
+        protected override void Stop()
+        {
+            UnSubscribeFromEvents();
+            base.Stop();
+        }
+        
         void CreateUI()
         {
             IsLogoVisible = false; // We need the full rendering window
@@ -83,7 +91,7 @@ namespace Chat
 
             Font font = cache.GetFont("Fonts/Anonymous Pro.ttf");
             chatHistoryText = new Text();
-            chatHistoryText.SetFont(font, 24);
+            chatHistoryText.SetFont(font, 30);
             root.AddChild(chatHistoryText);
 
             buttonContainer = new UIElement();
@@ -93,8 +101,7 @@ namespace Chat
             buttonContainer.LayoutMode = LayoutMode.Horizontal;
 
             textEdit = new LineEdit();
-            textEdit.SetStyleAuto(null);
-            textEdit.TextElement.SetFont(font, 24);
+            textEdit.SetStyleAuto();
             buttonContainer.AddChild(textEdit);
 
             sendButton = CreateButton("Send", 140);
@@ -113,23 +120,117 @@ namespace Chat
         void SubscribeToEvents()
         {
 
-            textEdit.TextFinished += (args => HandleSend());
-            sendButton.Released += (args => HandleSend());
-            connectButton.Released += (args => HandleConnect());
-            disconnectButton.Released += (args => HandleDisconnect());
-            startServerButton.Released += (args => HandleStartServer());
+            textEdit.TextFinished += HandleTextFinishedSend;
+            sendButton.Released += HandleSend;
+            connectButton.Released += HandleConnect;
+            disconnectButton.Released += HandleDisconnect;
+            startServerButton.Released += HandleStartServer;
 
-            cleanButton.Released += (args => HandleClearScreen());
+            cleanButton.Released += HandleClearScreen;
 
-            Log.LogMessage += (HandleLogMessage);
-            Network.ServerConnected += (args => UpdateButtons());
+            Log.LogMessage += HandleLogMessage;
             Network.ServerConnected += HandleServerConnected;
-            Network.ServerDisconnected += (args => UpdateButtons());
-			Network.ServerDisconnected += HandleServerDisconnected;
-            Network.ConnectFailed += (args => UpdateButtons());
+            Network.ServerDisconnected += HandleServerDisconnected;
+            Network.ConnectFailed += HandleConnectFailed;
 
-			Network.ClientConnected += HandleClientConnected;
-			Network.ClientDisconnected += HandleClientDisconnected;
+            Network.ClientConnected += HandleClientConnected;
+            Network.ClientDisconnected += HandleClientDisconnected;
+        }
+
+        void UnSubscribeFromEvents()
+        {
+            textEdit.TextFinished -= HandleTextFinishedSend;
+            sendButton.Released -= HandleSend;
+            connectButton.Released -= HandleConnect;
+            disconnectButton.Released -= HandleDisconnect;
+            startServerButton.Released -= HandleStartServer;
+
+            cleanButton.Released -= HandleClearScreen;
+
+            Log.LogMessage -= HandleLogMessage;
+            Network.ServerConnected -= HandleServerConnected;
+            Network.ServerDisconnected -= HandleServerDisconnected;
+            Network.ConnectFailed -= HandleConnectFailed;
+
+            Network.ClientConnected -= HandleClientConnected;
+            Network.ClientDisconnected -= HandleClientDisconnected;
+        }
+
+        private void HandleClearScreen(ReleasedEventArgs obj)
+        {
+            chatHistory.Clear();
+            chatHistoryText.Value = "";
+        }
+
+        private void HandleStartServer(ReleasedEventArgs obj)
+        {
+            Network.StartServer((ushort)ChatServerPort);
+
+            UpdateButtons();
+        }
+
+        private void HandleDisconnect(ReleasedEventArgs obj)
+        {
+            var network = Network;
+            Connection serverConnection = network.ServerConnection;
+            // If we were connected to server, disconnect
+            if (serverConnection != null)
+                serverConnection.Disconnect(0);
+            // Or if we were running a server, stop it
+            else if (network.ServerRunning)
+                network.StopServer();
+
+            UpdateButtons();
+
+        }
+
+        private void HandleConnect(ReleasedEventArgs obj)
+        {
+            string address = textEdit.Text.Trim();
+            if (string.IsNullOrEmpty(address))
+                address = "localhost"; // Use localhost to connect if nothing else specified
+                                       // Empty the text edit after reading the address to connect to
+            textEdit.Text = string.Empty;
+
+            // Connect to server, do not specify a client scene as we are not using scene replication, just messages.
+            // At connect time we could also send identity parameters (such as username) in a VariantMap, but in this
+            // case we skip it for simplicity
+            Network.Connect(address, ChatServerPort, null);
+
+            UpdateButtons();
+
+        }
+
+        private void HandleSend(ReleasedEventArgs obj)
+        {
+            SendMessage();
+        }
+
+        private void HandleTextFinishedSend(TextFinishedEventArgs obj)
+        {
+            SendMessage();
+        }
+
+        private void SendMessage()
+        {
+            string text = textEdit.Text;
+            if (string.IsNullOrEmpty(text))
+                return; // Do not send an empty message
+
+            Connection serverConnection = Network.ServerConnection;
+
+            if (serverConnection != null)
+            {
+                // Send the chat message as in-order and reliable
+                serverConnection.SendMessage(MsgChat, true, true, Encoding.UTF8.GetBytes(text));
+                // Empty the text edit after sending
+                textEdit.Text = string.Empty;
+            }
+        }
+
+        private void HandleConnectFailed(ConnectFailedEventArgs obj)
+        {
+            UpdateButtons();
         }
 
         Button CreateButton(string text, int width)
@@ -172,7 +273,7 @@ namespace Chat
             disconnectButton.Visible = serverConnection != null || serverRunning;
             startServerButton.Visible = serverConnection == null && !serverRunning;
 
-            cleanButton.Visible =  serverConnection != null || serverRunning;
+            cleanButton.Visible = serverConnection != null || serverRunning;
         }
 
         void HandleLogMessage(LogMessageEventArgs args)
@@ -180,82 +281,24 @@ namespace Chat
             ShowChatText(args.Message);
         }
 
-        void HandleClearScreen()
+        void HandleClientDisconnected(ClientDisconnectedEventArgs args)
         {
-            chatHistory.Clear();
-            chatHistoryText.Value = "";
-        }
-        void HandleSend()
-        {
-            string text = textEdit.Text;
-            if (string.IsNullOrEmpty(text))
-                return; // Do not send an empty message
-
-            Connection serverConnection = Network.ServerConnection;
-
-            if (serverConnection != null)
+            if (args.Connection != null)
             {
-                // Send the chat message as in-order and reliable
-                serverConnection.SendMessage(MsgChat, true, true, Encoding.UTF8.GetBytes(text));
-                // Empty the text edit after sending
-                textEdit.Text = string.Empty;
+                args.Connection.NetworkMessage -= HandleNetworkMessage;
+            }
+        }
+        void HandleClientConnected(ClientConnectedEventArgs args)
+        {
+            if (args.Connection != null)
+            {
+                args.Connection.NetworkMessage += HandleNetworkMessage;
             }
         }
 
-        void HandleConnect()
-        {
-            string address = textEdit.Text.Trim();
-            if (string.IsNullOrEmpty(address))
-                address = "localhost"; // Use localhost to connect if nothing else specified
-                                       // Empty the text edit after reading the address to connect to
-            textEdit.Text = string.Empty;
-
-            // Connect to server, do not specify a client scene as we are not using scene replication, just messages.
-            // At connect time we could also send identity parameters (such as username) in a VariantMap, but in this
-            // case we skip it for simplicity
-            Network.Connect(address, ChatServerPort, null);
-
-            UpdateButtons();
-        }
-
-        void HandleDisconnect()
-        {
-            var network = Network;
-            Connection serverConnection = network.ServerConnection;
-            // If we were connected to server, disconnect
-            if (serverConnection != null)
-                serverConnection.Disconnect(0);
-            // Or if we were running a server, stop it
-            else if (network.ServerRunning)
-                network.StopServer();
-
-            UpdateButtons();
-        }
-
-        void HandleStartServer()
-        {
-            Network.StartServer((ushort)ChatServerPort);
-
-            UpdateButtons();
-        }
-
-		void HandleClientDisconnected(ClientDisconnectedEventArgs args)
-		{
-			if(args.Connection != null)
-			{
-				args.Connection.NetworkMessage -= HandleNetworkMessage;
-			}
-		}
-		void HandleClientConnected(ClientConnectedEventArgs args)
-		{
-			if(args.Connection != null)
-			{
-				args.Connection.NetworkMessage += HandleNetworkMessage;
-			}
-		}
-
         void HandleServerDisconnected(ServerDisconnectedEventArgs arg)
         {
+            UpdateButtons();
             Connection connection = Network.ServerConnection;
             if (connection != null)
             {
@@ -264,7 +307,7 @@ namespace Chat
         }
         void HandleServerConnected(ServerConnectedEventArgs args)
         {
-
+            UpdateButtons();
             Connection connection = Network.ServerConnection;
             if (connection != null)
             {
@@ -277,16 +320,16 @@ namespace Chat
             int msgID = args.MessageID;
             if (msgID == MsgChat)
             {
-				Connection connection = args.Connection;
-				string address = connection.Address ;
-				ushort port = connection.Port;
+                Connection connection = args.Connection;
+                string address = connection.Address;
+                ushort port = connection.Port;
 
                 MemoryBuffer mb = new MemoryBuffer(args.Data);
-                ShowChatText(address + ":"+port.ToString() +" => "+ mb.GetString());
+                ShowChatText(address + ":" + port.ToString() + " => " + mb.GetString());
 
                 if (Network.ServerRunning)
-				{
-                    Network.Broadcast(MsgChat, true, true, args.Data , 0);
+                {
+                    Network.Broadcast(MsgChat, true, true, args.Data, 0);
                 }
             }
         }

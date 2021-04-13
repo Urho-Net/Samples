@@ -26,6 +26,7 @@ using Urho.Gui;
 using Urho.Network;
 using Urho.Resources;
 using System.Collections.Generic;
+using System;
 
 namespace SceneReplication
 {
@@ -79,7 +80,7 @@ namespace SceneReplication
             disconnectButton = null;
             startServerButton = null;
 
-            HandleDisconnect();
+            HandleDisconnect(new ReleasedEventArgs());
             base.Stop();
         }
 
@@ -128,15 +129,13 @@ namespace SceneReplication
 
             scene.GetComponent<PhysicsWorld>().PhysicsPreStep += HandlePhysicsPreStep;
 
-            connectButton.Released += (args => HandleConnect());
-            disconnectButton.Released += (args => HandleDisconnect());
-            startServerButton.Released += (args => HandleStartServer());
+            connectButton.Released += HandleConnect;
+            disconnectButton.Released += HandleDisconnect;
+            startServerButton.Released += HandleStartServer;
 
-            Network.ServerConnected += (args => UpdateButtons());
             Network.ServerConnected += HandleServerConnected;
-            Network.ServerDisconnected += (args => UpdateButtons());
             Network.ServerDisconnected += HandleServerDisconnected;
-            Network.ConnectFailed += (args => UpdateButtons());
+            Network.ConnectFailed += HandleConnectFailed;
 
             Network.ClientConnected += HandleClientConnected;
             Network.ClientDisconnected += HandleClientDisconnected;
@@ -144,13 +143,76 @@ namespace SceneReplication
             Network.RegisterRemoteEvent(E_CLIENTOBJECTID);
         }
 
+        private void HandleConnectFailed(ConnectFailedEventArgs obj)
+        {
+            UpdateButtons();
+        }
+
+        private void HandleStartServer(ReleasedEventArgs obj)
+        {
+
+            Network.StartServer((ushort)ServerPort);
+            UpdateButtons();
+        }
+
+        private void HandleDisconnect(ReleasedEventArgs obj)
+        {
+            var network = Network;
+            Connection serverConnection = network.ServerConnection;
+            // If we were connected to server, disconnect
+            if (serverConnection != null)
+            {
+                serverConnection.Disconnect();
+                scene.Clear(true, false);
+                clientObjectID_ = 0;
+            }
+            // Or if we were running a server, stop it
+            else if (network.ServerRunning)
+            {
+                network.StopServer();
+                scene.Clear(true, false);
+            }
+
+            UpdateButtons();
+
+        }
+
+        private void HandleConnect(ReleasedEventArgs obj)
+        {
+
+            string address = textEdit.Text.Trim();
+            if (string.IsNullOrEmpty(address))
+                address = "localhost"; // Use localhost to connect if nothing else specified
+                                       // Empty the text edit after reading the address to connect to
+            textEdit.Text = string.Empty;
+
+            // Connect to server, specify scene to use as a client for replication
+            clientObjectID_ = 0; // Reset own object ID from possible previous connection
+
+            Network.Connect(address, ServerPort, scene);
+
+            UpdateButtons();
+
+        }
+
         void UnSubscribeFromEvents()
         {
             Engine.PostUpdate -= HandlePostUpdate;
 
+            scene.GetComponent<PhysicsWorld>().PhysicsPreStep -= HandlePhysicsPreStep;
+
+            connectButton.Released -= HandleConnect;
+            disconnectButton.Released -= HandleDisconnect;
+            startServerButton.Released -= HandleStartServer;
+
+            Network.ServerConnected -= HandleServerConnected;
+            Network.ServerDisconnected -= HandleServerDisconnected;
+            Network.ConnectFailed -= HandleConnectFailed;
+
             Network.ClientConnected -= HandleClientConnected;
             Network.ClientDisconnected -= HandleClientDisconnected;
-           
+
+            Network.UnregisterRemoteEvent(E_CLIENTOBJECTID);
         }
 
         void CreateScene()
@@ -221,7 +283,7 @@ namespace SceneReplication
                 return;
 
             var mouseMove = Input.MouseMove;
-            if (Network.ServerRunning ||  Network.ServerConnection != null)
+            if (Network.ServerRunning || Network.ServerConnection != null)
             {
                 Yaw += mouseSensitivity * mouseMove.X;
                 Pitch += mouseSensitivity * mouseMove.Y;
@@ -304,63 +366,20 @@ namespace SceneReplication
             Connection serverConnection = network.ServerConnection;
             bool serverRunning = network.ServerRunning;
 
-            if(connectButton != null)
+            if (connectButton != null)
             {
                 connectButton.Visible = serverConnection == null && !serverRunning;
             }
 
-            if(disconnectButton != null)
+            if (disconnectButton != null)
             {
                 disconnectButton.Visible = serverConnection != null || serverRunning;
             }
-           
-            if(startServerButton != null)
+
+            if (startServerButton != null)
             {
-                 startServerButton.Visible = serverConnection == null && !serverRunning;
+                startServerButton.Visible = serverConnection == null && !serverRunning;
             }
-        }
-
-        void HandleConnect()
-        {
-            string address = textEdit.Text.Trim();
-            if (string.IsNullOrEmpty(address))
-                address = "localhost"; // Use localhost to connect if nothing else specified
-                                       // Empty the text edit after reading the address to connect to
-            textEdit.Text = string.Empty;
-
-            // Connect to server, specify scene to use as a client for replication
-            clientObjectID_ = 0; // Reset own object ID from possible previous connection
-
-            Network.Connect(address, ServerPort, scene);
-
-            UpdateButtons();
-        }
-
-        void HandleDisconnect()
-        {
-            var network = Network;
-            Connection serverConnection = network.ServerConnection;
-            // If we were connected to server, disconnect
-            if (serverConnection != null)
-            {
-                serverConnection.Disconnect();
-                scene.Clear(true, false);
-                clientObjectID_ = 0;
-            }
-            // Or if we were running a server, stop it
-            else if (network.ServerRunning)
-            {
-                network.StopServer();
-                scene.Clear(true, false);
-            }
-
-            UpdateButtons();
-        }
-
-        void HandleStartServer()
-        {
-            Network.StartServer((ushort)ServerPort);
-            UpdateButtons();
         }
 
         void HandleClientDisconnected(ClientDisconnectedEventArgs args)

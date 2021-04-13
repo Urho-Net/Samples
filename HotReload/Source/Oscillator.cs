@@ -9,8 +9,11 @@ namespace HotReload
     class Oscillator : Component
     {
 
+        [SerializeField]
         private Vector3 movementVector = new Vector3(1f, 0f, 1f);
+        [SerializeField]
         private float movementFactor = 0f;
+        [SerializeField]
         private float period = 2f;
 
         Vector3 startingPosition;
@@ -18,23 +21,21 @@ namespace HotReload
 
         float totalTime = 0f;
 
+
         public override void OnDeserialize(IComponentDeserializer d)
         {
-            movementVector = d.Deserialize<Vector3>(nameof(movementVector));
-            movementFactor = d.Deserialize<float>(nameof(movementFactor));
-            period = d.Deserialize<float>(nameof(period));
+            // Public fields and fields that are marked with [SerializeField] attribute , are Deserialized automatically.
+
             Node.Position = d.Deserialize<Vector3>(nameof(Node.Position));
             Node.Rotation = d.Deserialize<Quaternion>(nameof(Node.Rotation));
         }
 
         public override void OnSerialize(IComponentSerializer s)
         {
-            s.Serialize(nameof(movementVector), movementVector);
-            s.Serialize(nameof(movementFactor), movementFactor);
-            s.Serialize(nameof(period), period);
+            // Public fields and fields that are marked with [SerializeField] attribute , are Serialized automatically.
+
             s.Serialize(nameof(Node.Position), Node.Position);
             s.Serialize(nameof(Node.Rotation), Node.Rotation);
-
         }
 
         private void InitiaizeVariables()

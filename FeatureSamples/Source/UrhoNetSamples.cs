@@ -1,6 +1,5 @@
 // Copyright (c) 2020-2021 Eli Aloni (a.k.a  elix22)
-// Copyright (c) 2008-2015 the Urho3D project.
-// Copyright (c) 2015 Xamarin Inc
+// Copyright (c) 2008-2020 the Urho3D project.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -86,13 +85,21 @@ namespace UrhoNetSamples
             // Set style to the UI root so that elements will inherit it
             UI.Root.SetDefaultStyle(uiStyle);
 
+
             listView = UI.Root.CreateChild<ListView>(new StringHash("ListView"));
             listView.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
-            listView.MinSize = new IntVector2(Graphics.Width, Graphics.Height);
+            listView.Size = new IntVector2(Graphics.Width, Graphics.Height);
             listView.SetStyleAuto();
             listView.SetFocus(true);
             Input.SetMouseVisible(true);
 
+            UI.Root.Resized += OnUIResized;
+
+        }
+
+        private void OnUIResized(ResizedEventArgs obj)
+        {
+            listView.Size = new IntVector2(Graphics.Width, Graphics.Height);
         }
 
         string ExtractSampleName(Type sample)
@@ -107,7 +114,12 @@ namespace UrhoNetSamples
 
             foreach (var sample in samples)
             {
-                samplesList[ExtractSampleName(sample)] = sample;
+                string SampleName = ExtractSampleName(sample);
+
+                // PBRMaterials doesn't work well on mobiles
+                if (isMobile && SampleName == "PBRMaterials") continue;
+
+                samplesList[SampleName] = sample;
             }
 
         }
@@ -116,7 +128,12 @@ namespace UrhoNetSamples
         {
             foreach (var sample in samples)
             {
-                ListAddSampleEntry(ExtractSampleName(sample));
+                string SampleName = ExtractSampleName(sample);
+
+                // PBRMaterials doesn't work well on mobiles
+                if (isMobile && SampleName == "PBRMaterials") continue;
+
+                ListAddSampleEntry(SampleName);
             }
         }
 
@@ -148,6 +165,7 @@ namespace UrhoNetSamples
             {
                 UI.Root.RemoveChild(listView);
                 listView = null;
+                UI.Root.Resized -= OnUIResized;
                 currentSample.Run();
                 currentSample.backButton.Released += OnBackButtonReleased;
                 Graphics.WindowTitle = name;
