@@ -15,7 +15,7 @@ namespace StaticScene
 		{
 			base.Start ();
 			CreateScene ();
-			SimpleCreateInstructionsWithWasd ();
+			SimpleCreateInstructionsWithWasd ("",Color.Black);
 			SetupViewport ();
 		}
 

@@ -50,11 +50,11 @@ namespace KinematicCharacterDemo
             CreateCharacter();
             if (isMobile)
             {
-                SimpleCreateInstructionsWithWasd("Button to jump, Button to toggle 1st/3rd person");
+                SimpleCreateInstructionsWithWasd("Button to jump, Button to toggle 1st/3rd person", Color.Black);
             }
             else
             {
-                SimpleCreateInstructionsWithWasd("Space to jump, F to toggle 1st/3rd person");
+                SimpleCreateInstructionsWithWasd("Space to jump, F to toggle 1st/3rd person", Color.Black);
             }
             SubscribeToEvents();
 

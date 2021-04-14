@@ -28,55 +28,56 @@ using Urho;
 
 namespace PBRMaterials
 {
-	public class PBRMaterials : Sample
-	{
+    public class PBRMaterials : Sample
+    {
 
-		[Preserve]
-		public PBRMaterials() : base(new ApplicationOptions(assetsFolder: "Data;CoreData")) { }
+        [Preserve]
+        public PBRMaterials() : base(new ApplicationOptions(assetsFolder: "Data;CoreData")) { }
 
-		protected override void Start()
-		{
+        protected override void Start()
+        {
 
-			base.Start();
+            base.Start();
 
-			// Create the scene content
-			CreateScene();
+            SimpleCreateInstructionsWithWasd();
+            // Create the scene content
+            CreateScene();
 
-			// Setup the viewport for displaying the scene
-			SetupViewport();
-		}
+            // Setup the viewport for displaying the scene
+            SetupViewport();
+        }
 
-		void CreateScene()
-		{
-			var cache = ResourceCache;
-			scene = new Scene();
+        void CreateScene()
+        {
+            var cache = ResourceCache;
+            scene = new Scene();
 
-			scene.LoadXmlFromCache(cache, "Scenes/PBRExample.xml");
+            scene.LoadXmlFromCache(cache, "Scenes/PBRExample.xml");
 
-			// Create the camera (not included in the scene file)
-			CameraNode = scene.CreateChild("Camera");
-			CameraNode.CreateComponent<Camera>();
+            // Create the camera (not included in the scene file)
+            CameraNode = scene.CreateChild("Camera");
+            CameraNode.CreateComponent<Camera>();
 
-			// Set an initial position for the camera scene node above the plane
-			CameraNode.Position = new Vector3(0.0f, 4.0f, -20.0f);
-		}
+            // Set an initial position for the camera scene node above the plane
+            CameraNode.Position = new Vector3(0.0f, 4.0f, -20.0f);
+        }
 
-		protected override void OnUpdate(float timeStep)
-		{
-			SimpleMoveCamera3D(timeStep);
-		}
+        protected override void OnUpdate(float timeStep)
+        {
+            SimpleMoveCamera3D(timeStep);
+        }
 
-		void SetupViewport()
-		{
-			Viewport viewport = new Viewport(scene, CameraNode.GetComponent<Camera>(), null);
-			Renderer.SetViewport(0, viewport);
+        void SetupViewport()
+        {
+            Viewport viewport = new Viewport(scene, CameraNode.GetComponent<Camera>(), null);
+            Renderer.SetViewport(0, viewport);
 
-			var effectRenderPath = viewport.RenderPath.Clone();
-			effectRenderPath.Append(ResourceCache.GetXmlFile("PostProcess/BloomHDR.xml"));
-			effectRenderPath.Append(ResourceCache.GetXmlFile("PostProcess/FXAA2.xml"));
-			effectRenderPath.Append(ResourceCache.GetXmlFile("PostProcess/GammaCorrection.xml"));
+            var effectRenderPath = viewport.RenderPath.Clone();
+            effectRenderPath.Append(ResourceCache.GetXmlFile("PostProcess/BloomHDR.xml"));
+            effectRenderPath.Append(ResourceCache.GetXmlFile("PostProcess/FXAA2.xml"));
+            effectRenderPath.Append(ResourceCache.GetXmlFile("PostProcess/GammaCorrection.xml"));
 
-			viewport.RenderPath = effectRenderPath;
-		}
-	}
+            viewport.RenderPath = effectRenderPath;
+        }
+    }
 }

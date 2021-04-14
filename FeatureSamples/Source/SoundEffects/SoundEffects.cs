@@ -47,6 +47,7 @@ namespace SoundEffects
             base.Start();
             Graphics.WindowTitle = "SoundEffects";
             Input.SetMouseVisible(true, false);
+            SimpleCreateInstructions();
             CreateUI();
         }
 
@@ -106,8 +107,8 @@ namespace SoundEffects
             // Set style to the UI root so that elements will inherit it
             root.SetDefaultStyle(uiStyle);
 
-			// needed inorder to show the back button
-            int yOffset = 60;
+			// needed inorder to show the back and info buttons
+            int yOffset = 130;
 
             // Create buttons for playing back sounds
             int i = 0;

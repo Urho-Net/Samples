@@ -45,6 +45,8 @@ namespace UIDrag
             if (!isMobile)
                 Input.SetMouseVisible(true, false);
 
+			SimpleCreateInstructions();
+
             // Create the UI content
             CreateGUI();
             CreateInstructions();

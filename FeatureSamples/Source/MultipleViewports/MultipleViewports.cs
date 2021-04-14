@@ -42,8 +42,8 @@ namespace MultipleViewports
 			Graphics.WindowTitle = "MultipleViewports";
 			CreateScene();
 			SimpleCreateInstructionsWithWasd(
-				"\nB to toggle bloom, F to toggle FXAA\n" +
-				"Space to toggle debug geometry\n");
+				"B to toggle bloom, F to toggle FXAA\n" +
+				"Space to toggle debug geometry");
 			SetupViewport();
 			SubscribeToEvents();
 		}

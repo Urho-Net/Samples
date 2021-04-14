@@ -71,11 +71,11 @@ namespace CharacterDemo
             CreateCharacter();
             if (isMobile)
             {
-                SimpleCreateInstructionsWithWasd("Button to jump, Button to toggle 1st/3rd person");
+                SimpleCreateInstructionsWithWasd("Button to jump, Button to toggle 1st/3rd person", Color.Black);
             }
             else
             {
-                SimpleCreateInstructionsWithWasd("Space to jump, F to toggle 1st/3rd person\nF5 to save scene, F7 to load");
+                SimpleCreateInstructionsWithWasd("Space to jump, F to toggle 1st/3rd person\nF5 to save scene, F7 to load", Color.Black);
             }
             SubscribeToEvents();
 

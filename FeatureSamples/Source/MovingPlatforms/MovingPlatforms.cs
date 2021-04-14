@@ -82,7 +82,7 @@ namespace MovingPlatforms
                 touch = new Touch(TouchSensitivity, Input);
             CreateScene();
             CreateCharacter();
-            SimpleCreateInstructionsWithWasd();
+            SimpleCreateInstructionsWithWasd("",Color.Black);
             SubscribeToEvents();
 
         }

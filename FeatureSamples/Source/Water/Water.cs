@@ -41,7 +41,7 @@ namespace Water
 		{
 			base.Start();
 			CreateScene();
-			SimpleCreateInstructionsWithWasd();
+			SimpleCreateInstructionsWithWasd("",Color.Black);
 			SetupViewport();
 
 			Graphics.WindowTitle = "Water";

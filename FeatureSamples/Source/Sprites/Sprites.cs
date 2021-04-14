@@ -44,6 +44,7 @@ public class Sprites : Sample
 		{
 			base.Start();
 			Graphics.WindowTitle = "Sprites Sample";
+			SimpleCreateInstructions();
 			CreateSprites();
 		}
 

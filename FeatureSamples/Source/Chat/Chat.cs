@@ -69,19 +69,23 @@ namespace Chat
             base.Start();
             Input.SetMouseVisible(true, false);
             CreateUI();
+            SimpleCreateInstructions("This is a demo of a simple chat application\nAllows sending/recieving text messages between devices\nEnter server IP bellow and press \"Connect\" \n  To connect to a Wireless LAN Server \nOr press \"Start Server\" to Start WLAN server\n" +
+            "All devices including the server must be on the same Wireless LAN" +
+            "\nTo find out server IP running on desktop type ifconfig/ipconfig \n  From a command shell on the same device that runs the server" +
+             "\nTo find out server IP running on Android" + "\n    go to Settings->WI-FI->Additional settings" +
+            "\nUsually WLAN server IP starts with 192.x.x.x");
             SubscribeToEvents();
         }
 
         protected override void Stop()
         {
             UnSubscribeFromEvents();
+            HandleDisconnect(new ReleasedEventArgs());
             base.Stop();
         }
-        
+
         void CreateUI()
         {
-            IsLogoVisible = false; // We need the full rendering window
-
             var graphics = Graphics;
             UIElement root = UI.Root;
             var cache = ResourceCache;
@@ -91,7 +95,14 @@ namespace Chat
 
             Font font = cache.GetFont("Fonts/Anonymous Pro.ttf");
             chatHistoryText = new Text();
-            chatHistoryText.SetFont(font, 30);
+            if (Graphics.Width <= 1440)
+            {
+                chatHistoryText.SetFont(font, 20);
+            }
+            else
+            {
+                chatHistoryText.SetFont(font, 30);
+            }
             root.AddChild(chatHistoryText);
 
             buttonContainer = new UIElement();

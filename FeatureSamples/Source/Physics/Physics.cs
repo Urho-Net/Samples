@@ -43,14 +43,14 @@ namespace Physics
             {
                 SimpleCreateInstructionsWithWasd(
                     "Button to spawn physics objects\n" +
-                    "Button to toggle physics debug geometry");
+                    "Button to toggle physics debug geometry",Color.Black);
             }
             else
             {
                 SimpleCreateInstructionsWithWasd(
                     "LMB to spawn physics objects\n" +
                     "F5 to save scene, F7 to load\n" +
-                    "Space to toggle physics debug geometry");
+                    "Space to toggle physics debug geometry",Color.Black);
             }
             SetupViewport();
             SubscribeToEvents();

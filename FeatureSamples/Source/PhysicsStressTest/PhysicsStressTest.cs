@@ -43,13 +43,13 @@ namespace PhysicsStressTest
             {
                 SimpleCreateInstructionsWithWasd(
                     "Button to spawn physics objects\n" +
-                    "Button to toggle physics debug geometry");
+                    "Button to toggle physics debug geometry",Color.Black);
             }
             else
             {
                 SimpleCreateInstructionsWithWasd(
                     "LMB to spawn physics objects\n" +
-                    "Space to toggle physics debug geometry");
+                    "Space to toggle physics debug geometry",Color.Black);
             }
             SetupViewport();
             SubscribeToEvents();

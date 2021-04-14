@@ -43,6 +43,8 @@ namespace UrhoNetSamples
         ResourceCache cache;
         Sprite logoSprite;
 
+        Text infoText;
+
         int screenJoystickIndex = -1;
         protected bool isMobile;
 
@@ -61,6 +63,7 @@ namespace UrhoNetSamples
 
         protected Log Log;
         public Button backButton;
+        public Button infoButton;
 
         protected const float TouchSensitivity = 2;
         protected float Yaw { get; set; }
@@ -68,10 +71,11 @@ namespace UrhoNetSamples
         protected bool TouchEnabled { get; set; }
         protected Node CameraNode { get; set; }
         protected MonoDebugHud MonoDebugHud { get; set; }
+        bool isMonoDebugHudVisible;
 
         [Preserve]
-        protected Sample(ApplicationOptions options = null) 
-        { 
+        protected Sample(ApplicationOptions options = null)
+        {
             // This one is not used because Sample is inherited from Component and not Application .
             // if you want to add a resource path , add it in UrhoNetSamples.cs
         }
@@ -161,6 +165,7 @@ namespace UrhoNetSamples
             Application.Input.Enabled = true;
             MonoDebugHud = new MonoDebugHud(Application);
             MonoDebugHud.Show();
+            isMonoDebugHudVisible = true;
 
             CreateLogo();
             SetWindowAndTitleIcon();
@@ -170,13 +175,20 @@ namespace UrhoNetSamples
             backButton = CreateButton("<<<<", 130);
             backButton.Name = "BackButton";
             backButton.Opacity = 0.6f;
+            backButton.Position = new IntVector2(10, 10);
+
+
+            infoButton = CreateButton("Info", 130);
+            infoButton.Name = "InfoButton";
+            infoButton.Opacity = 0.6f;
+            infoButton.Position = new IntVector2(10, 80);
         }
 
         protected virtual void Stop()
         {
             UnSubscribeFromAllEvents();
 
-            MonoDebugHud.Hide();
+            MonoDebugHud?.Hide();
             MonoDebugHud = null;
             if (isMobile)
             {
@@ -284,7 +296,7 @@ namespace UrhoNetSamples
             }
         }
 
-        protected void SimpleCreateInstructionsWithWasd(string extra = "")
+        protected void SimpleCreateInstructionsWithWasd(string extra = "", Color textColor = new Color())
         {
             string text = "";
 
@@ -297,33 +309,69 @@ namespace UrhoNetSamples
                 text = "Use WASD keys and mouse/touch to move";
             }
 
-            if(extra != "")
+            if (extra != "")
             {
-                text +="\n";
+                extra += "\n";
             }
 
-            SimpleCreateInstructions(text + extra);
+            SimpleCreateInstructions(extra + text,textColor);
         }
 
-        protected void SimpleCreateInstructions(string text = "")
+        protected void SimpleCreateInstructions(string text = "", Color textColor = new Color())
         {
+            text += "\nPress Info to toggle textual information";
+
             if (isMobile)
             {
-                text += "\nPress <<<< in the top left screen\nTo go back to the main list";
+                text += "\nPress <<<< to go back to the main list";
             }
             else
             {
                 text += "\nPress Esacpe to go back to the main List";
             }
 
-            var textElement = new Text()
+            infoText = new Text()
             {
                 Value = text,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Top
             };
-            textElement.SetFont(Application.ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 25);
-            Application.UI.Root.AddChild(textElement);
+            
+            if (Graphics.Width <= 1024)
+            {
+                infoText.SetFont(Application.ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 16);
+            }
+            else if (Graphics.Width <= 1440)
+            {
+                infoText.SetFont(Application.ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 20);
+            }
+            else
+            {
+                infoText.SetFont(Application.ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 25);
+            }
+
+            if(textColor != Color.Transparent)
+                infoText.SetColor(textColor);
+
+            Application.UI.Root.AddChild(infoText);
+
+            infoText.Visible = true;
+        }
+
+        public void ToggleInfo()
+        {
+            infoText.Visible = !infoText.Visible;
+            logoSprite.Visible = !logoSprite.Visible;
+            if (isMonoDebugHudVisible)
+            {
+                MonoDebugHud.Hide();
+                isMonoDebugHudVisible = false;
+            }
+            else
+            {
+                MonoDebugHud.Show();
+                isMonoDebugHudVisible = true;
+            }
         }
 
         void CreateLogo()
@@ -341,9 +389,12 @@ namespace UrhoNetSamples
             logoSprite.SetScale(256.0f / w);
             logoSprite.SetSize(w, h);
             logoSprite.SetHotSpot(0, h);
-            logoSprite.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Bottom);
+            // logoSprite.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Bottom);
+            logoSprite.Position = new IntVector2(Graphics.Width / 2 - 200, Graphics.Height - 80);
             logoSprite.Opacity = 0.75f;
             logoSprite.Priority = -100;
+
+            logoSprite.Visible = true;
         }
 
         void SetWindowAndTitleIcon()
@@ -474,13 +525,13 @@ namespace UrhoNetSamples
 
             Button button = new Button();
             UI.Root.AddChild(button);
-            button.SetStyleAuto(null);
+            button.SetStyleAuto();
             button.SetFixedHeight(60);
             button.SetFixedWidth(width);
 
             var buttonText = new Text();
             button.AddChild(buttonText);
-            buttonText.SetFont(font, 48);
+            buttonText.SetFont(font, 32);
             buttonText.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
 
             buttonText.Value = text;

@@ -67,6 +67,8 @@ namespace FlappyUrho
             Audio.SetMasterGain(SoundType.Music.ToString(), 0.33f);
 
             LoadHighScore();
+
+            UpdateUIVisibility();
         }
 
         protected override void Stop()

@@ -68,7 +68,7 @@ namespace OffroadVehicle
         protected override void Stop()
         {
             UnsubscribeFromEvents();
-            base.Stop(); 
+            base.Stop();
         }
 
         void CreateScene()
@@ -139,14 +139,7 @@ namespace OffroadVehicle
             textKmH_.HorizontalAlignment = (HorizontalAlignment.Center);
             textKmH_.Position = new IntVector2(0, UI.Root.Height - 140);
 
-            var textElement = new Text()
-            {
-                Value = "Use WASD keys and mouse/touch to move",
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center
-            };
-            textElement.SetFont(ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 15);
-            UI.Root.AddChild(textElement);
+            SimpleCreateInstructionsWithWasd("",Color.Black);
 
         }
 
@@ -274,7 +267,7 @@ namespace OffroadVehicle
             CameraNode.Rotation = dir;
         }
 
-        
+
         /// <summary>
         /// Set custom Joystick layout for mobile platforms
         /// </summary>

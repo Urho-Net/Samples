@@ -40,7 +40,7 @@ namespace SkeletalAnimation
 			base.Start ();
 			Graphics.WindowTitle = "SkeletalAnimation";
 			CreateScene ();
-			SimpleCreateInstructionsWithWasd ("\nSpace to toggle debug geometry");
+			SimpleCreateInstructionsWithWasd ("Space to toggle debug geometry");
 			SetupViewport ();
 			SubscribeToEvents();
 		}

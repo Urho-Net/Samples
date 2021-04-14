@@ -68,7 +68,11 @@ namespace SceneReplication
             Input.SetMouseVisible(true, false);
             CreateUI();
             CreateScene();
-            SimpleCreateInstructionsWithWasd();
+            SimpleCreateInstructionsWithWasd("This is a demo of a simple client/server application\nSynchronizing a scene between connected devices\nEnter server IP bellow and press \"Connect\" \n  To connect to a Wireless LAN Server \nOr press \"Start Server\" to Start WLAN server\n" +
+            "All devices including the server must be on the same Wireless LAN" +
+            "\nTo find out server IP type ifconfig/ipconfig \n  From a command shell on the same device that runs the server" +
+            "\nTo find out server IP running on Android" + "\n    go to Settings->WI-FI->Additional settings" +
+            "\nUsually WLAN server IP starts with 192.x.x.x", Color.Black);
             SetupViewport();
             SubscribeToEvents();
         }
@@ -76,9 +80,6 @@ namespace SceneReplication
         protected override void Stop()
         {
             UnSubscribeFromEvents();
-            connectButton = null;
-            disconnectButton = null;
-            startServerButton = null;
 
             HandleDisconnect(new ReleasedEventArgs());
             base.Stop();
@@ -86,7 +87,6 @@ namespace SceneReplication
 
         void CreateUI()
         {
-            IsLogoVisible = false; // We need the full rendering window
 
             var graphics = Graphics;
             UIElement root = UI.Root;
@@ -143,6 +143,29 @@ namespace SceneReplication
             Network.RegisterRemoteEvent(E_CLIENTOBJECTID);
         }
 
+        void UnSubscribeFromEvents()
+        {
+            UnSubscribeFromEvent(E_CLIENTOBJECTID);
+
+            Engine.PostUpdate -= HandlePostUpdate;
+
+            scene.GetComponent<PhysicsWorld>().PhysicsPreStep -= HandlePhysicsPreStep;
+
+            connectButton.Released -= HandleConnect;
+            disconnectButton.Released -= HandleDisconnect;
+            startServerButton.Released -= HandleStartServer;
+
+            Network.ServerConnected -= HandleServerConnected;
+            Network.ServerDisconnected -= HandleServerDisconnected;
+            Network.ConnectFailed -= HandleConnectFailed;
+
+            Network.ClientConnected -= HandleClientConnected;
+            Network.ClientDisconnected -= HandleClientDisconnected;
+
+            Network.UnregisterRemoteEvent(E_CLIENTOBJECTID);
+        }
+
+
         private void HandleConnectFailed(ConnectFailedEventArgs obj)
         {
             UpdateButtons();
@@ -195,25 +218,7 @@ namespace SceneReplication
 
         }
 
-        void UnSubscribeFromEvents()
-        {
-            Engine.PostUpdate -= HandlePostUpdate;
 
-            scene.GetComponent<PhysicsWorld>().PhysicsPreStep -= HandlePhysicsPreStep;
-
-            connectButton.Released -= HandleConnect;
-            disconnectButton.Released -= HandleDisconnect;
-            startServerButton.Released -= HandleStartServer;
-
-            Network.ServerConnected -= HandleServerConnected;
-            Network.ServerDisconnected -= HandleServerDisconnected;
-            Network.ConnectFailed -= HandleConnectFailed;
-
-            Network.ClientConnected -= HandleClientConnected;
-            Network.ClientDisconnected -= HandleClientDisconnected;
-
-            Network.UnregisterRemoteEvent(E_CLIENTOBJECTID);
-        }
 
         void CreateScene()
         {

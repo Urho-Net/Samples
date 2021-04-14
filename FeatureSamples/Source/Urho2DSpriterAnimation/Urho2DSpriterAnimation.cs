@@ -82,6 +82,10 @@ namespace Urho2DSpriterAnimation
 
         private void OnTouchBegin(TouchBeginEventArgs obj)
         {
+            // Ignore Touch event if the UI has a focused element
+            if (Application.UI.FocusElement != null)
+                return;
+
             AnimatedSprite2D animatedSprite = spriteNode.GetComponent<AnimatedSprite2D>();
             animationIndex = (animationIndex + 1) % 7;
             animatedSprite.SetAnimation(AnimationNames[animationIndex], LoopMode2D.ForceLooped);
@@ -90,6 +94,10 @@ namespace Urho2DSpriterAnimation
         private void OnMouseButtonDown(MouseButtonDownEventArgs obj)
         {
 
+            // Ignore Touch event if the UI has a focused element
+            if (Application.UI.FocusElement != null)
+                return;
+                
             AnimatedSprite2D animatedSprite = spriteNode.GetComponent<AnimatedSprite2D>();
             animationIndex = (animationIndex + 1) % 7;
             animatedSprite.SetAnimation(AnimationNames[animationIndex], LoopMode2D.ForceLooped);
