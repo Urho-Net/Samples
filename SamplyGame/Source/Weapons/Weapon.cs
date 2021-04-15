@@ -73,7 +73,7 @@ namespace SamplyGame
 			return CreateRigidBullet(byPlayer, Vector3.One);
 		}
 
-		protected abstract Task C(bool byPlayer);
+		protected abstract Task OnFire(bool byPlayer);
 	}
 
 	/// <summary>
