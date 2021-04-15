@@ -79,7 +79,7 @@ namespace CharacterDemo
 			if (UseGyroscope && input.NumJoysticks > 0)  // numJoysticks = 1 on iOS & Android
 			{
 				JoystickState joystick;
-				if (input.TryGetJoystickState(0, out joystick) && joystick.Axes.Size >= 2)
+				if (input.TryGetJoystickState(0, out joystick) && joystick.GetNumAxes() >= 2)
 				{
 					if (joystick.GetAxisPosition(0) < -CharacterDemo.GyroscopeThreshold)
 						controls.Set(CharacterDemo.CtrlLeft, true);

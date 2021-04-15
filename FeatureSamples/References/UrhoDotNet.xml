@@ -4297,7 +4297,7 @@
              Return number of connected joysticks.
              </summary>
             </member>
-        <member name="M:Urho.Input.GetJoystick(System.Int32)">
+        <member name="M:Urho.Input.Input_GetJoystickByIndex(System.IntPtr,System.UInt32)">
              <summary>
              Return joystick state by ID, or null if does not exist.
              </summary>

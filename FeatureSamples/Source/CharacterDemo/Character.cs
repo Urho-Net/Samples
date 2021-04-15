@@ -27,122 +27,128 @@ using Urho.Physics;
 
 namespace CharacterDemo
 {
-	public class Character : Component
-	{
-		/// Movement controls. Assigned by the main program each frame.
-		public Controls Controls { get; set; } = new Controls();
+    public class Character : Component
+    {
+        /// Movement controls. Assigned by the main program each frame.
+        public Controls Controls { get; set; } = new Controls();
 
-		/// Grounded flag for movement.
-		bool onGround;
-		/// Jump flag.
-		bool okToJump;
-		/// In air timer. Due to possible physics inaccuracy, character can be off ground for max. 1/10 second and still be allowed to move.
-		float inAirTimer;
+        /// Grounded flag for movement.
+        bool onGround;
+        /// Jump flag.
+        bool okToJump;
+        /// In air timer. Due to possible physics inaccuracy, character can be off ground for max. 1/10 second and still be allowed to move.
+        float inAirTimer;
 
-		RigidBody body;
-		public AnimationController animCtrl;
+        RigidBody body;
+        public AnimationController animCtrl;
 
-		public Character()
-		{
-			okToJump = true;
-		}
+        public Character()
+        {
+            okToJump = true;
+        }
 
-		// constructor needed for deserialization
-		public Character(IntPtr handle) : base(handle) { }
+        // constructor needed for deserialization
+        public Character(IntPtr handle) : base(handle) { }
 
-		public override void OnAttachedToNode(Node node)
-		{
-			// Component has been inserted into its scene node. Subscribe to events now
-			node.NodeCollision += (HandleNodeCollision);
-		}
+        public override void OnAttachedToNode(Node node)
+        {
+            // Component has been inserted into its scene node. Subscribe to events now
+            node.NodeCollision += (HandleNodeCollision);
+        }
 
-		public void FixedUpdate(float timeStep)
-		{
-			animCtrl = animCtrl ?? Node.GetComponent<AnimationController>(true);
-			body = body ?? GetComponent<RigidBody>();
+        public void FixedUpdate(float timeStep)
+        {
+            animCtrl = animCtrl ?? Node.GetComponent<AnimationController>(true);
+            body = body ?? GetComponent<RigidBody>();
 
-			// Update the in air timer. Reset if grounded
-			if (!onGround)
-				inAirTimer += timeStep;
-			else
-				inAirTimer = 0.0f;
-			// When character has been in air less than 1/10 second, it's still interpreted as being on ground
-			bool softGrounded = inAirTimer < CharacterDemo.InairThresholdTime;
+            // Update the in air timer. Reset if grounded
+            if (!onGround)
+                inAirTimer += timeStep;
+            else
+                inAirTimer = 0.0f;
+            // When character has been in air less than 1/10 second, it's still interpreted as being on ground
+            bool softGrounded = inAirTimer < CharacterDemo.InairThresholdTime;
 
-			// Update movement & animation
-			var rot = Node.Rotation;
-			Vector3 moveDir = Vector3.Zero;
-			var velocity = body.LinearVelocity;
-			// Velocity on the XZ plane
-			Vector3 planeVelocity = new Vector3(velocity.X, 0.0f, velocity.Z);
+            // Update movement & animation
+            var rot = Node.Rotation;
+            Vector3 moveDir = Vector3.Zero;
+            var velocity = body.LinearVelocity;
+            // Velocity on the XZ plane
+            Vector3 planeVelocity = new Vector3(velocity.X, 0.0f, velocity.Z);
 
-			if (Controls.IsDown(CharacterDemo.CtrlForward))
-				moveDir += Vector3.UnitZ;
-			if (Controls.IsDown(CharacterDemo.CtrlBack))
-				moveDir += new Vector3(0f, 0f, -1f);
-			if (Controls.IsDown(CharacterDemo.CtrlLeft))
-				moveDir += new Vector3(-1f, 0f, 0f);
-			if (Controls.IsDown(CharacterDemo.CtrlRight))
-				moveDir += Vector3.UnitX;
+            if (Controls.IsDown(CharacterDemo.CtrlForward))
+                moveDir += Vector3.UnitZ;
+            if (Controls.IsDown(CharacterDemo.CtrlBack))
+                moveDir += new Vector3(0f, 0f, -1f);
+            if (Controls.IsDown(CharacterDemo.CtrlLeft))
+                moveDir += new Vector3(-1f, 0f, 0f);
+            if (Controls.IsDown(CharacterDemo.CtrlRight))
+                moveDir += Vector3.UnitX;
 
-			// Normalize move vector so that diagonal strafing is not faster
-			if (moveDir.LengthSquared > 0.0f)
-				moveDir.Normalize();
+            // left stick
+            Vector2 axisInput = Controls.ExtraData["axis_0"];
+            moveDir += Vector3.Forward * -axisInput.Y;
+            moveDir += Vector3.Right * axisInput.X;
 
-			// If in air, allow control, but slower than when on ground
-			body.ApplyImpulse(rot * moveDir * (softGrounded ? CharacterDemo.MoveForce : CharacterDemo.InairMoveForce));
 
-			if (softGrounded)
-			{
-				// When on ground, apply a braking force to limit maximum ground velocity
-				Vector3 brakeForce = -planeVelocity * CharacterDemo.BrakeForce;
-				body.ApplyImpulse(brakeForce);
+            // Normalize move vector so that diagonal strafing is not faster
+            if (moveDir.LengthSquared > 0.0f)
+                moveDir.Normalize();
 
-				// Jump. Must release jump control inbetween jumps
-				if (Controls.IsDown(CharacterDemo.CtrlJump))
-				{
-					if (okToJump)
-					{
-						body.ApplyImpulse(Vector3.UnitY * CharacterDemo.JumpForce);
-						okToJump = false;
-						animCtrl.PlayExclusive("Models/Mutant/Mutant_Jump1.ani", 0, false, 0.2f);
-					}
-				}
-				else
-					okToJump = true;
-			}
+            // If in air, allow control, but slower than when on ground
+            body.ApplyImpulse(rot * moveDir * (softGrounded ? CharacterDemo.MoveForce : CharacterDemo.InairMoveForce));
 
-			if ( !onGround)
-			{
-				animCtrl.PlayExclusive("Models/Mutant/Mutant_Jump1.ani", 0, false, 0.2f);
-			}
-			else
-			{
-				// Play walk animation if moving on ground, otherwise fade it out
-				if (softGrounded && !moveDir.Equals(Vector3.Zero))
-					animCtrl.PlayExclusive("Models/Mutant/Mutant_Run.ani", 0, true, 0.2f);
-				else
-					animCtrl.PlayExclusive("Models/Mutant/Mutant_Idle0.ani", 0, true, 0.2f);
-				// Set walk animation speed proportional to velocity
-				animCtrl.SetSpeed("Models/Mutant/Mutant_Run.ani", planeVelocity.Length * 0.3f);
-			}
+            if (softGrounded)
+            {
+                // When on ground, apply a braking force to limit maximum ground velocity
+                Vector3 brakeForce = -planeVelocity * CharacterDemo.BrakeForce;
+                body.ApplyImpulse(brakeForce);
 
-			// Reset grounded flag for next frame
-			onGround = false;
-		}
+                // Jump. Must release jump control inbetween jumps
+                if (Controls.IsDown(CharacterDemo.CtrlJump))
+                {
+                    if (okToJump)
+                    {
+                        body.ApplyImpulse(Vector3.UnitY * CharacterDemo.JumpForce);
+                        okToJump = false;
+                        animCtrl.PlayExclusive("Models/Mutant/Mutant_Jump1.ani", 0, false, 0.2f);
+                    }
+                }
+                else
+                    okToJump = true;
+            }
 
-		void HandleNodeCollision(NodeCollisionEventArgs args)
-		{
-			foreach (var contact in args.Contacts)
-			{
-				// If contact is below node center and mostly vertical, assume it's a ground contact
-				if (contact.ContactPosition.Y < (Node.Position.Y + 1.0f))
-				{
-					float level = Math.Abs(contact.ContactNormal.Y);
-					if (level > 0.75)
-						onGround = true;
-				}
-			}
-		}
-	}
+            if (!onGround)
+            {
+                animCtrl.PlayExclusive("Models/Mutant/Mutant_Jump1.ani", 0, false, 0.2f);
+            }
+            else
+            {
+                // Play walk animation if moving on ground, otherwise fade it out
+                if (softGrounded && !moveDir.Equals(Vector3.Zero))
+                    animCtrl.PlayExclusive("Models/Mutant/Mutant_Run.ani", 0, true, 0.2f);
+                else
+                    animCtrl.PlayExclusive("Models/Mutant/Mutant_Idle0.ani", 0, true, 0.2f);
+                // Set walk animation speed proportional to velocity
+                animCtrl.SetSpeed("Models/Mutant/Mutant_Run.ani", planeVelocity.Length * 0.3f);
+            }
+
+            // Reset grounded flag for next frame
+            onGround = false;
+        }
+
+        void HandleNodeCollision(NodeCollisionEventArgs args)
+        {
+            foreach (var contact in args.Contacts)
+            {
+                // If contact is below node center and mostly vertical, assume it's a ground contact
+                if (contact.ContactPosition.Y < (Node.Position.Y + 1.0f))
+                {
+                    float level = Math.Abs(contact.ContactNormal.Y);
+                    if (level > 0.75)
+                        onGround = true;
+                }
+            }
+        }
+    }
 }

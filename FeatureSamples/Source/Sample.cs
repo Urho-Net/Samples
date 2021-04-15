@@ -45,7 +45,7 @@ namespace UrhoNetSamples
 
         Text infoText;
 
-        int screenJoystickIndex = -1;
+        protected int screenJoystickIndex = -1;
         protected bool isMobile;
 
         protected Renderer Renderer;
@@ -314,7 +314,7 @@ namespace UrhoNetSamples
                 extra += "\n";
             }
 
-            SimpleCreateInstructions(extra + text,textColor);
+            SimpleCreateInstructions(extra + text, textColor);
         }
 
         protected void SimpleCreateInstructions(string text = "", Color textColor = new Color())
@@ -336,7 +336,7 @@ namespace UrhoNetSamples
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Top
             };
-            
+
             if (Graphics.Width <= 1024)
             {
                 infoText.SetFont(Application.ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 16);
@@ -350,7 +350,7 @@ namespace UrhoNetSamples
                 infoText.SetFont(Application.ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 25);
             }
 
-            if(textColor != Color.Transparent)
+            if (textColor != Color.Transparent)
                 infoText.SetColor(textColor);
 
             Application.UI.Root.AddChild(infoText);
@@ -492,12 +492,7 @@ namespace UrhoNetSamples
         {
             TouchEnabled = true;
 
-            if (screenJoystickIndex != -1)
-            {
-                Application.Input.SetScreenJoystickVisible(screenJoystickIndex, false);
-                Application.Input.RemoveScreenJoystick(screenJoystickIndex);
-                screenJoystickIndex = -1;
-            }
+            RemoveScrennJoystick();
 
             using (var layout = new XmlFile())
             {
@@ -515,6 +510,36 @@ namespace UrhoNetSamples
                 Application.Input.SetScreenJoystickVisible(screenJoystickIndex, true);
             }
 
+        }
+
+        protected void CreateScreenJoystick()
+        {
+            RemoveScrennJoystick();
+
+            XmlFile layout = null;
+
+            if(Graphics.Width > 1100)
+            {
+                layout = ResourceCache.GetXmlFile("ScreenJoystick/ScreenOneJoystickOneButtonHDPI.xml");
+            }
+            else
+            {
+                layout = ResourceCache.GetXmlFile("ScreenJoystick/ScreenOneJoystickOneButton.xml");
+            }
+            
+            screenJoystickIndex = Application.Input.AddScreenJoystick(layout, ResourceCache.GetXmlFile("UI/DefaultStyle.xml"));
+            Application.Input.SetScreenJoystickVisible(screenJoystickIndex, true);
+
+        }
+
+        private void RemoveScrennJoystick()
+        {
+            if (screenJoystickIndex != -1)
+            {
+                Application.Input.SetScreenJoystickVisible(screenJoystickIndex, false);
+                Application.Input.RemoveScreenJoystick(screenJoystickIndex);
+                screenJoystickIndex = -1;
+            }
         }
 
 

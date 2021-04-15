@@ -67,11 +67,20 @@ namespace CharacterDemo
             base.Start();
             if (TouchEnabled)
                 touch = new Touch(TouchSensitivity, Input);
+
+          //  LogSharp.LogLevel = LogSharpLevel.Debug;
+
             CreateScene();
             CreateCharacter();
+
             if (isMobile)
             {
-                SimpleCreateInstructionsWithWasd("Button to jump, Button to toggle 1st/3rd person", Color.Black);
+                CreateScreenJoystick();
+            }
+
+            if (isMobile)
+            {
+                SimpleCreateInstructionsWithWasd("Button A to jump", Color.Black);
             }
             else
             {
@@ -162,20 +171,26 @@ namespace CharacterDemo
                 // Clear previous controls
                 character.Controls.Set(CtrlForward | CtrlBack | CtrlLeft | CtrlRight | CtrlJump, false);
 
+                UpdateJoystickInputs(character.Controls);
+
                 // Update controls using touch utility class
-                touch?.UpdateTouches(character.Controls);
+                //  touch?.UpdateTouches(character.Controls);
 
                 // Update controls using keys
                 if (UI.FocusElement == null)
                 {
-                    if (touch == null || !touch.UseGyroscope)
+                    if (isMobile == false && touch == null || !touch.UseGyroscope)
                     {
                         character.Controls.Set(CtrlForward, input.GetKeyDown(Key.W));
                         character.Controls.Set(CtrlBack, input.GetKeyDown(Key.S));
                         character.Controls.Set(CtrlLeft, input.GetKeyDown(Key.A));
                         character.Controls.Set(CtrlRight, input.GetKeyDown(Key.D));
                     }
-                    character.Controls.Set(CtrlJump, input.GetKeyDown(Key.Space));
+
+                    if (isMobile == false)
+                    {
+                        character.Controls.Set(CtrlJump, input.GetKeyDown(Key.Space));
+                    }
 
                     // Add character yaw & pitch from the mouse motion or touch input
                     if (TouchEnabled)
@@ -241,6 +256,19 @@ namespace CharacterDemo
                 // Set rotation already here so that it's updated every rendering frame instead of every physics frame
                 if (character != null)
                     character.Node.Rotation = Quaternion.FromAxisAngle(Vector3.UnitY, character.Controls.Yaw);
+            }
+        }
+
+        public void UpdateJoystickInputs(Controls controls)
+        {
+            JoystickState joystick;
+            if (screenJoystickIndex != -1 && Input.GetJoystick(screenJoystickIndex, out joystick))
+            {
+                controls.Set(CtrlJump, joystick.GetButtonDown(JoystickState.Button_A));
+
+                Vector2 val = new Vector2( joystick.GetAxisPosition(JoystickState.AxisLeft_X), joystick.GetAxisPosition(JoystickState.AxisLeft_Y));
+                controls.ExtraData["axis_0"] = val;
+
             }
         }
 
