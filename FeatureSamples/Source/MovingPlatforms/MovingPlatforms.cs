@@ -82,7 +82,20 @@ namespace MovingPlatforms
                 touch = new Touch(TouchSensitivity, Input);
             CreateScene();
             CreateCharacter();
-            SimpleCreateInstructionsWithWasd("",Color.Black);
+            if (isMobile)
+            {
+                CreateScreenJoystick();
+            }
+
+            if(isMobile)
+            {
+                SimpleCreateInstructionsWithWasd("Button A to jump", Color.Black);
+            }
+            else
+            {
+                SimpleCreateInstructionsWithWasd("Press Space to jump", Color.Black);
+            }
+
             SubscribeToEvents();
 
         }
@@ -193,7 +206,8 @@ namespace MovingPlatforms
                 character.Controls.Set(Global.CtrlForward | Global.CtrlBack | Global.CtrlLeft | Global.CtrlRight | Global.CtrlJump, false);
 
                 // Update controls using touch utility class
-                touch?.UpdateTouches(character.Controls);
+                // touch?.UpdateTouches(character.Controls);
+                 UpdateJoystickInputs(character.Controls);
 
                 // Update controls using keys
                 if (UI.FocusElement == null)
@@ -205,7 +219,11 @@ namespace MovingPlatforms
                         character.Controls.Set(Global.CtrlLeft, input.GetKeyDown(Key.A));
                         character.Controls.Set(Global.CtrlRight, input.GetKeyDown(Key.D));
                     }
-                    character.Controls.Set(Global.CtrlJump, input.GetKeyDown(Key.Space));
+                    
+                    if (isMobile == false)
+                    {
+                        character.Controls.Set(Global.CtrlJump, input.GetKeyDown(Key.Space));
+                    }
 
                     // Add character yaw & pitch from the mouse motion or touch input
                     if (TouchEnabled)
@@ -252,6 +270,16 @@ namespace MovingPlatforms
                 drawDebug = !drawDebug;
         }
 
+
+        public void UpdateJoystickInputs(Controls controls)
+        {
+            JoystickState joystick;
+            if (screenJoystickIndex != -1 && Input.GetJoystick(screenJoystickIndex, out joystick))
+            {
+                controls.Set(Global.CtrlJump, joystick.GetButtonDown(JoystickState.Button_A));
+                controls.ExtraData["axis_0"] =  new Vector2(joystick.GetAxisPosition(JoystickState.AxisLeft_X), joystick.GetAxisPosition(JoystickState.AxisLeft_Y));
+            }
+        }
 
         void OnPostUpdate(PostUpdateEventArgs args)
         {

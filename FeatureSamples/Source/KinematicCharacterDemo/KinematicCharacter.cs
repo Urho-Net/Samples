@@ -98,6 +98,11 @@ namespace KinematicCharacterDemo
             if (Controls.IsDown(Global.CtrlRight))
                 moveDir += Vector3.Right;
 
+            // left stick
+            Vector2 axisInput = Controls.ExtraData["axis_0"];
+            moveDir += Vector3.Forward * -axisInput.Y;
+            moveDir += Vector3.Right * axisInput.X;
+            
             // Normalize move vector so that diagonal strafing is not faster
             if (moveDir.LengthSquared > 0.0f)
                 moveDir.Normalize();

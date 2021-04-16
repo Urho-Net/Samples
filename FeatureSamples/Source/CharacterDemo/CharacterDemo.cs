@@ -72,7 +72,7 @@ namespace CharacterDemo
 
             CreateScene();
             CreateCharacter();
-
+            
             if (isMobile)
             {
                 CreateScreenJoystick();
@@ -265,10 +265,7 @@ namespace CharacterDemo
             if (screenJoystickIndex != -1 && Input.GetJoystick(screenJoystickIndex, out joystick))
             {
                 controls.Set(CtrlJump, joystick.GetButtonDown(JoystickState.Button_A));
-
-                Vector2 val = new Vector2( joystick.GetAxisPosition(JoystickState.AxisLeft_X), joystick.GetAxisPosition(JoystickState.AxisLeft_Y));
-                controls.ExtraData["axis_0"] = val;
-
+                controls.ExtraData["axis_0"] =  new Vector2(joystick.GetAxisPosition(JoystickState.AxisLeft_X), joystick.GetAxisPosition(JoystickState.AxisLeft_Y));
             }
         }
 
