@@ -5,8 +5,8 @@
     <!-- A - Z BUTTONS -->
     <element type="Button">
         <attribute name="Name" value="Button0" />
-        <attribute name="Position" value="-60 -25" />
-        <attribute name="Size" value="40 40" />
+        <attribute name="Position" value="-50 -40" />
+        <attribute name="Size" value="50 50" />
         <attribute name="Horiz Alignment" value="Right" />
         <attribute name="Vert Alignment" value="Bottom" />
         <attribute name="Texture" value="Texture2D;ScreenJoystick/Joysticksm.png" />

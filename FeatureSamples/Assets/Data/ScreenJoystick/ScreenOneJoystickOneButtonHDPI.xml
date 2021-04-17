@@ -6,7 +6,7 @@
     <element type="Button">
         <attribute name="Name" value="Button0" />
         <attribute name="Position" value="-100 -80" />
-        <attribute name="Size" value="80 80" />
+        <attribute name="Size" value="100 100" />
         <attribute name="Horiz Alignment" value="Right" />
         <attribute name="Vert Alignment" value="Bottom" />
         <attribute name="Texture" value="Texture2D;ScreenJoystick/Joysticksm.png" />

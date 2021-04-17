@@ -48,9 +48,16 @@ namespace KinematicCharacterDemo
                 touch = new Touch(TouchSensitivity, Input);
             CreateScene();
             CreateCharacter();
+
             if (isMobile)
             {
-                SimpleCreateInstructionsWithWasd("Button to jump, Button to toggle 1st/3rd person", Color.Black);
+                CreateScreenJoystick();
+            }
+
+
+            if (isMobile)
+            {
+                SimpleCreateInstructionsWithWasd("Button A to jump", Color.Black);
             }
             else
             {
@@ -134,8 +141,10 @@ namespace KinematicCharacterDemo
                 // Clear previous controls
                 character.Controls.Set(Global.CtrlForward | Global.CtrlBack | Global.CtrlLeft | Global.CtrlRight | Global.CtrlJump, false);
 
+                UpdateJoystickInputs(character.Controls);
+
                 // Update controls using touch utility class
-                touch?.UpdateTouches(character.Controls);
+                // touch?.UpdateTouches(character.Controls);
 
                 // Update controls using keys
                 if (UI.FocusElement == null)
@@ -147,7 +156,11 @@ namespace KinematicCharacterDemo
                         character.Controls.Set(Global.CtrlLeft, input.GetKeyDown(Key.A));
                         character.Controls.Set(Global.CtrlRight, input.GetKeyDown(Key.D));
                     }
-                    character.Controls.Set(Global.CtrlJump, input.GetKeyDown(Key.Space));
+
+                    if (isMobile == false)
+                    {
+                        character.Controls.Set(Global.CtrlJump, input.GetKeyDown(Key.Space));
+                    }
 
                     // Add character yaw & pitch from the mouse motion or touch input
                     if (TouchEnabled)
@@ -213,6 +226,17 @@ namespace KinematicCharacterDemo
                 // Set rotation already here so that it's updated every rendering frame instead of every physics frame
                 if (character != null)
                     character.Node.Rotation = Quaternion.FromAxisAngle(Vector3.UnitY, character.Controls.Yaw);
+            }
+        }
+
+
+        public void UpdateJoystickInputs(Controls controls)
+        {
+            JoystickState joystick;
+            if (screenJoystickIndex != -1 && Input.GetJoystick(screenJoystickIndex, out joystick))
+            {
+                controls.Set(Global.CtrlJump, joystick.GetButtonDown(JoystickState.Button_A));
+                controls.ExtraData["axis_0"] =  new Vector2(joystick.GetAxisPosition(JoystickState.AxisLeft_X), joystick.GetAxisPosition(JoystickState.AxisLeft_Y));
             }
         }
 

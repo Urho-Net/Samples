@@ -492,7 +492,7 @@ namespace UrhoNetSamples
         {
             TouchEnabled = true;
 
-            RemoveScrennJoystick();
+            RemoveScreenJoystick();
 
             using (var layout = new XmlFile())
             {
@@ -512,27 +512,53 @@ namespace UrhoNetSamples
 
         }
 
+        protected void AdjuistJoystickSize(XmlFile layout)
+        {
+            string patch = "<patch>";
+            int multiplayer = (Graphics.Width)/600 ;
+            if(multiplayer <= 0)multiplayer=1;
+
+            string ButtonA = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/attribute[@name='Size']/@value\">{0} {1}</replace>",multiplayer * 50 ,multiplayer * 50);
+            string ButtonAPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/attribute[@name='Position']/@value\">{0} {1}</replace>",multiplayer * -50 ,multiplayer * -40);
+            
+
+            string LStick = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/attribute[@name='Size']/@value\">{0} {1}</replace>",multiplayer * 100 ,multiplayer * 100);
+            string LStickPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/attribute[@name='Position']/@value\">{0} {1}</replace>",multiplayer * 25 ,multiplayer * -25);
+            
+            string InnerButton = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/element[./attribute[@name='Name' and @value='InnerButton']]/attribute[@name='Size']/@value\">{0} {1}</replace>",multiplayer * 70 ,multiplayer * 70);
+            string InnerButtonPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/element[./attribute[@name='Name' and @value='InnerButton']]/attribute[@name='Position']/@value\">{0} {1}</replace>",multiplayer * 15 ,multiplayer * 15);
+
+            patch += ButtonA;
+            patch += ButtonAPosition;
+            patch += LStick;
+            patch += LStickPosition;
+            patch += InnerButton;
+            patch += InnerButtonPosition;
+           
+            patch += "</patch>";
+
+            using (XmlFile patchXmlFile = new XmlFile())
+            {
+                patchXmlFile.FromString(patch);
+                layout.Patch(patchXmlFile);
+            }
+
+        }
+
         protected void CreateScreenJoystick()
         {
-            RemoveScrennJoystick();
+            RemoveScreenJoystick();
 
-            XmlFile layout = null;
+            XmlFile layout = ResourceCache.GetXmlFile("ScreenJoystick/ScreenOneJoystickOneButton.xml");
 
-            if(Graphics.Width > 1100)
-            {
-                layout = ResourceCache.GetXmlFile("ScreenJoystick/ScreenOneJoystickOneButtonHDPI.xml");
-            }
-            else
-            {
-                layout = ResourceCache.GetXmlFile("ScreenJoystick/ScreenOneJoystickOneButton.xml");
-            }
-            
+            AdjuistJoystickSize(layout);
+
             screenJoystickIndex = Application.Input.AddScreenJoystick(layout, ResourceCache.GetXmlFile("UI/DefaultStyle.xml"));
             Application.Input.SetScreenJoystickVisible(screenJoystickIndex, true);
 
         }
 
-        private void RemoveScrennJoystick()
+        private void RemoveScreenJoystick()
         {
             if (screenJoystickIndex != -1)
             {
