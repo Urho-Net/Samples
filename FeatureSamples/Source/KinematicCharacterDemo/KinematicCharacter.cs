@@ -181,7 +181,7 @@ namespace KinematicCharacterDemo
             else
             {
                 // Play walk animation if moving on ground, otherwise fade it out
-                if ((softGrounded) &&  moveDir.Length > float.Epsilon)
+                if ((softGrounded) &&  !moveDir.Equals(Vector3.Zero))
                 {
                     animCtrl.PlayExclusive("Models/Mutant/Mutant_Run.ani", 0, true, 0.2f);
                     // Set walk animation speed proportional to velocity
