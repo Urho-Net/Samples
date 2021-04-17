@@ -518,15 +518,19 @@ namespace UrhoNetSamples
             int multiplayer = (Graphics.Width)/600 ;
             if(multiplayer <= 0)multiplayer=1;
 
-            string ButtonA = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/attribute[@name='Size']/@value\">{0} {1}</replace>",multiplayer * 50 ,multiplayer * 50);
-            string ButtonAPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/attribute[@name='Position']/@value\">{0} {1}</replace>",multiplayer * -50 ,multiplayer * -40);
+            int bias = 10;
+            if(multiplayer == 1)bias = 40;
+            else if(multiplayer == 2)bias = 20;
+
+            string ButtonA = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/attribute[@name='Size']/@value\">{0} {1}</replace>",multiplayer * 50 + bias ,multiplayer * 50 + bias);
+            string ButtonAPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/attribute[@name='Position']/@value\">{0} {1}</replace>",multiplayer * -50 - bias ,multiplayer * - 40 - bias);
             
 
-            string LStick = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/attribute[@name='Size']/@value\">{0} {1}</replace>",multiplayer * 100 ,multiplayer * 100);
-            string LStickPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/attribute[@name='Position']/@value\">{0} {1}</replace>",multiplayer * 25 ,multiplayer * -25);
+            string LStick = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/attribute[@name='Size']/@value\">{0} {1}</replace>",multiplayer * 100  + bias,multiplayer * 100 + bias);
+            string LStickPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/attribute[@name='Position']/@value\">{0} {1}</replace>",multiplayer * 25  + bias,multiplayer * -25 - bias);
             
-            string InnerButton = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/element[./attribute[@name='Name' and @value='InnerButton']]/attribute[@name='Size']/@value\">{0} {1}</replace>",multiplayer * 70 ,multiplayer * 70);
-            string InnerButtonPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/element[./attribute[@name='Name' and @value='InnerButton']]/attribute[@name='Position']/@value\">{0} {1}</replace>",multiplayer * 15 ,multiplayer * 15);
+            string InnerButton = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/element[./attribute[@name='Name' and @value='InnerButton']]/attribute[@name='Size']/@value\">{0} {1}</replace>",multiplayer * 70  + bias,multiplayer * 70 + bias);
+            string InnerButtonPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/element[./attribute[@name='Name' and @value='InnerButton']]/attribute[@name='Position']/@value\">{0} {1}</replace>",multiplayer * 15  ,multiplayer * 15 );
 
             patch += ButtonA;
             patch += ButtonAPosition;
