@@ -514,24 +514,23 @@ namespace UrhoNetSamples
 
         protected void AdjuistJoystickSize(XmlFile layout)
         {
-            string patch = "<patch>";
-            int multiplayer = (Graphics.Width)/600 ;
-            if(multiplayer <= 0)multiplayer=1;
-
+            
+            int multiplier = (int)((Graphics.Width + Graphics.Height)/800.0);
+            multiplier = Math.Clamp(multiplier,1,3);
             int bias = 10;
-            if(multiplayer == 1)bias = 40;
-            else if(multiplayer == 2)bias = 20;
-
-            string ButtonA = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/attribute[@name='Size']/@value\">{0} {1}</replace>",multiplayer * 50 + bias ,multiplayer * 50 + bias);
-            string ButtonAPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/attribute[@name='Position']/@value\">{0} {1}</replace>",multiplayer * -50 - bias ,multiplayer * - 40 - bias);
+            if(multiplier == 1)bias = 40;
+       
+            string ButtonA = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/attribute[@name='Size']/@value\">{0} {1}</replace>",multiplier * 50 + bias ,multiplier * 50 + bias);
+            string ButtonAPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/attribute[@name='Position']/@value\">{0} {1}</replace>",multiplier * -50 - bias ,multiplier * - 40 - bias);
             
 
-            string LStick = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/attribute[@name='Size']/@value\">{0} {1}</replace>",multiplayer * 100  + bias,multiplayer * 100 + bias);
-            string LStickPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/attribute[@name='Position']/@value\">{0} {1}</replace>",multiplayer * 25  + bias,multiplayer * -25 - bias);
+            string LStick = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/attribute[@name='Size']/@value\">{0} {1}</replace>",multiplier * 100  + bias,multiplier * 100 + bias);
+            string LStickPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/attribute[@name='Position']/@value\">{0} {1}</replace>",multiplier * 25  + bias,multiplier * -25 - bias);
             
-            string InnerButton = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/element[./attribute[@name='Name' and @value='InnerButton']]/attribute[@name='Size']/@value\">{0} {1}</replace>",multiplayer * 70  + bias,multiplayer * 70 + bias);
-            string InnerButtonPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/element[./attribute[@name='Name' and @value='InnerButton']]/attribute[@name='Position']/@value\">{0} {1}</replace>",multiplayer * 15  ,multiplayer * 15 );
-
+            string InnerButton = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/element[./attribute[@name='Name' and @value='InnerButton']]/attribute[@name='Size']/@value\">{0} {1}</replace>",multiplier * 70  + bias,multiplier * 70 + bias);
+            string InnerButtonPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/element[./attribute[@name='Name' and @value='InnerButton']]/attribute[@name='Position']/@value\">{0} {1}</replace>",multiplier * 15  ,multiplier * 15 );
+            
+            string patch = "<patch>";
             patch += ButtonA;
             patch += ButtonAPosition;
             patch += LStick;
