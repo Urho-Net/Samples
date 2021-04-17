@@ -74,6 +74,8 @@ namespace KinematicCharacterDemo
 
             onGround = kinematicController.OnGround();
 
+
+
             // Update the in air timer. Reset if grounded
             if (!onGround)
                 inAirTimer += timeStep;
@@ -85,6 +87,10 @@ namespace KinematicCharacterDemo
             // Update movement & animation
             var rot = Node.Rotation;
             Vector3 moveDir = Vector3.Zero;
+
+            var LinearVelocity = kinematicController.LinearVelocity;
+            // Velocity on the XZ plane
+            Vector3 planeVelocity = new Vector3(LinearVelocity.X, 0.0f, LinearVelocity.Z);
 
 
 
@@ -102,7 +108,7 @@ namespace KinematicCharacterDemo
             Vector2 axisInput = Controls.ExtraData["axis_0"];
             moveDir += Vector3.Forward * -axisInput.Y;
             moveDir += Vector3.Right * axisInput.X;
-            
+
             // Normalize move vector so that diagonal strafing is not faster
             if (moveDir.LengthSquared > 0.0f)
                 moveDir.Normalize();
@@ -175,10 +181,11 @@ namespace KinematicCharacterDemo
             else
             {
                 // Play walk animation if moving on ground, otherwise fade it out
-                if ((softGrounded) && !moveDir.Equals(Vector3.Zero))
+                if ((softGrounded) &&  !moveDir.Equals(Vector3.Zero))
                 {
                     animCtrl.PlayExclusive("Models/Mutant/Mutant_Run.ani", 0, true, 0.2f);
-                    animCtrl.SetSpeed("Models/Mutant/Mutant_Run.ani", 2.0f);
+                    // Set walk animation speed proportional to velocity
+                    animCtrl.SetSpeed("Models/Mutant/Mutant_Run.ani", planeVelocity.Length * 10f);
                 }
                 else
                 {
