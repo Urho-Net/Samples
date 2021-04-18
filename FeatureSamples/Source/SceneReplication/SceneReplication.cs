@@ -112,7 +112,7 @@ namespace SceneReplication
             textEdit.SetStyleAuto(null);
             textEdit.TextElement.SetFont(font, 24);
             // TBD ELI , debug only
-            textEdit.TextElement.Value = "192.168.1.110";
+           // textEdit.TextElement.Value = "192.168.1.110";
             buttonContainer.AddChild(textEdit);
 
             connectButton = CreateButtonLocal("Connect", 180);
