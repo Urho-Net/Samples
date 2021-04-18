@@ -51,7 +51,7 @@ namespace KinematicCharacterDemo
 
             if (isMobile)
             {
-                CreateScreenJoystick();
+                CreateScreenJoystick(E_JoystickType.OneJoyStick_ButtonA);
             }
 
 

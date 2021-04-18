@@ -73,6 +73,14 @@ namespace UrhoNetSamples
         protected MonoDebugHud MonoDebugHud { get; set; }
         bool isMonoDebugHudVisible;
 
+        protected enum E_JoystickType
+        {
+            OneJoyStick_NoButtons = 1,
+            OneJoyStick_ButtonA
+        }
+
+        protected E_JoystickType JoystickType = E_JoystickType.OneJoyStick_NoButtons;
+
         [Preserve]
         protected Sample(ApplicationOptions options = null)
         {
@@ -123,6 +131,8 @@ namespace UrhoNetSamples
         }
         public void Run()
         {
+            LogSharp.LogLevel = LogSharpLevel.Debug;
+
             if (DefaultJoystickLayout == "")
             {
                 using (var layout = Application.ResourceCache.GetXmlFile("UI/ScreenJoystick_Samples.xml"))
@@ -514,30 +524,37 @@ namespace UrhoNetSamples
 
         protected void AdjuistJoystickSize(XmlFile layout)
         {
-            
-            int multiplier = (int)((Graphics.Width + Graphics.Height)/800.0);
-            multiplier = Math.Clamp(multiplier,1,3);
-            int bias = 10;
-            if(multiplier == 1)bias = 40;
-       
-            string ButtonA = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/attribute[@name='Size']/@value\">{0} {1}</replace>",multiplier * 50 + bias ,multiplier * 50 + bias);
-            string ButtonAPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/attribute[@name='Position']/@value\">{0} {1}</replace>",multiplier * -50 - bias ,multiplier * - 40 - bias);
-            
 
-            string LStick = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/attribute[@name='Size']/@value\">{0} {1}</replace>",multiplier * 100  + bias,multiplier * 100 + bias);
-            string LStickPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/attribute[@name='Position']/@value\">{0} {1}</replace>",multiplier * 25  + bias,multiplier * -25 - bias);
-            
-            string InnerButton = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/element[./attribute[@name='Name' and @value='InnerButton']]/attribute[@name='Size']/@value\">{0} {1}</replace>",multiplier * 70  + bias,multiplier * 70 + bias);
-            string InnerButtonPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/element[./attribute[@name='Name' and @value='InnerButton']]/attribute[@name='Position']/@value\">{0} {1}</replace>",multiplier * 15  ,multiplier * 15 );
-            
+            int multiplier = (Graphics.Width + Graphics.Height) / 100;
+
+            IntVector2 sizeButtonA = new IntVector2(multiplier * 5, multiplier * 5);
+            IntVector2 positionButtonA = new IntVector2(multiplier * -5, multiplier * -4);
+            IntVector2 sizeLStick = new IntVector2(multiplier * 10 + 5, multiplier * 10 + 5);
+            IntVector2 positionLStick = new IntVector2(multiplier * 2, multiplier * -2);
+            IntVector2 sizeInnerButton = new IntVector2(multiplier * 8, multiplier * 8);
+            IntVector2 positionInnerButton = new IntVector2(positionLStick.X / 2 + 3, Math.Abs(positionLStick.Y / 2) + 4);
+
+            string ButtonASize = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/attribute[@name='Size']/@value\">{0} {1}</replace>", sizeButtonA.X, sizeButtonA.Y);
+            string ButtonAPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/attribute[@name='Position']/@value\">{0} {1}</replace>", positionButtonA.X, positionButtonA.Y);
+
+            string LStickSize = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/attribute[@name='Size']/@value\">{0} {1}</replace>", sizeLStick.X, sizeLStick.Y);
+            string LStickPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/attribute[@name='Position']/@value\">{0} {1}</replace>", positionLStick.X, positionLStick.Y);
+
+            string InnerButtonSize = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/element[./attribute[@name='Name' and @value='InnerButton']]/attribute[@name='Size']/@value\">{0} {1}</replace>", sizeInnerButton.X, sizeInnerButton.Y);
+            string InnerButtonPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/element[./attribute[@name='Name' and @value='InnerButton']]/attribute[@name='Position']/@value\">{0} {1}</replace>", positionInnerButton.X, positionInnerButton.Y);
+
             string patch = "<patch>";
-            patch += ButtonA;
-            patch += ButtonAPosition;
-            patch += LStick;
+
+            if (JoystickType == E_JoystickType.OneJoyStick_ButtonA)
+            {
+                patch += ButtonASize;
+                patch += ButtonAPosition;
+            }
+            patch += LStickSize;
             patch += LStickPosition;
-            patch += InnerButton;
+            patch += InnerButtonSize;
             patch += InnerButtonPosition;
-           
+
             patch += "</patch>";
 
             using (XmlFile patchXmlFile = new XmlFile())
@@ -548,11 +565,26 @@ namespace UrhoNetSamples
 
         }
 
-        protected void CreateScreenJoystick()
+        protected void CreateScreenJoystick(E_JoystickType type = E_JoystickType.OneJoyStick_NoButtons)
         {
             RemoveScreenJoystick();
 
-            XmlFile layout = ResourceCache.GetXmlFile("ScreenJoystick/ScreenOneJoystickOneButton.xml");
+            JoystickType = type;
+
+            string path = "ScreenJoystick/ScreenOneJoystick.xml";
+
+            switch (type)
+            {
+                case E_JoystickType.OneJoyStick_ButtonA:
+                    path = "ScreenJoystick/ScreenOneJoystickOneButton.xml";
+                    break;
+
+                default:
+                    path = "ScreenJoystick/ScreenOneJoystick.xml";
+                    break;
+            }
+
+            XmlFile layout = ResourceCache.GetXmlFile(path);
 
             AdjuistJoystickSize(layout);
 
@@ -561,7 +593,7 @@ namespace UrhoNetSamples
 
         }
 
-        private void RemoveScreenJoystick()
+        protected void RemoveScreenJoystick()
         {
             if (screenJoystickIndex != -1)
             {
@@ -572,7 +604,7 @@ namespace UrhoNetSamples
         }
 
 
-        Button CreateButton(string text, int width)
+        private Button CreateButton(string text, int width)
         {
             var cache = ResourceCache;
             Font font = cache.GetFont("Fonts/Anonymous Pro.ttf");

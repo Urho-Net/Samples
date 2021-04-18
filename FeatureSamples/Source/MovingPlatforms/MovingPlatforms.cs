@@ -84,7 +84,7 @@ namespace MovingPlatforms
             CreateCharacter();
             if (isMobile)
             {
-                CreateScreenJoystick();
+                CreateScreenJoystick(E_JoystickType.OneJoyStick_ButtonA);
             }
 
             if(isMobile)

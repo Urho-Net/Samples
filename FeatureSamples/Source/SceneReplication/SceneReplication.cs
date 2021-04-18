@@ -45,6 +45,7 @@ namespace SceneReplication
         /// Start server button.
         Button startServerButton;
 
+
         uint clientObjectID_;
 
         StringHash E_CLIENTOBJECTID = new StringHash("ClientObjectID");
@@ -58,7 +59,6 @@ namespace SceneReplication
 
         Dictionary<Connection, Node> serverObjects_ = new Dictionary<Connection, Node>();
 
-
         [Preserve]
         public SceneReplication() : base(new ApplicationOptions(assetsFolder: "Data;CoreData")) { }
 
@@ -66,6 +66,11 @@ namespace SceneReplication
         {
             base.Start();
             Input.SetMouseVisible(true, false);
+            if (isMobile)
+            {
+                RemoveScreenJoystick();
+            }
+
             CreateUI();
             CreateScene();
             SimpleCreateInstructionsWithWasd("This is a demo of a simple client/server application\nSynchronizing a scene between connected devices\nEnter server IP bellow and press \"Connect\" \n  To connect to a Wireless LAN Server \nOr press \"Start Server\" to Start WLAN server\n" +
@@ -106,11 +111,13 @@ namespace SceneReplication
             textEdit = new LineEdit();
             textEdit.SetStyleAuto(null);
             textEdit.TextElement.SetFont(font, 24);
+            // TBD ELI , debug only
+            textEdit.TextElement.Value = "192.168.1.110";
             buttonContainer.AddChild(textEdit);
 
-            connectButton = CreateButton("Connect", 180);
-            disconnectButton = CreateButton("Disconnect", 200);
-            startServerButton = CreateButton("Start Server", 220);
+            connectButton = CreateButtonLocal("Connect", 180);
+            disconnectButton = CreateButtonLocal("Disconnect", 200);
+            startServerButton = CreateButtonLocal("Start Server", 220);
 
             UpdateButtons();
 
@@ -141,6 +148,7 @@ namespace SceneReplication
             Network.ClientDisconnected += HandleClientDisconnected;
 
             Network.RegisterRemoteEvent(E_CLIENTOBJECTID);
+
         }
 
         void UnSubscribeFromEvents()
@@ -163,6 +171,7 @@ namespace SceneReplication
             Network.ClientDisconnected -= HandleClientDisconnected;
 
             Network.UnregisterRemoteEvent(E_CLIENTOBJECTID);
+
         }
 
 
@@ -312,7 +321,7 @@ namespace SceneReplication
 
         }
 
-        Button CreateButton(string text, int width)
+        Button CreateButtonLocal(string text, int width)
         {
             var cache = ResourceCache;
             Font font = cache.GetFont("Fonts/Anonymous Pro.ttf");
@@ -370,6 +379,18 @@ namespace SceneReplication
             var network = Network;
             Connection serverConnection = network.ServerConnection;
             bool serverRunning = network.ServerRunning;
+
+            if (isMobile)
+            {
+                if(serverConnection != null)
+                {
+                    CreateScreenJoystick();
+                }
+                else
+                {
+                    RemoveScreenJoystick();
+                }
+            }
 
             if (connectButton != null)
             {
@@ -452,12 +473,25 @@ namespace SceneReplication
 
             if (serverConnection != null) // Client: collect controls
             {
-                if (UI.FocusElement == null)
+                if (isMobile)
                 {
+                    Vector2 axis_0 =  GetJoystickAxisInput();
+
+                    controls.Set(CTRL_FORWARD, axis_0.Y < -0.5);
+                    controls.Set(CTRL_BACK, axis_0.Y > 0.5);
+                    controls.Set(CTRL_LEFT, axis_0.X < -0.5);
+                    controls.Set(CTRL_RIGHT, axis_0.X > 0.5);
+
+                }
+
+                if (!isMobile && UI.FocusElement == null)
+                {
+
                     controls.Set(CTRL_FORWARD, input.GetKeyDown(Key.W));
                     controls.Set(CTRL_BACK, input.GetKeyDown(Key.S));
                     controls.Set(CTRL_LEFT, input.GetKeyDown(Key.A));
                     controls.Set(CTRL_RIGHT, input.GetKeyDown(Key.D));
+
                 }
 
                 serverConnection.Controls = controls;
@@ -497,5 +531,18 @@ namespace SceneReplication
                 }
             }
         }
+
+        public Vector2 GetJoystickAxisInput()
+        {
+            Vector2 axis_0 = new Vector2();
+            JoystickState joystick;
+            if (screenJoystickIndex != -1 && Input.GetJoystick(screenJoystickIndex, out joystick))
+            {
+                axis_0 =  new Vector2(joystick.GetAxisPosition(JoystickState.AxisLeft_X), joystick.GetAxisPosition(JoystickState.AxisLeft_Y));
+            }
+
+            return axis_0;
+        }
+
     }
 }
