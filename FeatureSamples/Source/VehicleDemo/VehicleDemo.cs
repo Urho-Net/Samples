@@ -40,7 +40,11 @@ namespace VehicleDemo
         {
             base.Start();
 
-          //  LogSharp.LogLevel = LogSharpLevel.Debug;
+            //  LogSharp.LogLevel = LogSharpLevel.Debug;
+            if (isMobile)
+            {
+                CreateScreenJoystick(E_JoystickType.OneJoyStick_TwoButtons);
+            }
 
             //Create scene content
             CreateScene();
@@ -51,7 +55,7 @@ namespace VehicleDemo
             // Create the UI content
             if (isMobile)
             {
-                SimpleCreateInstructionsWithWasd();
+                SimpleCreateInstructions("Use Virtual Joystick to turn left/right\nPress A to move forward\nPress B to move backwards", Color.Black);
             }
             else
             {
@@ -100,7 +104,7 @@ namespace VehicleDemo
             dir = dir * Quaternion.FromAxisAngle(Vector3.UnitY, vehicle.Controls.Yaw);
             dir = dir * Quaternion.FromAxisAngle(Vector3.UnitX, vehicle.Controls.Pitch);
 
-            Vector3 cameraTargetPos = vehicleNode.Position - (dir * new Vector3(0.0f, 0.0f, CameraDistance));
+            Vector3 cameraTargetPos = vehicleNode.Position - (dir * new Vector3(0.0f, -2.0f, CameraDistance));
             Vector3 cameraStartPos = vehicleNode.Position;
 
             // Raycast camera against static objects (physics collision mask 2)
@@ -126,36 +130,18 @@ namespace VehicleDemo
 
             if (vehicle != null)
             {
-                // Get movement controls and assign them to the vehicle component. If UI has a focused element, clear controls
-                if (UI.FocusElement == null)
-                {
-                    vehicle.Controls.Set(Vehicle.CtrlForward, input.GetKeyDown(Key.W));
-                    vehicle.Controls.Set(Vehicle.CtrlBack, input.GetKeyDown(Key.S));
-                    vehicle.Controls.Set(Vehicle.CtrlLeft, input.GetKeyDown(Key.A));
-                    vehicle.Controls.Set(Vehicle.CtrlRight, input.GetKeyDown(Key.D));
-
-                    // Add yaw & pitch from the mouse motion or touch input. Used only for the camera, does not affect motion
-                    if (TouchEnabled)
+        
+                    if (isMobile)
                     {
-                        for (uint i = 0; i < input.NumTouches; ++i)
-                        {
-                            TouchState state = input.GetTouch(i);
-                            Camera camera = CameraNode.GetComponent<Camera>();
-                            if (camera == null)
-                                return;
-
-                            var graphics = Graphics;
-                            vehicle.Controls.Yaw += TouchSensitivity * camera.Fov / graphics.Height * state.Delta.X;
-                            vehicle.Controls.Pitch += TouchSensitivity * camera.Fov / graphics.Height * state.Delta.Y;
-                        }
+                        UpdateJoystickInputs(vehicle.Controls);
                     }
                     else
                     {
-                        vehicle.Controls.Yaw += (float)input.MouseMoveX * Vehicle.YawSensitivity;
-                        vehicle.Controls.Pitch += (float)input.MouseMoveY * Vehicle.YawSensitivity;
+                        vehicle.Controls.Set(Vehicle.CtrlForward, input.GetKeyDown(Key.W));
+                        vehicle.Controls.Set(Vehicle.CtrlBack, input.GetKeyDown(Key.S));
+                        vehicle.Controls.Set(Vehicle.CtrlLeft, input.GetKeyDown(Key.A));
+                        vehicle.Controls.Set(Vehicle.CtrlRight, input.GetKeyDown(Key.D));
                     }
-                    // Limit pitch
-                    vehicle.Controls.Pitch = MathHelper.Clamp(vehicle.Controls.Pitch, 0.0f, 80.0f);
 
                     // Check for loading / saving the scene
                     // currently saving is only supported on desktop
@@ -172,9 +158,7 @@ namespace VehicleDemo
                     {
                         LoadScene();
                     }
-                }
-                else
-                    vehicle.Controls.Set(Vehicle.CtrlForward | Vehicle.CtrlBack | Vehicle.CtrlLeft | Vehicle.CtrlRight, false);
+       
             }
         }
 
@@ -193,9 +177,9 @@ namespace VehicleDemo
                 path = FileSystem.ProgramDir + "Assets/Data/Scenes";
             }
 
-            path +="/VehicleDemo.xml";
+            path += "/VehicleDemo.xml";
 
-            if (!FileSystem.FileExists(path))return;
+            if (!FileSystem.FileExists(path)) return;
 
             scene.LoadXml(path);
 
@@ -306,6 +290,18 @@ namespace VehicleDemo
                 body.CollisionLayer = 2;
                 shape = objectNode.CreateComponent<CollisionShape>();
                 shape.SetTriangleMesh(sm.Model, 0, Vector3.One, Vector3.Zero, Quaternion.Identity);
+            }
+        }
+
+        public void UpdateJoystickInputs(Controls controls)
+        {
+            JoystickState joystick;
+            if (screenJoystickIndex != -1 && Input.GetJoystick(screenJoystickIndex, out joystick))
+            {
+                controls.Set(Vehicle.CtrlForward, joystick.GetButtonDown(JoystickState.Button_A));
+                controls.Set(Vehicle.CtrlBack, joystick.GetButtonDown(JoystickState.Button_B));
+                controls.Set(Vehicle.CtrlLeft, joystick.GetAxisPosition(JoystickState.AxisLeft_X) < -0.1);
+                controls.Set(Vehicle.CtrlRight, joystick.GetAxisPosition(JoystickState.AxisLeft_X) > 0.1);
             }
         }
 

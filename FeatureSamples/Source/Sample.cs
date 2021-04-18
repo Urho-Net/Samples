@@ -330,7 +330,7 @@ namespace UrhoNetSamples
 
         protected void SimpleCreateInstructions(string text = "", Color textColor = new Color())
         {
-            text += "\nPress Info to toggle textual information";
+            text += "\nPress Info to toggle this textual information";
 
             if (isMobile)
             {
@@ -338,7 +338,7 @@ namespace UrhoNetSamples
             }
             else
             {
-                text += "\nPress Esacpe to go back to the main List";
+                text += "\nPress Esacpe to go back to the main list";
             }
 
             infoText = new Text()

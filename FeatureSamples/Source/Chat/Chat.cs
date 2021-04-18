@@ -69,7 +69,10 @@ namespace Chat
             base.Start();
             Input.SetMouseVisible(true, false);
             CreateUI();
-            SimpleCreateInstructions("This is a demo of a simple chat application\nAllows sending/recieving text messages between devices\nEnter server IP bellow and press \"Connect\" \n  To connect to a Wireless LAN Server \nOr press \"Start Server\" to Start WLAN server\n" +
+            SimpleCreateInstructions("This is a demo of a simple chat application\n"+
+            "Allows sending/recieving text messages between devices\n"+
+            "Enter server IP bellow and press \"Connect\" \n  "+
+            "To connect to a Wireless LAN Server \nOr press \"Start Server\" to Start WLAN server\n" +
             "All devices including the server must be on the same Wireless LAN" +
             "\nTo find out server IP running on desktop type ifconfig/ipconfig \n  From a command shell on the same device that runs the server" +
              "\nTo find out server IP running on Android" + "\n    go to Settings->WI-FI->Additional settings" +
