@@ -76,7 +76,8 @@ namespace UrhoNetSamples
         protected enum E_JoystickType
         {
             OneJoyStick_NoButtons = 1,
-            OneJoyStick_ButtonA
+            OneJoyStick_OneButton,
+            OneJoyStick_TwoButtons
         }
 
         protected E_JoystickType JoystickType = E_JoystickType.OneJoyStick_NoButtons;
@@ -527,33 +528,50 @@ namespace UrhoNetSamples
 
             int multiplier = (Graphics.Width + Graphics.Height) / 100;
 
-            IntVector2 sizeButtonA = new IntVector2(multiplier * 5, multiplier * 5);
-            IntVector2 positionButtonA = new IntVector2(multiplier * -5, multiplier * -4);
+            IntVector2 sizeButtonA = new IntVector2();
+            IntVector2 positionButtonA = new IntVector2();
+            IntVector2 sizeButtonB = new IntVector2();
+            IntVector2 positionButtonB = new IntVector2();
+
+            if (JoystickType == E_JoystickType.OneJoyStick_OneButton)
+            {
+                sizeButtonA = new IntVector2(multiplier * 5, multiplier * 5);
+                positionButtonA = new IntVector2(multiplier * -5, multiplier * -4);
+            }
+            else if (JoystickType == E_JoystickType.OneJoyStick_TwoButtons)
+            {
+                sizeButtonA = new IntVector2(multiplier * 5, multiplier * 5);
+                positionButtonA = new IntVector2(multiplier * -5, multiplier * -8);
+                sizeButtonB = new IntVector2(multiplier * 5, multiplier * 5);
+                positionButtonB = new IntVector2(multiplier * -5, multiplier * -2);
+            }
+
             IntVector2 sizeLStick = new IntVector2(multiplier * 10 + 5, multiplier * 10 + 5);
             IntVector2 positionLStick = new IntVector2(multiplier * 2, multiplier * -2);
             IntVector2 sizeInnerButton = new IntVector2(multiplier * 8, multiplier * 8);
             IntVector2 positionInnerButton = new IntVector2(positionLStick.X / 2 + 3, Math.Abs(positionLStick.Y / 2) + 4);
 
-            string ButtonASize = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/attribute[@name='Size']/@value\">{0} {1}</replace>", sizeButtonA.X, sizeButtonA.Y);
-            string ButtonAPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/attribute[@name='Position']/@value\">{0} {1}</replace>", positionButtonA.X, positionButtonA.Y);
-
-            string LStickSize = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/attribute[@name='Size']/@value\">{0} {1}</replace>", sizeLStick.X, sizeLStick.Y);
-            string LStickPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/attribute[@name='Position']/@value\">{0} {1}</replace>", positionLStick.X, positionLStick.Y);
-
-            string InnerButtonSize = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/element[./attribute[@name='Name' and @value='InnerButton']]/attribute[@name='Size']/@value\">{0} {1}</replace>", sizeInnerButton.X, sizeInnerButton.Y);
-            string InnerButtonPosition = string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/element[./attribute[@name='Name' and @value='InnerButton']]/attribute[@name='Position']/@value\">{0} {1}</replace>", positionInnerButton.X, positionInnerButton.Y);
-
             string patch = "<patch>";
 
-            if (JoystickType == E_JoystickType.OneJoyStick_ButtonA)
+            patch +=  string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/attribute[@name='Size']/@value\">{0} {1}</replace>", sizeLStick.X, sizeLStick.Y);
+            patch +=  string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/attribute[@name='Position']/@value\">{0} {1}</replace>", positionLStick.X, positionLStick.Y);
+
+            patch += string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/element[./attribute[@name='Name' and @value='InnerButton']]/attribute[@name='Size']/@value\">{0} {1}</replace>", sizeInnerButton.X, sizeInnerButton.Y);
+            patch +=  string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/element[./attribute[@name='Name' and @value='InnerButton']]/attribute[@name='Position']/@value\">{0} {1}</replace>", positionInnerButton.X, positionInnerButton.Y);
+
+            if (JoystickType == E_JoystickType.OneJoyStick_OneButton)
             {
-                patch += ButtonASize;
-                patch += ButtonAPosition;
+                patch += string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/attribute[@name='Size']/@value\">{0} {1}</replace>", sizeButtonA.X, sizeButtonA.Y);
+                patch += string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/attribute[@name='Position']/@value\">{0} {1}</replace>", positionButtonA.X, positionButtonA.Y);
             }
-            patch += LStickSize;
-            patch += LStickPosition;
-            patch += InnerButtonSize;
-            patch += InnerButtonPosition;
+            else if (JoystickType == E_JoystickType.OneJoyStick_TwoButtons)
+            {
+                patch += string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/attribute[@name='Size']/@value\">{0} {1}</replace>", sizeButtonA.X, sizeButtonA.Y);
+                patch += string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Button0']]/attribute[@name='Position']/@value\">{0} {1}</replace>", positionButtonA.X, positionButtonA.Y);
+                patch += string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Button1']]/attribute[@name='Size']/@value\">{0} {1}</replace>", sizeButtonB.X, sizeButtonB.Y);
+                patch += string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Button1']]/attribute[@name='Position']/@value\">{0} {1}</replace>", positionButtonB.X, positionButtonB.Y);
+
+            }
 
             patch += "</patch>";
 
@@ -575,10 +593,14 @@ namespace UrhoNetSamples
 
             switch (type)
             {
-                case E_JoystickType.OneJoyStick_ButtonA:
+
+                case E_JoystickType.OneJoyStick_OneButton:
                     path = "ScreenJoystick/ScreenOneJoystickOneButton.xml";
                     break;
 
+                case E_JoystickType.OneJoyStick_TwoButtons:
+                    path = "ScreenJoystick/ScreenOneJoystickTwoButtons.xml";
+                    break;
                 default:
                     path = "ScreenJoystick/ScreenOneJoystick.xml";
                     break;

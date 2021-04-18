@@ -75,7 +75,7 @@ namespace CharacterDemo
             
             if (isMobile)
             {
-                CreateScreenJoystick(E_JoystickType.OneJoyStick_ButtonA);
+                CreateScreenJoystick(E_JoystickType.OneJoyStick_OneButton);
             }
 
             if (isMobile)

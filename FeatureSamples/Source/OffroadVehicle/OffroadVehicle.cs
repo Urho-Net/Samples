@@ -58,6 +58,10 @@ namespace OffroadVehicle
         protected override void Start()
         {
             base.Start();
+            if (isMobile)
+            {
+                CreateScreenJoystick(E_JoystickType.OneJoyStick_TwoButtons);
+            }
             CreateScene();
             CreateVehicle();
             InitAudio();
@@ -139,7 +143,10 @@ namespace OffroadVehicle
             textKmH_.HorizontalAlignment = (HorizontalAlignment.Center);
             textKmH_.Position = new IntVector2(0, UI.Root.Height - 140);
 
-            SimpleCreateInstructionsWithWasd("",Color.Black);
+            if (isMobile)
+                SimpleCreateInstructions("Use Virtual Joystick to turn left/right\nPress A to move forward\nPress B to move backwards", Color.Black);
+            else
+                SimpleCreateInstructionsWithWasd("", Color.Black);
 
         }
 
@@ -188,48 +195,28 @@ namespace OffroadVehicle
 
             if (vehicle != null)
             {
-                if (ui.FocusElement == null)
+                if (isMobile)
+                {
+                    UpdateJoystickInputs(vehicle.Controls);
+                }
+                else
                 {
                     vehicle.Controls.Set(Vehicle.CtrlForward, input.GetKeyDown(Key.W));
                     vehicle.Controls.Set(Vehicle.CtrlBack, input.GetKeyDown(Key.S));
                     vehicle.Controls.Set(Vehicle.CtrlLeft, input.GetKeyDown(Key.A));
                     vehicle.Controls.Set(Vehicle.CtrlRight, input.GetKeyDown(Key.D));
-
-                    // Add yaw & pitch from the mouse motion or touch input. Used only for the camera, does not affect motion
-                    if (TouchEnabled)
-                    {
-                        for (uint i = 0; i < input.NumTouches; ++i)
-                        {
-                            TouchState state = input.GetTouch(i);
-                            Camera camera = CameraNode.GetComponent<Camera>();
-                            if (camera == null)
-                                return;
-
-                            var graphics = Graphics;
-                            //     vehicle.Controls.Yaw += TouchSensitivity * camera.Fov / graphics.Height * state.Delta.X;
-                            //     vehicle.Controls.Pitch += TouchSensitivity * camera.Fov / graphics.Height * state.Delta.Y;
-                        }
-                    }
-                    else
-                    {
-                        //  vehicle.Controls.Yaw += (float)input.MouseMoveX * Vehicle.YawSensitivity;
-                        //  vehicle.Controls.Pitch += (float)input.MouseMoveY * Vehicle.YawSensitivity;
-                    }
-                    // Limit pitch
-                    vehicle.Controls.Pitch = MathHelper.Clamp(vehicle.Controls.Pitch, 0.0f, 80.0f);
-                }
-                else
-                {
-                    vehicle.Controls.Set(Vehicle.CtrlForward | Vehicle.CtrlBack | Vehicle.CtrlLeft | Vehicle.CtrlRight, false);
                 }
 
+                // Limit pitch
+                vehicle.Controls.Pitch = MathHelper.Clamp(vehicle.Controls.Pitch, 0.0f, 80.0f);
 
-                float spd = vehicle.GetSpeedKmH();
-                if (spd < 0.0f) spd = 0.0f;
+
+                int spd = (int)vehicle.GetSpeedKmH();
+                if (spd < 0) spd = 0;
                 int gear = vehicle.GetCurrentGear() + 1;
-                float rpm = vehicle.GetCurrentRPM();
+                int rpm = (int)vehicle.GetCurrentRPM();
 
-                string str = string.Format("{0:F1} KmH  \ngear: {1}  {2:F1} RPM",
+                string str = string.Format("{0} KmH  \ngear: {1}  {2} RPM",
                          spd, gear, rpm);
 
                 textKmH_.Value = str;
@@ -266,6 +253,19 @@ namespace OffroadVehicle
             CameraNode.Position = cameraTargetPos;
             CameraNode.Rotation = dir;
         }
+
+        public void UpdateJoystickInputs(Controls controls)
+        {
+            JoystickState joystick;
+            if (screenJoystickIndex != -1 && Input.GetJoystick(screenJoystickIndex, out joystick))
+            {
+                controls.Set(Vehicle.CtrlForward, joystick.GetButtonDown(JoystickState.Button_A));
+                controls.Set(Vehicle.CtrlBack, joystick.GetButtonDown(JoystickState.Button_B));
+                controls.Set(Vehicle.CtrlLeft, joystick.GetAxisPosition(JoystickState.AxisLeft_X) < -0.1);
+                controls.Set(Vehicle.CtrlRight, joystick.GetAxisPosition(JoystickState.AxisLeft_X) > 0.1);
+            }
+        }
+
 
 
         /// <summary>
