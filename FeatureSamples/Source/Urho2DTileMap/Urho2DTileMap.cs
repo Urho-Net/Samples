@@ -27,68 +27,71 @@ using Urho.Urho2D;
 
 namespace Urho2DTileMap
 {
-	public class Urho2DTileMap : Sample
-	{
+    public class Urho2DTileMap : Sample
+    {
 
 
-		[Preserve]
-		public Urho2DTileMap() : base(new ApplicationOptions(assetsFolder: "Data;CoreData")) { }
+        [Preserve]
+        public Urho2DTileMap() : base(new ApplicationOptions(assetsFolder: "Data;CoreData")) { }
 
-		protected override void Start()
-		{
-			base.Start();
-			CreateScene();
-			SimpleCreateInstructionsWithWasd(", use PageUp PageDown keys to zoom.");
-			SetupViewport();
-		}
+        protected override void Start()
+        {
+            base.Start();
+            CreateScene();
+            if (isMobile)
+                SimpleCreateInstructionsWithWasd("Use Zoom In/Out to zoom.");
+            else
+                SimpleCreateInstructionsWithWasd("Use PageUp PageDown keys to zoom.");
+            SetupViewport();
+        }
 
-		protected override void OnUpdate(float timeStep)
-		{
-			SimpleMoveCamera2D(timeStep);
-		}
+        protected override void OnUpdate(float timeStep)
+        {
+            SimpleMoveCamera2D(timeStep);
+        }
 
-		void SetupViewport()
-		{
-			Renderer.SetViewport(0, new Viewport(Context, scene, CameraNode.GetComponent<Camera>(), null));
-		}
+        void SetupViewport()
+        {
+            Renderer.SetViewport(0, new Viewport(Context, scene, CameraNode.GetComponent<Camera>(), null));
+        }
 
-		void CreateScene()
-		{
-			scene = new Scene();
-			scene.CreateComponent<Octree>();
+        void CreateScene()
+        {
+            scene = new Scene();
+            scene.CreateComponent<Octree>();
 
-			// Create camera node
-			CameraNode = scene.CreateChild("Camera");
-			// Set camera's position
-			CameraNode.Position = (new Vector3(0.0f, 0.0f, -10.0f));
+            // Create camera node
+            CameraNode = scene.CreateChild("Camera");
+            // Set camera's position
+            CameraNode.Position = (new Vector3(0.0f, 0.0f, -10.0f));
 
-			Camera camera = CameraNode.CreateComponent<Camera>();
-			camera.Orthographic = true;
+            Camera camera = CameraNode.CreateComponent<Camera>();
+            camera.Orthographic = true;
 
-			var graphics = Graphics;
-			camera.OrthoSize=(float)graphics.Height * Application.PixelSize;
-			camera.Zoom = (1.0f * Math.Min((float)graphics.Width / 1280.0f, (float)graphics.Height / 800.0f)); // Set zoom according to user's resolution to ensure full visibility (initial zoom (1.0) is set for full visibility at 1280x800 resolution)
+            var graphics = Graphics;
+            camera.OrthoSize = (float)graphics.Height * Application.PixelSize;
+            camera.Zoom = (1.0f * Math.Min((float)graphics.Width / 1280.0f, (float)graphics.Height / 800.0f)); // Set zoom according to user's resolution to ensure full visibility (initial zoom (1.0) is set for full visibility at 1280x800 resolution)
 
-			var cache = ResourceCache;
-			// Get tmx file
-			TmxFile2D tmxFile = cache.GetTmxFile2D("Urho2D/isometric_grass_and_water.tmx");
-			if (tmxFile == null)
-				return;
+            var cache = ResourceCache;
+            // Get tmx file
+            TmxFile2D tmxFile = cache.GetTmxFile2D("Urho2D/isometric_grass_and_water.tmx");
+            if (tmxFile == null)
+                return;
 
-			Node tileMapNode = scene.CreateChild("TileMap");
-			tileMapNode.Position = new Vector3(0.0f, 0.0f, -1.0f);
+            Node tileMapNode = scene.CreateChild("TileMap");
+            tileMapNode.Position = new Vector3(0.0f, 0.0f, -1.0f);
 
-			TileMap2D tileMap = tileMapNode.CreateComponent<TileMap2D>();
-			// Set animation
-			tileMap.TmxFile = tmxFile;
+            TileMap2D tileMap = tileMapNode.CreateComponent<TileMap2D>();
+            // Set animation
+            tileMap.TmxFile = tmxFile;
 
-			// Set camera's position
-			TileMapInfo2D info = tileMap.Info;
-			float x = info.MapWidth * 0.5f;
-			float y = info.MapHeight * 0.5f;
-			CameraNode.Position = new Vector3(x, y, -10.0f);
-		}
+            // Set camera's position
+            TileMapInfo2D info = tileMap.Info;
+            float x = info.MapWidth * 0.5f;
+            float y = info.MapHeight * 0.5f;
+            CameraNode.Position = new Vector3(x, y, -10.0f);
+        }
 
-		protected override string JoystickLayoutPatch => JoystickLayoutPatches.WithZoomInAndOut;
-	}
+        protected override string JoystickLayoutPatch => JoystickLayoutPatches.WithZoomInAndOut;
+    }
 }

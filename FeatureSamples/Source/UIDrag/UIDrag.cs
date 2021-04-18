@@ -45,11 +45,10 @@ namespace UIDrag
             if (!isMobile)
                 Input.SetMouseVisible(true, false);
 
-			SimpleCreateInstructions();
+			SimpleCreateInstructions( "Drag on the buttons to move them around.\nMulti- button drag also supported.");
 
             // Create the UI content
             CreateGUI();
-            CreateInstructions();
         }
 
         protected override void Stop()
@@ -128,22 +127,6 @@ namespace UIDrag
             }
         }
 
-        void CreateInstructions()
-        {
-            var cache = ResourceCache;
-            UI ui = UI;
-
-            // Construct new Text object, set string to display and font to use
-            var instructionText = new Text();
-            instructionText.Value = "Drag on the buttons to move them around.\nMulti- button drag also supported.";
-            instructionText.SetFont(cache.GetFont("Fonts/Anonymous Pro.ttf"), 15);
-            ui.Root.AddChild(instructionText);
-
-            // Position the text relative to the screen center
-            instructionText.HorizontalAlignment = HorizontalAlignment.Center;
-            instructionText.VerticalAlignment = VerticalAlignment.Center;
-            instructionText.SetPosition(0, ui.Root.Height / 4);
-        }
 
         void HandleDragBegin(DragBeginEventArgs args)
         {

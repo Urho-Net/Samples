@@ -44,7 +44,10 @@ namespace BasicTechniques
         {
             base.Start();
 
-            SimpleCreateInstructionsWithWasd();
+            if (isMobile)
+                SimpleCreateInstructionsWithWasd("Up & Down Buttons to move up/down");
+            else
+                SimpleCreateInstructionsWithWasd();
             // Create the scene content
             CreateScene();
 

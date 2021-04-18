@@ -49,7 +49,10 @@ namespace Urho2DSpriterAnimation
         {
             base.Start();
             CreateScene();
-            SimpleCreateInstructions("Mouse click to play next animation, \nUse WASD keys to move, use PageUp PageDown keys to zoom.");
+            if(isMobile)
+            SimpleCreateInstructions("Touch screen to play next animation");
+            else
+            SimpleCreateInstructions("Mouse click to play next animation");
             SetupViewport();
             SubscribeToEvents();
         }
@@ -144,6 +147,6 @@ namespace Urho2DSpriterAnimation
             animatedSprite.SetAnimation(AnimationNames[animationIndex], LoopMode2D.Default);
         }
 
-        protected override string JoystickLayoutPatch => JoystickLayoutPatches.WithZoomInAndOut;
+        protected override string JoystickLayoutPatch => JoystickLayoutPatches.Hidden;
     }
 }

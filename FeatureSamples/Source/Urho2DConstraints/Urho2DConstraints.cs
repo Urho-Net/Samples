@@ -44,7 +44,10 @@ namespace Urho2DConstraints
         {
             base.Start();
             CreateScene();
-            SimpleCreateInstructionsWithWasd(", Use PageUp PageDown to zoom.\n Space to toggle debug geometry and joints");
+            if(isMobile)
+            SimpleCreateInstructionsWithWasd("Use Zoom In/Out to zoom.");
+            else
+            SimpleCreateInstructionsWithWasd("Use PageUp PageDown to zoom.\nSpace to toggle debug geometry and joints");
             Input.SetMouseVisible(true, false);
             SetupViewport();
             SubscribeToEvents();

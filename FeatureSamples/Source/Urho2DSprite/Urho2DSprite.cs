@@ -28,130 +28,133 @@ using Urho.Urho2D;
 
 namespace Urho2DSprite
 {
-	public class Urho2DSprite : Sample
-	{
-		List<NodeInfo> spriteNodes;
-		const uint NumSprites = 200;
+    public class Urho2DSprite : Sample
+    {
+        List<NodeInfo> spriteNodes;
+        const uint NumSprites = 200;
 
-		[Preserve]
-		public Urho2DSprite() : base(new ApplicationOptions(assetsFolder: "Data;CoreData")) { }
+        [Preserve]
+        public Urho2DSprite() : base(new ApplicationOptions(assetsFolder: "Data;CoreData")) { }
 
-		protected override void Start()
-		{
-			base.Start();
-			CreateScene();
-			SimpleCreateInstructionsWithWasd("\nuse PageUp PageDown keys to zoom.");
-			SetupViewport();
-		}
+        protected override void Start()
+        {
+            base.Start();
+            CreateScene();
+            if (isMobile)
+                SimpleCreateInstructionsWithWasd("Use Zoom In/Out to zoom.");
+            else
+                SimpleCreateInstructionsWithWasd("Use PageUp PageDown keys to zoom.");
+            SetupViewport();
+        }
 
-		protected override void OnUpdate(float timeStep)
-		{
-			SimpleMoveCamera2D(timeStep);
+        protected override void OnUpdate(float timeStep)
+        {
+            SimpleMoveCamera2D(timeStep);
 
-			var graphics = Graphics;
-			float halfWidth = graphics.Width * 0.5f * Application.PixelSize;
-			float halfHeight = graphics.Height * 0.5f * Application.PixelSize;
+            var graphics = Graphics;
+            float halfWidth = graphics.Width * 0.5f * Application.PixelSize;
+            float halfHeight = graphics.Height * 0.5f * Application.PixelSize;
 
-			foreach (var nodeInfo in spriteNodes)
-			{
-				Vector3 position = nodeInfo.Node.Position;
-				Vector3 moveSpeed = nodeInfo.MoveSpeed;
-				Vector3 newPosition = position + moveSpeed * timeStep;
-				if (newPosition.X < -halfWidth || newPosition.X > halfWidth)
-				{
-					newPosition.X = position.X;
-					moveSpeed.X = -moveSpeed.X;
-					nodeInfo.MoveSpeed = moveSpeed;
-				}
-				if (newPosition.Y < -halfHeight || newPosition.Y > halfHeight)
-				{
-					newPosition.Y = position.Y;
-					moveSpeed.Y = -moveSpeed.Y;
-					nodeInfo.MoveSpeed = moveSpeed;
-				}
+            foreach (var nodeInfo in spriteNodes)
+            {
+                Vector3 position = nodeInfo.Node.Position;
+                Vector3 moveSpeed = nodeInfo.MoveSpeed;
+                Vector3 newPosition = position + moveSpeed * timeStep;
+                if (newPosition.X < -halfWidth || newPosition.X > halfWidth)
+                {
+                    newPosition.X = position.X;
+                    moveSpeed.X = -moveSpeed.X;
+                    nodeInfo.MoveSpeed = moveSpeed;
+                }
+                if (newPosition.Y < -halfHeight || newPosition.Y > halfHeight)
+                {
+                    newPosition.Y = position.Y;
+                    moveSpeed.Y = -moveSpeed.Y;
+                    nodeInfo.MoveSpeed = moveSpeed;
+                }
 
-				nodeInfo.Node.Position = (newPosition);
-				nodeInfo.Node.Roll(nodeInfo.RotateSpeed * timeStep, TransformSpace.Local);
-			}
-		}
+                nodeInfo.Node.Position = (newPosition);
+                nodeInfo.Node.Roll(nodeInfo.RotateSpeed * timeStep, TransformSpace.Local);
+            }
+        }
 
-		void SetupViewport()
-		{
-			var renderer = Renderer;
-			renderer.SetViewport(0, new Viewport(Context, scene, CameraNode.GetComponent<Camera>(), null));
-		}
+        void SetupViewport()
+        {
+            var renderer = Renderer;
+            renderer.SetViewport(0, new Viewport(Context, scene, CameraNode.GetComponent<Camera>(), null));
+        }
 
-		void CreateScene()
-		{
-			scene = new Scene();
-			scene.CreateComponent<Octree>();
-			spriteNodes = new List<NodeInfo>((int) NumSprites);
+        void CreateScene()
+        {
+            scene = new Scene();
+            scene.CreateComponent<Octree>();
+            spriteNodes = new List<NodeInfo>((int)NumSprites);
 
-			// Create camera node
-			CameraNode = scene.CreateChild("Camera");
-			// Set camera's position
-			CameraNode.Position = (new Vector3(0.0f, 0.0f, -10.0f));
+            // Create camera node
+            CameraNode = scene.CreateChild("Camera");
+            // Set camera's position
+            CameraNode.Position = (new Vector3(0.0f, 0.0f, -10.0f));
 
-			Camera camera = CameraNode.CreateComponent<Camera>();
-			camera.Orthographic = true;
+            Camera camera = CameraNode.CreateComponent<Camera>();
+            camera.Orthographic = true;
 
 
-			var graphics = Graphics;
-			camera.OrthoSize=(float)graphics.Height * Application.PixelSize;
+            var graphics = Graphics;
+            camera.OrthoSize = (float)graphics.Height * Application.PixelSize;
 
-			var cache = ResourceCache;
-			// Get sprite
-			Sprite2D sprite = cache.GetSprite2D("Urho2D/Aster.png");
-			if (sprite == null)
-				return;
+            var cache = ResourceCache;
+            // Get sprite
+            Sprite2D sprite = cache.GetSprite2D("Urho2D/Aster.png");
+            if (sprite == null)
+                return;
 
-			float halfWidth = graphics.Width * 0.5f * Application.PixelSize;
-			float halfHeight = graphics.Height * 0.5f * Application.PixelSize;
+            float halfWidth = graphics.Width * 0.5f * Application.PixelSize;
+            float halfHeight = graphics.Height * 0.5f * Application.PixelSize;
 
-			for (uint i = 0; i < NumSprites; ++i)
-			{
-				Node spriteNode = scene.CreateChild("StaticSprite2D");
-				spriteNode.Position = (new Vector3(NextRandom(-halfWidth, halfWidth), NextRandom(-halfHeight, halfHeight), 0.0f));
+            for (uint i = 0; i < NumSprites; ++i)
+            {
+                Node spriteNode = scene.CreateChild("StaticSprite2D");
+                spriteNode.Position = (new Vector3(NextRandom(-halfWidth, halfWidth), NextRandom(-halfHeight, halfHeight), 0.0f));
 
-				StaticSprite2D staticSprite = spriteNode.CreateComponent<StaticSprite2D>();
-				// Set random color
-				staticSprite.Color = (new Color(NextRandom(1.0f), NextRandom(1.0f), NextRandom(1.0f), 1.0f));
-				// Set blend mode
-				staticSprite.BlendMode = BlendMode.Alpha;
-				// Set sprite
-				staticSprite.Sprite=sprite;
-				// Add to sprite node vector
-				spriteNodes.Add(new NodeInfo(spriteNode, new Vector3(NextRandom(-2.0f, 2.0f), NextRandom(-2.0f, 2.0f), 0.0f), NextRandom(-90.0f, 90.0f)));
-			}
+                StaticSprite2D staticSprite = spriteNode.CreateComponent<StaticSprite2D>();
+                // Set random color
+                staticSprite.Color = (new Color(NextRandom(1.0f), NextRandom(1.0f), NextRandom(1.0f), 1.0f));
+                // Set blend mode
+                staticSprite.BlendMode = BlendMode.Alpha;
+                // Set sprite
+                staticSprite.Sprite = sprite;
+                // Add to sprite node vector
+                spriteNodes.Add(new NodeInfo(spriteNode, new Vector3(NextRandom(-2.0f, 2.0f), NextRandom(-2.0f, 2.0f), 0.0f), NextRandom(-90.0f, 90.0f)));
+            }
 
-			// Get animation set
-			AnimationSet2D animationSet = cache.GetAnimationSet2D("Urho2D/GoldIcon.scml");
-			if (animationSet == null)
-				return;
+            // Get animation set
+            AnimationSet2D animationSet = cache.GetAnimationSet2D("Urho2D/GoldIcon.scml");
+            if (animationSet == null)
+                return;
 
-			var spriteNode2 = scene.CreateChild("AnimatedSprite2D");
-			spriteNode2.Position = (new Vector3(0.0f, 0.0f, -1.0f));
+            var spriteNode2 = scene.CreateChild("AnimatedSprite2D");
+            spriteNode2.Position = (new Vector3(0.0f, 0.0f, -1.0f));
 
-			AnimatedSprite2D animatedSprite = spriteNode2.CreateComponent<AnimatedSprite2D>();
-			// Set animation
-			animatedSprite.AnimationSet = animationSet;
-			animatedSprite.SetAnimation("idle", LoopMode2D.Default);
-		}
+            AnimatedSprite2D animatedSprite = spriteNode2.CreateComponent<AnimatedSprite2D>();
+            // Set animation
+            animatedSprite.AnimationSet = animationSet;
+            animatedSprite.SetAnimation("idle", LoopMode2D.Default);
+        }
 
-		protected override string JoystickLayoutPatch => JoystickLayoutPatches.WithZoomInAndOut;
+        protected override string JoystickLayoutPatch => JoystickLayoutPatches.WithZoomInAndOut;
 
-		class NodeInfo
-		{
-			public Node Node { get; set; }
-			public Vector3 MoveSpeed { get; set; }
-			public float RotateSpeed { get; set; }
+        class NodeInfo
+        {
+            public Node Node { get; set; }
+            public Vector3 MoveSpeed { get; set; }
+            public float RotateSpeed { get; set; }
 
-			public NodeInfo(Node node, Vector3 moveSpeed, float rotateSpeed)
-			{
-				Node = node;
-				MoveSpeed = moveSpeed;
-				RotateSpeed = rotateSpeed;
-			}
-		}
-	}
+            public NodeInfo(Node node, Vector3 moveSpeed, float rotateSpeed)
+            {
+                Node = node;
+                MoveSpeed = moveSpeed;
+                RotateSpeed = rotateSpeed;
+            }
+        }
+    }
 }

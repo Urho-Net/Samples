@@ -245,6 +245,9 @@ namespace Actions
             "            <attribute name=\"Text\" value=\"G\" />" +
             "        </element>" +
             "    </add>" +
+            "    <add sel=\"/element/element[./attribute[@name='Name' and @value='Hat0']]\">" +
+			"        <attribute name=\"Is Visible\" value=\"false\" />" +
+			"    </add>" +
             "</patch>";
 
     }

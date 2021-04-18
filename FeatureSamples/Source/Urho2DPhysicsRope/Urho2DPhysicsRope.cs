@@ -28,111 +28,114 @@ using Urho.Urho2D;
 
 namespace Urho2DPhysicsRope
 {
-	public class Urho2DPhysicsRope : Sample
-	{
-		const uint NumObjects = 10;
+    public class Urho2DPhysicsRope : Sample
+    {
+        const uint NumObjects = 10;
 
-		[Preserve]
-		public Urho2DPhysicsRope() : base(new ApplicationOptions(assetsFolder: "Data;CoreData")) { }
+        [Preserve]
+        public Urho2DPhysicsRope() : base(new ApplicationOptions(assetsFolder: "Data;CoreData")) { }
 
-		protected override void Start()
-		{
-			base.Start();
-			CreateScene();
-			SimpleCreateInstructionsWithWasd(", Use PageUp PageDown to zoom.");
-			SetupViewport();
-		}
-		
-		protected override void OnUpdate(float timeStep)
-		{
-			SimpleMoveCamera2D(timeStep);
-			scene.GetComponent<PhysicsWorld2D>().DrawDebugGeometry();
-		}
+        protected override void Start()
+        {
+            base.Start();
+            CreateScene();
+            if (isMobile)
+                SimpleCreateInstructionsWithWasd("Use Zoom In/Out to zoom.");
+            else
+                SimpleCreateInstructionsWithWasd("Use PageUp PageDown to zoom.");
+            SetupViewport();
+        }
 
-		void SetupViewport()
-		{
-			var renderer = Renderer;
-			renderer.SetViewport(0, new Viewport(Context, scene, CameraNode.GetComponent<Camera>(), null));
-		}
+        protected override void OnUpdate(float timeStep)
+        {
+            SimpleMoveCamera2D(timeStep);
+            scene.GetComponent<PhysicsWorld2D>().DrawDebugGeometry();
+        }
 
-		void CreateScene()
-		{
-			scene = new Scene();
-			scene.CreateComponent<Octree>();
-			scene.CreateComponent<DebugRenderer>();
-			// Create camera node
-			CameraNode = scene.CreateChild("Camera");
-			// Set camera's position
-			CameraNode.Position = new Vector3(0.0f, 5.0f, -10.0f);
+        void SetupViewport()
+        {
+            var renderer = Renderer;
+            renderer.SetViewport(0, new Viewport(Context, scene, CameraNode.GetComponent<Camera>(), null));
+        }
 
-			Camera camera = CameraNode.CreateComponent<Camera>();
-			camera.Orthographic = true;
+        void CreateScene()
+        {
+            scene = new Scene();
+            scene.CreateComponent<Octree>();
+            scene.CreateComponent<DebugRenderer>();
+            // Create camera node
+            CameraNode = scene.CreateChild("Camera");
+            // Set camera's position
+            CameraNode.Position = new Vector3(0.0f, 5.0f, -10.0f);
 
-			var graphics = Graphics;
-			camera.OrthoSize = graphics.Height * 0.05f;
-			camera.Zoom = 1.5f * Math.Min(graphics.Width / 1280.0f, graphics.Height / 800.0f); // Set zoom according to user's resolution to ensure full visibility (initial zoom (1.5) is set for full visibility at 1280x800 resolution)
+            Camera camera = CameraNode.CreateComponent<Camera>();
+            camera.Orthographic = true;
 
-			// Create 2D physics world component
-			PhysicsWorld2D physicsWorld = scene.CreateComponent<PhysicsWorld2D>();
-			physicsWorld.DrawJoint = (true);
+            var graphics = Graphics;
+            camera.OrthoSize = graphics.Height * 0.05f;
+            camera.Zoom = 1.5f * Math.Min(graphics.Width / 1280.0f, graphics.Height / 800.0f); // Set zoom according to user's resolution to ensure full visibility (initial zoom (1.5) is set for full visibility at 1280x800 resolution)
 
-			// Create ground
-			Node groundNode = scene.CreateChild("Ground");
-			// Create 2D rigid body for gound
-			RigidBody2D groundBody = groundNode.CreateComponent<RigidBody2D>();
-			// Create edge collider for ground
-			CollisionEdge2D groundShape = groundNode.CreateComponent<CollisionEdge2D>();
-			groundShape.SetVertices(new Vector2(-40.0f, 0.0f), new Vector2(40.0f, 0.0f));
+            // Create 2D physics world component
+            PhysicsWorld2D physicsWorld = scene.CreateComponent<PhysicsWorld2D>();
+            physicsWorld.DrawJoint = (true);
 
-			const float y = 15.0f;
-			RigidBody2D prevBody = groundBody;
+            // Create ground
+            Node groundNode = scene.CreateChild("Ground");
+            // Create 2D rigid body for gound
+            RigidBody2D groundBody = groundNode.CreateComponent<RigidBody2D>();
+            // Create edge collider for ground
+            CollisionEdge2D groundShape = groundNode.CreateComponent<CollisionEdge2D>();
+            groundShape.SetVertices(new Vector2(-40.0f, 0.0f), new Vector2(40.0f, 0.0f));
 
-			for (uint i = 0; i < NumObjects; ++i)
-			{
-				Node node = scene.CreateChild("RigidBody");
+            const float y = 15.0f;
+            RigidBody2D prevBody = groundBody;
 
-				// Create rigid body
-				RigidBody2D body = node.CreateComponent<RigidBody2D>();
-				body.BodyType= BodyType2D.Dynamic;
+            for (uint i = 0; i < NumObjects; ++i)
+            {
+                Node node = scene.CreateChild("RigidBody");
 
-				// Create box
-				CollisionBox2D box = node.CreateComponent<CollisionBox2D>();
-				// Set friction
-				box.Friction = 0.2f;
-				// Set mask bits.
-				box.MaskBits = 0xFFFF & ~0x0002;
+                // Create rigid body
+                RigidBody2D body = node.CreateComponent<RigidBody2D>();
+                body.BodyType = BodyType2D.Dynamic;
 
-				if (i == NumObjects - 1)
-				{
-					node.Position = new Vector3(1.0f * i, y, 0.0f);
-					body.AngularDamping = 0.4f;
-					box.SetSize(3.0f, 3.0f);
-					box.Density = 100.0f;
-					box.CategoryBits = 0x0002;
-				}
-				else
-				{
-					node.Position = new Vector3(0.5f + 1.0f * i, y, 0.0f);
-					box.SetSize(1.0f, 0.25f);
-					box.Density = 20.0f;
-					box.CategoryBits = 0x0001;
-				}
+                // Create box
+                CollisionBox2D box = node.CreateComponent<CollisionBox2D>();
+                // Set friction
+                box.Friction = 0.2f;
+                // Set mask bits.
+                box.MaskBits = 0xFFFF & ~0x0002;
 
-				ConstraintRevolute2D joint = node.CreateComponent<ConstraintRevolute2D>();
-				joint.OtherBody = prevBody;
-				joint.Anchor = new Vector2(i, y);
-				joint.CollideConnected = false;
+                if (i == NumObjects - 1)
+                {
+                    node.Position = new Vector3(1.0f * i, y, 0.0f);
+                    body.AngularDamping = 0.4f;
+                    box.SetSize(3.0f, 3.0f);
+                    box.Density = 100.0f;
+                    box.CategoryBits = 0x0002;
+                }
+                else
+                {
+                    node.Position = new Vector3(0.5f + 1.0f * i, y, 0.0f);
+                    box.SetSize(1.0f, 0.25f);
+                    box.Density = 20.0f;
+                    box.CategoryBits = 0x0001;
+                }
 
-				prevBody = body;
-			}
+                ConstraintRevolute2D joint = node.CreateComponent<ConstraintRevolute2D>();
+                joint.OtherBody = prevBody;
+                joint.Anchor = new Vector2(i, y);
+                joint.CollideConnected = false;
 
-			ConstraintRope2D constraintRope = groundNode.CreateComponent<ConstraintRope2D>();
-			constraintRope.OtherBody = prevBody;
-			constraintRope.OwnerBodyAnchor=new Vector2(0.0f, y);
-			constraintRope.MaxLength = NumObjects - 1.0f + 0.01f;
+                prevBody = body;
+            }
 
-		}
+            ConstraintRope2D constraintRope = groundNode.CreateComponent<ConstraintRope2D>();
+            constraintRope.OtherBody = prevBody;
+            constraintRope.OwnerBodyAnchor = new Vector2(0.0f, y);
+            constraintRope.MaxLength = NumObjects - 1.0f + 0.01f;
 
-		protected override string JoystickLayoutPatch => JoystickLayoutPatches.WithZoomInAndOut;
-	}
+        }
+
+        protected override string JoystickLayoutPatch => JoystickLayoutPatches.WithZoomInAndOut;
+    }
 }

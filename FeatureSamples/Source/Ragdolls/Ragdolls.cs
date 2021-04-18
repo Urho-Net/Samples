@@ -42,8 +42,8 @@ namespace Ragdolls
             if (isMobile)
             {
                 SimpleCreateInstructionsWithWasd(
-                    "Button to spawn physics objects\n" +
-                    "Button to toggle physics debug geometry");
+                    "Fire to spawn physics objects\n" +
+                    "Debug to toggle physics debug geometry");
             }
             else
             {
