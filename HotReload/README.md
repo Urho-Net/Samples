@@ -1,4 +1,4 @@
-Make sure you are using the latest Urho.Net framework package , otherwise it won't work.\
+Make sure you are always using the latest Urho.Net framework package , otherwise it might won't work.\
 https://github.com/Urho-Net/Urho.Net
 
 - This Sample demonstrates the ability to hot-reload modified components , while the application is running.
