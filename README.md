@@ -1,4 +1,4 @@
-# FeatureSamples
+# Samples
 This directory contains the various samples that showcase \
 The features of the C# multiplatform game development framework
 [Urho.Net](https://github.com/Urho-Net/Urho.Net).\
