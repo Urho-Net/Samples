@@ -6,7 +6,7 @@ Please follow the installation instructions of [Urho.Net](https://github.com/Urh
 Make sure you are always using the latest version of [Urho.Net](https://github.com/Urho-Net/Urho.Net) , otherwise some of the samples might not work.
 
 # Running the Feature Samples on Desktop.
-Make sure that you followed the instructions and installed all the rquired dependencies as described in [Urho.Net](https://github.com/Urho-Net/Urho.Net).\
+Make sure that you followed the instructions and installed all the required dependencies as described in [Urho.Net](https://github.com/Urho-Net/Urho.Net).\
 This applies to Windows,Linux and MacOS.\
 
 git clone https://github.com/Urho-Net/Samples.git
@@ -17,7 +17,7 @@ git clone https://github.com/Urho-Net/Samples.git
 
 
 # Running the samples on a real Android device
-Make sure that you followed the instructions and installed all the rquired dependencies as described in [Urho.Net](https://github.com/Urho-Net/Urho.Net)\
+Make sure that you followed the instructions and installed all the required dependencies as described in [Urho.Net](https://github.com/Urho-Net/Urho.Net)\
 Only one Android device should be connected to your desktop/laptop.\
 Support of multiple connected devices will be added in the future.
 * From VS Code , Ctrl+Shift+P
@@ -25,7 +25,7 @@ Support of multiple connected devices will be added in the future.
 * The sample will compile , will be installed and run on the Android device.
 
 # Running the samples on a real iOS device 
-Make sure that you followed the instructions and installed all the rquired dependencies as described in [Urho.Net](https://github.com/Urho-Net/Urho.Net)
+Make sure that you followed the instructions and installed all the required dependencies as described in [Urho.Net](https://github.com/Urho-Net/Urho.Net)
 * From VS Code , Ctrl+Shift+P
 * Tasks:Run Task , pick ios-deploy
 * Enter your developer ID
