@@ -48,7 +48,15 @@ namespace Decals
         protected override void Stop()
         {
 			UnSubscribeFromEvents();
+            UI.Cursor.Visible = false;
             base.Stop();
+        }
+
+        // Resize cursor based on Screen size
+        private void ResizeCursor(Cursor cursor)
+        {
+            int size = Graphics.Width / 60;
+            cursor.Size = new IntVector2(size,size);
         }
 
         void CreateUI()
@@ -60,14 +68,15 @@ namespace Decals
             var style = cache.GetXmlFile("UI/DefaultStyle.xml");
             var cursor = new Cursor();
             cursor.SetStyleAuto(style);
+            ResizeCursor(cursor);
             ui.Cursor = cursor;
             cursor.SetPosition(graphics.Width / 2, graphics.Height / 2);
 
 			if(isMobile)
 			{
 				SimpleCreateInstructionsWithWasd(
-					"Button to paint decals\nTouch screen to rotate view\n" +
-					"Button to toggle debug geometry");
+					"Touch screen to move cursor\nPaint to paint decals at cursor position\n" +
+					"Debug to toggle debug geometry\nTouch screen to rotate view");
 			}
 			else
 			{

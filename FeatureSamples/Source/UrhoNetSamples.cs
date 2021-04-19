@@ -166,6 +166,7 @@ namespace UrhoNetSamples
                 UI.Root.RemoveChild(listView);
                 listView = null;
                 UI.Root.Resized -= OnUIResized;
+                Input.SetMouseVisible(false);
                 currentSample.Run();
                 currentSample.backButton.Released += OnBackButtonReleased;
                 currentSample.infoButton.Released += OnInfoButttonReleased;
@@ -198,6 +199,7 @@ namespace UrhoNetSamples
                 CreateUI();
                 PopulateSamplesList();
                 Graphics.WindowTitle = "Urho.Net Samples";
+                Input.SetMouseVisible(true);
             }
         }
         void HandleKeyDown(KeyDownEventArgs e)

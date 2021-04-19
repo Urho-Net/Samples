@@ -49,9 +49,16 @@ namespace CrowdNavigation
         protected override void Stop()
         {
             UnSubscribeFromEvents();
+            UI.Cursor.Visible = false;
             base.Stop();
         }
 
+        // Resize cursor based on Screen size
+        private void ResizeCursor(Cursor cursor)
+        {
+            int size = Graphics.Width / 60;
+            cursor.Size = new IntVector2(size,size);
+        }
         void CreateUI()
         {
             var cache = ResourceCache;
@@ -61,6 +68,7 @@ namespace CrowdNavigation
             XmlFile style = cache.GetXmlFile("UI/DefaultStyle.xml");
             Cursor cursor = new Cursor();
             cursor.SetStyleAuto(style);
+            ResizeCursor(cursor);
             UI.Cursor = cursor;
             // Set starting position of the cursor at the rendering window center
             var graphics = Graphics;
@@ -70,9 +78,9 @@ namespace CrowdNavigation
 
             if (isMobile)
             {
-                SimpleCreateInstructionsWithWasd("Button to set destination\nButton to spawn a Jack\n" +
-                "Button to add obstacles or remove obstacles/agents\n" +
-                "Space to toggle debug geometry");
+                SimpleCreateInstructionsWithWasd("Touch screen to move cursor\nSet to move Jack to cursor position\nSpawn to spawn a Jack at cursor position\n" +
+                "Obstacles to add obstacles or remove obstacles/agents at cursor position\n" +
+                "Debug to toggle debug geometry");
             }
             else
             {
