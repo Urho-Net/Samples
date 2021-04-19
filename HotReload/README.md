@@ -1,5 +1,5 @@
 Make sure you are using the latest Urho.Net framework package , otherwise it won't work.\
-https://github.com/elix22/Urho.Net
+https://github.com/Urho-Net/Urho.Net
 
 - This Sample demonstrates the ability to hot-reload modified components , while the application is running.
 - There are 2 components in this demo  "Oscillator.cs" and "Rotator.cs" that are modifiable and hot-reloaded during the runtime of the app.
