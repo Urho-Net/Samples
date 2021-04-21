@@ -46,7 +46,7 @@ namespace UrhoNetSamples
         Text infoText;
 
         protected int screenJoystickIndex = -1;
-        protected bool isMobile;
+        public static bool isMobile;
 
         protected Renderer Renderer;
         protected ResourceCache ResourceCache;

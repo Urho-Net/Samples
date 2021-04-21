@@ -7846,6 +7846,366 @@
              
              </summary>
             </member>
+        <member name="T:Urho.Urho2D.PhysicsWorld2D">
+             <summary>
+             2D physics simulation world component. Should be added only to the root scene node.
+             </summary>
+             <summary>
+             2D physics simulation world component. Should be added only to the root scene node.
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.RegisterObject(Urho.Context)">
+             <summary>
+             Register object factory.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.DrawDebugGeometry(Urho.DebugRenderer,System.Boolean)">
+             <summary>
+             Visualize the component as debug geometry.
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.Update(System.Single)">
+             <summary>
+             Step the simulation forward.
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.DrawDebugGeometry">
+             <summary>
+             Add debug geometry to the debug renderer.
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetUpdateEnabled(System.Boolean)">
+             <summary>
+             Enable or disable automatic physics simulation during scene update. Enabled by default.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetDrawShape(System.Boolean)">
+             <summary>
+             Set draw shape.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetDrawJoint(System.Boolean)">
+             <summary>
+             Set draw joint.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetDrawAabb(System.Boolean)">
+             <summary>
+             Set draw aabb.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetDrawPair(System.Boolean)">
+             <summary>
+             Set draw pair.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetDrawCenterOfMass(System.Boolean)">
+             <summary>
+             Set draw center of mass.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetAllowSleeping(System.Boolean)">
+             <summary>
+             Set allow sleeping.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetWarmStarting(System.Boolean)">
+             <summary>
+             Set warm starting.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetContinuousPhysics(System.Boolean)">
+             <summary>
+             Set continuous physics.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetSubStepping(System.Boolean)">
+             <summary>
+             Set sub stepping.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetGravity(Urho.Vector2)">
+             <summary>
+             Set gravity.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetAutoClearForces(System.Boolean)">
+             <summary>
+             Set auto clear forces.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetVelocityIterations(System.Int32)">
+             <summary>
+             Set velocity iterations.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetPositionIterations(System.Int32)">
+             <summary>
+             Set position iterations.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.AddRigidBody(Urho.Urho2D.RigidBody2D)">
+             <summary>
+             Add rigid body.
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.RemoveRigidBody(Urho.Urho2D.RigidBody2D)">
+             <summary>
+             Remove rigid body.
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetRigidBody(Urho.Vector2,System.UInt32)">
+             <summary>
+             Return rigid body at point.
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetRigidBody(System.Int32,System.Int32,System.UInt32)">
+             <summary>
+             Return rigid body at screen point.
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.IsUpdateEnabled">
+             <summary>
+             Return whether physics world will automatically simulate during scene update.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetDrawShape">
+             <summary>
+             Return draw shape.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetDrawJoint">
+             <summary>
+             Return draw joint.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetDrawAabb">
+             <summary>
+             Return draw aabb.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetDrawPair">
+             <summary>
+             Return draw pair.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetDrawCenterOfMass">
+             <summary>
+             Return draw center of mass.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetAllowSleeping">
+             <summary>
+             Return allow sleeping.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetWarmStarting">
+             <summary>
+             Return warm starting.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetContinuousPhysics">
+             <summary>
+             Return continuous physics.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetSubStepping">
+             <summary>
+             Return sub stepping.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetAutoClearForces">
+             <summary>
+             Return auto clear forces.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetGravity">
+             <summary>
+             Return gravity.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetVelocityIterations">
+             <summary>
+             Return velocity iterations.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetPositionIterations">
+             <summary>
+             Return position iterations.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetApplyingTransforms(System.Boolean)">
+             <summary>
+             Set node dirtying to be disregarded.
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.IsApplyingTransforms">
+             <summary>
+             Return whether node dirtying should be disregarded.
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.UpdateEnabled">
+             <summary>
+             Return whether physics world will automatically simulate during scene update.
+             
+             Or
+             Enable or disable automatic physics simulation during scene update. Enabled by default.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.DrawShape">
+             <summary>
+             Return draw shape.
+             
+             Or
+             Set draw shape.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.DrawJoint">
+             <summary>
+             Return draw joint.
+             
+             Or
+             Set draw joint.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.DrawAabb">
+             <summary>
+             Return draw aabb.
+             
+             Or
+             Set draw aabb.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.DrawPair">
+             <summary>
+             Return draw pair.
+             
+             Or
+             Set draw pair.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.DrawCenterOfMass">
+             <summary>
+             Return draw center of mass.
+             
+             Or
+             Set draw center of mass.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.AllowSleeping">
+             <summary>
+             Return allow sleeping.
+             
+             Or
+             Set allow sleeping.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.WarmStarting">
+             <summary>
+             Return warm starting.
+             
+             Or
+             Set warm starting.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.ContinuousPhysics">
+             <summary>
+             Return continuous physics.
+             
+             Or
+             Set continuous physics.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.SubStepping">
+             <summary>
+             Return sub stepping.
+             
+             Or
+             Set sub stepping.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.Gravity">
+             <summary>
+             Return gravity.
+             
+             Or
+             Set gravity.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.AutoClearForces">
+             <summary>
+             Return auto clear forces.
+             
+             Or
+             Set auto clear forces.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.VelocityIterations">
+             <summary>
+             Return velocity iterations.
+             
+             Or
+             Set velocity iterations.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.PositionIterations">
+             <summary>
+             Return position iterations.
+             
+             Or
+             Set position iterations.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.ApplyingTransforms">
+             <summary>
+             Return whether node dirtying should be disregarded.
+             Or
+             Set node dirtying to be disregarded.
+             </summary>
+            </member>
         <member name="T:Urho.Polyhedron">
              <summary>
              A convex volume built from polygon faces.
@@ -30656,363 +31016,6 @@
              Or
              Set whether model window can be dismissed with the escape key. Default true.
              
-             </summary>
-            </member>
-        <member name="T:Urho.Urho2D.PhysicsWorld2D">
-             <summary>
-             2D physics simulation world component. Should be added only to the root scene node.
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.RegisterObject(Urho.Context)">
-             <summary>
-             Register object factory.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.DrawDebugGeometry(Urho.DebugRenderer,System.Boolean)">
-             <summary>
-             Visualize the component as debug geometry.
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.Update(System.Single)">
-             <summary>
-             Step the simulation forward.
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.DrawDebugGeometry">
-             <summary>
-             Add debug geometry to the debug renderer.
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetUpdateEnabled(System.Boolean)">
-             <summary>
-             Enable or disable automatic physics simulation during scene update. Enabled by default.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetDrawShape(System.Boolean)">
-             <summary>
-             Set draw shape.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetDrawJoint(System.Boolean)">
-             <summary>
-             Set draw joint.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetDrawAabb(System.Boolean)">
-             <summary>
-             Set draw aabb.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetDrawPair(System.Boolean)">
-             <summary>
-             Set draw pair.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetDrawCenterOfMass(System.Boolean)">
-             <summary>
-             Set draw center of mass.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetAllowSleeping(System.Boolean)">
-             <summary>
-             Set allow sleeping.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetWarmStarting(System.Boolean)">
-             <summary>
-             Set warm starting.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetContinuousPhysics(System.Boolean)">
-             <summary>
-             Set continuous physics.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetSubStepping(System.Boolean)">
-             <summary>
-             Set sub stepping.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetGravity(Urho.Vector2)">
-             <summary>
-             Set gravity.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetAutoClearForces(System.Boolean)">
-             <summary>
-             Set auto clear forces.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetVelocityIterations(System.Int32)">
-             <summary>
-             Set velocity iterations.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetPositionIterations(System.Int32)">
-             <summary>
-             Set position iterations.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.AddRigidBody(Urho.Urho2D.RigidBody2D)">
-             <summary>
-             Add rigid body.
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.RemoveRigidBody(Urho.Urho2D.RigidBody2D)">
-             <summary>
-             Remove rigid body.
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetRigidBody(Urho.Vector2,System.UInt32)">
-             <summary>
-             Return rigid body at point.
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetRigidBody(System.Int32,System.Int32,System.UInt32)">
-             <summary>
-             Return rigid body at screen point.
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.IsUpdateEnabled">
-             <summary>
-             Return whether physics world will automatically simulate during scene update.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetDrawShape">
-             <summary>
-             Return draw shape.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetDrawJoint">
-             <summary>
-             Return draw joint.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetDrawAabb">
-             <summary>
-             Return draw aabb.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetDrawPair">
-             <summary>
-             Return draw pair.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetDrawCenterOfMass">
-             <summary>
-             Return draw center of mass.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetAllowSleeping">
-             <summary>
-             Return allow sleeping.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetWarmStarting">
-             <summary>
-             Return warm starting.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetContinuousPhysics">
-             <summary>
-             Return continuous physics.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetSubStepping">
-             <summary>
-             Return sub stepping.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetAutoClearForces">
-             <summary>
-             Return auto clear forces.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetGravity">
-             <summary>
-             Return gravity.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetVelocityIterations">
-             <summary>
-             Return velocity iterations.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetPositionIterations">
-             <summary>
-             Return position iterations.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetApplyingTransforms(System.Boolean)">
-             <summary>
-             Set node dirtying to be disregarded.
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.IsApplyingTransforms">
-             <summary>
-             Return whether node dirtying should be disregarded.
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.UpdateEnabled">
-             <summary>
-             Return whether physics world will automatically simulate during scene update.
-             
-             Or
-             Enable or disable automatic physics simulation during scene update. Enabled by default.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.DrawShape">
-             <summary>
-             Return draw shape.
-             
-             Or
-             Set draw shape.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.DrawJoint">
-             <summary>
-             Return draw joint.
-             
-             Or
-             Set draw joint.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.DrawAabb">
-             <summary>
-             Return draw aabb.
-             
-             Or
-             Set draw aabb.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.DrawPair">
-             <summary>
-             Return draw pair.
-             
-             Or
-             Set draw pair.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.DrawCenterOfMass">
-             <summary>
-             Return draw center of mass.
-             
-             Or
-             Set draw center of mass.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.AllowSleeping">
-             <summary>
-             Return allow sleeping.
-             
-             Or
-             Set allow sleeping.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.WarmStarting">
-             <summary>
-             Return warm starting.
-             
-             Or
-             Set warm starting.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.ContinuousPhysics">
-             <summary>
-             Return continuous physics.
-             
-             Or
-             Set continuous physics.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.SubStepping">
-             <summary>
-             Return sub stepping.
-             
-             Or
-             Set sub stepping.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.Gravity">
-             <summary>
-             Return gravity.
-             
-             Or
-             Set gravity.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.AutoClearForces">
-             <summary>
-             Return auto clear forces.
-             
-             Or
-             Set auto clear forces.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.VelocityIterations">
-             <summary>
-             Return velocity iterations.
-             
-             Or
-             Set velocity iterations.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.PositionIterations">
-             <summary>
-             Return position iterations.
-             
-             Or
-             Set position iterations.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.ApplyingTransforms">
-             <summary>
-             Return whether node dirtying should be disregarded.
-             Or
-             Set node dirtying to be disregarded.
              </summary>
             </member>
         <member name="T:Urho.ObjectFactory">
