@@ -18,9 +18,11 @@ namespace Urho2DIsometricDemo
 
         public Scene scene_;
 
-        public Sample2D()
-        {
+        public Sample sample_ = null;
 
+        public Sample2D(Sample sample)
+        {
+            sample_ = sample;
         }
         public Sample2D(IntPtr handle) : base(handle)
         {
@@ -454,7 +456,7 @@ namespace Urho2DIsometricDemo
 
         private void HandleExitButton(ReleasedEventArgs obj)
         {
-            // TBD ELI
+            sample_?.ExitSample();
         }
 
         public void SaveScene(bool initial)

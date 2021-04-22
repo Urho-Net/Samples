@@ -38,7 +38,7 @@ namespace Urho2DIsometricDemo
             ToggleInfo();
             infoButton.Visible = false;
 
-            sample2D_ = new Sample2D();
+            sample2D_ = new Sample2D(this);
             sample2D_.demoFilename_ = "Isometric2D";
 
             // Create the scene content
@@ -250,7 +250,7 @@ namespace Urho2DIsometricDemo
             {
                 UnSubscribeFromEvents();
 
-                sample2D_ = new Sample2D();
+                sample2D_ = new Sample2D(this);
                 sample2D_.demoFilename_ = "Platformer2D";
 
                 // TBD ELI , IS IT NEEDED ? , HAVE TO CHECK

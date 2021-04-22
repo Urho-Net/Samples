@@ -48,7 +48,7 @@ namespace Urho2DPlatformer
             }
 
             var input = Application.Input;
-            
+
             var body = GetComponent<RigidBody2D>();
             var animatedSprite = GetComponent<AnimatedSprite2D>();
             bool onGround = false;
@@ -72,7 +72,7 @@ namespace Urho2DPlatformer
                 animatedSprite.FlipX = false; // Flip sprite (reset to default play on the X axis)
             }
 
-            if (input.GetKeyDown(Key.D) || input.GetKeyDown(Key.Right))
+            if (input.GetKeyDown(Key.D) || input.GetKeyDown(Key.Right) )
             {
                 moveDir = moveDir + Vector2.Right;
                 animatedSprite.FlipX = true; // Flip sprite (flip animation on the X axis)
@@ -123,8 +123,12 @@ namespace Urho2DPlatformer
             }
 
 
+
+
+
             base.OnUpdate(timeStep);
         }
+
 
         void HandleWoundedState(float timeStep)
         {
@@ -227,6 +231,9 @@ namespace Urho2DPlatformer
         public bool aboveClimbable_ = false;
         /// Indicate when the player is climbing a slope, so we can apply force to its body.
         public bool onSlope_ = false;
+
+    
+
 
     }
 

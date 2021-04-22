@@ -61,7 +61,7 @@ namespace Urho2DPlatformer
             ToggleInfo();
             infoButton.Visible = false;
 
-            sample2D_ = new Sample2D();
+            sample2D_ = new Sample2D(this);
             sample2D_.demoFilename_ = "Platformer2D";
 
             // Create the scene content
@@ -167,7 +167,6 @@ namespace Urho2DPlatformer
             sample2D_.CreateBackgroundSprite(info, 3.5f, "Textures/HeightMap.png", true);
 
         }
-
 
         private void HandleCollisionBegin(PhysicsBeginContact2DEventArgs obj)
         {
@@ -322,7 +321,6 @@ namespace Urho2DPlatformer
         {
             base.OnUpdate(timeStep);
 
-
             // Zoom in/out
             if (cameraNode_ != null)
                 sample2D_.Zoom(cameraNode_.GetComponent<Camera>());
@@ -330,7 +328,6 @@ namespace Urho2DPlatformer
             // Toggle debug geometry with 'Z' key
             if (Input.GetKeyPress(Key.Z))
                 drawDebug_ = !drawDebug_;
-
 
         }
 
@@ -380,12 +377,12 @@ namespace Urho2DPlatformer
             {
                 UnSubscribeFromEvents();
 
-                sample2D_ = new Sample2D();
+                sample2D_ = new Sample2D(this);
                 sample2D_.demoFilename_ = "Platformer2D";
 
                 // TBD ELI , IS IT NEEDED ? , HAVE TO CHECK
                 scene.Dispose();
-        
+
                 CreateScene();
                 sample2D_.scene_ = scene;
 

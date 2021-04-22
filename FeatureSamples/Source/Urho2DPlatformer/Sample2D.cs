@@ -17,10 +17,11 @@ namespace Urho2DPlatformer
         public string demoFilename_ = "Platformer2D";
 
         public Scene scene_;
+        Sample sample_= null;
 
-        public Sample2D()
+        public Sample2D(Sample sample)
         {
-
+            sample_ = sample;
         }
         public Sample2D(IntPtr handle) : base(handle)
         {
@@ -454,7 +455,7 @@ namespace Urho2DPlatformer
 
         private void HandleExitButton(ReleasedEventArgs obj)
         {
-            // TBD ELI
+            sample_?.ExitSample();
         }
 
         public void SaveScene(bool initial)
