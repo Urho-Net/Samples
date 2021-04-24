@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<material>
+	<technique name="Techniques/DiffUnlitAlphaMaskUVFrames.xml" quality="0" loddistance="0" />
+	<texture unit="diffuse" name="MaterialEffects/Textures/bgfire/bgfireSEQres2.jpg" />
+	<texture unit="specular" name="MaterialEffects/Textures/bgfire/bgfireEdgeMask.png" />
+	<parameter name="UOffset" value="1 0 0 0" />
+	<parameter name="VOffset" value="0 1 0 0" />
+	<parameter name="MatDiffColor" value="1 1 1 1" />
+	<parameter name="MatEmissiveColor" value="0 0 0" />
+	<parameter name="MatEnvMapColor" value="1 1 1" />
+	<parameter name="MatSpecColor" value="0 0 0 1" />
+	<parameter name="Roughness" value="0.5" />
+	<parameter name="Metallic" value="0" />
+	<parameter name="MinSumColor" value="0.6" />
+	<parameter name="MaxAlpha" value="0.8" />
+	<parameter name="MultAddEmission" value="0.5" />
+	<parameter name="MaskEdges" value="1" />
+	<parameter name="CurRowCol" value="0 0" />
+	<parameter name="MaxRowCol" value="5 25" />
+	<cull value="none" />
+	<shadowcull value="ccw" />
+	<fill value="solid" />
+	<depthbias constant="0" slopescaled="0" />
+	<alphatocoverage enable="false" />
+	<lineantialias enable="false" />
+	<renderorder value="128" />
+	<occlusion enable="true" />
+</material>

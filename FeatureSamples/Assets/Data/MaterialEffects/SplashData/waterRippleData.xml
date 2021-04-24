@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<node id="1">
+    <attribute name="matFile" value="MaterialEffects/Materials/waterrippleMat.xml" />
+    <attribute name="splashType" value="2" />
+    <attribute name="maxImages" value="1" />
+    <attribute name="duration" value="5000" />
+    <attribute name="timePerFrame" value="0" />
+    <attribute name="uInc" value="0.0" />
+    <attribute name="vInc" value="0.0" />
+    <attribute name="uOffset" value="0.0" />
+    <attribute name="vOffset" value="0.0" />
+    <attribute name="scaleRate" value="1.008 1.008 1.008" />
+    <attribute name="transparencyRate" value="0.982" />
+    <attribute name="scale" value="0.25 0.25 0.25" />
+    <attribute name="faceCamMode" value="0" />
+</node>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<material>
+	<technique name="Techniques/DiffEmissiveAlpha.xml" quality="0" loddistance="0" />
+	<texture unit="diffuse" name="MaterialEffects/Textures/ProtoBlue256.jpg" />
+	<texture unit="emissive" name="MaterialEffects/Textures/matrixImg_spec.png" />
+	<parameter name="UOffset" value="1 0 0 0" />
+	<parameter name="VOffset" value="0 1 0 0" />
+	<parameter name="MatDiffColor" value="0.1 0.1 0.1 0.6" />
+	<parameter name="MatEmissiveColor" value="0 1 0 1" />
+</material>

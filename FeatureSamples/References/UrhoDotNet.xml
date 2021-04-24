@@ -9456,6 +9456,358 @@
              Return node user variable reverse mappings.
              </summary>
             </member>
+        <member name="T:Urho.Serializable">
+             <summary>
+             Base class for objects with automatic serialization through attributes.
+             </summary>
+             <summary>
+             Base class for objects with automatic serialization through attributes.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.Load(Urho.IO.File)">
+             <summary>
+             Load from binary data. Return true if successful.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.Load(Urho.MemoryBuffer)">
+             <summary>
+             Load from binary data. Return true if successful.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.Save(Urho.IO.File)">
+             <summary>
+             Save as binary data. Return true if successful.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.Save(Urho.MemoryBuffer)">
+             <summary>
+             Save as binary data. Return true if successful.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.LoadXml(Urho.Resources.XmlElement)">
+             <summary>
+             Load from XML data. Return true if successful.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SaveXml(Urho.Resources.XmlElement)">
+             <summary>
+             Save as XML data. Return true if successful.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.ApplyAttributes">
+             <summary>
+             Apply attribute changes that can not be applied immediately. Called after scene load or a network update.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SaveDefaultAttributes">
+             <summary>
+             Return whether should save default-valued attributes into XML. Default false.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.MarkNetworkUpdate">
+             <summary>
+             Mark for attribute check on the next network update.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Vector3)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.IntRect)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Color)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Vector2)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Vector4)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.IntVector2)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Quaternion)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Matrix4)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Matrix3)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Matrix3x4)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,System.Int32)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,System.Single)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,System.String)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,System.Boolean)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Vector3)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.IntRect)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Color)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Vector2)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Vector4)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.IntVector2)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Quaternion)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Matrix4)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Matrix3)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Matrix3x4)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,System.Int32)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,System.Single)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,System.String)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,System.Boolean)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetInstanceDefault(System.Boolean)">
+             <summary>
+             Set instance-level default flag.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.ResetToDefault">
+             <summary>
+             Reset all editable attributes to their default values.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.RemoveInstanceDefault">
+             <summary>
+             Remove instance's default values if they are set previously.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetTemporary(System.Boolean)">
+             <summary>
+             Set temporary flag. Temporary objects will not be saved.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetInterceptNetworkUpdate(System.String,System.Boolean)">
+             <summary>
+             Enable interception of an attribute from network updates. Intercepted attributes are sent as events instead of applying directly. This can be used to implement client side prediction.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.AllocateNetworkState">
+             <summary>
+             Allocate network attribute state.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.WriteInitialDeltaUpdate(Urho.IO.File,System.Byte)">
+             <summary>
+             Write initial delta network update.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.WriteInitialDeltaUpdate(Urho.MemoryBuffer,System.Byte)">
+             <summary>
+             Write initial delta network update.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.WriteLatestDataUpdate(Urho.IO.File,System.Byte)">
+             <summary>
+             Write a latest data network update.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.WriteLatestDataUpdate(Urho.MemoryBuffer,System.Byte)">
+             <summary>
+             Write a latest data network update.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.ReadDeltaUpdate(Urho.IO.File)">
+             <summary>
+             Read and apply a network delta update. Return true if attributes were changed.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.ReadDeltaUpdate(Urho.MemoryBuffer)">
+             <summary>
+             Read and apply a network delta update. Return true if attributes were changed.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.ReadLatestDataUpdate(Urho.IO.File)">
+             <summary>
+             Read and apply a network latest data update. Return true if attributes were changed.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.ReadLatestDataUpdate(Urho.MemoryBuffer)">
+             <summary>
+             Read and apply a network latest data update. Return true if attributes were changed.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.GetAttribute(System.UInt32)">
+             <summary>
+             Return attribute value by index. Return empty if illegal index.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.GetAttribute(System.String)">
+             <summary>
+             Return attribute value by name. Return empty if not found.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.GetAttributeDefault(System.UInt32)">
+             <summary>
+             Return attribute default value by index. Return empty if illegal index.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.GetAttributeDefault(System.String)">
+             <summary>
+             Return attribute default value by name. Return empty if not found.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.GetNumAttributes">
+             <summary>
+             Return number of attributes.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.GetNumNetworkAttributes">
+             <summary>
+             Return number of network replication attributes.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.IsTemporary">
+             <summary>
+             Return whether is temporary.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.GetInterceptNetworkUpdate(System.String)">
+             <summary>
+             Return whether an attribute's network updates are being intercepted.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.GetNetworkState">
+             <summary>
+             Return the network attribute state, if allocated.
+             </summary>
+            </member>
+        <member name="P:Urho.Serializable.Temporary">
+             <summary>
+             Return whether is temporary.
+             
+             Or
+             Set temporary flag. Temporary objects will not be saved.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Serializable.NumAttributes">
+             <summary>
+             Return number of attributes.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Serializable.NumNetworkAttributes">
+             <summary>
+             Return number of network replication attributes.
+             </summary>
+            </member>
+        <member name="P:Urho.Serializable.NetworkState">
+             <summary>
+             Return the network attribute state, if allocated.
+             </summary>
+            </member>
         <member name="T:Urho.Skeleton">
              <summary>
              Hierarchical collection of bones.
@@ -9907,6 +10259,12 @@
              Return render surface.
              
              </summary>
+            </member>
+        <member name="M:Urho.Timer.Reset">
+             Reset the timer.
+            </member>
+        <member name="F:Urho.Timer.startTime_">
+             Starting clock value in milliseconds.
             </member>
         <member name="T:Urho.Gui.UI">
              <summary>
@@ -16244,6 +16602,14 @@
              </summary>
              <param name="scale">Left operand.</param>
              <param name="vec">Right operand.</param>
+             <returns>Result of multiplication.</returns>
+            </member>
+        <member name="M:Urho.Vector2.op_Multiply(Urho.Vector2,Urho.Vector2)">
+             <summary>
+             Multiplies the specified instance by a Vector2.
+             </summary>
+             <param name="vec_left">Left operand.</param>
+             <param name="vec_right">Right operand.</param>
              <returns>Result of multiplication.</returns>
             </member>
         <member name="M:Urho.Vector2.op_Division(Urho.Vector2,System.Single)">
@@ -29837,355 +30203,6 @@
         <member name="M:Urho.ObjectAnimation.GetAttributeAnimationInfo(System.String)">
              <summary>
              Return attribute animation info by name.
-             </summary>
-            </member>
-        <member name="T:Urho.Serializable">
-             <summary>
-             Base class for objects with automatic serialization through attributes.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.Load(Urho.IO.File)">
-             <summary>
-             Load from binary data. Return true if successful.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.Load(Urho.MemoryBuffer)">
-             <summary>
-             Load from binary data. Return true if successful.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.Save(Urho.IO.File)">
-             <summary>
-             Save as binary data. Return true if successful.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.Save(Urho.MemoryBuffer)">
-             <summary>
-             Save as binary data. Return true if successful.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.LoadXml(Urho.Resources.XmlElement)">
-             <summary>
-             Load from XML data. Return true if successful.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SaveXml(Urho.Resources.XmlElement)">
-             <summary>
-             Save as XML data. Return true if successful.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.ApplyAttributes">
-             <summary>
-             Apply attribute changes that can not be applied immediately. Called after scene load or a network update.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SaveDefaultAttributes">
-             <summary>
-             Return whether should save default-valued attributes into XML. Default false.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.MarkNetworkUpdate">
-             <summary>
-             Mark for attribute check on the next network update.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Vector3)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.IntRect)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Color)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Vector2)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Vector4)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.IntVector2)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Quaternion)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Matrix4)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Matrix3)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Matrix3x4)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,System.Int32)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,System.Single)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,System.String)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,System.Boolean)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Vector3)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.IntRect)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Color)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Vector2)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Vector4)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.IntVector2)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Quaternion)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Matrix4)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Matrix3)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Matrix3x4)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,System.Int32)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,System.Single)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,System.String)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,System.Boolean)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetInstanceDefault(System.Boolean)">
-             <summary>
-             Set instance-level default flag.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.ResetToDefault">
-             <summary>
-             Reset all editable attributes to their default values.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.RemoveInstanceDefault">
-             <summary>
-             Remove instance's default values if they are set previously.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetTemporary(System.Boolean)">
-             <summary>
-             Set temporary flag. Temporary objects will not be saved.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetInterceptNetworkUpdate(System.String,System.Boolean)">
-             <summary>
-             Enable interception of an attribute from network updates. Intercepted attributes are sent as events instead of applying directly. This can be used to implement client side prediction.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.AllocateNetworkState">
-             <summary>
-             Allocate network attribute state.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.WriteInitialDeltaUpdate(Urho.IO.File,System.Byte)">
-             <summary>
-             Write initial delta network update.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.WriteInitialDeltaUpdate(Urho.MemoryBuffer,System.Byte)">
-             <summary>
-             Write initial delta network update.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.WriteLatestDataUpdate(Urho.IO.File,System.Byte)">
-             <summary>
-             Write a latest data network update.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.WriteLatestDataUpdate(Urho.MemoryBuffer,System.Byte)">
-             <summary>
-             Write a latest data network update.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.ReadDeltaUpdate(Urho.IO.File)">
-             <summary>
-             Read and apply a network delta update. Return true if attributes were changed.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.ReadDeltaUpdate(Urho.MemoryBuffer)">
-             <summary>
-             Read and apply a network delta update. Return true if attributes were changed.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.ReadLatestDataUpdate(Urho.IO.File)">
-             <summary>
-             Read and apply a network latest data update. Return true if attributes were changed.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.ReadLatestDataUpdate(Urho.MemoryBuffer)">
-             <summary>
-             Read and apply a network latest data update. Return true if attributes were changed.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.GetAttribute(System.UInt32)">
-             <summary>
-             Return attribute value by index. Return empty if illegal index.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.GetAttribute(System.String)">
-             <summary>
-             Return attribute value by name. Return empty if not found.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.GetAttributeDefault(System.UInt32)">
-             <summary>
-             Return attribute default value by index. Return empty if illegal index.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.GetAttributeDefault(System.String)">
-             <summary>
-             Return attribute default value by name. Return empty if not found.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.GetNumAttributes">
-             <summary>
-             Return number of attributes.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.GetNumNetworkAttributes">
-             <summary>
-             Return number of network replication attributes.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.IsTemporary">
-             <summary>
-             Return whether is temporary.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.GetInterceptNetworkUpdate(System.String)">
-             <summary>
-             Return whether an attribute's network updates are being intercepted.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.GetNetworkState">
-             <summary>
-             Return the network attribute state, if allocated.
-             </summary>
-            </member>
-        <member name="P:Urho.Serializable.Temporary">
-             <summary>
-             Return whether is temporary.
-             
-             Or
-             Set temporary flag. Temporary objects will not be saved.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Serializable.NumAttributes">
-             <summary>
-             Return number of attributes.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Serializable.NumNetworkAttributes">
-             <summary>
-             Return number of network replication attributes.
-             </summary>
-            </member>
-        <member name="P:Urho.Serializable.NetworkState">
-             <summary>
-             Return the network attribute state, if allocated.
              </summary>
             </member>
         <member name="T:Urho.Gui.Slider">

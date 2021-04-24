@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<material>
+	<technique name="Techniques/DiffEmissiveGlow.xml" />
+	<texture unit="diffuse" name="MaterialEffects/Textures/circWall/glowWalldiff.jpg" />
+	<texture unit="emissive" name="MaterialEffects/Textures/circWall/glowWallspec.jpg" />
+	<parameter name="MatDiffColor" value="1 1 1 1" />
+	<parameter name="MatSpecColor" value="0 0 0 1" />
+	<parameter name="MatEmissiveColor" value="0 1 1 1" />
+</material>

@@ -250,7 +250,8 @@ namespace MaterialEffects
 
         private void SendSplashEvent(Vector3 pos, Vector3 dir)
         {
-
+            var handler = Scene.GetComponent<SplashHandler>();
+            handler?.OnSplashEvent(pos, dir, SplashTypes.Splash_Ripple);
         }
     }
 }

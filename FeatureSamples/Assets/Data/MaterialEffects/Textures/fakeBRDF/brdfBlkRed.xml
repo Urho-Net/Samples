@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<texture>
+    <address coord="u" mode="clamp" />
+    <address coord="v" mode="clamp" />
+ </texture> 

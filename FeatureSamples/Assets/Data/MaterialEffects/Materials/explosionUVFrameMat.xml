@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<material>
+	<technique name="Techniques/DiffUnlitAlphaMaskUVFrames.xml" quality="0" loddistance="0" />
+	<texture unit="diffuse" name="MaterialEffects/Textures/explosion2/explosionSEQres2.jpg" />
+	<texture unit="specular" name="MaterialEffects/Textures/explosion2/expSEQEdgeMask.png" />
+	<parameter name="MatDiffColor" value="1 1 1 1" />
+	<parameter name="MinSumColor" value="0.6" />
+	<parameter name="MaxAlpha" value="0.8" />
+	<parameter name="MultAddEmission" value="0.3" />
+	<parameter name="MaskEdges" value="1" />
+
+	<parameter name="CurRowCol" value="0 0" />
+	<parameter name="MaxRowCol" value="10 10" />
+</material>

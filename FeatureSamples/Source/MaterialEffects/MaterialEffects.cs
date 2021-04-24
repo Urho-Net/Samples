@@ -102,6 +102,8 @@ namespace MaterialEffects
 
             CreateScene();
 
+            InitSplashHandler();
+
             CreateSequencers();
 
             CreateWaterRefection();
@@ -125,6 +127,11 @@ namespace MaterialEffects
 
         }
 
+        private void InitSplashHandler()
+        {
+            SplashHandler splashHandler = scene.CreateComponent<SplashHandler>();
+            splashHandler.LoadSplashList("MaterialEffects/SplashData/splashDataList.xml");
+        }
 
         protected override void Stop()
         {
@@ -353,7 +360,7 @@ namespace MaterialEffects
 
                     if (vertexData != IntPtr.Zero)
                     {
-                        IntPtr dataAlign = IntPtr.Add(vertexData, (int)(vertIdx_ * vertexSize)); 
+                        IntPtr dataAlign = IntPtr.Add(vertexData, (int)(vertIdx_ * vertexSize));
 
                         int Vector3_Size = Marshal.SizeOf(typeof(Vector3));
 
@@ -363,8 +370,8 @@ namespace MaterialEffects
                         if ((elementMask & (uint)ElementMask.Normal) != 0)
                             dataAlign = IntPtr.Add(dataAlign, Vector3_Size);
 
-                        // TBD ELI , uint marshaling is not supported by the system runtime , I have to add support for it 
-                        Marshal.WriteInt32(dataAlign, (int)uColors[vcolColorIdx_]);
+
+                        MarshalHelper.WriteUInt(dataAlign, uColors[vcolColorIdx_]);
 
                         vbuffer.Unlock();
                     }
@@ -383,7 +390,7 @@ namespace MaterialEffects
 
         private void UpdateLightmap(float timeStep)
         {
-            if (lightmapTimer_.GetMSec(false) > 1000)
+            if (lightmapTimer_.GetMSec(false) > 500)
             {
                 Node lightmapNode = scene.GetChild("lightmapSphere");
                 lightmapIdx_ = ++lightmapIdx_ % Max_Lightmaps;

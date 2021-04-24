@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<material>
+	<technique name="Techniques/DiffUnlitAlpha.xml" />
+	<texture unit="diffuse" name="MaterialEffects/Textures/watersplash/waterRipple.png" />
+	<parameter name="MatDiffColor" value="1 1 1 1" />
+</material>

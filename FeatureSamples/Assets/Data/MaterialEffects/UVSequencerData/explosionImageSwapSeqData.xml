@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<node id="1">
+    <attribute name="uvSeqType" value="3" />
+    <attribute name="enabled" value="true" />
+    <attribute name="repeat" value="true" />
+    <attribute name="swapTUEnum" value="0" />
+    <attribute name="swapBegIdx" value="1" />
+    <attribute name="swapEndIdx" value="100" />
+    <attribute name="swapPrefixName" value="Data/MaterialEffects/Textures/explosion2/explosion" />
+    <attribute name="swapFileExt" value="png" />
+    <attribute name="swapDecFormat" value="03" />
+    <attribute name="timePerFrame" value="20" />
+</node>
