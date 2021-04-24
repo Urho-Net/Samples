@@ -4865,6 +4865,31 @@
              Helper base class for user-defined game logic components that hooks up to update events and forwards them to virtual functions similar to ScriptInstance class.
              </summary>
             </member>
+        <member name="M:Urho.LogicComponent.OnUpdate(System.Single)">
+             <summary>
+             Make sure you set ReceiveSceneUpdates property to true in order to receive Update events (this porperty is true by default)
+             </summary>
+            </member>
+        <member name="M:Urho.LogicComponent.OnStart">
+             <summary>
+             Called before the first update. At this point all other components of the node should exist.
+             </summary>
+            </member>
+        <member name="M:Urho.LogicComponent.OnFixedUpdate(Urho.Physics.PhysicsPreStepEventArgs)">
+             <summary>
+             Called on physics post-update
+             </summary>
+            </member>
+        <member name="M:Urho.LogicComponent.OnFixedPostUpdate(Urho.Physics.PhysicsPostStepEventArgs)">
+             <summary>
+             Called on physics update
+             </summary>
+            </member>
+        <member name="M:Urho.LogicComponent.OnPostUpdate(Urho.ScenePostUpdateEventArgs)">
+             <summary>
+             Called on scene post-update,
+             </summary>
+            </member>
         <member name="M:Urho.LogicComponent.OnSetEnabled">
              <summary>
              Handle enabled/disabled state change. Changes update event subscription.

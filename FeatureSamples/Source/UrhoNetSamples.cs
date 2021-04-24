@@ -54,7 +54,7 @@ namespace UrhoNetSamples
 
 
 
-        public UrhoNetSamples() : base(new ApplicationOptions(assetsFolder: "Data;CoreData;Data/FlappyUrho") { ResizableWindow = true }) { }
+        public UrhoNetSamples() : base(new ApplicationOptions(assetsFolder: "Data;CoreData;Data/FlappyUrho;Data/MaterialEffects") { ResizableWindow = true }) { }
 
 
 
@@ -167,6 +167,7 @@ namespace UrhoNetSamples
                 listView = null;
                 UI.Root.Resized -= OnUIResized;
                 Input.SetMouseVisible(false);
+                Input.SetMouseMode(MouseMode.Free);
                 currentSample.RequestToExit += SampleRequetedToExit;
                 currentSample.Run();
                 currentSample.backButton.Released += OnBackButtonReleased;
