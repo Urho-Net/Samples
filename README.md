@@ -20,7 +20,7 @@ git clone https://github.com/Urho-Net/Samples.git
 * cd Samples
 * code FeatureSamples
 * Visual Studio Code will open the project.
-* Run & Debug (Ctrl+Shift+D) , press play
+* press F5 to run
 
 
 # Running the samples on a real Android device
