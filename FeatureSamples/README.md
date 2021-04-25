@@ -5,6 +5,11 @@ The features of the C# multiplatform game development framework
 Please follow the installation instructions of [Urho.Net](https://github.com/Urho-Net/Urho.Net)\
 Make sure you are always using the latest version of [Urho.Net](https://github.com/Urho-Net/Urho.Net) , otherwise some of the samples might not work.
 
+# Google Play Store  
+[FeatureSamples APK](https://play.google.com/store/apps/details?id=com.elix22.urhonetsamples)
+
+
+
 # Running the Feature Samples on Desktop.
 Make sure that you followed the instructions and installed all the rquired dependencies as described in [Urho.Net](https://github.com/Urho-Net/Urho.Net).\
 This applies to Windows,Linux and MacOS.\
@@ -23,6 +28,9 @@ Support of multiple connected devices will be added in the future.
 * From VS Code , Ctrl+Shift+P
 * Tasks:Run Task , pick android-deploy-debug
 * The sample will compile , will be installed and run on the Android device.
+
+
+
 
 # Running the samples on a real iOS device 
 Make sure that you followed the instructions and installed all the rquired dependencies as described in [Urho.Net](https://github.com/Urho-Net/Urho.Net)
