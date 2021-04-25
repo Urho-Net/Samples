@@ -47,16 +47,20 @@ namespace SceneAndUILoad
             // Setup the viewport for displaying the scene
             SetupViewport();
 
+            Input.SetMouseVisible(true);
+
         }
 
         protected override void Stop()
         {
             // UnSubscribe from button actions 
             Button button1 = UI.Root.GetChild("ToggleLight1", true) as Button;
-            Button button2 = UI.Root.GetChild("ToggleLight2", true) as Button ;
+            Button button2 = UI.Root.GetChild("ToggleLight2", true) as Button;
 
             button1.Released -= ToggleLight1;
             button2.Released -= ToggleLight2;
+
+            UI.Cursor  = null;
 
             base.Stop();
         }
