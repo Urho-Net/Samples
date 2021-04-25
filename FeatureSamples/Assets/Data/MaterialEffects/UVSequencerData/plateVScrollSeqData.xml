@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<node id="1">
+<!--
+enum UVSeqType
+{
+    UVSeq_UScroll,      // 0
+    UVSeq_VScroll,      // 1
+    UVSeq_UVOffset,     // 2
+    UVSeq_SwapImage,    // 3
+};
+-->
+    <attribute name="uvSeqType" value="1" />
+    <attribute name="enabled" value="true" />
+    <attribute name="repeat" value="true" />
+    <attribute name="vScrollSpeed" value="-0.002" />
+</node>

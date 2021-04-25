@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<material>
+	<technique name="Techniques/DiffNormalEmissive.xml" />
+	<texture unit="diffuse" name="MaterialEffects/Textures/ProtoGreen256.jpg" />
+	<texture unit="normal" name="MaterialEffects/Textures/checkers-normal.png" />
+	<texture unit="emissive" name="MaterialEffects/Textures/checkers-emissive.png" />
+	<texture unit="specular" name="MaterialEffects/Textures/checkers-emissive.png" />
+	<parameter name="MatDiffColor" value="1 1 1 1" />
+	<parameter name="MatSpecColor" value="0 0 0 1" />
+	<parameter name="MatEmissiveColor" value="0 1 0 1" />
+</material>

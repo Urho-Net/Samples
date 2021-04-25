@@ -97,7 +97,7 @@
   </ItemGroup>
 
 
-  <Target Name="CustomBeforeBuild" BeforeTargets="BeforeBuild" >
+  <Target Name="CustomBeforeBuild" BeforeTargets="BeforeBuild">
     <Error Condition="! Exists('$(UrhoNetHome)')" Text="Urho.Net is not configured , please run configure.sh (configure.bat on Windows) from the Urho.Net installation folder " /> 
     <XmlPeek XmlInputPath="$(UrhoNetHome)" Query="UrhoNetHome/add[@key='UrhoNetHome']/@value">
         <Output TaskParameter="Result" ItemName="URHONET_HOME_ROOT" />
@@ -154,7 +154,7 @@
     <Copy SourceFiles="$(OutDir)/Game.dll" DestinationFolder="@(AndroidAssetsDestinationDir)" SkipUnchangedFiles="true" />
   </Target>
 
-  <Target Name = "CustomAfterClean" AfterTargets="AfterClean">
+  <Target Name="CustomAfterClean" AfterTargets="AfterClean">
         <Message Text="Urho.Net clean all" Importance="high" />
         <RemoveDir Directories="bin" />
         <RemoveDir Directories="Android" />
@@ -162,12 +162,12 @@
         <RemoveDir Directories="libs" />
         <RemoveDir Directories="output" />
         <RemoveDir Directories="obj" />
-        <RemoveDir Directories= "Assets/Data/DotNet" />
+        <RemoveDir Directories="Assets/Data/DotNet" />
   </Target>
 
   <!-- needed for intellisense -->
   <ItemGroup>
-    <Reference Include="UrhoDotNet" >
+    <Reference Include="UrhoDotNet">
         <HintPath>References\UrhoDotNet.dll</HintPath>
     </Reference>
   </ItemGroup>

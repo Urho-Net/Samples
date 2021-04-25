@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<material>
+    <technique name="Techniques/WaterDiffAlpha.xml" />
+	<texture unit="diffuse" name="MaterialEffects/Textures/waterfall/watersurf.jpg" />
+    <texture unit="normal" name="MaterialEffects/Textures/waterfall/sanddune_normal.png" />
+
+	<parameter name="MatDiffColor" value="1 1 1 0.8" />
+    <parameter name="DiffTiling" value="1.0" />
+    <parameter name="NoiseSpeed" value="0.01 0.05 -0.017 -0.01" />
+    <parameter name="NoiseTiling" value="1.0" />
+    <parameter name="NoiseStrength" value="0.2" />
+    <parameter name="FresnelPower" value="2" />
+    <parameter name="WaterTint" value="0.6 0.6 1" />
+    <parameter name="BumpWaveOpacity" value="0.4" />
+</material>

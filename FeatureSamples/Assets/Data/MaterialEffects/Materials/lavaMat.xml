@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<material>
+	<technique name="Techniques/DiffNormalEmissive.xml" />
+	<texture unit="diffuse" name="MaterialEffects/Textures/lava/lavaLG2.jpg" />
+	<texture unit="normal" name="MaterialEffects/Textures/lava/lavaLG2_normal.jpg" />
+	<texture unit="emissive" name="MaterialEffects/Textures/lava/lavaLG2_spec.jpg" />
+	<texture unit="specular" name="MaterialEffects/Textures/lava/lavaLG2_spec.jpg" />
+	<parameter name="MatDiffColor" value="1 1 1 1" />
+	<parameter name="MatSpecColor" value="0.2 0.2 0.2 10" />
+	<parameter name="MatEmissiveColor" value="1 0.4 0.0 1" />
+</material>

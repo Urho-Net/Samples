@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<material>
+	<technique name="Techniques/DiffUnlitAlphaMaskUVFrames.xml" />
+	<texture unit="diffuse" name="MaterialEffects/Textures/torch3/torchSEQres2.jpg" />
+	<texture unit="specular" name="MaterialEffects/Textures/torch3/torchEdgeMask.png" />
+	<parameter name="MatDiffColor" value="1 1 1 1" />
+	<parameter name="MatEmissiveColor" value="1 1 1 1" />
+	<parameter name="MinSumColor" value="0.7" />
+	<parameter name="MaxAlpha" value="0.8" />
+	<parameter name="MultAddEmission" value="0.0" />
+	<parameter name="MaskEdges" value="1" />
+
+	<parameter name="CurRowCol" value="0 0" />
+	<parameter name="MaxRowCol" value="6 11" />
+</material>

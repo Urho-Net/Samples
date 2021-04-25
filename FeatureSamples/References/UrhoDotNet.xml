@@ -4865,6 +4865,31 @@
              Helper base class for user-defined game logic components that hooks up to update events and forwards them to virtual functions similar to ScriptInstance class.
              </summary>
             </member>
+        <member name="M:Urho.LogicComponent.OnUpdate(System.Single)">
+             <summary>
+             Make sure you set ReceiveSceneUpdates property to true in order to receive Update events (this porperty is true by default)
+             </summary>
+            </member>
+        <member name="M:Urho.LogicComponent.OnStart">
+             <summary>
+             Called before the first update. At this point all other components of the node should exist.
+             </summary>
+            </member>
+        <member name="M:Urho.LogicComponent.OnFixedUpdate(Urho.Physics.PhysicsPreStepEventArgs)">
+             <summary>
+             Called on physics post-update
+             </summary>
+            </member>
+        <member name="M:Urho.LogicComponent.OnFixedPostUpdate(Urho.Physics.PhysicsPostStepEventArgs)">
+             <summary>
+             Called on physics update
+             </summary>
+            </member>
+        <member name="M:Urho.LogicComponent.OnPostUpdate(Urho.ScenePostUpdateEventArgs)">
+             <summary>
+             Called on scene post-update,
+             </summary>
+            </member>
         <member name="M:Urho.LogicComponent.OnSetEnabled">
              <summary>
              Handle enabled/disabled state change. Changes update event subscription.
@@ -7846,6 +7871,366 @@
              
              </summary>
             </member>
+        <member name="T:Urho.Urho2D.PhysicsWorld2D">
+             <summary>
+             2D physics simulation world component. Should be added only to the root scene node.
+             </summary>
+             <summary>
+             2D physics simulation world component. Should be added only to the root scene node.
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.RegisterObject(Urho.Context)">
+             <summary>
+             Register object factory.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.DrawDebugGeometry(Urho.DebugRenderer,System.Boolean)">
+             <summary>
+             Visualize the component as debug geometry.
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.Update(System.Single)">
+             <summary>
+             Step the simulation forward.
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.DrawDebugGeometry">
+             <summary>
+             Add debug geometry to the debug renderer.
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetUpdateEnabled(System.Boolean)">
+             <summary>
+             Enable or disable automatic physics simulation during scene update. Enabled by default.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetDrawShape(System.Boolean)">
+             <summary>
+             Set draw shape.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetDrawJoint(System.Boolean)">
+             <summary>
+             Set draw joint.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetDrawAabb(System.Boolean)">
+             <summary>
+             Set draw aabb.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetDrawPair(System.Boolean)">
+             <summary>
+             Set draw pair.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetDrawCenterOfMass(System.Boolean)">
+             <summary>
+             Set draw center of mass.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetAllowSleeping(System.Boolean)">
+             <summary>
+             Set allow sleeping.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetWarmStarting(System.Boolean)">
+             <summary>
+             Set warm starting.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetContinuousPhysics(System.Boolean)">
+             <summary>
+             Set continuous physics.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetSubStepping(System.Boolean)">
+             <summary>
+             Set sub stepping.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetGravity(Urho.Vector2)">
+             <summary>
+             Set gravity.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetAutoClearForces(System.Boolean)">
+             <summary>
+             Set auto clear forces.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetVelocityIterations(System.Int32)">
+             <summary>
+             Set velocity iterations.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetPositionIterations(System.Int32)">
+             <summary>
+             Set position iterations.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.AddRigidBody(Urho.Urho2D.RigidBody2D)">
+             <summary>
+             Add rigid body.
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.RemoveRigidBody(Urho.Urho2D.RigidBody2D)">
+             <summary>
+             Remove rigid body.
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetRigidBody(Urho.Vector2,System.UInt32)">
+             <summary>
+             Return rigid body at point.
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetRigidBody(System.Int32,System.Int32,System.UInt32)">
+             <summary>
+             Return rigid body at screen point.
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.IsUpdateEnabled">
+             <summary>
+             Return whether physics world will automatically simulate during scene update.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetDrawShape">
+             <summary>
+             Return draw shape.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetDrawJoint">
+             <summary>
+             Return draw joint.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetDrawAabb">
+             <summary>
+             Return draw aabb.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetDrawPair">
+             <summary>
+             Return draw pair.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetDrawCenterOfMass">
+             <summary>
+             Return draw center of mass.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetAllowSleeping">
+             <summary>
+             Return allow sleeping.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetWarmStarting">
+             <summary>
+             Return warm starting.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetContinuousPhysics">
+             <summary>
+             Return continuous physics.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetSubStepping">
+             <summary>
+             Return sub stepping.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetAutoClearForces">
+             <summary>
+             Return auto clear forces.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetGravity">
+             <summary>
+             Return gravity.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetVelocityIterations">
+             <summary>
+             Return velocity iterations.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetPositionIterations">
+             <summary>
+             Return position iterations.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetApplyingTransforms(System.Boolean)">
+             <summary>
+             Set node dirtying to be disregarded.
+             </summary>
+            </member>
+        <member name="M:Urho.Urho2D.PhysicsWorld2D.IsApplyingTransforms">
+             <summary>
+             Return whether node dirtying should be disregarded.
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.UpdateEnabled">
+             <summary>
+             Return whether physics world will automatically simulate during scene update.
+             
+             Or
+             Enable or disable automatic physics simulation during scene update. Enabled by default.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.DrawShape">
+             <summary>
+             Return draw shape.
+             
+             Or
+             Set draw shape.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.DrawJoint">
+             <summary>
+             Return draw joint.
+             
+             Or
+             Set draw joint.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.DrawAabb">
+             <summary>
+             Return draw aabb.
+             
+             Or
+             Set draw aabb.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.DrawPair">
+             <summary>
+             Return draw pair.
+             
+             Or
+             Set draw pair.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.DrawCenterOfMass">
+             <summary>
+             Return draw center of mass.
+             
+             Or
+             Set draw center of mass.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.AllowSleeping">
+             <summary>
+             Return allow sleeping.
+             
+             Or
+             Set allow sleeping.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.WarmStarting">
+             <summary>
+             Return warm starting.
+             
+             Or
+             Set warm starting.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.ContinuousPhysics">
+             <summary>
+             Return continuous physics.
+             
+             Or
+             Set continuous physics.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.SubStepping">
+             <summary>
+             Return sub stepping.
+             
+             Or
+             Set sub stepping.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.Gravity">
+             <summary>
+             Return gravity.
+             
+             Or
+             Set gravity.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.AutoClearForces">
+             <summary>
+             Return auto clear forces.
+             
+             Or
+             Set auto clear forces.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.VelocityIterations">
+             <summary>
+             Return velocity iterations.
+             
+             Or
+             Set velocity iterations.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.PositionIterations">
+             <summary>
+             Return position iterations.
+             
+             Or
+             Set position iterations.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Urho2D.PhysicsWorld2D.ApplyingTransforms">
+             <summary>
+             Return whether node dirtying should be disregarded.
+             Or
+             Set node dirtying to be disregarded.
+             </summary>
+            </member>
         <member name="T:Urho.Polyhedron">
              <summary>
              A convex volume built from polygon faces.
@@ -9071,6 +9456,358 @@
              Return node user variable reverse mappings.
              </summary>
             </member>
+        <member name="T:Urho.Serializable">
+             <summary>
+             Base class for objects with automatic serialization through attributes.
+             </summary>
+             <summary>
+             Base class for objects with automatic serialization through attributes.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.Load(Urho.IO.File)">
+             <summary>
+             Load from binary data. Return true if successful.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.Load(Urho.MemoryBuffer)">
+             <summary>
+             Load from binary data. Return true if successful.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.Save(Urho.IO.File)">
+             <summary>
+             Save as binary data. Return true if successful.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.Save(Urho.MemoryBuffer)">
+             <summary>
+             Save as binary data. Return true if successful.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.LoadXml(Urho.Resources.XmlElement)">
+             <summary>
+             Load from XML data. Return true if successful.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SaveXml(Urho.Resources.XmlElement)">
+             <summary>
+             Save as XML data. Return true if successful.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.ApplyAttributes">
+             <summary>
+             Apply attribute changes that can not be applied immediately. Called after scene load or a network update.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SaveDefaultAttributes">
+             <summary>
+             Return whether should save default-valued attributes into XML. Default false.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.MarkNetworkUpdate">
+             <summary>
+             Mark for attribute check on the next network update.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Vector3)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.IntRect)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Color)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Vector2)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Vector4)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.IntVector2)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Quaternion)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Matrix4)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Matrix3)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Matrix3x4)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,System.Int32)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,System.Single)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,System.String)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,System.Boolean)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Vector3)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.IntRect)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Color)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Vector2)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Vector4)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.IntVector2)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Quaternion)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Matrix4)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Matrix3)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Matrix3x4)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,System.Int32)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,System.Single)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,System.String)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,System.Boolean)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetInstanceDefault(System.Boolean)">
+             <summary>
+             Set instance-level default flag.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.ResetToDefault">
+             <summary>
+             Reset all editable attributes to their default values.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.RemoveInstanceDefault">
+             <summary>
+             Remove instance's default values if they are set previously.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetTemporary(System.Boolean)">
+             <summary>
+             Set temporary flag. Temporary objects will not be saved.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetInterceptNetworkUpdate(System.String,System.Boolean)">
+             <summary>
+             Enable interception of an attribute from network updates. Intercepted attributes are sent as events instead of applying directly. This can be used to implement client side prediction.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.AllocateNetworkState">
+             <summary>
+             Allocate network attribute state.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.WriteInitialDeltaUpdate(Urho.IO.File,System.Byte)">
+             <summary>
+             Write initial delta network update.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.WriteInitialDeltaUpdate(Urho.MemoryBuffer,System.Byte)">
+             <summary>
+             Write initial delta network update.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.WriteLatestDataUpdate(Urho.IO.File,System.Byte)">
+             <summary>
+             Write a latest data network update.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.WriteLatestDataUpdate(Urho.MemoryBuffer,System.Byte)">
+             <summary>
+             Write a latest data network update.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.ReadDeltaUpdate(Urho.IO.File)">
+             <summary>
+             Read and apply a network delta update. Return true if attributes were changed.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.ReadDeltaUpdate(Urho.MemoryBuffer)">
+             <summary>
+             Read and apply a network delta update. Return true if attributes were changed.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.ReadLatestDataUpdate(Urho.IO.File)">
+             <summary>
+             Read and apply a network latest data update. Return true if attributes were changed.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.ReadLatestDataUpdate(Urho.MemoryBuffer)">
+             <summary>
+             Read and apply a network latest data update. Return true if attributes were changed.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.GetAttribute(System.UInt32)">
+             <summary>
+             Return attribute value by index. Return empty if illegal index.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.GetAttribute(System.String)">
+             <summary>
+             Return attribute value by name. Return empty if not found.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.GetAttributeDefault(System.UInt32)">
+             <summary>
+             Return attribute default value by index. Return empty if illegal index.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.GetAttributeDefault(System.String)">
+             <summary>
+             Return attribute default value by name. Return empty if not found.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.GetNumAttributes">
+             <summary>
+             Return number of attributes.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.GetNumNetworkAttributes">
+             <summary>
+             Return number of network replication attributes.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.IsTemporary">
+             <summary>
+             Return whether is temporary.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.GetInterceptNetworkUpdate(System.String)">
+             <summary>
+             Return whether an attribute's network updates are being intercepted.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.GetNetworkState">
+             <summary>
+             Return the network attribute state, if allocated.
+             </summary>
+            </member>
+        <member name="P:Urho.Serializable.Temporary">
+             <summary>
+             Return whether is temporary.
+             
+             Or
+             Set temporary flag. Temporary objects will not be saved.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Serializable.NumAttributes">
+             <summary>
+             Return number of attributes.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Serializable.NumNetworkAttributes">
+             <summary>
+             Return number of network replication attributes.
+             </summary>
+            </member>
+        <member name="P:Urho.Serializable.NetworkState">
+             <summary>
+             Return the network attribute state, if allocated.
+             </summary>
+            </member>
         <member name="T:Urho.Skeleton">
              <summary>
              Hierarchical collection of bones.
@@ -9522,6 +10259,12 @@
              Return render surface.
              
              </summary>
+            </member>
+        <member name="M:Urho.Timer.Reset">
+             Reset the timer.
+            </member>
+        <member name="F:Urho.Timer.startTime_">
+             Starting clock value in milliseconds.
             </member>
         <member name="T:Urho.Gui.UI">
              <summary>
@@ -15859,6 +16602,14 @@
              </summary>
              <param name="scale">Left operand.</param>
              <param name="vec">Right operand.</param>
+             <returns>Result of multiplication.</returns>
+            </member>
+        <member name="M:Urho.Vector2.op_Multiply(Urho.Vector2,Urho.Vector2)">
+             <summary>
+             Multiplies the specified instance by a Vector2.
+             </summary>
+             <param name="vec_left">Left operand.</param>
+             <param name="vec_right">Right operand.</param>
              <returns>Result of multiplication.</returns>
             </member>
         <member name="M:Urho.Vector2.op_Division(Urho.Vector2,System.Single)">
@@ -29454,355 +30205,6 @@
              Return attribute animation info by name.
              </summary>
             </member>
-        <member name="T:Urho.Serializable">
-             <summary>
-             Base class for objects with automatic serialization through attributes.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.Load(Urho.IO.File)">
-             <summary>
-             Load from binary data. Return true if successful.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.Load(Urho.MemoryBuffer)">
-             <summary>
-             Load from binary data. Return true if successful.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.Save(Urho.IO.File)">
-             <summary>
-             Save as binary data. Return true if successful.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.Save(Urho.MemoryBuffer)">
-             <summary>
-             Save as binary data. Return true if successful.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.LoadXml(Urho.Resources.XmlElement)">
-             <summary>
-             Load from XML data. Return true if successful.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SaveXml(Urho.Resources.XmlElement)">
-             <summary>
-             Save as XML data. Return true if successful.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.ApplyAttributes">
-             <summary>
-             Apply attribute changes that can not be applied immediately. Called after scene load or a network update.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SaveDefaultAttributes">
-             <summary>
-             Return whether should save default-valued attributes into XML. Default false.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.MarkNetworkUpdate">
-             <summary>
-             Mark for attribute check on the next network update.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Vector3)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.IntRect)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Color)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Vector2)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Vector4)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.IntVector2)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Quaternion)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Matrix4)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Matrix3)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,Urho.Matrix3x4)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,System.Int32)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,System.Single)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,System.String)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,System.Boolean)">
-             <summary>
-             Set attribute by index. Return true if successfully set.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Vector3)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.IntRect)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Color)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Vector2)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Vector4)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.IntVector2)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Quaternion)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Matrix4)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Matrix3)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,Urho.Matrix3x4)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,System.Int32)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,System.Single)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,System.String)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetAttribute(System.String,System.Boolean)">
-             <summary>
-             Set attribute by name. Return true if successfully set.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetInstanceDefault(System.Boolean)">
-             <summary>
-             Set instance-level default flag.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.ResetToDefault">
-             <summary>
-             Reset all editable attributes to their default values.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.RemoveInstanceDefault">
-             <summary>
-             Remove instance's default values if they are set previously.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetTemporary(System.Boolean)">
-             <summary>
-             Set temporary flag. Temporary objects will not be saved.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.SetInterceptNetworkUpdate(System.String,System.Boolean)">
-             <summary>
-             Enable interception of an attribute from network updates. Intercepted attributes are sent as events instead of applying directly. This can be used to implement client side prediction.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.AllocateNetworkState">
-             <summary>
-             Allocate network attribute state.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.WriteInitialDeltaUpdate(Urho.IO.File,System.Byte)">
-             <summary>
-             Write initial delta network update.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.WriteInitialDeltaUpdate(Urho.MemoryBuffer,System.Byte)">
-             <summary>
-             Write initial delta network update.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.WriteLatestDataUpdate(Urho.IO.File,System.Byte)">
-             <summary>
-             Write a latest data network update.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.WriteLatestDataUpdate(Urho.MemoryBuffer,System.Byte)">
-             <summary>
-             Write a latest data network update.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.ReadDeltaUpdate(Urho.IO.File)">
-             <summary>
-             Read and apply a network delta update. Return true if attributes were changed.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.ReadDeltaUpdate(Urho.MemoryBuffer)">
-             <summary>
-             Read and apply a network delta update. Return true if attributes were changed.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.ReadLatestDataUpdate(Urho.IO.File)">
-             <summary>
-             Read and apply a network latest data update. Return true if attributes were changed.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.ReadLatestDataUpdate(Urho.MemoryBuffer)">
-             <summary>
-             Read and apply a network latest data update. Return true if attributes were changed.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.GetAttribute(System.UInt32)">
-             <summary>
-             Return attribute value by index. Return empty if illegal index.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.GetAttribute(System.String)">
-             <summary>
-             Return attribute value by name. Return empty if not found.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.GetAttributeDefault(System.UInt32)">
-             <summary>
-             Return attribute default value by index. Return empty if illegal index.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.GetAttributeDefault(System.String)">
-             <summary>
-             Return attribute default value by name. Return empty if not found.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.GetNumAttributes">
-             <summary>
-             Return number of attributes.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.GetNumNetworkAttributes">
-             <summary>
-             Return number of network replication attributes.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.IsTemporary">
-             <summary>
-             Return whether is temporary.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.GetInterceptNetworkUpdate(System.String)">
-             <summary>
-             Return whether an attribute's network updates are being intercepted.
-             </summary>
-            </member>
-        <member name="M:Urho.Serializable.GetNetworkState">
-             <summary>
-             Return the network attribute state, if allocated.
-             </summary>
-            </member>
-        <member name="P:Urho.Serializable.Temporary">
-             <summary>
-             Return whether is temporary.
-             
-             Or
-             Set temporary flag. Temporary objects will not be saved.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Serializable.NumAttributes">
-             <summary>
-             Return number of attributes.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Serializable.NumNetworkAttributes">
-             <summary>
-             Return number of network replication attributes.
-             </summary>
-            </member>
-        <member name="P:Urho.Serializable.NetworkState">
-             <summary>
-             Return the network attribute state, if allocated.
-             </summary>
-            </member>
         <member name="T:Urho.Gui.Slider">
              <summary>
              %Slider bar %UI element.
@@ -30656,363 +31058,6 @@
              Or
              Set whether model window can be dismissed with the escape key. Default true.
              
-             </summary>
-            </member>
-        <member name="T:Urho.Urho2D.PhysicsWorld2D">
-             <summary>
-             2D physics simulation world component. Should be added only to the root scene node.
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.RegisterObject(Urho.Context)">
-             <summary>
-             Register object factory.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.DrawDebugGeometry(Urho.DebugRenderer,System.Boolean)">
-             <summary>
-             Visualize the component as debug geometry.
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.Update(System.Single)">
-             <summary>
-             Step the simulation forward.
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.DrawDebugGeometry">
-             <summary>
-             Add debug geometry to the debug renderer.
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetUpdateEnabled(System.Boolean)">
-             <summary>
-             Enable or disable automatic physics simulation during scene update. Enabled by default.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetDrawShape(System.Boolean)">
-             <summary>
-             Set draw shape.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetDrawJoint(System.Boolean)">
-             <summary>
-             Set draw joint.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetDrawAabb(System.Boolean)">
-             <summary>
-             Set draw aabb.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetDrawPair(System.Boolean)">
-             <summary>
-             Set draw pair.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetDrawCenterOfMass(System.Boolean)">
-             <summary>
-             Set draw center of mass.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetAllowSleeping(System.Boolean)">
-             <summary>
-             Set allow sleeping.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetWarmStarting(System.Boolean)">
-             <summary>
-             Set warm starting.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetContinuousPhysics(System.Boolean)">
-             <summary>
-             Set continuous physics.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetSubStepping(System.Boolean)">
-             <summary>
-             Set sub stepping.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetGravity(Urho.Vector2)">
-             <summary>
-             Set gravity.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetAutoClearForces(System.Boolean)">
-             <summary>
-             Set auto clear forces.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetVelocityIterations(System.Int32)">
-             <summary>
-             Set velocity iterations.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetPositionIterations(System.Int32)">
-             <summary>
-             Set position iterations.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.AddRigidBody(Urho.Urho2D.RigidBody2D)">
-             <summary>
-             Add rigid body.
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.RemoveRigidBody(Urho.Urho2D.RigidBody2D)">
-             <summary>
-             Remove rigid body.
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetRigidBody(Urho.Vector2,System.UInt32)">
-             <summary>
-             Return rigid body at point.
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetRigidBody(System.Int32,System.Int32,System.UInt32)">
-             <summary>
-             Return rigid body at screen point.
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.IsUpdateEnabled">
-             <summary>
-             Return whether physics world will automatically simulate during scene update.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetDrawShape">
-             <summary>
-             Return draw shape.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetDrawJoint">
-             <summary>
-             Return draw joint.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetDrawAabb">
-             <summary>
-             Return draw aabb.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetDrawPair">
-             <summary>
-             Return draw pair.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetDrawCenterOfMass">
-             <summary>
-             Return draw center of mass.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetAllowSleeping">
-             <summary>
-             Return allow sleeping.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetWarmStarting">
-             <summary>
-             Return warm starting.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetContinuousPhysics">
-             <summary>
-             Return continuous physics.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetSubStepping">
-             <summary>
-             Return sub stepping.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetAutoClearForces">
-             <summary>
-             Return auto clear forces.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetGravity">
-             <summary>
-             Return gravity.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetVelocityIterations">
-             <summary>
-             Return velocity iterations.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.GetPositionIterations">
-             <summary>
-             Return position iterations.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.SetApplyingTransforms(System.Boolean)">
-             <summary>
-             Set node dirtying to be disregarded.
-             </summary>
-            </member>
-        <member name="M:Urho.Urho2D.PhysicsWorld2D.IsApplyingTransforms">
-             <summary>
-             Return whether node dirtying should be disregarded.
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.UpdateEnabled">
-             <summary>
-             Return whether physics world will automatically simulate during scene update.
-             
-             Or
-             Enable or disable automatic physics simulation during scene update. Enabled by default.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.DrawShape">
-             <summary>
-             Return draw shape.
-             
-             Or
-             Set draw shape.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.DrawJoint">
-             <summary>
-             Return draw joint.
-             
-             Or
-             Set draw joint.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.DrawAabb">
-             <summary>
-             Return draw aabb.
-             
-             Or
-             Set draw aabb.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.DrawPair">
-             <summary>
-             Return draw pair.
-             
-             Or
-             Set draw pair.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.DrawCenterOfMass">
-             <summary>
-             Return draw center of mass.
-             
-             Or
-             Set draw center of mass.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.AllowSleeping">
-             <summary>
-             Return allow sleeping.
-             
-             Or
-             Set allow sleeping.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.WarmStarting">
-             <summary>
-             Return warm starting.
-             
-             Or
-             Set warm starting.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.ContinuousPhysics">
-             <summary>
-             Return continuous physics.
-             
-             Or
-             Set continuous physics.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.SubStepping">
-             <summary>
-             Return sub stepping.
-             
-             Or
-             Set sub stepping.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.Gravity">
-             <summary>
-             Return gravity.
-             
-             Or
-             Set gravity.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.AutoClearForces">
-             <summary>
-             Return auto clear forces.
-             
-             Or
-             Set auto clear forces.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.VelocityIterations">
-             <summary>
-             Return velocity iterations.
-             
-             Or
-             Set velocity iterations.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.PositionIterations">
-             <summary>
-             Return position iterations.
-             
-             Or
-             Set position iterations.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Urho2D.PhysicsWorld2D.ApplyingTransforms">
-             <summary>
-             Return whether node dirtying should be disregarded.
-             Or
-             Set node dirtying to be disregarded.
              </summary>
             </member>
         <member name="T:Urho.ObjectFactory">

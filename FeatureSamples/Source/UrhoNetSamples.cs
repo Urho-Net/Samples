@@ -54,7 +54,7 @@ namespace UrhoNetSamples
 
 
 
-        public UrhoNetSamples() : base(new ApplicationOptions(assetsFolder: "Data;CoreData;Data/FlappyUrho") { ResizableWindow = true }) { }
+        public UrhoNetSamples() : base(new ApplicationOptions(assetsFolder: "Data;CoreData;Data/FlappyUrho;Data/MaterialEffects") { ResizableWindow = true }) { }
 
 
 
@@ -167,13 +167,19 @@ namespace UrhoNetSamples
                 listView = null;
                 UI.Root.Resized -= OnUIResized;
                 Input.SetMouseVisible(false);
-                Input.SetMouseMode(MouseMode.Free);
+                Input.SetMouseMode(MouseMode.Relative);
+                currentSample.RequestToExit += SampleRequetedToExit;
                 currentSample.Run();
                 currentSample.backButton.Released += OnBackButtonReleased;
                 currentSample.infoButton.Released += OnInfoButttonReleased;
                 Graphics.WindowTitle = name;
             }
 
+        }
+
+        private void SampleRequetedToExit()
+        {
+            ExitSample();
         }
 
         private void OnInfoButttonReleased(ReleasedEventArgs obj)
@@ -191,7 +197,8 @@ namespace UrhoNetSamples
             if (currentSample != null)
             {
                 currentSample.backButton.Released -= OnBackButtonReleased;
-                 currentSample.infoButton.Released -= OnInfoButttonReleased;
+                currentSample.infoButton.Released -= OnInfoButttonReleased;
+                currentSample.RequestToExit -= SampleRequetedToExit;
                 currentSample.Exit();
                 currentSample.UnSubscribeFromAllEvents();
                 currentSample.Dispose();

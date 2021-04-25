@@ -112,7 +112,7 @@ namespace SceneReplication
             textEdit.SetStyleAuto(null);
             textEdit.TextElement.SetFont(font, 24);
             // TBD ELI , debug only
-           // textEdit.TextElement.Value = "192.168.1.110";
+            // textEdit.TextElement.Value = "192.168.1.110";
             buttonContainer.AddChild(textEdit);
 
             connectButton = CreateButtonLocal("Connect", 180);
@@ -120,6 +120,8 @@ namespace SceneReplication
             startServerButton = CreateButtonLocal("Start Server", 220);
 
             UpdateButtons();
+
+            Input.SetMouseVisible(true);
 
         }
 
@@ -382,7 +384,7 @@ namespace SceneReplication
 
             if (isMobile)
             {
-                if(serverConnection != null)
+                if (serverConnection != null)
                 {
                     CreateScreenJoystick();
                 }
@@ -475,7 +477,7 @@ namespace SceneReplication
             {
                 if (isMobile)
                 {
-                    Vector2 axis_0 =  GetJoystickAxisInput();
+                    Vector2 axis_0 = GetJoystickAxisInput();
 
                     controls.Set(CTRL_FORWARD, axis_0.Y < -0.5);
                     controls.Set(CTRL_BACK, axis_0.Y > 0.5);
@@ -538,7 +540,7 @@ namespace SceneReplication
             JoystickState joystick;
             if (screenJoystickIndex != -1 && Input.GetJoystick(screenJoystickIndex, out joystick))
             {
-                axis_0 =  new Vector2(joystick.GetAxisPosition(JoystickState.AxisLeft_X), joystick.GetAxisPosition(JoystickState.AxisLeft_Y));
+                axis_0 = new Vector2(joystick.GetAxisPosition(JoystickState.AxisLeft_X), joystick.GetAxisPosition(JoystickState.AxisLeft_Y));
             }
 
             return axis_0;

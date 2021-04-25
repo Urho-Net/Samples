@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<material>
+	<technique name="Techniques/DiffUnlitAlphaMask.xml" />
+	<texture unit="diffuse" name="MaterialEffects/Textures/watersplash/watersplash.png" />
+	<parameter name="MatDiffColor" value="1 1 1 1" />
+	<parameter name="MatEmissiveColor" value="1 1 1 1" />
+	<parameter name="MinAlpha" value="0.2" />
+	<parameter name="MultAddEmission" value="0.0" />
+	<parameter name="MaskEdges" value="0" />
+	<cull value="none" />
+</material>

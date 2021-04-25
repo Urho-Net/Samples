@@ -1,0 +1,7 @@
+<material>
+    <technique name="Techniques/NoTextureFakeBRDF.xml" />
+    <texture unit="diffuse" name="Textures/Mushroom.dds" />
+	<texture unit="emissive" name="MaterialEffects/Textures/fakeBRDF/brdfBlkRed.jpg" />
+	<parameter name="MatDiffColor" value="0.8 0.8 0.8 1.0" />
+    <parameter name="BRDFAttenuation" value="2.0" />
+</material>

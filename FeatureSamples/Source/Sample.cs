@@ -46,7 +46,8 @@ namespace UrhoNetSamples
         Text infoText;
 
         protected int screenJoystickIndex = -1;
-        protected bool isMobile;
+        public static bool isMobile;
+        public event Action RequestToExit;
 
         protected Renderer Renderer;
         protected ResourceCache ResourceCache;
@@ -96,7 +97,11 @@ namespace UrhoNetSamples
 
             Urho.Application.UnhandledException += Application_UnhandledException1;
         }
-
+                
+        public void ExitSample()
+        {
+            RequestToExit?.Invoke();
+        }
         static void Application_UnhandledException1(object sender, Urho.UnhandledExceptionEventArgs e)
         {
             if (Debugger.IsAttached && !e.Exception.Message.Contains("BlueHighway.ttf"))

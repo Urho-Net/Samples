@@ -1,0 +1,3 @@
+<technique vs="UnlitAlphaUVScroll" ps="UnlitAlphaUVScroll" psdefines="DIFFMAP ALPHAMASK">
+    <pass name="alpha" depthwrite="false" blend="alpha" />
+</technique>

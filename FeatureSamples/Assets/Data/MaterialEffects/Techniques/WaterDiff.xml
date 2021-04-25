@@ -1,0 +1,3 @@
+<technique vs="WaterDiff" ps="WaterDiff">
+    <pass name="refract" />
+</technique>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<material>
+	<technique name="Techniques/DiffVCol.xml" />
+	<texture unit="diffuse" name="MaterialEffects/Textures/ProtoWhite256.jpg" />
+	<parameter name="MatDiffColor" value="1 1 1 1" />
+</material>

@@ -1,0 +1,74 @@
+<renderpath>
+    <rendertarget name="copyViewBuff" tag="Glow" sizedivisor="1 1" format="rgba" filter="true" />
+    <!-- not concerned with high resolution for blurring, use 1/4 size -->
+    <rendertarget name="blurh" tag="Glow" sizedivisor="4 4" format="rgba" filter="true" />
+    <rendertarget name="blurv" tag="Glow" sizedivisor="4 4" format="rgba" filter="true" />
+
+<!-- 
+//=========================================================================
+// Glow process:
+//  1) temporarily save the viewport to a buff
+//  2) create a black screen, 
+//  3) render glow objects onto the black screen 
+//  4) blur 
+//  5) mix it back with the saved viewport buff
+// 
+// sigma and blursize info:
+// http://callumhay.blogspot.com/2010/09/gaussian-blur-shader-glsl.html
+// uniform float sigma;     // The sigma value for the gaussian function: higher value means more blur
+//                          // A good value for 9x9 is around 3 to 5
+//                          // A good value for 7x7 is around 2.5 to 4
+//                          // A good value for 5x5 is around 2 to 3.5
+//                          // ... play around with this based on what you need :)
+// 
+// uniform float blurSize;  // This should usually be equal to
+//                          // 1.0f / texture_pixel_width for a horizontal blur, and
+//                          // 1.0f / texture_pixel_height for a vertical blur.
+// 
+//========================================================================== -->
+    <command type="quad" tag="Glow" vs="CopyFramebuffer" ps="CopyFramebuffer" output="copyViewBuff">
+        <texture unit="diffuse" name="viewport" />
+    </command>
+    <command type="quad" tag="Glow" vs="BlackScreen" ps="BlackScreen" output="viewport">
+        <texture unit="diffuse" name="viewport" />
+    </command>
+
+    <!-- this renders glow objects, see Techniques/DiffEmissiveGlow.xml - rendering pass is "glowmask" -->
+    <command type="scenepass" tag="Glow" pass="glowmask" />
+
+    <!-- blur -->
+    <command type="quad" tag="Glow" vs="Blur" ps="Blur" psdefines="BLUR5" output="blurh">
+        <parameter name="BlurHInvSize" value="0.00125 0.00167" /> 
+        <parameter name="BlurDir" value="1.0 0.0" />
+        <parameter name="BlurRadius" value="4.0" />
+        <parameter name="BlurSigma" value="2.0" />
+        <texture unit="diffuse" name="viewport" />
+    </command>
+    <command type="quad" tag="Glow" vs="Blur" ps="Blur" psdefines="BLUR5" output="blurv">
+        <parameter name="BlurHInvSize" value="0.00125 0.00167" /> 
+        <parameter name="BlurDir" value="0.0 1.0" />
+        <parameter name="BlurRadius" value="4.0" />
+        <parameter name="BlurSigma" value="2.0" />
+        <texture unit="diffuse" name="blurh" />
+    </command>
+    <command type="quad" tag="Glow" vs="Blur" ps="Blur" psdefines="BLUR3" output="blurh">
+        <parameter name="BlurHInvSize" value="0.00125 0.00167" /> 
+        <parameter name="BlurDir" value="1.0 0.0" />
+        <parameter name="BlurRadius" value="4.0" />
+        <parameter name="BlurSigma" value="2.0" />
+        <texture unit="diffuse" name="blurv" />
+    </command>
+    <command type="quad" tag="Glow" vs="Blur" ps="Blur" psdefines="BLUR3" output="blurv">
+        <parameter name="BlurHInvSize" value="0.00125 0.00167" /> 
+        <parameter name="BlurDir" value="0.0 1.0" />
+        <parameter name="BlurRadius" value="4.0" />
+        <parameter name="BlurSigma" value="2.0" />
+        <texture unit="diffuse" name="blurh" />
+    </command>
+
+    <!-- apply glow - mix stored viewport and glow mask buffs -->
+    <command type="quad" tag="Glow" vs="ApplyGlow" ps="ApplyGlow" blend="replace" output="viewport">
+        <texture unit="diffuse" name="copyViewBuff" />
+        <texture unit="environment" name="blurv" />
+    </command>
+</renderpath>
