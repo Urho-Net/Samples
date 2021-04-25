@@ -3,9 +3,13 @@ This directory contains the various samples that showcase \
 The features of the C# multiplatform game development framework
 [Urho.Net](https://github.com/Urho-Net/Urho.Net).\
 Please follow the installation instructions of [Urho.Net](https://github.com/Urho-Net/Urho.Net)\
-### Check the Wiki for quick start
+## Check the Wiki for quick start
+
 ## Make sure you are always using the latest version of [Urho.Net](https://github.com/Urho-Net/Urho.Net) , otherwise some of the samples might not work.
-Good practice is to "git pull origin" the Urho.Net repository 
+
+
+# Google Play  
+[Urho.Net Feature Samples](https://play.google.com/store/apps/details?id=com.elix22.urhonetsamples)
 
 
 # Running the Feature Samples on Desktop.
