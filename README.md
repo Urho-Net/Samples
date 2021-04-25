@@ -4,7 +4,7 @@ The features of the C# multiplatform game development framework
 [Urho.Net](https://github.com/Urho-Net/Urho.Net).\
 Please follow the installation instructions of [Urho.Net](https://github.com/Urho-Net/Urho.Net)\
 ## Make sure you are always using the latest version of [Urho.Net](https://github.com/Urho-Net/Urho.Net) , otherwise some of the samples might not work.
-Good practice is to "git pull origin" the Urho.Net repsitory 
+Good practice is to "git pull origin" the Urho.Net repository 
 
 # Running the Feature Samples on Desktop.
 Make sure that you followed the instructions and installed all the required dependencies as described in [Urho.Net](https://github.com/Urho-Net/Urho.Net).\
