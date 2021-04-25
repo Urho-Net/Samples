@@ -24,6 +24,7 @@ using UrhoNetSamples;
 using Urho;
 using Urho.Physics;
 using Urho.Gui;
+using Urho.Urho2D;
 using System;
 using System.Runtime.InteropServices;
 
@@ -71,7 +72,12 @@ namespace MaterialEffects
         Character character;
         /// First person camera flag.
         bool firstPerson;
-        PhysicsWorld physicsWorld;
+
+
+        Node reflectionCameraNode_;
+        Node waterNode_;
+        Plane waterPlane_;
+        Plane waterClipPlane_;
 
         // emission
         Color emissionColor_ = Color.Black;
@@ -228,12 +234,103 @@ namespace MaterialEffects
 
         private void CreateWaterRefection()
         {
+            // right out of 23_Water sample
+            Graphics graphics = Graphics;
+            Renderer renderer = Renderer;
+            var cache = ResourceCache;
+            waterNode_ = scene.GetChild("waterGround", true);
+            waterNode_.GetComponent<StaticModel>().ViewMask = 0x80000000;
 
+            waterPlane_ = new Plane(waterNode_.WorldRotation * new Vector3(0.0f, 1.0f, 0.0f), waterNode_.WorldPosition);
+            waterClipPlane_ = new Plane(waterNode_.WorldRotation  * new Vector3(0.0f, 1.0f, 0.0f), waterNode_.WorldPosition - new Vector3(0.0f, 0.1f, 0.0f));
+
+            reflectionCameraNode_ = CameraNode.CreateChild();
+            Camera reflectionCamera = reflectionCameraNode_.CreateComponent<Camera>();
+            reflectionCamera.FarClip = 750.0f;
+            reflectionCamera.ViewMask = 0x7fffffff; // Hide objects with only bit 31 in the viewmask (the water plane)
+            reflectionCamera.AutoAspectRatio = false;
+            reflectionCamera.UseReflection = true;
+            reflectionCamera.ReflectionPlane = waterPlane_;
+            reflectionCamera.UseClipping = true; // Enable clipping of geometry behind water plane
+            reflectionCamera.ClipPlane = waterClipPlane_;
+            reflectionCamera.AspectRatio = ((float)graphics.Width / (float)graphics.Height);
+
+            int texSize = 1024;
+            Texture2D renderTexture = new Texture2D();
+            renderTexture.SetSize(texSize, texSize, Graphics.RGBFormat, TextureUsage.Rendertarget);
+            renderTexture.FilterMode = TextureFilterMode.Bilinear;
+            RenderSurface surface = renderTexture.RenderSurface;
+            Viewport rttViewport = new Viewport( scene, reflectionCamera,null);
+            surface.SetViewport(0, rttViewport);
+            Material waterMat = cache.GetMaterial("MaterialEffects/Materials/waterGroundMat.xml");
+            waterMat.SetTexture(TextureUnit.Specular, renderTexture);
         }
 
         private void CreateSequencers()
         {
+            var cache = ResourceCache;
 
+            // uv frame sequencers
+            Node explNode = scene.GetChild("explosion", true);
+            if (explNode != null)
+            {
+                UVSequencer uvSequencer = explNode.CreateComponent<UVSequencer>();
+                using (var xmlLevel = cache.GetXmlFile("MaterialEffects/UVSequencerData/explosionUVFrameSeqData.xml"))
+                {
+                    uvSequencer.LoadXml(xmlLevel.GetRoot());
+                }
+            }
+
+            Node fireNode = scene.GetChild("bgfire", true);
+            if (fireNode != null)
+            {
+                UVSequencer uvSequencer = fireNode.CreateComponent<UVSequencer>();
+                using (var xmlLevel = cache.GetXmlFile("MaterialEffects/UVSequencerData/bgfireUVFrameSeqData.xml"))
+                {
+                    uvSequencer.LoadXml(xmlLevel.GetRoot());
+                }
+            }
+
+            Node torchNode = scene.GetChild("torch", true);
+            if (torchNode != null)
+            {
+                UVSequencer uvSequencer = torchNode.CreateComponent<UVSequencer>();
+                using (var xmlLevel = cache.GetXmlFile("MaterialEffects/UVSequencerData/torchUVFrameSeqData.xml"))
+                {
+                    uvSequencer.LoadXml(xmlLevel.GetRoot());
+                }
+            }
+
+            // uv scroll sequencers
+            Node plateUNode = scene.GetChild("transpPlateU", true);
+            if (plateUNode != null)
+            {
+                UVSequencer uvSequencer = plateUNode.CreateComponent<UVSequencer>();
+                using (var xmlLevel = cache.GetXmlFile("MaterialEffects/UVSequencerData/plateUScrollSeqData.xml"))
+                {
+                    uvSequencer.LoadXml(xmlLevel.GetRoot());
+                }
+            }
+
+            Node plateVNode = scene.GetChild("transpPlateV", true);
+            if (plateVNode != null)
+            {
+                UVSequencer uvSequencer = plateVNode.CreateComponent<UVSequencer>();
+                using (var xmlLevel = cache.GetXmlFile("MaterialEffects/UVSequencerData/plateVScrollSeqData.xml"))
+                {
+                    uvSequencer.LoadXml(xmlLevel.GetRoot());
+                }
+            }
+
+            Node lavaUNode = scene.GetChild("Lava", true);
+            if (lavaUNode != null)
+            {
+                UVSequencer uvSequencer = lavaUNode.CreateComponent<UVSequencer>();
+                using (var xmlLevel = cache.GetXmlFile("MaterialEffects/UVSequencerData/lavaVScrollSeqData.xml"))
+                {
+                    uvSequencer.LoadXml(xmlLevel.GetRoot());
+                }
+            }
         }
 
 

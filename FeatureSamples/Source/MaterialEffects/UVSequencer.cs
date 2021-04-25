@@ -34,22 +34,22 @@ namespace MaterialEffects
         public const int UVSeq_SwapImage = 3;    // 3
         public UVSequencer()
         {
-            uvSeqType_ = (0);
-            uScrollSpeed_ = (0.0f);
-            vScrollSpeed_ = (0.0f);
-            timerFraction_ = (1.0f);
-            rows_ = (0);
-            cols_ = (0);
-            numFrames_ = (0);
-            timePerFrame_ = (0);
-            enabled_ = (false);
-            repeat_ = (false);
+            uvSeqType = (0);
+            uScrollSpeed = (0.0f);
+            vScrollSpeed = (0.0f);
+            timerFraction = (1.0f);
+            rows = (0);
+            cols = (0);
+            numFrames = (0);
+            timePerFrame = (0);
+            enabled = (false);
+            repeat = (false);
             curUVOffset_ = (Vector2.Zero);
             curFrameIdx_ = (0);
             curImageIdx_ = (0);
-            swapTUenum_ = (0);
-            swapBegIdx_ = (0);
-            swapEndIdx_ = (0);
+            swapTUEnum = (0);
+            swapBegIdx = (0);
+            swapEndIdx = (0);
             decFormat_ = (null);
 
 
@@ -57,22 +57,22 @@ namespace MaterialEffects
 
         public UVSequencer(IntPtr handle) : base(handle)
         {
-            uvSeqType_ = (0);
-            uScrollSpeed_ = (0.0f);
-            vScrollSpeed_ = (0.0f);
-            timerFraction_ = (1.0f);
-            rows_ = (0);
-            cols_ = (0);
-            numFrames_ = (0);
-            timePerFrame_ = (0);
-            enabled_ = (false);
-            repeat_ = (false);
+            uvSeqType = (0);
+            uScrollSpeed = (0.0f);
+            vScrollSpeed = (0.0f);
+            timerFraction = (1.0f);
+            rows = (0);
+            cols = (0);
+            numFrames = (0);
+            timePerFrame = (0);
+            enabled = (false);
+            repeat = (false);
             curUVOffset_ = (Vector2.Zero);
             curFrameIdx_ = (0);
             curImageIdx_ = (0);
-            swapTUenum_ = (0);
-            swapBegIdx_ = (0);
-            swapEndIdx_ = (0);
+            swapTUEnum = (0);
+            swapBegIdx = (0);
+            swapEndIdx = (0);
             decFormat_ = (null);
         }
 
@@ -95,22 +95,26 @@ namespace MaterialEffects
             Reset();
 
             // auto start
-            if (!enabled_)
+            if (!enabled)
             {
                 SetUpdateEventMask((uint)UpdateEvent.NoEvent);
+            }
+            else
+            {
+                 SetUpdateEventMask((uint)UpdateEvent.Fixedupdate);
             }
         }
 
         public bool SetEnabled(bool enable)
         {
-            if (enable == enabled_)
+            if (enable == enabled)
             {
                 return false;
             }
 
-            enabled_ = enable;
+            enabled = enable;
 
-            if (enabled_)
+            if (enabled)
             {
                 SetUpdateEventMask((uint)UpdateEvent.Fixedupdate);
             }
@@ -131,7 +135,7 @@ namespace MaterialEffects
             seqTimer_.Reset();
 
             // and specifics 
-            switch (uvSeqType_)
+            switch (uvSeqType)
             {
                 case UVSeq_UScroll:
                     componentMat_.SetShaderParameter("UOffset", new Vector4(1.0f, 0.0f, 0.0f, 1.0f));
@@ -160,8 +164,8 @@ namespace MaterialEffects
 
         private void InitUVFrameSize()
         {
-            uvFrameSize_.X = 1.0f / (float)cols_;
-            uvFrameSize_.Y = 1.0f / (float)rows_;
+            uvFrameSize_.X = 1.0f / (float)cols;
+            uvFrameSize_.Y = 1.0f / (float)rows;
         }
 
         protected override void OnFixedUpdate(PhysicsPreStepEventArgs e)
@@ -172,7 +176,7 @@ namespace MaterialEffects
                 return;
 
             // update
-            switch (uvSeqType_)
+            switch (uvSeqType)
             {
                 case UVSeq_UScroll:
                     UpdateUScroll(timeStep);
@@ -195,27 +199,27 @@ namespace MaterialEffects
 
         private void UpdateVScroll(float timeStep)
         {
-            curUVOffset_.Y += vScrollSpeed_ + Math.Sign(vScrollSpeed_) * timeStep * timerFraction_;
+            curUVOffset_.Y += vScrollSpeed + Math.Sign(vScrollSpeed) * timeStep * timerFraction;
             componentMat_.SetShaderParameter("VOffset", new Vector4(0.0f, 1.0f, 0.0f, curUVOffset_.Y));
         }
 
         private void UpdateUScroll(float timeStep)
         {
-            curUVOffset_.X += uScrollSpeed_ + Math.Sign(uScrollSpeed_) * timeStep * timerFraction_;
+            curUVOffset_.X += uScrollSpeed + Math.Sign(uScrollSpeed) * timeStep * timerFraction;
             componentMat_.SetShaderParameter("UOffset", new Vector4(1.0f, 0.0f, 0.0f, curUVOffset_.X));
         }
 
         private void UpdateUVFrame()
         {
-            if (seqTimer_.GetMSec(false) > timePerFrame_)
+            if (seqTimer_.GetMSec(false) > timePerFrame)
             {
-                if (++curFrameIdx_ < numFrames_)
+                if (++curFrameIdx_ < numFrames)
                 {
                     UpdateUVFrameShader();
                 }
                 else
                 {
-                    if (repeat_)
+                    if (repeat)
                     {
                         curFrameIdx_ = 0;
 
@@ -233,8 +237,8 @@ namespace MaterialEffects
 
         private void UpdateUVFrameShader()
         {
-            float curRow = (float)(curFrameIdx_ / cols_);
-            float curCol = (float)(curFrameIdx_ % cols_);
+            float curRow = (float)(curFrameIdx_ / cols);
+            float curCol = (float)(curFrameIdx_ % cols);
 
             componentMat_.SetShaderParameter("CurRowCol", new Vector2(curRow, curCol));
         }
@@ -242,17 +246,17 @@ namespace MaterialEffects
 
         private void UpdateSwapImage()
         {
-            if (seqTimer_.GetMSec(false) > timePerFrame_)
+            if (seqTimer_.GetMSec(false) > timePerFrame)
             {
-                if (++curImageIdx_ < swapEndIdx_)
+                if (++curImageIdx_ < swapEndIdx)
                 {
                     UpdateSwapImageTexture();
                 }
                 else
                 {
-                    if (repeat_)
+                    if (repeat)
                     {
-                        curImageIdx_ = swapBegIdx_;
+                        curImageIdx_ = swapBegIdx;
 
                         UpdateSwapImageTexture();
                     }
@@ -275,28 +279,28 @@ namespace MaterialEffects
         Material componentMat_;
 
         // type
-        public int uvSeqType_;
-        public bool enabled_;
-        public bool repeat_;
+        public int uvSeqType;
+        public bool enabled;
+        public bool repeat;
 
         // uv scroll
-        public float uScrollSpeed_;
-        public float vScrollSpeed_;
-        public float timerFraction_;       // something to even slow the timer (lava)
+        public float uScrollSpeed;
+        public float vScrollSpeed;
+        public float timerFraction;       // something to even slow the timer (lava)
 
         // uv offset
-        public int rows_;
-        public int cols_;
-        public int numFrames_;
-        public uint timePerFrame_;
+        public int rows;
+        public int cols;
+        public int numFrames;
+        public uint timePerFrame;
 
         // image swap - this doesn't belong but it's here to support the original demo
-        public uint swapTUenum_;
-        public int swapBegIdx_;
-        public int swapEndIdx_;
-        public string swapPrefixName_;
-        public string swapFileExt_;
-        public string swapDecFormat_;
+        public uint swapTUEnum;
+        public int swapBegIdx;
+        public int swapEndIdx;
+        public string swapPrefixName;
+        public string swapFileExt;
+        public string swapDecFormat;
         public string decFormat_;
 
         // status update
@@ -304,6 +308,6 @@ namespace MaterialEffects
         public Vector2 uvFrameSize_;
         public int curFrameIdx_;
         public int curImageIdx_;
-        Timer seqTimer_;
+        Timer seqTimer_ = new Timer();
     }
 }

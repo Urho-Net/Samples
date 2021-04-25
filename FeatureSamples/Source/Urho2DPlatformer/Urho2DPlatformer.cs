@@ -64,6 +64,8 @@ namespace Urho2DPlatformer
             sample2D_ = new Sample2D(this);
             sample2D_.demoFilename_ = "Platformer2D";
 
+            Input.SetMouseVisible(true);
+            
             // Create the scene content
             CreateScene();
 

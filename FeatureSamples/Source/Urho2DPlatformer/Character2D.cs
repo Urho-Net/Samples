@@ -72,7 +72,7 @@ namespace Urho2DPlatformer
                 animatedSprite.FlipX = false; // Flip sprite (reset to default play on the X axis)
             }
 
-            if (input.GetKeyDown(Key.D) || input.GetKeyDown(Key.Right) )
+            if (input.GetKeyDown(Key.D) || input.GetKeyDown(Key.Right))
             {
                 moveDir = moveDir + Vector2.Right;
                 animatedSprite.FlipX = true; // Flip sprite (flip animation on the X axis)
@@ -197,6 +197,7 @@ namespace Urho2DPlatformer
 
             // Show mouse cursor so that we can click
             Application.Input.SetMouseVisible(true);
+            Application.Input.SetMouseMode(MouseMode.Absolute);
 
             // Put character outside of the scene and magnify him
             Node.Position = new Vector3(-20.0f, 0.0f, 0.0f);
@@ -232,7 +233,7 @@ namespace Urho2DPlatformer
         /// Indicate when the player is climbing a slope, so we can apply force to its body.
         public bool onSlope_ = false;
 
-    
+
 
 
     }

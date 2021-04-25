@@ -53,13 +53,13 @@ namespace Urho2DIsometricDemo
             float speedY = speedX;
 
 
-            if (input.GetKeyDown(Key.A) || input.GetKeyDown(Key.Left))
+            if (input.GetKeyDown(Key.A) || input.GetKeyDown(Key.Left) || Controls.IsDown(Global.CtrlLeft))
             {
                 moveDir = moveDir + Vector3.Left * speedX;
                 animatedSprite.FlipX = false; // Flip sprite (reset to default play on the X axis)
             }
 
-            if (input.GetKeyDown(Key.D) || input.GetKeyDown(Key.Right))
+            if (input.GetKeyDown(Key.D) || input.GetKeyDown(Key.Right) || Controls.IsDown(Global.CtrlRight) )
             {
                 moveDir = moveDir + Vector3.Right * speedX;
                 animatedSprite.FlipX = true; // Flip sprite (flip animation on the X axis)
@@ -70,9 +70,9 @@ namespace Urho2DIsometricDemo
             if (!moveDir.Equals(Vector3.Zero))
                 speedY = speedX * moveSpeedScale_;
 
-            if (input.GetKeyDown(Key.W) || input.GetKeyDown(Key.Up))
+            if (input.GetKeyDown(Key.W) || input.GetKeyDown(Key.Up) || Controls.IsDown(Global.CtrlUp))
                 moveDir = moveDir + Vector3.Up * speedY;
-            if (input.GetKeyDown(Key.S) || input.GetKeyDown(Key.Down))
+            if (input.GetKeyDown(Key.S) || input.GetKeyDown(Key.Down) || Controls.IsDown(Global.CtrlDown))
                 moveDir = moveDir + Vector3.Down * speedY;
 
             // Move
@@ -81,7 +81,7 @@ namespace Urho2DIsometricDemo
 
 
             // Animate
-            if (input.GetKeyDown(Key.Space))
+            if (input.GetKeyDown(Key.Space) || Controls.IsDown(Global.CtrlHit))
             {
                 if (animatedSprite.Animation != "attack")
                 {
@@ -170,6 +170,7 @@ namespace Urho2DIsometricDemo
 
             // Show mouse cursor so that we can click
             Application.Input.SetMouseVisible(true);
+            Application.Input.SetMouseMode(MouseMode.Absolute);
 
             // Put character outside of the scene and magnify him
             Node.Position = new Vector3(-20.0f, 0.0f, 0.0f);
@@ -199,6 +200,8 @@ namespace Urho2DIsometricDemo
         public float moveSpeedScale_ = 1.0f;
         public float zoom_ = 0.0f;
         /// Indicate when the player is climbing a ladder or a rope.
+
+        public Controls Controls { get; set; } = new Controls();
 
     }
 

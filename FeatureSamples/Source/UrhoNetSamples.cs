@@ -167,7 +167,7 @@ namespace UrhoNetSamples
                 listView = null;
                 UI.Root.Resized -= OnUIResized;
                 Input.SetMouseVisible(false);
-                Input.SetMouseMode(MouseMode.Free);
+                Input.SetMouseMode(MouseMode.Relative);
                 currentSample.RequestToExit += SampleRequetedToExit;
                 currentSample.Run();
                 currentSample.backButton.Released += OnBackButtonReleased;

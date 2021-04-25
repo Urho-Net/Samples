@@ -41,8 +41,14 @@ namespace Urho2DIsometricDemo
             sample2D_ = new Sample2D(this);
             sample2D_.demoFilename_ = "Isometric2D";
 
+            Input.SetMouseVisible(true);
             // Create the scene content
             CreateScene();
+
+            if (isMobile)
+            {
+                CreateScreenJoystick(E_JoystickType.OneJoyStick_OneButton);
+            }
 
             // Create the UI content
             sample2D_.CreateUIContent("PLATFORMER 2D DEMO", character2D_.remainingLifes_, character2D_.remainingCoins_);
@@ -205,6 +211,9 @@ namespace Urho2DIsometricDemo
             if (Input.GetKeyPress(Key.Z))
                 drawDebug_ = !drawDebug_;
 
+            if (isMobile)
+                UpdateJoystickInputs(character2D_.Controls);
+
 
         }
 
@@ -230,6 +239,18 @@ namespace Urho2DIsometricDemo
             }
         }
 
+        public void UpdateJoystickInputs(Controls controls)
+        {
+            JoystickState joystick;
+            if (screenJoystickIndex != -1 && Input.GetJoystick(screenJoystickIndex, out joystick))
+            {
+                controls.Set(Global.CtrlHit, joystick.GetButtonDown(JoystickState.Button_A));
+                controls.Set(Global.CtrlLeft, joystick.GetAxisPosition(JoystickState.AxisLeft_X) < -0.2);
+                controls.Set(Global.CtrlRight, joystick.GetAxisPosition(JoystickState.AxisLeft_X) > 0.2);
+                controls.Set(Global.CtrlUp, joystick.GetAxisPosition(JoystickState.AxisLeft_Y) < -0.2);
+                controls.Set(Global.CtrlDown, joystick.GetAxisPosition(JoystickState.AxisLeft_Y) > 0.2);
+            }
+        }
 
         private void HandlePlayButton(ReleasedEventArgs obj)
         {
@@ -255,7 +276,7 @@ namespace Urho2DIsometricDemo
 
                 // TBD ELI , IS IT NEEDED ? , HAVE TO CHECK
                 scene.Dispose();
-
+                
                 CreateScene();
                 sample2D_.scene_ = scene;
 
