@@ -129,7 +129,6 @@ namespace Chat
 
             // No viewports or scene is defined. However, the default zone's fog color controls the fill color
             Renderer.DefaultZone.FogColor = new Color(0.0f, 0.0f, 0.1f);
-
             Input.SetMouseVisible(true);
         }
 

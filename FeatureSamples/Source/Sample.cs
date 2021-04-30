@@ -496,11 +496,11 @@ namespace UrhoNetSamples
                     renderer.DynamicInstancing = !renderer.DynamicInstancing;
                     break;
 
-                case Key.N9:
-                    Image screenshot = new Image();
-                    Application.Graphics.TakeScreenShot(screenshot);
-                    screenshot.SavePNG(Application.FileSystem.ProgramDir + $"Data/Screenshot_{GetType().Name}_{DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss", CultureInfo.InvariantCulture)}.png");
-                    break;
+                // case Key.N9:
+                //     Image screenshot = new Image();
+                //     Application.Graphics.TakeScreenShot(screenshot);
+                //     screenshot.SavePNG(Application.FileSystem.ProgramDir + $"Data/Screenshot_{GetType().Name}_{DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss", CultureInfo.InvariantCulture)}.png");
+                //     break;
             }
         }
 
