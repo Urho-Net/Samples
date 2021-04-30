@@ -121,6 +121,8 @@ namespace SceneReplication
 
             UpdateButtons();
 
+            Input.SetMouseVisible(true);
+
         }
 
         void SubscribeToEvents()
