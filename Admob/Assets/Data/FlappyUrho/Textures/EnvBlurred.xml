@@ -1,0 +1,9 @@
+<cubemap>
+    <face name="EnvBlurred_c00.png" />
+    <face name="EnvBlurred_c01.png" />
+    <face name="EnvBlurred_c02.png" />
+    <face name="EnvBlurred_c03.png" />
+    <face name="EnvBlurred_c04.png" />
+    <face name="EnvBlurred_c05.png" />
+    <quality low="0" />
+</cubemap>

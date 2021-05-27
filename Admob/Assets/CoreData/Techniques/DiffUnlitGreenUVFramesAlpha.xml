@@ -1,0 +1,3 @@
+<technique vs="UnlitGreenUVFramesAlpha" ps="UnlitGreenUVFramesAlpha" psdefines="DIFFMAP ALPHAMASK">
+    <pass name="alpha" depthwrite="false" blend="alpha" />
+</technique>

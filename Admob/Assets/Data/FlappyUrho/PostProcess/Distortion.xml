@@ -1,0 +1,6 @@
+<renderpath>    
+    <command type="quad" tag="Distortion" vs="Distortion" ps="Distortion" output="viewport">
+        <parameter name="ElapsedTime" value="1.0" />
+        <texture unit="diffuse" name="viewport" />
+    </command>
+</renderpath>
