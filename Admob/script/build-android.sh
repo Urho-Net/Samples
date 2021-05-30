@@ -109,8 +109,8 @@ else
 
         aliassedinplace "s*TEMPLATE_PROJECT_NAME*$PROJECT_NAME*g" "Android/settings.gradle"
         aliassedinplace "s*TEMPLATE_PROJECT_NAME*$PROJECT_NAME*g" "Android/app/src/main/res/values/strings.xml"
-
-        # Create AndroidManifest.xml based upon the project configuration variables in project_vars.sh
+        
+        #Create AndroidManifest.xml based upon the project configuration variables in project_vars.sh
         ./script/create-android-manifest.sh
 
         if [ -n "$PLUGINS" ] ; then
@@ -121,7 +121,7 @@ else
             do
                 verify_dir_exist_or_exit "${URHONET_HOME_ROOT}/template/Plugins/${i}/android"
                 cp -R ${URHONET_HOME_ROOT}/template/Plugins/${i}/android/java/ "Android/app/src/main/java/com/urho3d/plugin/${i}"
-                cp -R ${URHONET_HOME_ROOT}/template/Plugins/${i}/android/lib/ "Android/app/src/main/jniLibs"
+                cp -R ${URHONET_HOME_ROOT}/template/Plugins/${i}/android/lib/* "Android/app/src/main/jniLibs"
 
                 echo ${i} >> "${CWD}/Assets/Data/plugins.cfg"
             done
@@ -137,6 +137,14 @@ else
             done
             echo "}" >> "Android/app/build.gradle"
         fi
+
+        if [ -n "$ANDROID_NDK_VERSION" ] ; then
+            echo " " >> "Android/app/build.gradle"
+            echo " " >> "Android/app/build.gradle"
+            echo "android  {" >> "Android/app/build.gradle"
+            echo "ndkVersion  \"$ANDROID_NDK_VERSION\"" >> "Android/app/build.gradle"
+            echo "}" >> "Android/app/build.gradle"
+        fi        
     fi
 fi
 
@@ -170,6 +178,6 @@ fi
 
 cd ${CWD}
 
-#read -p "getk: " getk
+# read -p "getk: " getk
 
 

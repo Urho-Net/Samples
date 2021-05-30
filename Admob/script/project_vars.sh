@@ -45,5 +45,8 @@ export ANDROID_PERMISSIONS=('android.permission.INTERNET' 'android.permission.AC
 # export ANDROID_DEPENDENCIES=('dependency 1' 'dependency 2' 'dependency 3' ... )
 export ANDROID_DEPENDENCIES=('com.google.android.gms:play-services-ads:20.1.0')
 
+# Uncomment if you want to Specify specific Android NDK  version
+# export ANDROID_NDK_VERSION='21.0.6113669'
+
 
 
