@@ -24897,11 +24897,6 @@
              Remove receiver. Leave holes during send, which requires later cleanup.
              </summary>
             </member>
-        <member name="T:Urho.FONT_TYPE">
-             <summary>
-             Font file type
-             </summary>
-            </member>
         <member name="T:Urho.FaceCameraMode">
              <summary>
              Billboard camera facing modes.

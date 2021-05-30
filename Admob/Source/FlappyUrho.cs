@@ -38,7 +38,7 @@ namespace Admob
         bool isVideoAdLoaded = false;
 
         [Preserve]
-        public FlappyUrho() : base(new ApplicationOptions(assetsFolder: "Data/FlappyUrho;Data;CoreData")) { }
+        public FlappyUrho() : base(new ApplicationOptions(assetsFolder: "Data/FlappyUrho;Data;CoreData"){ExternalWindow = IntPtr.Zero}) { }
 
         bool IsDesktop()
         {

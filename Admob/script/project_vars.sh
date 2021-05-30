@@ -30,8 +30,20 @@ export JAVA_PACKAGE_PATH='java/com/elix22/admob'
 # export PLUGINS=('plugin-1' 'plugin-2' 'plugin-3' ... )
 export PLUGINS=('AdmobPlugin')
 
-# Gooogle Mobile Ads Application ID , below id is a test id , set your own App ID for you r game/app
+# Gooogle Mobile Ads Application ID , below id is a test id , set your own App ID for your game/app
 # More information can be found in :
 # https://developers.google.com/admob/android/test-ads
 # https://developers.google.com/admob/ios/test-ads
 export GAD_APPLICATION_ID='ca-app-pub-3940256099942544~1458002511'
+
+
+# Add Android permissions
+# export ANDROID_PERMISSIONS=('permission 1' 'permission 2' 'permission 3' ... )
+export ANDROID_PERMISSIONS=('android.permission.INTERNET' 'android.permission.ACCESS_NETWORK_STATE')
+
+# Add dependcies for Android
+# export ANDROID_DEPENDENCIES=('dependency 1' 'dependency 2' 'dependency 3' ... )
+export ANDROID_DEPENDENCIES=('com.google.android.gms:play-services-ads:20.1.0')
+
+
+
