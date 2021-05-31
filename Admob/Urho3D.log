@@ -1,0 +1,12 @@
+[Thu May 27 12:42:45 2021] INFO: Opened log file Urho3D.log
+[Thu May 27 12:42:45 2021] INFO: Created 7 worker threads
+[Thu May 27 12:42:45 2021] INFO: Added resource path /Users/elialoni/Development/Samples/Admob/bin/Debug/netcoreapp3.1/CoreData/
+[Thu May 27 12:42:45 2021] INFO: Added resource path /Users/elialoni/Development/Samples/Admob/bin/Debug/netcoreapp3.1/Data/FlappyUrho/
+[Thu May 27 12:42:45 2021] INFO: Added resource path /Users/elialoni/Development/Samples/Admob/bin/Debug/netcoreapp3.1/Data/
+[Thu May 27 12:42:48 2021] INFO: Adapter used ATI Technologies Inc. AMD Radeon Pro 5500M OpenGL Engine
+[Thu May 27 12:42:48 2021] INFO: Set screen mode 2048x1536 rate 60 Hz windowed monitor 0 highDPI
+[Thu May 27 12:42:48 2021] INFO: Initialized input
+[Thu May 27 12:42:48 2021] INFO: Initialized user interface
+[Thu May 27 12:42:48 2021] INFO: Initialized renderer
+[Thu May 27 12:42:48 2021] INFO: Set audio mode 44100 Hz stereo interpolated
+[Thu May 27 12:42:48 2021] INFO: Initialized engine

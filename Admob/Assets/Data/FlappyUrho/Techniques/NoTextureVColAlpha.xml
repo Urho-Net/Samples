@@ -1,0 +1,9 @@
+<technique vs="LitSolid" ps="LitSolid" vsdefines="NOUV VERTEXCOLOR" psdefines="VERTEXCOLOR" >
+    <pass name="base" psdefines="AMBIENT"/>
+    <pass name="light" vsdefines="VERTEXCOLOR" depthtest="equal" depthwrite="false" blend="addalpha" />
+    <pass name="prepass" psdefines="PREPASS" />
+    <pass name="material" psdefines="MATERIAL" depthtest="equal" depthwrite="false" />
+    <pass name="deferred" psdefines="DEFERRED" />
+    <pass name="depth" vs="Depth" ps="Depth" />
+    <pass name="shadow" vs="Shadow" ps="Shadow" blend="addalpha"/>
+</technique>

@@ -1,0 +1,7 @@
+<material>
+	<technique name="Techniques/NoTextureEnvCube.xml" />
+	<texture unit="environment" name="Textures/EnvBlurred.xml" />
+	<parameter name="MatEnvMapColor" value="0.666 0.666 0.0666 1"/>
+	<parameter name="MatDiffColor" value="0.08 0.517 0.107 1"/>
+	<parameter name="MatSpecColor" value="0.533 1.0 0.915 13"/>
+</material>

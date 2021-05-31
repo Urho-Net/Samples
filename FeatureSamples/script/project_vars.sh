@@ -24,3 +24,7 @@
 export PROJECT_UUID='com.elix22.urhonetsamples'
 export PROJECT_NAME='UrhoNetSamples' 
 export JAVA_PACKAGE_PATH='java/com/elix22/urhonetsamples' 
+
+# Add Android permissions
+# export ANDROID_PERMISSIONS=('permission 1' 'permission 2' 'permission 3' ... )
+export ANDROID_PERMISSIONS=('android.permission.INTERNET' 'android.permission.ACCESS_NETWORK_STATE')

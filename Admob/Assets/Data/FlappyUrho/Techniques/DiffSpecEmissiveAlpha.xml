@@ -1,0 +1,5 @@
+<technique vs="LitSolid" ps="LitSolid" psdefines="DIFFMAP">
+    <pass name="alpha" psdefines="EMISSIVEMAP" depthwrite="true" blend="alpha" />
+    <pass name="litalpha" psdefines="SPECMAP" depthwrite="true" blend="addalpha" />
+    <pass name="shadow" vs="Shadow" ps="Shadow" psexcludes="PACKEDNORMAL" />
+</technique>
