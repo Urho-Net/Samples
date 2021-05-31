@@ -137,6 +137,7 @@ namespace Admob
 
                     // adding 10 reward points to the Highscore
                     Global.Highscore += (uint)rewardAmount;
+                    SaveHighScore();
 
                     LogSharp.Debug("onUserEarnedReward rewardType:" + rewardType + " rewardAmount:" + rewardAmount.ToString());
 
