@@ -7,6 +7,10 @@ Please follow the installation instructions of [Urho.Net](https://github.com/Urh
 [Wiki](https://github.com/Urho-Net/Samples/wiki)
 
 ## Make sure you are always using the latest version of [Urho.Net](https://github.com/Urho-Net/Urho.Net) , otherwise some of the samples might not work.
+## If you update Urho.Net , you will also have to update old projects.
+In order to do that you have to run :\
+From Urho-Net folder **./update-project.sh project-path**\
+On Windows it's **update-project.bat project-path**\
 
 
 # Google Play  
