@@ -110,8 +110,6 @@ else
         aliassedinplace "s*TEMPLATE_PROJECT_NAME*$PROJECT_NAME*g" "Android/settings.gradle"
         aliassedinplace "s*TEMPLATE_PROJECT_NAME*$PROJECT_NAME*g" "Android/app/src/main/res/values/strings.xml"
         
-        #Create AndroidManifest.xml based upon the project configuration variables in project_vars.sh
-        ./script/create-android-manifest.sh
 
         if [ -n "$PLUGINS" ] ; then
             rm "${CWD}/Assets/Data/plugins.cfg"
@@ -146,6 +144,9 @@ else
             echo "}" >> "Android/app/build.gradle"
         fi        
     fi
+
+    #Create AndroidManifest.xml based upon the project configuration variables in project_vars.sh
+    ./script/create-android-manifest.sh
 fi
 
 if [[ "$BUILD" == "debug" ]]; then

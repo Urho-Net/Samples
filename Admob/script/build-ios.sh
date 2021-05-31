@@ -61,7 +61,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
             verify_dir_exist_or_exit "${URHONET_HOME_ROOT}/template/IOS" 
             echo "copying IOS folder"
 
-            . script/project_vars.sh
             cp -R ${URHONET_HOME_ROOT}/template/IOS .
 
             sed -i ""  "s*TEMPLATE_PROJECT_NAME*$PROJECT_NAME*g" "IOS/CMakeLists.txt"
@@ -90,9 +89,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
             cp -R ${URHONET_HOME_ROOT}/template/Plugins/${i} IOS/Plugins/
         fi
     done
-    
+
     cd IOS
-    ./script/build_cli_ios.sh "$@" 
+    ./script/build_cli_ios.sh "$@"
     cd ..
 else
 	echo  "not an Apple platform , can't run"
