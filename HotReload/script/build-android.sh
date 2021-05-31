@@ -21,7 +21,9 @@
 # THE SOFTWARE.
 #
 
-ANDROID_APP_UUID=com.elix22.hotreload
+. script/project_vars.sh
+
+ANDROID_APP_UUID=${PROJECT_UUID}
 
 while getopts b:d:g:k:i:o:n: option
 do
@@ -84,9 +86,8 @@ else
         cp "-r"  ${URHONET_HOME_ROOT}/template/libs/dotnet/urho//mobile/android/*  libs/dotnet/urho//mobile/android/
     fi
 
-    # if [ ! -d Android ] ; then
+    if [ ! -d Android ] ; then
         verify_dir_exist_or_exit "${URHONET_HOME_ROOT}/template/Android" 
-        . script/project_vars.sh
 
         cp "-r" "${URHONET_HOME_ROOT}/template/Android" .
         mkdir "-p" "Android/app/src/main/${JAVA_PACKAGE_PATH}"
@@ -94,22 +95,57 @@ else
         mkdir "-p" "Android/app/src/test/${JAVA_PACKAGE_PATH}"
 
         mv "Android/app/src/main/MainActivity.kt" "Android/app/src/main/${JAVA_PACKAGE_PATH}"
-        mv "Android/app/src/main/UrhoStartActivity.kt" "Android/app/src/main/${JAVA_PACKAGE_PATH}"
+        mv "Android/app/src/main/UrhoMainActivity.kt" "Android/app/src/main/${JAVA_PACKAGE_PATH}"
         mv "Android/app/src/androidTest/ExampleInstrumentedTest.kt" "Android/app/src/androidTest/${JAVA_PACKAGE_PATH}"
         mv "Android/app/src/test/ExampleUnitTest.kt" "Android/app/src/test/${JAVA_PACKAGE_PATH}"
 
         aliassedinplace "s*TEMPLATE_UUID*$PROJECT_UUID*g" "Android/app/src/main/AndroidManifest.xml"
         aliassedinplace "s*TEMPLATE_UUID*$PROJECT_UUID*g" "Android/app/build.gradle"
         aliassedinplace "s*TEMPLATE_UUID*$PROJECT_UUID*g" "Android/app/src/main/${JAVA_PACKAGE_PATH}/MainActivity.kt"
-        aliassedinplace "s*TEMPLATE_UUID*$PROJECT_UUID*g" "Android/app/src/main/${JAVA_PACKAGE_PATH}/UrhoStartActivity.kt"
+        aliassedinplace "s*TEMPLATE_UUID*$PROJECT_UUID*g" "Android/app/src/main/${JAVA_PACKAGE_PATH}/UrhoMainActivity.kt"
 
         aliassedinplace "s*TEMPLATE_UUID*$PROJECT_UUID*g" "Android/app/src/androidTest/${JAVA_PACKAGE_PATH}/ExampleInstrumentedTest.kt"
         aliassedinplace "s*TEMPLATE_UUID*$PROJECT_UUID*g" "Android/app/src/test/${JAVA_PACKAGE_PATH}/ExampleUnitTest.kt"
 
         aliassedinplace "s*TEMPLATE_PROJECT_NAME*$PROJECT_NAME*g" "Android/settings.gradle"
         aliassedinplace "s*TEMPLATE_PROJECT_NAME*$PROJECT_NAME*g" "Android/app/src/main/res/values/strings.xml"
-    # fi
+        
+        #Create AndroidManifest.xml based upon the project configuration variables in project_vars.sh
+        ./script/create-android-manifest.sh
 
+        if [ -n "$PLUGINS" ] ; then
+            rm "${CWD}/Assets/Data/plugins.cfg"
+            touch "${CWD}/Assets/Data/plugins.cfg"
+            mkdir "-p" "Android/app/src/main/java/com/urho3d/plugin"
+            for i in "${PLUGINS[@]}"
+            do
+                verify_dir_exist_or_exit "${URHONET_HOME_ROOT}/template/Plugins/${i}/android"
+                cp -R ${URHONET_HOME_ROOT}/template/Plugins/${i}/android/java/ "Android/app/src/main/java/com/urho3d/plugin/${i}"
+                cp -R ${URHONET_HOME_ROOT}/template/Plugins/${i}/android/lib/* "Android/app/src/main/jniLibs"
+
+                echo ${i} >> "${CWD}/Assets/Data/plugins.cfg"
+            done
+        fi
+
+        if [ -n "$ANDROID_DEPENDENCIES" ] ; then
+            echo " " >> "Android/app/build.gradle"
+            echo " " >> "Android/app/build.gradle"
+            echo "dependencies {" >> "Android/app/build.gradle"
+            for i in "${ANDROID_DEPENDENCIES[@]}"
+            do
+                echo "implementation ('${i}')" >> "Android/app/build.gradle"
+            done
+            echo "}" >> "Android/app/build.gradle"
+        fi
+
+        if [ -n "$ANDROID_NDK_VERSION" ] ; then
+            echo " " >> "Android/app/build.gradle"
+            echo " " >> "Android/app/build.gradle"
+            echo "android  {" >> "Android/app/build.gradle"
+            echo "ndkVersion  \"$ANDROID_NDK_VERSION\"" >> "Android/app/build.gradle"
+            echo "}" >> "Android/app/build.gradle"
+        fi        
+    fi
 fi
 
 if [[ "$BUILD" == "debug" ]]; then

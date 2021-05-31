@@ -22,6 +22,8 @@
 #
 if [[ "$OSTYPE" == "darwin"* ]]; then
 
+    . script/project_vars.sh
+
     verify_dir_exist_or_exit()
     {
         if [ ! -d $1 ] ; then
@@ -59,7 +61,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
             verify_dir_exist_or_exit "${URHONET_HOME_ROOT}/template/IOS" 
             echo "copying IOS folder"
 
-            . script/project_vars.sh
             cp -R ${URHONET_HOME_ROOT}/template/IOS .
 
             sed -i ""  "s*TEMPLATE_PROJECT_NAME*$PROJECT_NAME*g" "IOS/CMakeLists.txt"
@@ -78,6 +79,17 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
             cp -R ${URHONET_HOME_ROOT}/template/libs/ios libs
         fi 
     fi
+
+    # copy relevant plugins
+    mkdir -p IOS/Plugins
+    for i in "${PLUGINS[@]}"
+    do
+        verify_dir_exist_or_exit "${URHONET_HOME_ROOT}/template/Plugins/${i}"
+        if [ ! -d IOS/Plugins/${i} ] ; then 
+            cp -R ${URHONET_HOME_ROOT}/template/Plugins/${i} IOS/Plugins/
+        fi
+    done
+
     cd IOS
     ./script/build_cli_ios.sh "$@"
     cd ..
