@@ -90,6 +90,18 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         fi
     done
 
+    # copy referenced DLLs to the IOS dotnet libs folder
+    if [ -n "$DOTNET_REFERENCE_DLL" ] ; then
+        for i in "${DOTNET_REFERENCE_DLL[@]}"
+        do
+            if [ -f ./References/${i} ]; then
+                cp -f ./References/${i} ./libs/dotnet/urho/mobile/ios
+            else 
+                echo "${i} not found !!"
+            fi
+        done
+    fi  
+
     cd IOS
     ./script/build_cli_ios.sh "$@"
     cd ..
