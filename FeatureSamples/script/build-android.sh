@@ -142,7 +142,18 @@ else
             echo "android  {" >> "Android/app/build.gradle"
             echo "ndkVersion  \"$ANDROID_NDK_VERSION\"" >> "Android/app/build.gradle"
             echo "}" >> "Android/app/build.gradle"
-        fi        
+        fi 
+        
+        if [ -n "$DOTNET_REFERENCE_DLL" ] ; then
+            for i in "${DOTNET_REFERENCE_DLL[@]}"
+            do
+                if [ -f ./References/${i} ]; then
+                    cp -f ./References/${i} ./libs/dotnet/urho/mobile/android
+                else 
+                    echo "${i} not found !!"
+                fi
+            done
+        fi               
     fi
 
     #Create AndroidManifest.xml based upon the project configuration variables in project_vars.sh
