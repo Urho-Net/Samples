@@ -303,7 +303,7 @@ namespace NakamaNetworking
             Controls.Yaw = float.Parse(stateDictionary["yaw"]);
             Controls.Set(Global.CtrlForward, bool.Parse(stateDictionary["forward"]));
             Controls.Set(Global.CtrlBack, bool.Parse(stateDictionary["back"]));
-            Controls.Set(Global.CtrlJump, bool.Parse(stateDictionary["left"]));
+            Controls.Set(Global.CtrlLeft, bool.Parse(stateDictionary["left"]));
             Controls.Set(Global.CtrlRight, bool.Parse(stateDictionary["right"]));
             Controls.Set(Global.CtrlJump, bool.Parse(stateDictionary["jump"]));
 
