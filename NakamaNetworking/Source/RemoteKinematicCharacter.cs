@@ -81,9 +81,14 @@ namespace NakamaNetworking
             }
             else
             {
-                physicsWorld.PhysicsPreStep -= OnPhysicsPreStep;
                 IsSceneSet = false;
             }
+        }
+
+        protected override void OnDeleted()
+        {
+            physicsWorld.PhysicsPreStep -= OnPhysicsPreStep;
+            Global.NakamaConnection.Socket.ReceivedMatchState -= EnqueueOnReceivedMatchState;
         }
 
         private void OnPhysicsPreStep(PhysicsPreStepEventArgs obj)
@@ -251,7 +256,8 @@ namespace NakamaNetworking
         /// <param name="matchState">The incoming match state data.</param>
         private void EnqueueOnReceivedMatchState(IMatchState matchState)
         {
-            Application.InvokeOnMain(() => OnReceivedMatchState(matchState));
+            if (Application.IsActive)
+                Application.InvokeOnMain(() => OnReceivedMatchState(matchState));
         }
 
         /// <summary>

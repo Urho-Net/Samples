@@ -87,9 +87,9 @@ namespace NakamaNetworking
 
             players = new Dictionary<string, Node>();
 
-           Global.NakamaConnection = new NakamaClient();
+            Global.NakamaConnection = new NakamaClient();
             await Global.NakamaConnection.Connect();
-    
+
             Global.NakamaConnection.Socket.ReceivedMatchmakerMatched += m => InvokeOnMain(() => OnReceivedMatchmakerMatched(m));
             Global.NakamaConnection.Socket.ReceivedMatchPresence += m => InvokeOnMain(() => OnReceivedMatchPresence(m));
 
@@ -101,6 +101,14 @@ namespace NakamaNetworking
         {
             base.Stop();
             UnSubscribeFromEvents();
+
+            foreach (var player in players)
+            {
+                player.Value.Remove();
+            }
+
+            players.Clear();
+
         }
 
 
@@ -423,6 +431,7 @@ namespace NakamaNetworking
             objectNode.CreateComponent<RemoteKinematicCharacter>();
             return objectNode;
         }
+
 
         /// <summary>
         /// Called when a MatchmakerMatched event is received from the Nakama server.
