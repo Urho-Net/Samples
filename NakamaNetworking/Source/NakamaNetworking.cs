@@ -65,7 +65,7 @@ namespace NakamaNetworking
             if (TouchEnabled)
                 touch = new Touch(TouchSensitivity, Input);
             CreateScene();
-            localPlayer = CreateLocalCharacter();
+            localPlayer = CreateCharacter();
 
             if (isMobile)
             {
@@ -93,7 +93,7 @@ namespace NakamaNetworking
             Global.NakamaConnection.Socket.ReceivedMatchmakerMatched += m => InvokeOnMain(() => OnReceivedMatchmakerMatched(m));
             Global.NakamaConnection.Socket.ReceivedMatchPresence += m => InvokeOnMain(() => OnReceivedMatchPresence(m));
 
-            await Global.NakamaConnection.FindMatch(2);
+            await Global.NakamaConnection.FindMatch(2,32);
 
         }
 
@@ -343,12 +343,13 @@ namespace NakamaNetworking
             // }
         }
 
-        Node CreateLocalCharacter()
+        Node CreateCharacter(bool isRemote = false)
         {
             var cache = ResourceCache;
 
             Node objectNode = scene.CreateChild("Jack");
-            objectNode.Position = new Vector3(NextRandom(-70.0f, 70.0f), 5.0f, NextRandom(-70.0f, 70.0f));
+   
+            objectNode.Position = new Vector3(NextRandom(-10.0f, 10.0f), 5.0f, NextRandom(-10.0f, 10.0f));
 
             // spin node
             Node adjustNode = objectNode.CreateChild("AdjNode");
@@ -379,56 +380,22 @@ namespace NakamaNetworking
 
             // Set a capsule shape for collision
             CollisionShape shape = objectNode.CreateComponent<CollisionShape>();
-            shape.SetCapsule(0.7f, 1.8f, new Vector3(0.0f, 0.9f, 0.0f), Quaternion.Identity);
+            shape.SetCapsule(0.8f, 1.8f, new Vector3(0.0f, 0.9f, 0.0f), Quaternion.Identity);
 
             // Create the character logic component, which takes care of steering the rigidbody
             // Remember it so that we can set the controls. Use a WeakPtr because the scene hierarchy already owns it
             // and keeps it alive as long as it's not removed from the hierarchy
-            LocalCharacter = objectNode.CreateComponent<LocalKinematicCharacter>();
+            if (isRemote == false)
+            {
+                // creating local character
+                LocalCharacter = objectNode.CreateComponent<LocalKinematicCharacter>();
+            }
+            else
+            {
+                // creating remote network character
+                objectNode.CreateComponent<RemoteKinematicCharacter>();
+            }
 
-            return objectNode;
-        }
-
-
-        Node CreateRemoteCharacter()
-        {
-            var cache = ResourceCache;
-
-            Node objectNode = scene.CreateChild("Jack");
-            objectNode.Position = new Vector3(0.0f, 1.0f, 0.0f);
-
-            // spin node
-            Node adjustNode = objectNode.CreateChild("AdjNode");
-            adjustNode.Rotation = (new Quaternion(0, 180, 0));
-
-            // Create the rendering component + animation controller
-            AnimatedModel obj = adjustNode.CreateComponent<AnimatedModel>();
-            obj.Model = cache.GetModel("Models/Mutant/Mutant.mdl");
-            obj.SetMaterial(cache.GetMaterial("Models/Mutant/Materials/mutant_M.xml"));
-            obj.CastShadows = true;
-            adjustNode.CreateComponent<AnimationController>();
-
-            // Set the head bone for manual control
-            obj.Skeleton.GetBoneSafe("Mutant:Head").Animated = false;
-
-            // Create rigidbody, and set non-zero mass so that the body becomes dynamic
-            RigidBody body = objectNode.CreateComponent<RigidBody>();
-            body.CollisionLayer = 1;
-            body.Kinematic = true;
-            body.Trigger = true;
-
-            // Set zero angular factor so that physics doesn't turn the character on its own.
-            // Instead we will control the character yaw manually
-            body.SetAngularFactor(Vector3.Zero);
-
-            // Set the rigidbody to signal collision also when in rest, so that we get ground collisions properly
-            body.CollisionEventMode = CollisionEventMode.Always;
-
-            // Set a capsule shape for collision
-            CollisionShape shape = objectNode.CreateComponent<CollisionShape>();
-            shape.SetCapsule(0.7f, 1.8f, new Vector3(0.0f, 0.9f, 0.0f), Quaternion.Identity);
-
-            objectNode.CreateComponent<RemoteKinematicCharacter>();
             return objectNode;
         }
 
@@ -494,7 +461,7 @@ namespace NakamaNetworking
 
             if (!isLocal)
             {
-                var player = CreateRemoteCharacter();
+                var player = CreateCharacter(true);
                 player.GetComponent<RemoteKinematicCharacter>().NetworkData = new RemotePlayerNetworkData
                 {
                     MatchId = matchId,

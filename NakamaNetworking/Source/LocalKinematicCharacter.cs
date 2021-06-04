@@ -127,16 +127,6 @@ namespace NakamaNetworking
 
             kinematicController.SetWalkDirection(curMoveDir * (softGrounded ? MOVE_FORCE : INAIR_MOVE_FORCE));
 
-            Vector3 position;
-            Quaternion rotation;
-
-            kinematicController.GetTransform(out position, out rotation);
-            Global.SendMatchState(
-                OpCodes.VelocityAndPositionAndRotation,
-                MatchDataJson.VelocityPositionRotation(curMoveDir * (softGrounded ? MOVE_FORCE : INAIR_MOVE_FORCE), position,rotation));
-
-            Global.SendMatchState(OpCodes.Input,MatchDataJson.ControlsInput(Controls));
-
             if (softGrounded)
             {
                 // Jump. Must release jump control between jumps
@@ -203,6 +193,17 @@ namespace NakamaNetworking
                     animCtrl.PlayExclusive("Models/Mutant/Mutant_Idle0.ani", 0, true, 0.2f);
                 }
             }
+
+            
+            // send data over network
+            Vector3 position;
+            Quaternion rotation;
+            kinematicController.GetTransform(out position, out rotation);
+            Global.SendMatchState(
+                OpCodes.VelocityAndPositionAndRotation,
+                MatchDataJson.VelocityPositionRotation(curMoveDir * (softGrounded ? MOVE_FORCE : INAIR_MOVE_FORCE), position, rotation));
+
+            Global.SendMatchState(OpCodes.Input, MatchDataJson.ControlsInput(Controls));
 
         }
 

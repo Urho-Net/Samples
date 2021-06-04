@@ -56,6 +56,9 @@ namespace NakamaNetworking
         PhysicsWorld physicsWorld = null;
 
         bool IsSceneSet = false;
+        Vector3 NewPosition = Vector3.Zero;
+        Quaternion NewRotation = Quaternion.Identity;
+
 
         public RemoteKinematicCharacter()
         {
@@ -123,12 +126,19 @@ namespace NakamaNetworking
             kinematicController = kinematicController ?? Node.GetComponent<KinematicCharacterController>(true);
 
             if(IsSceneSet == false || kinematicController == null)return;
+            
 
+            Vector3 oldPosition;
+            Quaternion oldRotation;
+            kinematicController.GetTransform(out oldPosition, out oldRotation);
+
+            var position = Vector3.Lerp(oldPosition, NewPosition, 0.1f);
+            var rotation = Quaternion.Slerp(oldRotation, NewRotation, 0.1f);
+            kinematicController.SetTransform(position, rotation);
+            
             SetCharacaterOrientation();
             
             onGround = kinematicController.OnGround();
-
-
 
             // Update the in air timer. Reset if grounded
             if (!onGround)
@@ -329,10 +339,9 @@ namespace NakamaNetworking
             var stateDictionary = GetStateAsDictionary(state);
 
             var velocity = new Vector3(float.Parse(stateDictionary["velocity.x"]), float.Parse(stateDictionary["velocity.y"]), float.Parse(stateDictionary["velocity.z"]));
-            var position = new Vector3(float.Parse(stateDictionary["position.x"]), float.Parse(stateDictionary["position.y"]), float.Parse(stateDictionary["position.z"]));
-            var rotation = new Quaternion(float.Parse(stateDictionary["rotation.x"]), float.Parse(stateDictionary["rotation.y"]), float.Parse(stateDictionary["rotation.z"]), float.Parse(stateDictionary["rotation.w"]));
-
-            kinematicController.SetTransform(position, rotation);
+            NewPosition = new Vector3(float.Parse(stateDictionary["position.x"]), float.Parse(stateDictionary["position.y"]), float.Parse(stateDictionary["position.z"]));
+            NewRotation = new Quaternion(float.Parse(stateDictionary["rotation.x"]), float.Parse(stateDictionary["rotation.y"]), float.Parse(stateDictionary["rotation.z"]), float.Parse(stateDictionary["rotation.w"]));
+            
         }
 
     }

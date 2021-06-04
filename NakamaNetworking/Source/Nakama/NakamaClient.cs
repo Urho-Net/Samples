@@ -48,15 +48,15 @@ namespace NakamaNetworking
                 Client = new Nakama.Client(Scheme, Host, Port, ServerKey);
 
                 // Attempt to restore an existing user session.
-                var authToken = PlayerPrefs.GetString(SessionPrefName);
-                if (!string.IsNullOrEmpty(authToken))
-                {
-                    var session = Nakama.Session.Restore(authToken);
-                    if (!session.IsExpired)
-                    {
-                        Session = session;
-                    }
-                }
+                // var authToken = PlayerPrefs.GetString(SessionPrefName);
+                // if (!string.IsNullOrEmpty(authToken))
+                // {
+                //     var session = Nakama.Session.Restore(authToken);
+                //     if (!session.IsExpired)
+                //     {
+                //         Session = session;
+                //     }
+                // }
 
                 // If we weren't able to restore an existing session, authenticate to create a new user session.
                 if (Session == null)
@@ -100,13 +100,13 @@ namespace NakamaNetworking
         /// <summary>
         /// Starts looking for a match with a given number of minimum players.
         /// </summary>
-        public async Task FindMatch(int minPlayers = 2)
+        public async Task FindMatch(int minPlayers = 2 , int maxPlayers = 2)
         {
             if (IsConnectedToNakamaServer() == false) return;
 
             if (currentMatchmakingTicket == String.Empty)
             {
-                var matchMakingTicket = await Socket.AddMatchmakerAsync("*", minPlayers, minPlayers);
+                var matchMakingTicket = await Socket.AddMatchmakerAsync("*", minPlayers, maxPlayers);
                 currentMatchmakingTicket = matchMakingTicket.Ticket;
             }
         }
