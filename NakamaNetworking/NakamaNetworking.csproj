@@ -1,0 +1,178 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup>          
+    <TieredCompilation>false</TieredCompilation>          
+    <AssemblyName>Game</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>false</Optimize>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType></DebugType>
+    <Optimize>true</Optimize>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IsWindows Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))' == 'true'">true</IsWindows> 
+    <IsOSX Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))' == 'true'">true</IsOSX> 
+    <IsLinux Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' == 'true'">true</IsLinux>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AssetsSourceFiles Include="Assets/**/*.*" />
+  </ItemGroup>
+  
+  <PropertyGroup>
+    <HomeDir>$(UserProfile)</HomeDir>
+    <HomeDir Condition="'$(HomeDir)' == ''">$(Home)</HomeDir>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <UrhoNetHome>$(HomeDir)/.urhonet_config/UrhoNetHome.config</UrhoNetHome>
+  </PropertyGroup>
+
+
+  <ItemGroup Condition="'$(IsWindows)'=='true' Or '$(IsOSX)'=='true' Or '$(IsLinux)'=='true'">
+    <None Remove="Android\**" />
+    <None Remove="IOS\**" />
+    <None Remove="libs\dotnet\bcl\ios\**" />
+    <None Remove="libs\dotnet\bcl\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="libs\dotnet\bcl\ios\Consts.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="libs\dotnet\urho\mobile\.DS_Store" />
+    <None Remove="libs\dotnet\urho\mobile\ios\UrhoDotNet.dll" />
+    <None Remove="libs\dotnet\urho\mobile\android\UrhoDotNet.dll" />
+    <None Remove="libs\ios\lib-urho3d-mono-aot.a" />
+    <None Remove="libs\ios\libmono-native.iphone.fat.a" />
+    <None Remove="libs\ios\libmonosgen-2.0.iphone.fat.a" />
+    <None Remove="libs\ios\libmono-ee-interp.iphone.fat.a" />
+    <None Remove="libs\ios\libmono-icall-table.iphone.fat.a" />
+    <None Remove="libs\ios\libmono-ilgen.iphone.fat.a" />
+    <None Remove="libs\ios\libmono-profiler-log.iphone.fat.a" />
+    <None Remove="Assets\Data\DotNet\.DS_Store" />
+    <None Remove="Assets\Data\DotNet\Game.dll" />
+    <None Remove="Assets\Data\DotNet\ios\UrhoDotNet.dll" />
+    <None Remove="Assets\Data\DotNet\ios\mscorlib.dll" />
+    <None Remove="Assets\Data\DotNet\ios\System.Threading.Tasks.dll" />
+    <None Remove="Assets\Data\DotNet\ios\Mono.Security.dll" />
+    <None Remove="Assets\Data\DotNet\ios\System.Runtime.dll" />
+    <None Remove="Assets\Data\DotNet\ios\System.dll" />
+    <None Remove="Assets\Data\DotNet\ios\System.Numerics.dll" />
+    <None Remove="Assets\Data\DotNet\ios\System.Xml.dll" />
+    <None Remove="Assets\Data\DotNet\ios\System.Core.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AssetsSourceFiles Remove="Assets\Data\DotNet\.DS_Store" />
+    <AssetsSourceFiles Remove="Assets\Data\DotNet\Game.dll" />
+    <AssetsSourceFiles Remove="Assets\Data\DotNet\ios\UrhoDotNet.dll" />
+    <AssetsSourceFiles Remove="Assets\Data\DotNet\ios\mscorlib.dll" />
+    <AssetsSourceFiles Remove="Assets\Data\DotNet\ios\System.Threading.Tasks.dll" />
+    <AssetsSourceFiles Remove="Assets\Data\DotNet\ios\Mono.Security.dll" />
+    <AssetsSourceFiles Remove="Assets\Data\DotNet\ios\System.Runtime.dll" />
+    <AssetsSourceFiles Remove="Assets\Data\DotNet\ios\System.dll" />
+    <AssetsSourceFiles Remove="Assets\Data\DotNet\ios\System.Numerics.dll" />
+    <AssetsSourceFiles Remove="Assets\Data\DotNet\ios\System.Xml.dll" />
+    <AssetsSourceFiles Remove="Assets\Data\DotNet\ios\System.Core.dll" />
+  </ItemGroup>
+  
+
+  <ItemGroup>
+    <AndroidAssetsDestinationDir Include="Android/app/src/main/assets/Data/DotNet" />
+  </ItemGroup>
+
+
+  <Target Name="CustomBeforeBuild" BeforeTargets="BeforeBuild" >
+    <Error Condition="! Exists('$(UrhoNetHome)')" Text="Urho.Net is not configured , please run configure.sh (configure.bat on Windows) from the Urho.Net installation folder " /> 
+    <XmlPeek XmlInputPath="$(UrhoNetHome)" Query="UrhoNetHome/add[@key='UrhoNetHome']/@value">
+        <Output TaskParameter="Result" ItemName="URHONET_HOME_ROOT" />
+    </XmlPeek>
+    <Message Text="URHONET_HOME_ROOT=@(URHONET_HOME_ROOT)" Importance="high" />
+    <ItemGroup>
+      <Reference Include="UrhoDotNet">
+        <HintPath>@(URHONET_HOME_ROOT)\template\libs\dotnet\urho\desktop\UrhoDotNet.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+    <PropertyGroup>
+      <UrhoDotNetDLL>@(URHONET_HOME_ROOT)\template\libs\dotnet\urho\desktop\UrhoDotNet.dll</UrhoDotNetDLL>
+    </PropertyGroup>  
+    <Copy SourceFiles="$(UrhoDotNetDLL)" DestinationFolder="References" ContinueOnError="true" />
+    <PropertyGroup>
+    <UrhoDotNetXML>@(URHONET_HOME_ROOT)\template\libs\dotnet\urho\desktop\UrhoDotNet.xml</UrhoDotNetXML>
+    </PropertyGroup>  
+    <Copy SourceFiles="$(UrhoDotNetXML)" DestinationFolder="References" ContinueOnError="true" />
+    <Delete Files="Android/app/src/main/assets/Data/DotNet/Game.dll" />
+  </Target>
+
+  <Target Name="CopyCustomContentWindows" AfterTargets="AfterBuild" Condition="'$(IsWindows)'=='true'">
+    <PropertyGroup>
+      <libUrho3D>@(URHONET_HOME_ROOT)/template/libs/windows/Urho3D.dll</libUrho3D>
+    </PropertyGroup>  
+    <Error Condition="! Exists('$(libUrho3D)')" Text="Urho3D.dll not found are you sure URHONET_HOME_ROOT is pointing to the right place ?" /> 
+    <Copy SourceFiles="@(AssetsSourceFiles)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="true" Retries="3" RetryDelayMilliseconds="300" />
+    <Copy SourceFiles="$(libUrho3D)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(OutDir)/Game.dll" DestinationFolder="Assets/Data/DotNet" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(OutDir)/Game.dll" DestinationFolder="@(AndroidAssetsDestinationDir)" SkipUnchangedFiles="true" />
+  </Target>
+
+
+  <Target Name="CopyCustomContentMacOS" AfterTargets="AfterBuild" Condition="'$(IsOSX)'=='true'">
+    <PropertyGroup>
+      <libUrho3D>@(URHONET_HOME_ROOT)/template/libs/macos/libUrho3D.dylib</libUrho3D>
+    </PropertyGroup>
+    <Error Condition="! Exists('$(libUrho3D)')" Text="libUrho3D.dylib not found are you sure URHONET_HOME_ROOT is pointing to the right place ?" /> 
+    <Copy SourceFiles="@(AssetsSourceFiles)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="true" Retries="3" RetryDelayMilliseconds="300" />
+    <Copy SourceFiles="$(libUrho3D)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(OutDir)/Game.dll" DestinationFolder="Assets/Data/DotNet" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(OutDir)/Game.dll" DestinationFolder="@(AndroidAssetsDestinationDir)" SkipUnchangedFiles="true" />
+  </Target>
+
+
+  <Target Name="CopyCustomContentLinux" AfterTargets="AfterBuild" Condition="'$(IsLinux)'=='true'">
+    <PropertyGroup>
+      <libUrho3D>@(URHONET_HOME_ROOT)/template/libs/linux/libUrho3D.so</libUrho3D>
+    </PropertyGroup>
+    <Error Condition="! Exists('$(libUrho3D)')" Text="libUrho3D.so not found are you sure URHONET_HOME_ROOT is pointing to the right place ?" /> 
+    <Copy SourceFiles="@(AssetsSourceFiles)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="true" Retries="3" RetryDelayMilliseconds="300" />
+    <Copy SourceFiles="$(libUrho3D)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(OutDir)/Game.dll" DestinationFolder="Assets/Data/DotNet" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(OutDir)/Game.dll" DestinationFolder="@(AndroidAssetsDestinationDir)" SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name = "CustomAfterClean" AfterTargets="AfterClean">
+        <Message Text="Urho.Net clean all" Importance="high" />
+        <RemoveDir Directories="bin" />
+        <RemoveDir Directories="Android" />
+        <RemoveDir Directories="IOS" />
+        <RemoveDir Directories="libs" />
+        <RemoveDir Directories="output" />
+        <RemoveDir Directories="obj" />
+        <RemoveDir Directories= "Assets/Data/DotNet" />
+  </Target>
+
+  <!-- needed for intellisense -->
+  <ItemGroup>
+    <Reference Include="UrhoDotNet" >
+        <HintPath>References\UrhoDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Nakama" >
+        <HintPath>References\Nakama.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
