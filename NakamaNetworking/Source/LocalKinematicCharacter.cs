@@ -217,7 +217,7 @@ namespace NakamaNetworking
 
             matchStateTimer += obj.TimeStep;
 
-            // send data over network
+            // send data over network every 50 ms.
             if (matchStateTimer > Global.matchStateThresholdTime)
             {
                 Vector3 position;

@@ -89,13 +89,16 @@ namespace NakamaNetworking
 
             try
             {
+                ClearInfoText();
                 Global.NakamaConnection = new NakamaClient();
                 await Global.NakamaConnection.Connect();
-
+                UpdateInfoText("CONNECTED TO SERVER \nFINDING MATCH");
                 Global.NakamaConnection.Socket.ReceivedMatchmakerMatched += m => InvokeOnMain(() => OnReceivedMatchmakerMatched(m));
                 Global.NakamaConnection.Socket.ReceivedMatchPresence += m => InvokeOnMain(() => OnReceivedMatchPresence(m));
 
                 await Global.NakamaConnection.FindMatch(2, 32);
+
+                
             }
             catch (Exception ex)
             {
@@ -416,6 +419,8 @@ namespace NakamaNetworking
             // Cache a reference to the local user.
             localUser = matched.Self.Presence;
 
+            UpdateInfoText("RECEIVED MATCH PRESENSE");
+
             // Join the match.
             var match = await Global.NakamaConnection.Socket.JoinMatchAsync(matched);
             
@@ -453,6 +458,7 @@ namespace NakamaNetworking
                 {
                     players[user.SessionId].Remove();
                     players.Remove(user.SessionId);
+                    UpdateInfoText("REMOTE USER LEFT : " + user.SessionId);
                 }
             }
         }
@@ -470,6 +476,8 @@ namespace NakamaNetworking
 
             if (!isLocal)
             {
+                UpdateInfoText("REMOTE USER JOINED  : " + user.SessionId);
+
                 var player = CreateCharacter(true);
                 player.GetComponent<RemoteKinematicCharacter>().NetworkData = new RemotePlayerNetworkData
                 {

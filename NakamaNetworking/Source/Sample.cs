@@ -44,7 +44,7 @@ namespace NakamaNetworking
 		protected int screenJoystickIndex = -1;
 		static string DefaultJoystickLayout = "";
 
-		Text infoText;
+		private Text infoText;
 
 
         protected enum E_JoystickType
@@ -246,16 +246,6 @@ namespace NakamaNetworking
 	
 	    protected void SimpleCreateInstructions(string text = "", Color textColor = new Color())
         {
-            text += "\nPress Info to toggle this textual information";
-
-            if (isMobile)
-            {
-                text += "\nPress <<<< to go back to the main list";
-            }
-            else
-            {
-                text += "\nPress Esacpe to go back to the main list";
-            }
 
             infoText = new Text()
             {
@@ -284,6 +274,15 @@ namespace NakamaNetworking
 
             infoText.Visible = true;
         }
+
+		public void ClearInfoText()
+		{
+			InvokeOnMain(() => infoText.Value = "");
+		}		
+		public void UpdateInfoText(string info)
+		{
+			InvokeOnMain(() => infoText.Value += "\n" + info);
+		}
 
 
 		void CreateLogo()
