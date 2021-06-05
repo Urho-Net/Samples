@@ -116,7 +116,7 @@ namespace NakamaNetworking
             var position = Vector3.Lerp(oldPosition, NewPosition, 0.5f);
             var rotation = Quaternion.Slerp(oldRotation, NewRotation, 0.5f);
             kinematicController.SetTransform(position, rotation);
-            kinematicController.SetLinearVelocity(Vector3.Lerp(kinematicController.LinearVelocity, NewLinearVelocity, 0.5f));
+            kinematicController.SetLinearVelocity(NewLinearVelocity);
 
         }
 

@@ -92,10 +92,11 @@ namespace NakamaNetworking
                 ClearInfoText();
                 Global.NakamaConnection = new NakamaClient();
                 await Global.NakamaConnection.Connect();
-                UpdateInfoText("CONNECTED TO SERVER \nFINDING MATCH");
+                UpdateInfoText("CONNECTED TO SERVER \nFINDING MATCH PLEASE WAIT...");
                 Global.NakamaConnection.Socket.ReceivedMatchmakerMatched += m => InvokeOnMain(() => OnReceivedMatchmakerMatched(m));
                 Global.NakamaConnection.Socket.ReceivedMatchPresence += m => InvokeOnMain(() => OnReceivedMatchPresence(m));
 
+                // find match of minimum 2 players and maximum 32
                 await Global.NakamaConnection.FindMatch(2, 32);
 
                 
