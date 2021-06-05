@@ -37,6 +37,7 @@ namespace NakamaNetworking
         /// In air timer. Due to possible physics inaccuracy, character can be off ground for max. 1/10 second and still be allowed to move.
         float inAirTimer;
 
+        float matchStateTimer = 0.0f;
         public AnimationController animCtrl;
         KinematicCharacterController kinematicController;
 
@@ -63,11 +64,25 @@ namespace NakamaNetworking
 
             if (scene != null)
             {
-                kinematicController= Node.CreateComponent<KinematicCharacterController>();
+                kinematicController = Node.CreateComponent<KinematicCharacterController>();
                 physicsWorld = Scene.GetComponent<PhysicsWorld>();
-                physicsWorld.PhysicsPreStep += (args) => FixedUpdate(args.TimeStep);
+                physicsWorld.PhysicsPreStep += OnPhysicsPreStep;
+
+                Application.Engine.PostUpdate += HandlePostUpdate;
             }
         }
+
+        protected override void OnDeleted()
+        {
+            physicsWorld.PhysicsPreStep -= OnPhysicsPreStep;
+            Application.Engine.PostUpdate -= HandlePostUpdate;
+        }
+
+        private void OnPhysicsPreStep(PhysicsPreStepEventArgs obj)
+        {
+            FixedUpdate(obj.TimeStep);
+        }
+
         void FixedUpdate(float timeStep)
         {
             animCtrl = animCtrl ?? Node.GetComponent<AnimationController>(true);
@@ -182,7 +197,7 @@ namespace NakamaNetworking
             else
             {
                 // Play walk animation if moving on ground, otherwise fade it out
-                if ((softGrounded) &&  !moveDir.Equals(Vector3.Zero))
+                if ((softGrounded) && !moveDir.Equals(Vector3.Zero))
                 {
                     animCtrl.PlayExclusive("Models/Mutant/Mutant_Run.ani", 0, true, 0.2f);
                     // Set walk animation speed proportional to velocity
@@ -194,17 +209,28 @@ namespace NakamaNetworking
                 }
             }
 
-            
+        }
+
+        // Send Character transform,physics and key input data over the network to the other players
+        private async void HandlePostUpdate(PostUpdateEventArgs obj)
+        {
+
+            matchStateTimer += obj.TimeStep;
+
             // send data over network
-            Vector3 position;
-            Quaternion rotation;
-            kinematicController.GetTransform(out position, out rotation);
-            Global.SendMatchState(
-                OpCodes.VelocityAndPositionAndRotation,
-                MatchDataJson.VelocityPositionRotation(curMoveDir * (softGrounded ? MOVE_FORCE : INAIR_MOVE_FORCE), position, rotation));
+            if (matchStateTimer > Global.matchStateThresholdTime)
+            {
+                Vector3 position;
+                Quaternion rotation;
+                kinematicController.GetTransform(out position, out rotation);
+                await Global.SendMatchState(
+                    OpCodes.VelocityAndPositionAndRotation,
+                    MatchDataJson.VelocityPositionRotation(kinematicController.LinearVelocity, position, rotation));
 
-            Global.SendMatchState(OpCodes.Input, MatchDataJson.ControlsInput(Controls));
+                await Global.SendMatchState(OpCodes.Input, MatchDataJson.ControlsInput(Controls));
 
+                matchStateTimer = 0.0f;
+            }
         }
 
     }

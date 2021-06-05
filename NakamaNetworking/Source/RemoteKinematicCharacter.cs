@@ -56,6 +56,8 @@ namespace NakamaNetworking
         PhysicsWorld physicsWorld = null;
 
         bool IsSceneSet = false;
+
+        Vector3 NewLinearVelocity = Vector3.Zero;
         Vector3 NewPosition = Vector3.Zero;
         Quaternion NewRotation = Quaternion.Identity;
 
@@ -74,12 +76,13 @@ namespace NakamaNetworking
 
             if (scene != null)
             {
-                kinematicController= Node.CreateComponent<KinematicCharacterController>();
+                kinematicController = Node.CreateComponent<KinematicCharacterController>();
                 physicsWorld = Scene.GetComponent<PhysicsWorld>();
                 physicsWorld.PhysicsPreStep += OnPhysicsPreStep;
 
                 // Add an event listener to handle incoming match state data.
                 Global.NakamaConnection.Socket.ReceivedMatchState += EnqueueOnReceivedMatchState;
+                Application.Engine.PostUpdate += HandlePostUpdate;
                 IsSceneSet = true;
             }
             else
@@ -88,9 +91,11 @@ namespace NakamaNetworking
             }
         }
 
+
         protected override void OnDeleted()
         {
             physicsWorld.PhysicsPreStep -= OnPhysicsPreStep;
+            Application.Engine.PostUpdate -= HandlePostUpdate;
             Global.NakamaConnection.Socket.ReceivedMatchState -= EnqueueOnReceivedMatchState;
         }
 
@@ -120,24 +125,17 @@ namespace NakamaNetworking
             Node.Rotation = Quaternion.FromAxisAngle(Vector3.UnitY, Controls.Yaw);
         }
 
+
+        // update Remote character Animation , based upon the key inputs recieved over the network from the remote character.
         void FixedUpdate(float timeStep)
         {
             animCtrl = animCtrl ?? Node.GetComponent<AnimationController>(true);
             kinematicController = kinematicController ?? Node.GetComponent<KinematicCharacterController>(true);
 
-            if(IsSceneSet == false || kinematicController == null)return;
-            
+            if (IsSceneSet == false || kinematicController == null) return;
 
-            Vector3 oldPosition;
-            Quaternion oldRotation;
-            kinematicController.GetTransform(out oldPosition, out oldRotation);
-
-            var position = Vector3.Lerp(oldPosition, NewPosition, 0.1f);
-            var rotation = Quaternion.Slerp(oldRotation, NewRotation, 0.1f);
-            kinematicController.SetTransform(position, rotation);
-            
             SetCharacaterOrientation();
-            
+
             onGround = kinematicController.OnGround();
 
             // Update the in air timer. Reset if grounded
@@ -155,9 +153,6 @@ namespace NakamaNetworking
             var LinearVelocity = kinematicController.LinearVelocity;
             // Velocity on the XZ plane
             Vector3 planeVelocity = new Vector3(LinearVelocity.X, 0.0f, LinearVelocity.Z);
-
-
-
 
             if (Controls.IsDown(Global.CtrlForward))
                 moveDir += Vector3.Forward;
@@ -177,20 +172,6 @@ namespace NakamaNetworking
             if (moveDir.LengthSquared > 0.0f)
                 moveDir.Normalize();
 
-            // rotate movedir
-            Vector3 velocity = rot * moveDir;
-            if (onGround)
-            {
-                curMoveDir = velocity;
-            }
-            else
-            {   // In-air direction control is limited
-                curMoveDir = Vector3.Lerp(curMoveDir, velocity, 0.03f);
-            }
-
-            kinematicController.SetWalkDirection(curMoveDir * (softGrounded ? MOVE_FORCE : INAIR_MOVE_FORCE));
-            
-
             if (softGrounded)
             {
                 // Jump. Must release jump control between jumps
@@ -200,12 +181,9 @@ namespace NakamaNetworking
                     {
                         okToJump = false;
                         jumpStarted = true;
-                        kinematicController.Jump(Vector3.Zero);
 
                         animCtrl.StopLayer(0);
                         animCtrl.PlayExclusive("Models/Mutant/Mutant_Jump1.ani", 0, false, 0.2f);
-
-
                         animCtrl.SetTime("Models/Mutant/Mutant_Jump1.ani", 0);
                     }
                 }
@@ -213,7 +191,6 @@ namespace NakamaNetworking
                 {
                     okToJump = true;
                 }
-
             }
 
 
@@ -246,7 +223,7 @@ namespace NakamaNetworking
             else
             {
                 // Play walk animation if moving on ground, otherwise fade it out
-                if ((softGrounded) &&  !moveDir.Equals(Vector3.Zero))
+                if ((softGrounded) && !moveDir.Equals(Vector3.Zero))
                 {
                     animCtrl.PlayExclusive("Models/Mutant/Mutant_Run.ani", 0, true, 0.2f);
                     // Set walk animation speed proportional to velocity
@@ -257,6 +234,22 @@ namespace NakamaNetworking
                     animCtrl.PlayExclusive("Models/Mutant/Mutant_Idle0.ani", 0, true, 0.2f);
                 }
             }
+
+        }
+
+        // update remote character transform and physics , based upon the networking data recieved from the remote character
+        private void HandlePostUpdate(PostUpdateEventArgs obj)
+        {
+            if (IsSceneSet == false || kinematicController == null) return;
+
+            Vector3 oldPosition;
+            Quaternion oldRotation;
+            kinematicController.GetTransform(out oldPosition, out oldRotation);
+
+            var position = Vector3.Lerp(oldPosition, NewPosition, 0.5f);
+            var rotation = Quaternion.Slerp(oldRotation, NewRotation, 0.5f);
+            kinematicController.SetTransform(position, rotation);
+            kinematicController.SetLinearVelocity(Vector3.Lerp(kinematicController.LinearVelocity, NewLinearVelocity, 0.5f));
 
         }
 
@@ -291,7 +284,7 @@ namespace NakamaNetworking
                 case OpCodes.Input:
                     SetInputFromState(matchState.State);
                     break;
-     
+
             }
         }
 
@@ -323,11 +316,11 @@ namespace NakamaNetworking
             Controls.Set(Global.CtrlRight, bool.Parse(stateDictionary["right"]));
             Controls.Set(Global.CtrlJump, bool.Parse(stateDictionary["jump"]));
 
-            var axisInput = new Vector2(float.Parse(stateDictionary["axis.x"]),float.Parse(stateDictionary["axis.y"]));
+            var axisInput = new Vector2(float.Parse(stateDictionary["axis.x"]), float.Parse(stateDictionary["axis.y"]));
             Controls.ExtraData["axis_0"] = axisInput;
 
         }
-    
+
         /// <summary>
         /// Updates the player's velocity and position based on incoming state data.
         /// </summary>
@@ -338,10 +331,10 @@ namespace NakamaNetworking
 
             var stateDictionary = GetStateAsDictionary(state);
 
-            var velocity = new Vector3(float.Parse(stateDictionary["velocity.x"]), float.Parse(stateDictionary["velocity.y"]), float.Parse(stateDictionary["velocity.z"]));
+            NewLinearVelocity = new Vector3(float.Parse(stateDictionary["velocity.x"]), float.Parse(stateDictionary["velocity.y"]), float.Parse(stateDictionary["velocity.z"]));
             NewPosition = new Vector3(float.Parse(stateDictionary["position.x"]), float.Parse(stateDictionary["position.y"]), float.Parse(stateDictionary["position.z"]));
             NewRotation = new Quaternion(float.Parse(stateDictionary["rotation.x"]), float.Parse(stateDictionary["rotation.y"]), float.Parse(stateDictionary["rotation.z"]), float.Parse(stateDictionary["rotation.w"]));
-            
+
         }
 
     }

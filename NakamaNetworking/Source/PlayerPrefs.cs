@@ -14,7 +14,7 @@ public static  class PlayerPrefs
         application = app;
 
         // Application Type = NameSpace.ClassName
-        applicationName = application.GetType().ToString().Split('.')[1];
+        applicationName = application.GetType().Name;
 
         string dirPath = (application.FileSystem.UserDocumentsDir + "/" + applicationName).Replace(@"\", @"/").Replace(@"//", @"/");
         filePath = dirPath + "/PlayerPrefs.xml";

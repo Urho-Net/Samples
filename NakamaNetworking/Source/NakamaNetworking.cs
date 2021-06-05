@@ -87,13 +87,20 @@ namespace NakamaNetworking
 
             players = new Dictionary<string, Node>();
 
-            Global.NakamaConnection = new NakamaClient();
-            await Global.NakamaConnection.Connect();
+            try
+            {
+                Global.NakamaConnection = new NakamaClient();
+                await Global.NakamaConnection.Connect();
 
-            Global.NakamaConnection.Socket.ReceivedMatchmakerMatched += m => InvokeOnMain(() => OnReceivedMatchmakerMatched(m));
-            Global.NakamaConnection.Socket.ReceivedMatchPresence += m => InvokeOnMain(() => OnReceivedMatchPresence(m));
+                Global.NakamaConnection.Socket.ReceivedMatchmakerMatched += m => InvokeOnMain(() => OnReceivedMatchmakerMatched(m));
+                Global.NakamaConnection.Socket.ReceivedMatchPresence += m => InvokeOnMain(() => OnReceivedMatchPresence(m));
 
-            await Global.NakamaConnection.FindMatch(2,32);
+                await Global.NakamaConnection.FindMatch(2, 32);
+            }
+            catch (Exception ex)
+            {
+                LogSharp.Error("Exception:" + ex.ToString());
+            }
 
         }
 
@@ -411,15 +418,17 @@ namespace NakamaNetworking
 
             // Join the match.
             var match = await Global.NakamaConnection.Socket.JoinMatchAsync(matched);
+            
+            // Cache a reference to the current match.
+            Global.currentMatch = match;
 
-            // Spawn a player instance for each connected user.
+            // Spawn a player instance for each connected user , should be done on the Main Urho Thread.
             foreach (var user in match.Presences)
             {
                 InvokeOnMain(() => SpawnPlayer(match.Id,user));
             }
 
-            // Cache a reference to the current match.
-            Global.currentMatch = match;
+
 
         }
 

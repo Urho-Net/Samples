@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Nakama;
 
 namespace NakamaNetworking
@@ -27,15 +28,17 @@ namespace NakamaNetworking
         public static NakamaClient NakamaConnection = null;
         public static IMatch currentMatch = null;
 
+        public const float matchStateThresholdTime = 0.05f;
+
         /// <summary>
         /// Sends a match state message across the network.
         /// </summary>
         /// <param name="opCode">The operation code.</param>
         /// <param name="state">The stringified JSON state data.</param>
-        public static void SendMatchState(long opCode, string state)
+        public static async Task SendMatchState(long opCode, string state)
         {
             if (NakamaConnection != null && NakamaConnection.Socket != null && NakamaConnection.Socket.IsConnected == true && currentMatch != null )
-                NakamaConnection.Socket.SendMatchStateAsync(currentMatch.Id, opCode, state);
+                await NakamaConnection.Socket.SendMatchStateAsync(currentMatch.Id, opCode, state);
         }
 
     }
