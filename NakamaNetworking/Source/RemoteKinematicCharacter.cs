@@ -104,30 +104,26 @@ namespace NakamaNetworking
             FixedUpdate(obj.TimeStep);
         }
 
-        void SetCharacaterOrientation()
+        // update remote character transform and physics , based upon the networking data recieved from the remote character
+        void FixedUpdate(float timeStep)
         {
-            Node characterNode = Node;
+            if (IsSceneSet == false || kinematicController == null) return;
 
-            // Get camera lookat dir from character yaw + pitch
-            Quaternion rot = characterNode.Rotation;
-            Quaternion dir = rot * Quaternion.FromAxisAngle(Vector3.UnitX, Controls.Pitch);
+            Vector3 oldPosition;
+            Quaternion oldRotation;
+            kinematicController.GetTransform(out oldPosition, out oldRotation);
 
-            // Turn head to camera pitch, but limit to avoid unnatural animation
-            Node headNode = characterNode.GetChild("Mutant:Head", true);
-            float limitPitch = MathHelper.Clamp(Controls.Pitch, -45.0f, 45.0f);
-            Quaternion headDir = rot * Quaternion.FromAxisAngle(new Vector3(1.0f, 0.0f, 0.0f), limitPitch);
-            // This could be expanded to look at an arbitrary target, now just look at a point in front
-            Vector3 headWorldTarget = headNode.WorldPosition + headDir * new Vector3(0.0f, 0.0f, 1.0f);
-            headNode.LookAt(headWorldTarget, new Vector3(0.0f, 1.0f, 0.0f), TransformSpace.World);
-            // Correct head orientation because LookAt assumes Z = forward, but the bone has been authored differently (Y = forward)
-            headNode.Rotate(new Quaternion(0.0f, 90.0f, 90.0f), TransformSpace.Local);
+            var position = Vector3.Lerp(oldPosition, NewPosition, 0.5f);
+            var rotation = Quaternion.Slerp(oldRotation, NewRotation, 0.5f);
+            kinematicController.SetTransform(position, rotation);
+            kinematicController.SetLinearVelocity(Vector3.Lerp(kinematicController.LinearVelocity, NewLinearVelocity, 0.5f));
 
-            Node.Rotation = Quaternion.FromAxisAngle(Vector3.UnitY, Controls.Yaw);
         }
 
 
         // update Remote character Animation , based upon the key inputs recieved over the network from the remote character.
-        void FixedUpdate(float timeStep)
+
+        private void HandlePostUpdate(PostUpdateEventArgs obj)
         {
             animCtrl = animCtrl ?? Node.GetComponent<AnimationController>(true);
             kinematicController = kinematicController ?? Node.GetComponent<KinematicCharacterController>(true);
@@ -140,7 +136,7 @@ namespace NakamaNetworking
 
             // Update the in air timer. Reset if grounded
             if (!onGround)
-                inAirTimer += timeStep;
+                inAirTimer += obj.TimeStep;
             else
                 inAirTimer = 0.0f;
             // When character has been in air less than 1/10 second, it's still interpreted as being on ground
@@ -237,21 +233,28 @@ namespace NakamaNetworking
 
         }
 
-        // update remote character transform and physics , based upon the networking data recieved from the remote character
-        private void HandlePostUpdate(PostUpdateEventArgs obj)
+        void SetCharacaterOrientation()
         {
-            if (IsSceneSet == false || kinematicController == null) return;
+            Node characterNode = Node;
 
-            Vector3 oldPosition;
-            Quaternion oldRotation;
-            kinematicController.GetTransform(out oldPosition, out oldRotation);
+            // Get camera lookat dir from character yaw + pitch
+            Quaternion rot = characterNode.Rotation;
+            Quaternion dir = rot * Quaternion.FromAxisAngle(Vector3.UnitX, Controls.Pitch);
 
-            var position = Vector3.Lerp(oldPosition, NewPosition, 0.5f);
-            var rotation = Quaternion.Slerp(oldRotation, NewRotation, 0.5f);
-            kinematicController.SetTransform(position, rotation);
-            kinematicController.SetLinearVelocity(Vector3.Lerp(kinematicController.LinearVelocity, NewLinearVelocity, 0.5f));
+            // Turn head to camera pitch, but limit to avoid unnatural animation
+            Node headNode = characterNode.GetChild("Mutant:Head", true);
+            float limitPitch = MathHelper.Clamp(Controls.Pitch, -45.0f, 45.0f);
+            Quaternion headDir = rot * Quaternion.FromAxisAngle(new Vector3(1.0f, 0.0f, 0.0f), limitPitch);
+            // This could be expanded to look at an arbitrary target, now just look at a point in front
+            Vector3 headWorldTarget = headNode.WorldPosition + headDir * new Vector3(0.0f, 0.0f, 1.0f);
+            headNode.LookAt(headWorldTarget, new Vector3(0.0f, 1.0f, 0.0f), TransformSpace.World);
+            // Correct head orientation because LookAt assumes Z = forward, but the bone has been authored differently (Y = forward)
+            headNode.Rotate(new Quaternion(0.0f, 90.0f, 90.0f), TransformSpace.Local);
 
+            Node.Rotation = Quaternion.FromAxisAngle(Vector3.UnitY, Controls.Yaw);
         }
+
+
 
         /// <summary>
         /// Passes execution of the event handler to the main thread so that we can interact with GameObjects.
