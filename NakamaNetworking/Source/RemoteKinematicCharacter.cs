@@ -57,6 +57,8 @@ namespace NakamaNetworking
 
         bool IsSceneSet = false;
 
+        bool IsFirstNetWorkPacket = true;
+
         Vector3 NewLinearVelocity = Vector3.Zero;
         Vector3 NewPosition = Vector3.Zero;
         Quaternion NewRotation = Quaternion.Identity;
@@ -111,11 +113,20 @@ namespace NakamaNetworking
 
             Vector3 oldPosition;
             Quaternion oldRotation;
-            kinematicController.GetTransform(out oldPosition, out oldRotation);
+            
+            if(IsFirstNetWorkPacket == true)
+            {
+                IsFirstNetWorkPacket = false;
+                kinematicController.SetTransform(NewPosition, NewRotation);
+            }
+            else
+            {
+                kinematicController.GetTransform(out oldPosition, out oldRotation);
+                var position = Vector3.Lerp(oldPosition, NewPosition, 0.15f);
+                var rotation = Quaternion.Slerp(oldRotation, NewRotation, 0.15f);
+                kinematicController.SetTransform(position, rotation);
+            }
 
-            var position = Vector3.Lerp(oldPosition, NewPosition, 0.5f);
-            var rotation = Quaternion.Slerp(oldRotation, NewRotation, 0.5f);
-            kinematicController.SetTransform(position, rotation);
             kinematicController.SetLinearVelocity(NewLinearVelocity);
 
         }
