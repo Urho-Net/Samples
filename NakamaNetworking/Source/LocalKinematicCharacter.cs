@@ -61,7 +61,7 @@ namespace NakamaNetworking
         // constructor needed for deserialization
         public LocalKinematicCharacter(IntPtr handle) : base(handle) { }
 
-        public async override void OnSceneSet(Scene scene)
+        public override void OnSceneSet(Scene scene)
         {
             base.OnSceneSet(scene);
 

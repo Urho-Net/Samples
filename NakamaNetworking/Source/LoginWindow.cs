@@ -33,18 +33,20 @@ namespace NakamaNetworking
         private Sample application;
         private LineEdit[] LineEditIPEntries = new LineEdit[4];
         private byte[] ByteIPEntries = new byte[4];
+        Button ConnectToServer = null;
 
 
         private Window window = null;
         private string PlayerName = "";
         private int PlayerCount = 2 ;
 
+        public bool IsIPAddressSet { get; private set; } = false;
 
         public LoginWindow(Sample sample)
         {
             this.application = sample;
             CreateUI();
-            window.SetFocus(true);
+            
         }
 
         public void Show()
@@ -83,8 +85,17 @@ namespace NakamaNetworking
             PlayerCountDropDownList.ItemSelected += OnPlayCountSelected;
 
             CreateIPEditEntry(window, "Server IP");
-            Button ConnectToServer = CreateButton(window, "Connect", 140);
+            ConnectToServer = CreateButton(window, "Connect", 140);
             ConnectToServer.Released += OnConnectToServer;
+
+            if (IsIPAddressSet == true)
+            {
+                ConnectToServer.SetFocus(true);
+            }
+            else
+            {
+                LineEditIPEntries[0].SetFocus(true);
+            }
 
         }
 
@@ -243,6 +254,8 @@ namespace NakamaNetworking
                     ByteIPEntries[i] = BytesIPAddress[i];
                     LineEditIPEntries[i].Text = ByteIPEntries[i].ToString();
                 }
+
+                IsIPAddressSet = true;
             }
             
            
