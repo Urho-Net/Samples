@@ -93,6 +93,7 @@ namespace NakamaNetworking
 		public static float NextRandom(float min, float max) { return (float)((random.NextDouble() * (max - min)) + min); }
 		/// Return a random integer between min and max - 1.
 		public static int NextRandom(int min, int max) { return random.Next(min, max); }
+		public static int NextRandom( int max) { return random.Next(max); }
 
 		/// <summary>
 		/// Joystick XML layout for mobile platforms
@@ -331,77 +332,9 @@ namespace NakamaNetworking
 				case Key.Esc:
 					Exit();
 					return;
-				case Key.F1:
-					console.Toggle();
-					return;
-				case Key.F2:
-					debugHud.ToggleAll();
-					return;
+	
 			}
 
-			var renderer = Renderer;
-			switch (e.Key)
-			{
-				case Key.N1:
-					var quality = (int)renderer.TextureQuality;
-					++quality;
-					if (quality > 2)
-						quality = 0;
-					renderer.TextureQuality = (MaterialQuality)quality;
-					break;
-
-				case Key.N2:
-					var mquality = (int)renderer.MaterialQuality;
-					++mquality;
-					if (mquality > 2)
-						mquality = 0;
-					renderer.MaterialQuality = (MaterialQuality)mquality;
-					break;
-				case Key.N3:
-					renderer.SpecularLighting = !renderer.SpecularLighting;
-					break;
-
-				case Key.N4:
-					renderer.DrawShadows = !renderer.DrawShadows;
-					break;
-
-				case Key.N5:
-					var shadowMapSize = renderer.ShadowMapSize;
-					shadowMapSize *= 2;
-					if (shadowMapSize > 2048)
-						shadowMapSize = 512;
-					renderer.ShadowMapSize = shadowMapSize;
-					break;
-
-				// shadow depth and filtering quality
-				case Key.N6:
-					var q = (int)renderer.ShadowQuality++;
-					if (q > 3)
-						q = 0;
-					renderer.ShadowQuality = (ShadowQuality)q;
-					break;
-
-				// occlusion culling
-				case Key.N7:
-					var o = !(renderer.MaxOccluderTriangles > 0);
-					renderer.MaxOccluderTriangles = o ? 5000 : 0;
-					break;
-
-				// instancing
-				case Key.N8:
-					renderer.DynamicInstancing = !renderer.DynamicInstancing;
-					break;
-
-
-                case Key.N9:
-                    if (Platform != Platforms.Android && Platform != Platforms.iOS)
-                    {
-                        Image screenshot = new Image();
-                        Graphics.TakeScreenShot(screenshot);
-                        screenshot.SavePNG(FileSystem.CurrentDir + $"Assets/Data/Screenshot_{GetType().Name}_{DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss", CultureInfo.InvariantCulture)}.png");
-                    }
-                    break;
-			}
 		}
 
 

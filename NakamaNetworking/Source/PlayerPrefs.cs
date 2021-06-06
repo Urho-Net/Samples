@@ -60,6 +60,7 @@ public static  class PlayerPrefs
         using (var file = new File(application.Context, filePath, FileMode.Read))
         {
             xmlConfig.Load(file);
+            file.Close();
         }
 
         return xmlConfig;

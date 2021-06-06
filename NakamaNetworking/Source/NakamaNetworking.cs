@@ -26,6 +26,8 @@ using Nakama;
 using Nakama.TinyJson;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Urho.Resources;
+using System.Net;
 
 namespace NakamaNetworking
 {
@@ -47,6 +49,7 @@ namespace NakamaNetworking
         Node localPlayer = null;
         private IDictionary<string, Node> players;
 
+        LoginWindow loginWindow = null;
         private static NakamaNetworking _instance = null;
         [Preserve]
         public NakamaNetworking() : base(new ApplicationOptions(assetsFolder: "Data;CoreData")) { }
@@ -56,15 +59,21 @@ namespace NakamaNetworking
             return _instance;
         }
 
-        protected async override void Start()
+        protected override void Start()
         {
 
             _instance = this;
 
             base.Start();
+
+            PlayerPrefs.Init(this);
+
             if (TouchEnabled)
                 touch = new Touch(TouchSensitivity, Input);
             CreateScene();
+
+            loginWindow = new LoginWindow(this);
+       
             localPlayer = CreateCharacter();
 
             if (isMobile)
@@ -83,29 +92,43 @@ namespace NakamaNetworking
             }
             SubscribeToEvents();
 
-            PlayerPrefs.Init(this);
+           
 
             players = new Dictionary<string, Node>();
 
             try
             {
                 ClearInfoText();
-                Global.NakamaConnection = new NakamaClient();
-                await Global.NakamaConnection.Connect();
-                UpdateInfoText("CONNECTED TO SERVER \nFINDING MATCH PLEASE WAIT...");
-                Global.NakamaConnection.Socket.ReceivedMatchmakerMatched += m => InvokeOnMain(() => OnReceivedMatchmakerMatched(m));
-                Global.NakamaConnection.Socket.ReceivedMatchPresence += m => InvokeOnMain(() => OnReceivedMatchPresence(m));
+                Global.NakamaConnection = new NakamaClient(OnSocketConnected, OnSocketClosed);
 
-                // find match of minimum 2 players and maximum 32
-                await Global.NakamaConnection.FindMatch(2, 32);
-
-                
             }
             catch (Exception ex)
             {
                 LogSharp.Error("Exception:" + ex.ToString());
             }
 
+        }
+
+ 
+        private async void OnSocketConnected()
+        {
+            loginWindow.Hide();
+
+            string hostIP = loginWindow.GetHostIP();
+            PlayerPrefs.SetString("HostIP",hostIP);
+
+            UpdateInfoText("CONNECTED TO SERVER \nFINDING MATCH PLEASE WAIT...");
+            Global.NakamaConnection.Socket.ReceivedMatchmakerMatched += m => InvokeOnMain(() => OnReceivedMatchmakerMatched(m));
+            Global.NakamaConnection.Socket.ReceivedMatchPresence += m => InvokeOnMain(() => OnReceivedMatchPresence(m));
+            
+            int playerCount = loginWindow.GetPlayerCount();
+            PlayerPrefs.SetInt("PlayerCount",playerCount);
+            await Global.NakamaConnection.FindMatch(playerCount, playerCount);
+        }
+
+        private void OnSocketClosed()
+        {
+             UpdateInfoText("CONNECTION TO SERVER CLOSED");
         }
 
         protected override void Stop()

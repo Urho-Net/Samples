@@ -29,7 +29,7 @@ namespace NakamaNetworking
     public class NakamaClient
     {
         public string Scheme = "http";
-        public string Host = "192.168.1.110";
+        // public string Host = "192.168.1.110";
         public int Port = 7350;
 
         public string ServerKey = "defaultkey";
@@ -47,9 +47,15 @@ namespace NakamaNetworking
 
         public string matchID = String.Empty;
 
-        public NakamaClient()
+        Action OnSocketConnected = null;
+        Action OnSocketClosed = null;
+
+        public NakamaClient(Action onSocketConnected , Action onSocketClosed)
         {
             LogSharp.LogLevel = LogSharpLevel.Debug;
+            OnSocketConnected = onSocketConnected;
+            OnSocketClosed = onSocketClosed;
+
         }
         public bool IsConnectedToNakamaServer()
         {
@@ -59,7 +65,7 @@ namespace NakamaNetworking
         /// <summary>
         /// Connects to the Nakama server using device authentication and opens socket for realtime communication.
         /// </summary>
-        public async Task Connect()
+        public async Task Connect(string Host)
         {
 
             try
@@ -105,6 +111,10 @@ namespace NakamaNetworking
 
                 // Open a new Socket for realtime communication.
                 Socket = Nakama.Socket.From(Client);
+                if (OnSocketConnected != null)
+                    Socket.Connected += OnSocketConnected;
+                if (OnSocketClosed != null)
+                    Socket.Closed += OnSocketClosed;
                 await Socket.ConnectAsync(Session, true);
 
                 LogSharp.Debug(Session.ToString());
