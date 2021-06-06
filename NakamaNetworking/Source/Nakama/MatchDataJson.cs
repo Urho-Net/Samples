@@ -71,6 +71,18 @@ namespace NakamaNetworking
             return values.ToJson();
         }
 
+        
+        public static string CharacterName(string name)
+        {
+
+            var values = new Dictionary<string, string>
+            {
+                { "name", name}
+            };
+
+            return values.ToJson();
+        }
+
         public static IDictionary<string, string> GetStateAsDictionary(byte[] state)
         {
             return Encoding.UTF8.GetString(state).FromJson<Dictionary<string, string>>();

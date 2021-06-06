@@ -333,48 +333,6 @@ namespace NakamaNetworking
             body.CollisionLayer = 2;
             CollisionShape shape = floorNode.CreateComponent<CollisionShape>();
             shape.SetBox(Vector3.One, Vector3.Zero, Quaternion.Identity);
-
-
-            // uint numMushrooms = 60;
-            // for (uint i = 0; i < numMushrooms; ++i)
-            // {
-            //     Node objectNode = scene.CreateChild("Mushroom");
-            //     objectNode.Position = new Vector3(NextRandom(180.0f) - 90.0f, 0.0f, NextRandom(180.0f) - 90.0f);
-            //     objectNode.Rotation = new Quaternion(0.0f, NextRandom(360.0f), 0.0f);
-            //     objectNode.SetScale(2.0f + NextRandom(5.0f));
-            //     StaticModel o = objectNode.CreateComponent<StaticModel>();
-            //     o.Model = cache.GetModel("Models/Mushroom.mdl");
-            //     o.SetMaterial(cache.GetMaterial("Materials/Mushroom.xml"));
-            //     o.CastShadows = true;
-
-            //     body = objectNode.CreateComponent<RigidBody>();
-            //     body.CollisionLayer = 2;
-            //     shape = objectNode.CreateComponent<CollisionShape>();
-            //     shape.SetTriangleMesh(o.Model, 0, Vector3.One, Vector3.Zero, Quaternion.Identity);
-            // }
-
-
-            // const uint numBoxes = 100;
-            // for (uint i = 0; i < numBoxes; ++i)
-            // {
-            //     float scale = NextRandom(2.0f) + 0.5f;
-
-            //     Node objectNode = scene.CreateChild("Box");
-            //     objectNode.Position = new Vector3(NextRandom(180.0f) - 90.0f, NextRandom(10.0f) + 10.0f, NextRandom(180.0f) - 90.0f);
-            //     objectNode.Rotation = new Quaternion(NextRandom(360.0f), NextRandom(360.0f), NextRandom(360.0f));
-            //     objectNode.SetScale(scale);
-            //     StaticModel o = objectNode.CreateComponent<StaticModel>();
-            //     o.Model = cache.GetModel("Models/Box.mdl");
-            //     o.SetMaterial(cache.GetMaterial("Materials/Stone.xml"));
-            //     o.CastShadows = true;
-
-            //     body = objectNode.CreateComponent<RigidBody>();
-            //     body.CollisionLayer = 2;
-            //     // Bigger boxes will be heavier and harder to move
-            //     body.Mass = scale * 2.0f;
-            //     shape = objectNode.CreateComponent<CollisionShape>();
-            //     shape.SetBox(Vector3.One, Vector3.Zero, Quaternion.Identity);
-            // }
         }
 
         Node CreateCharacter(bool isRemote = false)
@@ -482,7 +440,7 @@ namespace NakamaNetworking
                 {
                     players[user.SessionId].Remove();
                     players.Remove(user.SessionId);
-                    UpdateInfoText("REMOTE USER LEFT : " + user.SessionId);
+                    UpdateInfoText("REMOTE USER LEFT : " + user.Username);
                 }
             }
         }
@@ -500,15 +458,16 @@ namespace NakamaNetworking
 
             if (!isLocal)
             {
-                UpdateInfoText("REMOTE USER JOINED  : " + user.SessionId);
+                UpdateInfoText("REMOTE USER JOINED  : " + user.Username);
 
                 var player = CreateCharacter(true);
-                player.GetComponent<RemoteKinematicCharacter>().NetworkData = new RemotePlayerNetworkData
+                player.GetComponent<RemoteKinematicCharacter>().SetNetWorkData (new RemotePlayerNetworkData
                 {
                     MatchId = matchId,
                     User = user
-                };
-                     // Add the player to the players array.
+                });
+                    
+                // Add the player to the players array.
                  players.Add(user.SessionId, player);
             }
             else
@@ -517,6 +476,10 @@ namespace NakamaNetworking
             }
 
 
+            // TBD ELI 
+            //Send local player name to remote players , this is an hack  
+            // For some reason the the  Nakama.Client doesn't forward the actual UserName to remote clients (doesn;t work on some platforms)
+            this.LocalCharacter.SendPlayerName();
        
 
         }

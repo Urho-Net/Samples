@@ -24,6 +24,8 @@ namespace NakamaNetworking
     {
         public const long VelocityAndPositionAndRotation = 1;
         public const long Input = 2;
+
+        public const long PlayerName = 3;
     }
 
 }

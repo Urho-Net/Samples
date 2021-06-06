@@ -50,6 +50,8 @@ namespace NakamaNetworking
 
         public const float matchStateThresholdTime = 0.05f;
 
+        public static string LocalCharacterName = "";
+
         /// <summary>
         /// Sends a match state message across the network.
         /// </summary>

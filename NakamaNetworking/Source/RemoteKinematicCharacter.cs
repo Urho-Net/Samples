@@ -26,6 +26,7 @@ using Nakama;
 using Nakama.TinyJson;
 using System.Text;
 using System.Collections.Generic;
+using Urho.Gui;
 
 namespace NakamaNetworking
 {
@@ -63,6 +64,8 @@ namespace NakamaNetworking
         Vector3 NewPosition = Vector3.Zero;
         Quaternion NewRotation = Quaternion.Identity;
 
+        Text3D characterHUDText  = null;
+
 
         public RemoteKinematicCharacter()
         {
@@ -85,12 +88,37 @@ namespace NakamaNetworking
                 // Add an event listener to handle incoming match state data.
                 Global.NakamaConnection.Socket.ReceivedMatchState += EnqueueOnReceivedMatchState;
                 Application.Engine.PostUpdate += HandlePostUpdate;
+
                 IsSceneSet = true;
+                SetCharacterHUD();
             }
             else
             {
                 IsSceneSet = false;
             }
+        }
+
+        public void  SetNetWorkData(RemotePlayerNetworkData networkData)
+        {
+            NetworkData = networkData;
+            SetCharacterHUD();
+        }
+
+        public void SetCharacterHUD()
+        {
+            if(NetworkData == null || Node == null)return;
+
+
+            Node characterHUDNode = Node.CreateChild("CharacterTitle");
+            characterHUDNode.Position = (new Vector3(0.0f, 2.0f, 0.0f));
+            characterHUDNode.Rotate(new Quaternion(0,180,0));
+
+            characterHUDText = characterHUDNode.CreateComponent<Text3D>();
+            characterHUDText.FaceCameraMode = FaceCameraMode.RotateXyz;
+            characterHUDText.Text = NetworkData.User.Username;
+            characterHUDText.SetFont(Application.ResourceCache.GetFont("Fonts/Anonymous Pro.sdf"), 24);//sdf, not ttf. size of font doesn't matter.
+            characterHUDText.SetColor(Color.Red);
+            
         }
 
 
@@ -298,6 +326,9 @@ namespace NakamaNetworking
                 case OpCodes.Input:
                     SetInputFromState(matchState.State);
                     break;
+                case OpCodes.PlayerName:
+                    SetPlayerNameFromState(matchState.State);
+                    break;
 
             }
         }
@@ -350,6 +381,15 @@ namespace NakamaNetworking
             NewRotation = new Quaternion(float.Parse(stateDictionary["rotation.x"]), float.Parse(stateDictionary["rotation.y"]), float.Parse(stateDictionary["rotation.z"]), float.Parse(stateDictionary["rotation.w"]));
 
         }
+
+        
+        private void SetPlayerNameFromState(byte[] state)
+        {
+            var stateDictionary = GetStateAsDictionary(state);
+
+            characterHUDText.Text = stateDictionary["name"];
+        }
+
 
     }
 }

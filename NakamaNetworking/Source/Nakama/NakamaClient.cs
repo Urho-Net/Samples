@@ -65,7 +65,7 @@ namespace NakamaNetworking
         /// <summary>
         /// Connects to the Nakama server using device authentication and opens socket for realtime communication.
         /// </summary>
-        public async Task Connect(string Host)
+        public async Task Connect(string Host , string UserName = null)
         {
 
             try
@@ -103,7 +103,7 @@ namespace NakamaNetworking
                     }
 
                     // Use Nakama Device authentication to create a new session using the device identifier.
-                    Session = await Client.AuthenticateDeviceAsync(deviceId);
+                    Session = await Client.AuthenticateDeviceAsync(deviceId,UserName);
 
                     // Store the auth token that comes back so that we can restore the session later if necessary.
                     PlayerPrefs.SetString(SessionPrefName, Session.AuthToken);

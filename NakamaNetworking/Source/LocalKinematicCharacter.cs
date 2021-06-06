@@ -22,6 +22,7 @@
 using Urho;
 using System;
 using Urho.Physics;
+using Urho.Gui;
 
 namespace NakamaNetworking
 {
@@ -50,6 +51,8 @@ namespace NakamaNetworking
 
         PhysicsWorld physicsWorld = null;
 
+        Text3D characterHUDText  = null;
+
         public LocalKinematicCharacter()
         {
             okToJump = true;
@@ -58,7 +61,7 @@ namespace NakamaNetworking
         // constructor needed for deserialization
         public LocalKinematicCharacter(IntPtr handle) : base(handle) { }
 
-        public override void OnSceneSet(Scene scene)
+        public async override void OnSceneSet(Scene scene)
         {
             base.OnSceneSet(scene);
 
@@ -69,7 +72,25 @@ namespace NakamaNetworking
                 physicsWorld.PhysicsPreStep += OnPhysicsPreStep;
 
                 Application.Engine.PostUpdate += HandlePostUpdate;
+                SetCharacterHUD();
             }
+        }
+
+        public void SetCharacterHUD()
+        {
+            if( Node == null)return;
+
+
+            Node characterHUDNode = Node.CreateChild("CharacterTitle");
+            characterHUDNode.Position = (new Vector3(0.0f, 2.0f, 0.0f));
+            characterHUDNode.Rotate(new Quaternion(0,180,0));
+
+            characterHUDText = characterHUDNode.CreateComponent<Text3D>();
+            characterHUDText.FaceCameraMode = FaceCameraMode.RotateXyz;
+            characterHUDText.Text = "Me";
+            characterHUDText.SetFont(Application.ResourceCache.GetFont("Fonts/Anonymous Pro.sdf"), 24);//sdf, not ttf. size of font doesn't matter.
+            characterHUDText.SetColor(Color.Green);
+            
         }
 
         protected override void OnDeleted()
@@ -231,6 +252,12 @@ namespace NakamaNetworking
 
                 matchStateTimer = 0.0f;
             }
+        }
+
+        // Send This Character Name to remote players
+        public async void SendPlayerName()
+        {
+            await Global.SendMatchState(OpCodes.PlayerName,  MatchDataJson.CharacterName(Global.LocalCharacterName));
         }
 
     }

@@ -44,18 +44,19 @@ namespace NakamaNetworking
         {
             this.application = sample;
             CreateUI();
+            window.SetFocus(true);
         }
 
         public void Show()
         {
             // Invoke on Main UI thread
-            Application.InvokeOnMain(() => {window.Visible = true;application.Input.SetMouseVisible(true);});
+            Application.InvokeOnMain(() => {window.Visible = true;application.Input.SetMouseVisible(true); window.SetFocus(true);});
         }
 
         public void Hide()
         {
             // Invoke on Main UI thread
-            Application.InvokeOnMain(() => {window.Visible = false;application.Input.SetMouseVisible(false);});
+            Application.InvokeOnMain(() => {window.Visible = false;application.Input.SetMouseVisible(false); window.SetFocus(false);});
         }
         public void CreateUI()
         {
@@ -95,6 +96,7 @@ namespace NakamaNetworking
         private void OnPlayerNameChanged(TextChangedEventArgs obj)
         {
             PlayerName = obj.Text;
+            Global.LocalCharacterName = obj.Text;
         }
 
         private async void OnConnectToServer(ReleasedEventArgs obj)
@@ -103,7 +105,14 @@ namespace NakamaNetworking
             {
                 IPAddress ipAddress = new IPAddress(ByteIPEntries);
                 application.UpdateInfoText("CONNECTING TO SERVER PLEASE WAIT...");
-                await Global.NakamaConnection.Connect(ipAddress.ToString());
+                if(!String.IsNullOrEmpty(PlayerName))
+                {
+                    await Global.NakamaConnection.Connect(ipAddress.ToString(), PlayerName);
+                }
+                else
+                {
+                    await Global.NakamaConnection.Connect(ipAddress.ToString());
+                }
             }
             catch (Exception ex)
             {
@@ -191,6 +200,7 @@ namespace NakamaNetworking
             lineEdit.SetStyleAuto();
             lineEdit.Text = lineEditText;
             PlayerName = lineEditText;
+            Global.LocalCharacterName = lineEditText;
             return lineEdit;
         }
 
