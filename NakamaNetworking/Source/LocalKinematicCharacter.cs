@@ -257,6 +257,7 @@ namespace NakamaNetworking
         // Send This Character Name to remote players
         public async void SendPlayerName()
         {
+            LogSharp.Debug("Sending Player Name "+ Global.LocalCharacterName);
             await Global.SendMatchState(OpCodes.PlayerName,  MatchDataJson.CharacterName(Global.LocalCharacterName));
         }
 

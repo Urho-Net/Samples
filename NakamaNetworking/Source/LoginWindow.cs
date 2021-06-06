@@ -73,6 +73,7 @@ namespace NakamaNetworking
             window.SetStyleAuto();
             window.Resizable = false;
             window.Movable = false;
+            window.LayoutBorder = new IntRect(6, 6, 6, 6);
             window.Size = new IntVector2(graphics.Width / 2, graphics.Height / 2);
             window.Position = new IntVector2(graphics.Width / 4, graphics.Height / 4);
             window.LayoutMode = LayoutMode.Vertical;
@@ -186,6 +187,14 @@ namespace NakamaNetworking
                     indexEntry++;
                     LineEditIPEntries[indexEntry].SetFocus(true);
                 }
+
+                if(indexEntry == 3 && LineEditIPEntries[indexEntry].Text.Length == 3)
+                {
+                    if (ConnectToServer != null)
+                    {
+                        ConnectToServer.SetFocus(true);
+                    }
+                }
             }
 
         }
@@ -193,6 +202,7 @@ namespace NakamaNetworking
         UIElement NewWindowEntry(Window window)
         {
             var container = new UIElement();
+            container.SetFixedHeight(60);
             container.LayoutMode = LayoutMode.Horizontal;
             window.AddChild(container);
             return container;
@@ -334,7 +344,7 @@ namespace NakamaNetworking
             Button button = new Button();
             parent.AddChild(button);
             button.SetStyleAuto();
-            button.SetFixedHeight(40);
+            button.SetFixedHeight(50);
             button.SetFixedWidth(width);
 
             var buttonText = new Text();
