@@ -82,12 +82,12 @@ namespace NakamaNetworking
 
 
             Node characterHUDNode = Node.CreateChild("CharacterTitle");
-            characterHUDNode.Position = (new Vector3(0.0f, 2.0f, 0.0f));
+            characterHUDNode.Position = (new Vector3(-1.0f, 2.0f, 0.0f));
             characterHUDNode.Rotate(new Quaternion(0,180,0));
 
             characterHUDText = characterHUDNode.CreateComponent<Text3D>();
             characterHUDText.FaceCameraMode = FaceCameraMode.RotateXyz;
-            characterHUDText.Text = "Me";
+            characterHUDText.Text = Global.LocalCharacterName;
             characterHUDText.SetFont(Application.ResourceCache.GetFont("Fonts/Anonymous Pro.sdf"), 24);//sdf, not ttf. size of font doesn't matter.
             characterHUDText.SetColor(Color.Green);
             
