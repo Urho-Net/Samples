@@ -75,7 +75,7 @@ namespace NakamaNetworking
             window.Movable = false;
             window.LayoutBorder = new IntRect(6, 6, 6, 6);
             window.Size = new IntVector2(graphics.Width / 2, graphics.Height / 2);
-            window.Position = new IntVector2(graphics.Width / 4, graphics.Height / 4);
+            window.Position = new IntVector2(graphics.Width / 4, 10);
             window.LayoutMode = LayoutMode.Vertical;
             application.Input.SetMouseVisible(true);
 
