@@ -12,6 +12,11 @@ Once The server is up and running you can compile and run this demo as any other
 Once the application starts , you will have to choose the number of players
 and type the server IP (you can find the Server IP by typing ifconfig or ipconfig on the Host machine running the server)
 Press connect on all client devices and wait for the devices to connect , enjoy !!
+
+
+[Android APK Link](https://drive.google.com/file/d/1VWnz3ueEOnJd2XJJ7kmbyU5q6OXgM3em/view?usp=sharing)
+
+
 -----------------------------------------------------------
 
 ![alt tag](screenshots/Screenshot_NakamaNetworking_2021-06-06-17-19-52.png)
