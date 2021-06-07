@@ -86,6 +86,14 @@ else
         cp "-r"  ${URHONET_HOME_ROOT}/template/libs/dotnet/urho//mobile/android/*  libs/dotnet/urho//mobile/android/
     fi
 
+    nfiles=$(ls "Android"* | wc -l)
+    if [ $nfiles = 1 ]; then
+        if [ -f "Android/app/src/main/assets/Data/DotNet/Game.dll" ]; then
+            echo "only Game.dll in Android folder , deleting Android folder"
+            rm -Rf "Android"
+        fi
+    fi
+    
     if [ ! -d Android ] ; then
         verify_dir_exist_or_exit "${URHONET_HOME_ROOT}/template/Android" 
 
