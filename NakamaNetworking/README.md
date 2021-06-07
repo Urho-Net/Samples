@@ -9,9 +9,9 @@ Some Youtube video's on how todo it.\
 [Installing Docker Desktop](https://www.youtube.com/watch?v=LJNe4j1DqEI)\
 [Running the Nakama Server Using Docker](https://www.youtube.com/watch?v=P6kXtkwcCOE)\
 Once The server is up and running you can compile and run this demo as any other [Urho.Net](https://github.com/Urho-Net/Urho.Net) project .\
-Once the application starts , you will have to choose the number of players
-and type the server IP (you can find the Server IP by typing ifconfig or ipconfig on the Host machine that is running the server)
-Press connect on all client devices and wait for the devices to connect , enjoy !!
+Once the application starts , you will have to choose the number of playersvand type the server IP.\
+You can find the Server IP by typing ifconfig or ipconfig on the Host machine that is running the server.\
+Press connect on all client devices and wait for the devices to connect and match with the other devices , enjoy !!
 
 
 [Android APK Link](https://drive.google.com/file/d/1VWnz3ueEOnJd2XJJ7kmbyU5q6OXgM3em/view?usp=sharing)
