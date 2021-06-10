@@ -10160,6 +10160,20 @@
             </member>
         <!--FIXME: Invalid documentation markup was found for member M:Urho.IntRect.ToString-->
         <!--FIXME: Invalid documentation markup was found for member M:Urho.Rect.ToString-->
+        <member name="M:Urho.Matrix3x4.#ctor(Urho.Vector4,Urho.Vector4,Urho.Vector4)">
+             <summary>
+             Initializes a new instance of the <see cref="T:Urho.Matrix3x4" /> struct.
+             </summary>
+             <param name="row0">Top row of the matrix.</param>
+             <param name="row1">Second row of the matrix.</param>
+             <param name="row2">Bottom row of the matrix.</param>
+            </member>
+        <member name="P:Urho.Matrix3x4.Item(System.Int32,System.Int32)">
+             <summary>Gets the component at the given row and column in the matrix.</summary>
+             <param name="row">The row of the matrix.</param>
+             <param name="column">The column of the matrix.</param>
+             <returns>The component at the given row and column in the matrix.</returns>
+            </member>
         <member name="F:Urho.VertexElement.Semantic">
              <summary>
              Semantic of element.
@@ -14978,6 +14992,1168 @@
              Clamp an integer to a range.
              </summary>
             </member>
+        <member name="T:Urho.Matrix2">
+             <summary>
+             Represents a 2x2 matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix2.Row0">
+             <summary>
+             Top row of the matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix2.Row1">
+             <summary>
+             Bottom row of the matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix2.Identity">
+             <summary>
+             The identity matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix2.Zero">
+             <summary>
+             The zero matrix.
+             </summary>
+            </member>
+        <member name="M:Urho.Matrix2.#ctor(Urho.Vector2,Urho.Vector2)">
+             <summary>
+             Initializes a new instance of the <see cref="T:Urho.Matrix2" /> struct.
+             </summary>
+             <param name="row0">Top row of the matrix.</param>
+             <param name="row1">Bottom row of the matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix2.#ctor(System.Single,System.Single,System.Single,System.Single)">
+             <summary>
+             Initializes a new instance of the <see cref="T:Urho.Matrix2" /> struct.
+             </summary>
+             <param name="m00">First item of the first row of the matrix.</param>
+             <param name="m01">Second item of the first row of the matrix.</param>
+             <param name="m10">First item of the second row of the matrix.</param>
+             <param name="m11">Second item of the second row of the matrix.</param>
+            </member>
+        <member name="P:Urho.Matrix2.Determinant">
+             <summary>
+             Gets the determinant of this matrix.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2.Column0">
+             <summary>
+             Gets or sets the first column of this matrix.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2.Column1">
+             <summary>
+             Gets or sets the second column of this matrix.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2.M11">
+             <summary>
+             Gets or sets the value at row 1, column 1 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2.M12">
+             <summary>
+             Gets or sets the value at row 1, column 2 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2.M21">
+             <summary>
+             Gets or sets the value at row 2, column 1 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2.M22">
+             <summary>
+             Gets or sets the value at row 2, column 2 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2.Diagonal">
+             <summary>
+             Gets or sets the values along the main diagonal of the matrix.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2.Trace">
+             <summary>
+             Gets the trace of the matrix, the sum of the values along the diagonal.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2.Item(System.Int32,System.Int32)">
+             <summary>
+             Gets or sets the value at a specified row and column.
+             </summary>
+             <param name="rowIndex">The index of the row.</param>
+             <param name="columnIndex">The index of the column.</param>
+             <returns>The element at the given row and column index.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.Transpose">
+             <summary>
+             Converts this instance to it's transpose.
+             </summary>
+            </member>
+        <member name="M:Urho.Matrix2.Invert">
+             <summary>
+             Converts this instance into its inverse.
+             </summary>
+            </member>
+        <member name="M:Urho.Matrix2.CreateRotation(System.Single,Urho.Matrix2@)">
+             <summary>
+             Builds a rotation matrix.
+             </summary>
+             <param name="angle">The counter-clockwise angle in radians.</param>
+             <param name="result">The resulting Matrix2 instance.</param>
+            </member>
+        <member name="M:Urho.Matrix2.CreateRotation(System.Single)">
+             <summary>
+             Builds a rotation matrix.
+             </summary>
+             <param name="angle">The counter-clockwise angle in radians.</param>
+             <returns>The resulting Matrix2 instance.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.CreateScale(System.Single,Urho.Matrix2@)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="scale">Single scale factor for the x, y, and z axes.</param>
+             <param name="result">A scale matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix2.CreateScale(System.Single)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="scale">Single scale factor for the x and y axes.</param>
+             <returns>A scale matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.CreateScale(Urho.Vector2,Urho.Matrix2@)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="scale">Scale factors for the x and y axes.</param>
+             <param name="result">A scale matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix2.CreateScale(Urho.Vector2)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="scale">Scale factors for the x and y axes.</param>
+             <returns>A scale matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.CreateScale(System.Single,System.Single,Urho.Matrix2@)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="x">Scale factor for the x axis.</param>
+             <param name="y">Scale factor for the y axis.</param>
+             <param name="result">A scale matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix2.CreateScale(System.Single,System.Single)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="x">Scale factor for the x axis.</param>
+             <param name="y">Scale factor for the y axis.</param>
+             <returns>A scale matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.Mult(Urho.Matrix2,System.Single,Urho.Matrix2@)">
+             <summary>
+             Multiplies and instance by a scalar.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix2.Mult(Urho.Matrix2,System.Single)">
+             <summary>
+             Multiplies and instance by a scalar.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.Mult(Urho.Matrix2,Urho.Vector2,Urho.Vector2@)">
+             <summary>
+             Multiplies and instance by a Vector2.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix2.Mult(Urho.Matrix2,Urho.Vector2)">
+             <summary>
+             Multiplies and instance by a Vector2.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.Mult(Urho.Matrix2,Urho.Matrix2,Urho.Matrix2@)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix2.Mult(Urho.Matrix2,Urho.Matrix2)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.Mult(Urho.Matrix2,Urho.Matrix2x3,Urho.Matrix2x3@)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix2.Mult(Urho.Matrix2,Urho.Matrix2x3)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.Mult(Urho.Matrix2,Urho.Matrix2x4,Urho.Matrix2x4@)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix2.Mult(Urho.Matrix2,Urho.Matrix2x4)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.Add(Urho.Matrix2,Urho.Matrix2,Urho.Matrix2@)">
+             <summary>
+             Adds two instances.
+             </summary>
+             <param name="left">The left operand of the addition.</param>
+             <param name="right">The right operand of the addition.</param>
+             <param name="result">A new instance that is the result of the addition.</param>
+            </member>
+        <member name="M:Urho.Matrix2.Add(Urho.Matrix2,Urho.Matrix2)">
+             <summary>
+             Adds two instances.
+             </summary>
+             <param name="left">The left operand of the addition.</param>
+             <param name="right">The right operand of the addition.</param>
+             <returns>A new instance that is the result of the addition.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.Subtract(Urho.Matrix2,Urho.Matrix2,Urho.Matrix2@)">
+             <summary>
+             Subtracts two instances.
+             </summary>
+             <param name="left">The left operand of the subtraction.</param>
+             <param name="right">The right operand of the subtraction.</param>
+             <param name="result">A new instance that is the result of the subtraction.</param>
+            </member>
+        <member name="M:Urho.Matrix2.Subtract(Urho.Matrix2,Urho.Matrix2)">
+             <summary>
+             Subtracts two instances.
+             </summary>
+             <param name="left">The left operand of the subtraction.</param>
+             <param name="right">The right operand of the subtraction.</param>
+             <returns>A new instance that is the result of the subtraction.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.Invert(Urho.Matrix2,Urho.Matrix2@)">
+             <summary>
+             Calculate the inverse of the given matrix.
+             </summary>
+             <param name="mat">The matrix to invert.</param>
+             <param name="result">The inverse of the given matrix.</param>
+             <exception cref="T:System.InvalidOperationException">Thrown if the Matrix2 is singular.</exception>
+            </member>
+        <member name="M:Urho.Matrix2.Invert(Urho.Matrix2)">
+             <summary>
+             Calculate the inverse of the given matrix.
+             </summary>
+             <param name="mat">The matrix to invert.</param>
+             <returns>The inverse of the given matrix.</returns>
+             <exception cref="T:System.InvalidOperationException">Thrown if the Matrix2 is singular.</exception>
+             <returns>The inverted copy.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.Transpose(Urho.Matrix2,Urho.Matrix2@)">
+             <summary>
+             Calculate the transpose of the given matrix.
+             </summary>
+             <param name="mat">The matrix to transpose.</param>
+             <param name="result">The transpose of the given matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix2.Transpose(Urho.Matrix2)">
+             <summary>
+             Calculate the transpose of the given matrix.
+             </summary>
+             <param name="mat">The matrix to transpose.</param>
+             <returns>The transpose of the given matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.op_Multiply(System.Single,Urho.Matrix2)">
+             <summary>
+             Scalar multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix2 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.op_Multiply(Urho.Matrix2,System.Single)">
+             <summary>
+             Scalar multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix2 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.op_Multiply(Urho.Matrix2,Urho.Vector2)">
+             <summary>
+             Vector2 multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Vector2 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.op_Multiply(Urho.Matrix2,Urho.Matrix2)">
+             <summary>
+             Matrix multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix2 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.op_Multiply(Urho.Matrix2,Urho.Matrix2x3)">
+             <summary>
+             Matrix multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix2x3 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.op_Multiply(Urho.Matrix2,Urho.Matrix2x4)">
+             <summary>
+             Matrix multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix2x4 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.op_Addition(Urho.Matrix2,Urho.Matrix2)">
+             <summary>
+             Matrix addition.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix2 which holds the result of the addition.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.op_Subtraction(Urho.Matrix2,Urho.Matrix2)">
+             <summary>
+             Matrix subtraction.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix2 which holds the result of the subtraction.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.op_Equality(Urho.Matrix2,Urho.Matrix2)">
+             <summary>
+             Compares two instances for equality.
+             </summary>
+             <param name="left">The first instance.</param>
+             <param name="right">The second instance.</param>
+             <returns>True, if left equals right; false otherwise.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.op_Inequality(Urho.Matrix2,Urho.Matrix2)">
+             <summary>
+             Compares two instances for inequality.
+             </summary>
+             <param name="left">The first instance.</param>
+             <param name="right">The second instance.</param>
+             <returns>True, if left does not equal right; false otherwise.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.ToString">
+             <summary>
+             Returns a System.String that represents the current Matrix4.
+             </summary>
+             <returns>The string representation of the matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.GetHashCode">
+             <summary>
+             Returns the hashcode for this instance.
+             </summary>
+             <returns>A System.Int32 containing the unique hashcode for this instance.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.Equals(System.Object)">
+             <summary>
+             Indicates whether this instance and a specified object are equal.
+             </summary>
+             <param name="obj">The object to compare to.</param>
+             <returns>True if the instances are equal; false otherwise.</returns>
+            </member>
+        <member name="M:Urho.Matrix2.Equals(Urho.Matrix2)">
+             <summary>
+             Indicates whether the current matrix is equal to another matrix.
+             </summary>
+             <param name="other">An matrix to compare with this matrix.</param>
+             <returns>true if the current matrix is equal to the matrix parameter; otherwise, false.</returns>
+            </member>
+        <member name="T:Urho.Matrix2x3">
+             <summary>
+             Represents a 2x3 matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix2x3.Row0">
+             <summary>
+             Top row of the matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix2x3.Row1">
+             <summary>
+             Bottom row of the matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix2x3.Zero">
+             <summary>
+             The zero matrix.
+             </summary>
+            </member>
+        <member name="M:Urho.Matrix2x3.#ctor(Urho.Vector3,Urho.Vector3)">
+             <summary>
+             Initializes a new instance of the <see cref="T:Urho.Matrix2x3" /> struct.
+             </summary>
+             <param name="row0">Top row of the matrix.</param>
+             <param name="row1">Bottom row of the matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix2x3.#ctor(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+             <summary>
+             Initializes a new instance of the <see cref="T:Urho.Matrix2x3" /> struct.
+             </summary>
+             <param name="m00">First item of the first row of the matrix.</param>
+             <param name="m01">Second item of the first row of the matrix.</param>
+             <param name="m02">Third item of the first row of the matrix.</param>
+             <param name="m10">First item of the second row of the matrix.</param>
+             <param name="m11">Second item of the second row of the matrix.</param>
+             <param name="m12">Third item of the second row of the matrix.</param>
+            </member>
+        <member name="P:Urho.Matrix2x3.Column0">
+             <summary>
+             Gets or sets the first column of this matrix.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x3.Column1">
+             <summary>
+             Gets or sets the second column of this matrix.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x3.Column2">
+             <summary>
+             Gets or sets the third column of this matrix.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x3.M11">
+             <summary>
+             Gets or sets the value at row 1, column 1 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x3.M12">
+             <summary>
+             Gets or sets the value at row 1, column 2 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x3.M13">
+             <summary>
+             Gets or sets the value at row 1, column 3 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x3.M21">
+             <summary>
+             Gets or sets the value at row 2, column 1 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x3.M22">
+             <summary>
+             Gets or sets the value at row 2, column 2 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x3.M23">
+             <summary>
+             Gets or sets the value at row 2, column 3 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x3.Diagonal">
+             <summary>
+             Gets or sets the values along the main diagonal of the matrix.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x3.Trace">
+             <summary>
+             Gets the trace of the matrix, the sum of the values along the diagonal.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x3.Item(System.Int32,System.Int32)">
+             <summary>
+             Gets or sets the value at a specified row and column.
+             </summary>
+             <param name="rowIndex">The index of the row.</param>
+             <param name="columnIndex">The index of the column.</param>
+             <returns>The element at the given row and column index.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.CreateRotation(System.Single,Urho.Matrix2x3@)">
+             <summary>
+             Builds a rotation matrix.
+             </summary>
+             <param name="angle">The counter-clockwise angle in radians.</param>
+             <param name="result">The resulting Matrix2x3 instance.</param>
+            </member>
+        <member name="M:Urho.Matrix2x3.CreateRotation(System.Single)">
+             <summary>
+             Builds a rotation matrix.
+             </summary>
+             <param name="angle">The counter-clockwise angle in radians.</param>
+             <returns>The resulting Matrix2x3 instance.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.CreateScale(System.Single,Urho.Matrix2x3@)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="scale">Single scale factor for the x, y, and z axes.</param>
+             <param name="result">A scale matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix2x3.CreateScale(System.Single)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="scale">Single scale factor for the x and y axes.</param>
+             <returns>A scale matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.CreateScale(Urho.Vector2,Urho.Matrix2x3@)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="scale">Scale factors for the x and y axes.</param>
+             <param name="result">A scale matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix2x3.CreateScale(Urho.Vector2)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="scale">Scale factors for the x and y axes.</param>
+             <returns>A scale matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.CreateScale(System.Single,System.Single,Urho.Matrix2x3@)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="x">Scale factor for the x axis.</param>
+             <param name="y">Scale factor for the y axis.</param>
+             <param name="result">A scale matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix2x3.CreateScale(System.Single,System.Single)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="x">Scale factor for the x axis.</param>
+             <param name="y">Scale factor for the y axis.</param>
+             <returns>A scale matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.Mult(Urho.Matrix2x3,System.Single,Urho.Matrix2x3@)">
+             <summary>
+             Multiplies and instance by a scalar.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix2x3.Mult(Urho.Matrix2x3,System.Single)">
+             <summary>
+             Multiplies and instance by a scalar.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.Mult(Urho.Matrix2x3,Urho.Matrix3x2,Urho.Matrix2@)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix2x3.Mult(Urho.Matrix2x3,Urho.Matrix3x2)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.Mult(Urho.Matrix2x3,Urho.Matrix3,Urho.Matrix2x3@)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix2x3.Mult(Urho.Matrix2x3,Urho.Matrix3)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.Mult(Urho.Matrix2x3,Urho.Matrix3x4,Urho.Matrix2x4@)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix2x3.Mult(Urho.Matrix2x3,Urho.Matrix3x4)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.Add(Urho.Matrix2x3,Urho.Matrix2x3,Urho.Matrix2x3@)">
+             <summary>
+             Adds two instances.
+             </summary>
+             <param name="left">The left operand of the addition.</param>
+             <param name="right">The right operand of the addition.</param>
+             <param name="result">A new instance that is the result of the addition.</param>
+            </member>
+        <member name="M:Urho.Matrix2x3.Add(Urho.Matrix2x3,Urho.Matrix2x3)">
+             <summary>
+             Adds two instances.
+             </summary>
+             <param name="left">The left operand of the addition.</param>
+             <param name="right">The right operand of the addition.</param>
+             <returns>A new instance that is the result of the addition.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.Subtract(Urho.Matrix2x3,Urho.Matrix2x3,Urho.Matrix2x3@)">
+             <summary>
+             Subtracts two instances.
+             </summary>
+             <param name="left">The left operand of the subtraction.</param>
+             <param name="right">The right operand of the subtraction.</param>
+             <param name="result">A new instance that is the result of the subtraction.</param>
+            </member>
+        <member name="M:Urho.Matrix2x3.Subtract(Urho.Matrix2x3,Urho.Matrix2x3)">
+             <summary>
+             Subtracts two instances.
+             </summary>
+             <param name="left">The left operand of the subtraction.</param>
+             <param name="right">The right operand of the subtraction.</param>
+             <returns>A new instance that is the result of the subtraction.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.Transpose(Urho.Matrix2x3,Urho.Matrix3x2@)">
+             <summary>
+             Calculate the transpose of the given matrix.
+             </summary>
+             <param name="mat">The matrix to transpose.</param>
+             <param name="result">The transpose of the given matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix2x3.Transpose(Urho.Matrix2x3)">
+             <summary>
+             Calculate the transpose of the given matrix.
+             </summary>
+             <param name="mat">The matrix to transpose.</param>
+             <returns>The transpose of the given matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.op_Multiply(System.Single,Urho.Matrix2x3)">
+             <summary>
+             Scalar multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix2x3 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.op_Multiply(Urho.Matrix2x3,System.Single)">
+             <summary>
+             Scalar multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix2x3 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.op_Multiply(Urho.Matrix2x3,Urho.Matrix3x2)">
+             <summary>
+             Matrix multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix2 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.op_Multiply(Urho.Matrix2x3,Urho.Matrix3)">
+             <summary>
+             Matrix multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix2x3 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.op_Multiply(Urho.Matrix2x3,Urho.Matrix3x4)">
+             <summary>
+             Matrix multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix2x4 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.op_Addition(Urho.Matrix2x3,Urho.Matrix2x3)">
+             <summary>
+             Matrix addition.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix2x3 which holds the result of the addition.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.op_Subtraction(Urho.Matrix2x3,Urho.Matrix2x3)">
+             <summary>
+             Matrix subtraction.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix2x3 which holds the result of the subtraction.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.op_Equality(Urho.Matrix2x3,Urho.Matrix2x3)">
+             <summary>
+             Compares two instances for equality.
+             </summary>
+             <param name="left">The first instance.</param>
+             <param name="right">The second instance.</param>
+             <returns>True, if left equals right; false otherwise.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.op_Inequality(Urho.Matrix2x3,Urho.Matrix2x3)">
+             <summary>
+             Compares two instances for inequality.
+             </summary>
+             <param name="left">The first instance.</param>
+             <param name="right">The second instance.</param>
+             <returns>True, if left does not equal right; false otherwise.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.ToString">
+             <summary>
+             Returns a System.String that represents the current Matrix2x3.
+             </summary>
+             <returns>The string representation of the matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.GetHashCode">
+             <summary>
+             Returns the hashcode for this instance.
+             </summary>
+             <returns>A System.Int32 containing the unique hashcode for this instance.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.Equals(System.Object)">
+             <summary>
+             Indicates whether this instance and a specified object are equal.
+             </summary>
+             <param name="obj">The object to compare tresult.</param>
+             <returns>True if the instances are equal; false otherwise.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x3.Equals(Urho.Matrix2x3)">
+             <summary>
+             Indicates whether the current matrix is equal to another matrix.
+             </summary>
+             <param name="other">An matrix to compare with this matrix.</param>
+             <returns>true if the current matrix is equal to the matrix parameter; otherwise, false.</returns>
+            </member>
+        <member name="T:Urho.Matrix2x4">
+             <summary>
+             Represents a 2x4 matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix2x4.Row0">
+             <summary>
+             Top row of the matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix2x4.Row1">
+             <summary>
+             Bottom row of the matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix2x4.Zero">
+             <summary>
+             The zero matrix.
+             </summary>
+            </member>
+        <member name="M:Urho.Matrix2x4.#ctor(Urho.Vector4,Urho.Vector4)">
+             <summary>
+             Initializes a new instance of the <see cref="T:Urho.Matrix2x4" /> struct.
+             </summary>
+             <param name="row0">Top row of the matrix.</param>
+             <param name="row1">Bottom row of the matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix2x4.#ctor(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+             <summary>
+             Initializes a new instance of the <see cref="T:Urho.Matrix2x4" /> struct.
+             </summary>
+             <param name="m00">First item of the first row of the matrix.</param>
+             <param name="m01">Second item of the first row of the matrix.</param>
+             <param name="m02">Third item of the first row of the matrix.</param>
+             <param name="m03">Fourth item of the first row of the matrix.</param>
+             <param name="m10">First item of the second row of the matrix.</param>
+             <param name="m11">Second item of the second row of the matrix.</param>
+             <param name="m12">Third item of the second row of the matrix.</param>
+             <param name="m13">Fourth item of the second row of the matrix.</param>
+            </member>
+        <member name="P:Urho.Matrix2x4.Column0">
+             <summary>
+             Gets or sets the first column of the matrix.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x4.Column1">
+             <summary>
+             Gets or sets the second column of the matrix.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x4.Column2">
+             <summary>
+             Gets or sets the third column of the matrix.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x4.Column3">
+             <summary>
+             Gets or sets the fourth column of the matrix.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x4.M11">
+             <summary>
+             Gets or sets the value at row 1, column 1 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x4.M12">
+             <summary>
+             Gets or sets the value at row 1, column 2 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x4.M13">
+             <summary>
+             Gets or sets the value at row 1, column 3 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x4.M14">
+             <summary>
+             Gets or sets the value at row 1, column 4 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x4.M21">
+             <summary>
+             Gets or sets the value at row 2, column 1 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x4.M22">
+             <summary>
+             Gets or sets the value at row 2, column 2 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x4.M23">
+             <summary>
+             Gets or sets the value at row 2, column 3 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x4.M24">
+             <summary>
+             Gets or sets the value at row 2, column 4 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x4.Diagonal">
+             <summary>
+             Gets or sets the values along the main diagonal of the matrix.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x4.Trace">
+             <summary>
+             Gets the trace of the matrix, the sum of the values along the diagonal.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix2x4.Item(System.Int32,System.Int32)">
+             <summary>
+             Gets or sets the value at a specified row and column.
+             </summary>
+             <param name="rowIndex">The index of the row.</param>
+             <param name="columnIndex">The index of the column.</param>
+             <returns>The element at the given row and column index.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.CreateRotation(System.Single,Urho.Matrix2x4@)">
+             <summary>
+             Builds a rotation matrix.
+             </summary>
+             <param name="angle">The counter-clockwise angle in radians.</param>
+             <param name="result">The resulting Matrix2x4 instance.</param>
+            </member>
+        <member name="M:Urho.Matrix2x4.CreateRotation(System.Single)">
+             <summary>
+             Builds a rotation matrix.
+             </summary>
+             <param name="angle">The counter-clockwise angle in radians.</param>
+             <returns>The resulting Matrix2x3 instance.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.CreateScale(System.Single,Urho.Matrix2x4@)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="scale">Single scale factor for the x, y, and z axes.</param>
+             <param name="result">A scale matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix2x4.CreateScale(System.Single)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="scale">Single scale factor for the x and y axes.</param>
+             <returns>A scale matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.CreateScale(Urho.Vector2,Urho.Matrix2x4@)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="scale">Scale factors for the x and y axes.</param>
+             <param name="result">A scale matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix2x4.CreateScale(Urho.Vector2)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="scale">Scale factors for the x and y axes.</param>
+             <returns>A scale matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.CreateScale(System.Single,System.Single,Urho.Matrix2x4@)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="x">Scale factor for the x axis.</param>
+             <param name="y">Scale factor for the y axis.</param>
+             <param name="result">A scale matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix2x4.CreateScale(System.Single,System.Single)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="x">Scale factor for the x axis.</param>
+             <param name="y">Scale factor for the y axis.</param>
+             <returns>A scale matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.Mult(Urho.Matrix2x4,System.Single,Urho.Matrix2x4@)">
+             <summary>
+             Multiplies and instance by a scalar.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix2x4.Mult(Urho.Matrix2x4,System.Single)">
+             <summary>
+             Multiplies and instance by a scalar.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.Mult(Urho.Matrix2x4,Urho.Matrix4x2,Urho.Matrix2@)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix2x4.Mult(Urho.Matrix2x4,Urho.Matrix4x2)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.Mult(Urho.Matrix2x4,Urho.Matrix4x3,Urho.Matrix2x3@)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix2x4.Mult(Urho.Matrix2x4,Urho.Matrix4x3)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.Mult(Urho.Matrix2x4,Urho.Matrix4,Urho.Matrix2x4@)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix2x4.Mult(Urho.Matrix2x4,Urho.Matrix4)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.Add(Urho.Matrix2x4,Urho.Matrix2x4,Urho.Matrix2x4@)">
+             <summary>
+             Adds two instances.
+             </summary>
+             <param name="left">The left operand of the addition.</param>
+             <param name="right">The right operand of the addition.</param>
+             <param name="result">A new instance that is the result of the addition.</param>
+            </member>
+        <member name="M:Urho.Matrix2x4.Add(Urho.Matrix2x4,Urho.Matrix2x4)">
+             <summary>
+             Adds two instances.
+             </summary>
+             <param name="left">The left operand of the addition.</param>
+             <param name="right">The right operand of the addition.</param>
+             <returns>A new instance that is the result of the addition.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.Subtract(Urho.Matrix2x4,Urho.Matrix2x4,Urho.Matrix2x4@)">
+             <summary>
+             Subtracts two instances.
+             </summary>
+             <param name="left">The left operand of the subtraction.</param>
+             <param name="right">The right operand of the subtraction.</param>
+             <param name="result">A new instance that is the result of the subtraction.</param>
+            </member>
+        <member name="M:Urho.Matrix2x4.Subtract(Urho.Matrix2x4,Urho.Matrix2x4)">
+             <summary>
+             Subtracts two instances.
+             </summary>
+             <param name="left">The left operand of the subtraction.</param>
+             <param name="right">The right operand of the subtraction.</param>
+             <returns>A new instance that is the result of the subtraction.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.Transpose(Urho.Matrix2x4,Urho.Matrix4x2@)">
+             <summary>
+             Calculate the transpose of the given matrix.
+             </summary>
+             <param name="mat">The matrix to transpose.</param>
+             <param name="result">The transpose of the given matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix2x4.Transpose(Urho.Matrix2x4)">
+             <summary>
+             Calculate the transpose of the given matrix.
+             </summary>
+             <param name="mat">The matrix to transpose.</param>
+             <returns>The transpose of the given matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.op_Multiply(System.Single,Urho.Matrix2x4)">
+             <summary>
+             Scalar multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix2x4 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.op_Multiply(Urho.Matrix2x4,System.Single)">
+             <summary>
+             Scalar multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix2x4 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.op_Multiply(Urho.Matrix2x4,Urho.Matrix4x2)">
+             <summary>
+             Matrix multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix2 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.op_Multiply(Urho.Matrix2x4,Urho.Matrix4x3)">
+             <summary>
+             Matrix multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix2x3 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.op_Multiply(Urho.Matrix2x4,Urho.Matrix4)">
+             <summary>
+             Matrix multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix2x4 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.op_Addition(Urho.Matrix2x4,Urho.Matrix2x4)">
+             <summary>
+             Matrix addition.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix2 which holds the result of the addition.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.op_Subtraction(Urho.Matrix2x4,Urho.Matrix2x4)">
+             <summary>
+             Matrix subtraction.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix2x4 which holds the result of the subtraction.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.op_Equality(Urho.Matrix2x4,Urho.Matrix2x4)">
+             <summary>
+             Compares two instances for equality.
+             </summary>
+             <param name="left">The first instance.</param>
+             <param name="right">The second instance.</param>
+             <returns>True, if left equals right; false otherwise.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.op_Inequality(Urho.Matrix2x4,Urho.Matrix2x4)">
+             <summary>
+             Compares two instances for inequality.
+             </summary>
+             <param name="left">The first instance.</param>
+             <param name="right">The second instance.</param>
+             <returns>True, if left does not equal right; false otherwise.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.ToString">
+             <summary>
+             Returns a System.String that represents the current Matrix4.
+             </summary>
+             <returns>The string representation of the matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.GetHashCode">
+             <summary>
+             Returns the hashcode for this instance.
+             </summary>
+             <returns>A System.Int32 containing the unique hashcode for this instance.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.Equals(System.Object)">
+             <summary>
+             Indicates whether this instance and a specified object are equal.
+             </summary>
+             <param name="obj">The object to compare to.</param>
+             <returns>True if the instances are equal; false otherwise.</returns>
+            </member>
+        <member name="M:Urho.Matrix2x4.Equals(Urho.Matrix2x4)">
+             <summary>
+             Indicates whether the current matrix is equal to another matrix.
+             </summary>
+             <param name="other">An matrix to compare with this matrix.</param>
+             <returns>true if the current matrix is equal to the matrix parameter; otherwise, false.</returns>
+            </member>
         <member name="F:Urho.Matrix3.R0C0">
              <summary>Row 0, Column 0</summary>
             </member>
@@ -15050,6 +16226,14 @@
         <member name="M:Urho.Matrix3.#ctor(System.Single[])">
              <summary>Constructs left matrix from the given array of float-precision floating-point numbers.</summary>
              <param name="floatArray">The array of floats for the components of the matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix3.#ctor(Urho.Vector3,Urho.Vector3,Urho.Vector3)">
+             <summary>
+             Initializes a new instance of the <see cref="T:Urho.Matrix3" /> struct.
+             </summary>
+             <param name="row0">Top row of the matrix.</param>
+             <param name="row1">Second row of the matrix.</param>
+             <param name="row2">Bottom row of the matrix.</param>
             </member>
         <member name="M:Urho.Matrix3.Equals(Urho.Matrix3)">
              <summary>Indicates whether the current matrix is equal to another matrix.</summary>
@@ -15153,6 +16337,374 @@
         <member name="M:Urho.Matrix3.ToString">
              <summary>Returns the fully qualified type name of this instance.</summary>
              <returns>A System.String containing left fully qualified type name.</returns>
+            </member>
+        <member name="T:Urho.Matrix3x2">
+             <summary>
+             Represents a 3x2 matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix3x2.Row0">
+             <summary>
+             Top row of the matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix3x2.Row1">
+             <summary>
+             Second row of the matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix3x2.Row2">
+             <summary>
+             Bottom row of the matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix3x2.Zero">
+             <summary>
+             The zero matrix.
+             </summary>
+            </member>
+        <member name="M:Urho.Matrix3x2.#ctor(Urho.Vector2,Urho.Vector2,Urho.Vector2)">
+             <summary>
+             Initializes a new instance of the <see cref="T:Urho.Matrix3x2" /> struct.
+             </summary>
+             <param name="row0">Top row of the matrix.</param>
+             <param name="row1">Second row of the matrix.</param>
+             <param name="row2">Bottom row of the matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix3x2.#ctor(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+             <summary>
+             Initializes a new instance of the <see cref="T:Urho.Matrix3x2" /> struct.
+             </summary>
+             <param name="m00">First item of the first row of the matrix.</param>
+             <param name="m01">Second item of the first row of the matrix.</param>
+             <param name="m10">First item of the second row of the matrix.</param>
+             <param name="m11">Second item of the second row of the matrix.</param>
+             <param name="m20">First item of the third row of the matrix.</param>
+             <param name="m21">Second item of the third row of the matrix.</param>
+            </member>
+        <member name="P:Urho.Matrix3x2.Column0">
+             <summary>
+             Gets or sets the first column of this matrix.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix3x2.Column1">
+             <summary>
+             Gets or sets the second column of this matrix.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix3x2.M11">
+             <summary>
+             Gets or sets the value at row 1, column 1 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix3x2.M12">
+             <summary>
+             Gets or sets the value at row 1, column 2 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix3x2.M21">
+             <summary>
+             Gets or sets the value at row 2, column 1 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix3x2.M22">
+             <summary>
+             Gets or sets the value at row 2, column 2 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix3x2.M31">
+             <summary>
+             Gets or sets the value at row 3, column 1 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix3x2.M32">
+             <summary>
+             Gets or sets the value at row 3, column 2 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix3x2.Diagonal">
+             <summary>
+             Gets or sets the values along the main diagonal of the matrix.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix3x2.Trace">
+             <summary>
+             Gets the trace of the matrix, the sum of the values along the diagonal.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix3x2.Item(System.Int32,System.Int32)">
+             <summary>
+             Gets or sets the value at a specified row and column.
+             </summary>
+             <param name="rowIndex">The index of the row.</param>
+             <param name="columnIndex">The index of the column.</param>
+             <returns>The element at the given row and column index.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.CreateRotation(System.Single,Urho.Matrix3x2@)">
+             <summary>
+             Builds a rotation matrix.
+             </summary>
+             <param name="angle">The counter-clockwise angle in radians.</param>
+             <param name="result">The resulting Matrix3x2 instance.</param>
+            </member>
+        <member name="M:Urho.Matrix3x2.CreateRotation(System.Single)">
+             <summary>
+             Builds a rotation matrix.
+             </summary>
+             <param name="angle">The counter-clockwise angle in radians.</param>
+             <returns>The resulting Matrix3x2 instance.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.CreateScale(System.Single,Urho.Matrix3x2@)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="scale">Single scale factor for the x, y, and z axes.</param>
+             <param name="result">A scale matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix3x2.CreateScale(System.Single)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="scale">Single scale factor for the x and y axes.</param>
+             <returns>A scale matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.CreateScale(Urho.Vector2,Urho.Matrix3x2@)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="scale">Scale factors for the x and y axes.</param>
+             <param name="result">A scale matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix3x2.CreateScale(Urho.Vector2)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="scale">Scale factors for the x and y axes.</param>
+             <returns>A scale matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.CreateScale(System.Single,System.Single,Urho.Matrix3x2@)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="x">Scale factor for the x axis.</param>
+             <param name="y">Scale factor for the y axis.</param>
+             <param name="result">A scale matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix3x2.CreateScale(System.Single,System.Single)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="x">Scale factor for the x axis.</param>
+             <param name="y">Scale factor for the y axis.</param>
+             <returns>A scale matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.Mult(Urho.Matrix3x2,System.Single,Urho.Matrix3x2@)">
+             <summary>
+             Multiplies and instance by a scalar.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix3x2.Mult(Urho.Matrix3x2,System.Single)">
+             <summary>
+             Multiplies and instance by a scalar.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.Mult(Urho.Matrix3x2,Urho.Matrix2,Urho.Matrix3x2@)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix3x2.Mult(Urho.Matrix3x2,Urho.Matrix2)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.Mult(Urho.Matrix3x2,Urho.Matrix2x3,Urho.Matrix3@)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix3x2.Mult(Urho.Matrix3x2,Urho.Matrix2x3)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.Mult(Urho.Matrix3x2,Urho.Matrix2x4,Urho.Matrix3x4@)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix3x2.Mult(Urho.Matrix3x2,Urho.Matrix2x4)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.Add(Urho.Matrix3x2,Urho.Matrix3x2,Urho.Matrix3x2@)">
+             <summary>
+             Adds two instances.
+             </summary>
+             <param name="left">The left operand of the addition.</param>
+             <param name="right">The right operand of the addition.</param>
+             <param name="result">A new instance that is the result of the addition.</param>
+            </member>
+        <member name="M:Urho.Matrix3x2.Add(Urho.Matrix3x2,Urho.Matrix3x2)">
+             <summary>
+             Adds two instances.
+             </summary>
+             <param name="left">The left operand of the addition.</param>
+             <param name="right">The right operand of the addition.</param>
+             <returns>A new instance that is the result of the addition.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.Subtract(Urho.Matrix3x2,Urho.Matrix3x2,Urho.Matrix3x2@)">
+             <summary>
+             Subtracts two instances.
+             </summary>
+             <param name="left">The left operand of the subtraction.</param>
+             <param name="right">The right operand of the subtraction.</param>
+             <param name="result">A new instance that is the result of the subtraction.</param>
+            </member>
+        <member name="M:Urho.Matrix3x2.Subtract(Urho.Matrix3x2,Urho.Matrix3x2)">
+             <summary>
+             Subtracts two instances.
+             </summary>
+             <param name="left">The left operand of the subtraction.</param>
+             <param name="right">The right operand of the subtraction.</param>
+             <returns>A new instance that is the result of the subtraction.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.Transpose(Urho.Matrix3x2,Urho.Matrix2x3@)">
+             <summary>
+             Calculate the transpose of the given matrix.
+             </summary>
+             <param name="mat">The matrix to transpose.</param>
+             <param name="result">The transpose of the given matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix3x2.Transpose(Urho.Matrix3x2)">
+             <summary>
+             Calculate the transpose of the given matrix.
+             </summary>
+             <param name="mat">The matrix to transpose.</param>
+             <returns>The transpose of the given matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.op_Multiply(System.Single,Urho.Matrix3x2)">
+             <summary>
+             Scalar multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix3x2 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.op_Multiply(Urho.Matrix3x2,System.Single)">
+             <summary>
+             Scalar multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix3x2 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.op_Multiply(Urho.Matrix3x2,Urho.Matrix2)">
+             <summary>
+             Matrix multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix3x2 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.op_Multiply(Urho.Matrix3x2,Urho.Matrix2x3)">
+             <summary>
+             Matrix multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix3 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.op_Multiply(Urho.Matrix3x2,Urho.Matrix2x4)">
+             <summary>
+             Matrix multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix3x4 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.op_Addition(Urho.Matrix3x2,Urho.Matrix3x2)">
+             <summary>
+             Matrix addition.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix3x2 which holds the result of the addition.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.op_Subtraction(Urho.Matrix3x2,Urho.Matrix3x2)">
+             <summary>
+             Matrix subtraction.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix3x2 which holds the result of the subtraction.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.op_Equality(Urho.Matrix3x2,Urho.Matrix3x2)">
+             <summary>
+             Compares two instances for equality.
+             </summary>
+             <param name="left">The first instance.</param>
+             <param name="right">The second instance.</param>
+             <returns>True, if left equals right; false otherwise.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.op_Inequality(Urho.Matrix3x2,Urho.Matrix3x2)">
+             <summary>
+             Compares two instances for inequality.
+             </summary>
+             <param name="left">The first instance.</param>
+             <param name="right">The second instance.</param>
+             <returns>True, if left does not equal right; false otherwise.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.ToString">
+             <summary>
+             Returns a System.String that represents the current Matrix3d.
+             </summary>
+             <returns>The string representation of the matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.GetHashCode">
+             <summary>
+             Returns the hashcode for this instance.
+             </summary>
+             <returns>A System.Int32 containing the unique hashcode for this instance.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.Equals(System.Object)">
+             <summary>
+             Indicates whether this instance and a specified object are equal.
+             </summary>
+             <param name="obj">The object to compare to.</param>
+             <returns>True if the instances are equal; false otherwise.</returns>
+            </member>
+        <member name="M:Urho.Matrix3x2.Equals(Urho.Matrix3x2)">
+             <summary>
+             Indicates whether the current matrix is equal to another matrix.
+             </summary>
+             <param name="other">An matrix to compare with this matrix.</param>
+             <returns>true if the current matrix is equal to the matrix parameter; otherwise, false.</returns>
             </member>
         <member name="T:Urho.Matrix4">
              <summary>
@@ -15750,6 +17302,868 @@
              <param name="other">An matrix to compare with this matrix.</param>
              <returns>true if the current matrix is equal to the matrix parameter; otherwise, false.</returns>
             </member>
+        <member name="T:Urho.Matrix4x2">
+             <summary>
+             Represents a 4x2 matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix4x2.Row0">
+             <summary>
+             Top row of the matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix4x2.Row1">
+             <summary>
+             Second row of the matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix4x2.Row2">
+             <summary>
+             Third row of the matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix4x2.Row3">
+             <summary>
+             Bottom row of the matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix4x2.Zero">
+             <summary>
+             The zero matrix.
+             </summary>
+            </member>
+        <member name="M:Urho.Matrix4x2.#ctor(Urho.Vector2,Urho.Vector2,Urho.Vector2,Urho.Vector2)">
+             <summary>
+             Initializes a new instance of the <see cref="T:Urho.Matrix4x2" /> struct.
+             </summary>
+             <param name="row0">Top row of the matrix.</param>
+             <param name="row1">Second row of the matrix.</param>
+             <param name="row2">Third row of the matrix.</param>
+             <param name="row3">Bottom row of the matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix4x2.#ctor(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+             <summary>
+             Initializes a new instance of the <see cref="T:Urho.Matrix4x2" /> struct.
+             </summary>
+             <param name="m00">First item of the first row of the matrix.</param>
+             <param name="m01">Second item of the first row of the matrix.</param>
+             <param name="m10">First item of the second row of the matrix.</param>
+             <param name="m11">Second item of the second row of the matrix.</param>
+             <param name="m20">First item of the third row of the matrix.</param>
+             <param name="m21">Second item of the third row of the matrix.</param>
+             <param name="m30">First item of the fourth row of the matrix.</param>
+             <param name="m31">Second item of the fourth row of the matrix.</param>
+            </member>
+        <member name="P:Urho.Matrix4x2.Column0">
+             <summary>
+             Gets or sets the first column of this matrix.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x2.Column1">
+             <summary>
+             Gets or sets the second column of this matrix.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x2.M11">
+             <summary>
+             Gets or sets the value at row 1, column 1 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x2.M12">
+             <summary>
+             Gets or sets the value at row 1, column 2 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x2.M21">
+             <summary>
+             Gets or sets the value at row 2, column 1 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x2.M22">
+             <summary>
+             Gets or sets the value at row 2, column 2 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x2.M31">
+             <summary>
+             Gets or sets the value at row 3, column 1 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x2.M32">
+             <summary>
+             Gets or sets the value at row 3, column 2 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x2.M41">
+             <summary>
+             Gets or sets the value at row 4, column 1 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x2.M42">
+             <summary>
+             Gets or sets the value at row 4, column 2 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x2.Diagonal">
+             <summary>
+             Gets or sets the values along the main diagonal of the matrix.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x2.Trace">
+             <summary>
+             Gets the trace of the matrix, the sum of the values along the diagonal.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x2.Item(System.Int32,System.Int32)">
+             <summary>
+             Gets or sets the value at a specified row and column.
+             </summary>
+             <param name="rowIndex">The index of the row.</param>
+             <param name="columnIndex">The index of the column.</param>
+             <returns>The element at the given row and column index.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.CreateRotation(System.Single,Urho.Matrix4x2@)">
+             <summary>
+             Builds a rotation matrix.
+             </summary>
+             <param name="angle">The counter-clockwise angle in radians.</param>
+             <param name="result">The resulting Matrix3x2 instance.</param>
+            </member>
+        <member name="M:Urho.Matrix4x2.CreateRotation(System.Single)">
+             <summary>
+             Builds a rotation matrix.
+             </summary>
+             <param name="angle">The counter-clockwise angle in radians.</param>
+             <returns>The resulting Matrix3x2 instance.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.CreateScale(System.Single,Urho.Matrix4x2@)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="scale">Single scale factor for the x, y, and z axes.</param>
+             <param name="result">A scale matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix4x2.CreateScale(System.Single)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="scale">Single scale factor for the x and y axes.</param>
+             <returns>A scale matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.CreateScale(Urho.Vector2,Urho.Matrix4x2@)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="scale">Scale factors for the x and y axes.</param>
+             <param name="result">A scale matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix4x2.CreateScale(Urho.Vector2)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="scale">Scale factors for the x and y axes.</param>
+             <returns>A scale matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.CreateScale(System.Single,System.Single,Urho.Matrix4x2@)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="x">Scale factor for the x axis.</param>
+             <param name="y">Scale factor for the y axis.</param>
+             <param name="result">A scale matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix4x2.CreateScale(System.Single,System.Single)">
+             <summary>
+             Creates a scale matrix.
+             </summary>
+             <param name="x">Scale factor for the x axis.</param>
+             <param name="y">Scale factor for the y axis.</param>
+             <returns>A scale matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.Mult(Urho.Matrix4x2,System.Single,Urho.Matrix4x2@)">
+             <summary>
+             Multiplies and instance by a scalar.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix4x2.Mult(Urho.Matrix4x2,System.Single)">
+             <summary>
+             Multiplies and instance by a scalar.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.Mult(Urho.Matrix4x2,Urho.Matrix2,Urho.Matrix4x2@)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix4x2.Mult(Urho.Matrix4x2,Urho.Matrix2)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.Mult(Urho.Matrix4x2,Urho.Matrix2x3,Urho.Matrix4x3@)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix4x2.Mult(Urho.Matrix4x2,Urho.Matrix2x3)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.Mult(Urho.Matrix4x2,Urho.Matrix2x4,Urho.Matrix4@)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix4x2.Mult(Urho.Matrix4x2,Urho.Matrix2x4)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.Add(Urho.Matrix4x2,Urho.Matrix4x2,Urho.Matrix4x2@)">
+             <summary>
+             Adds two instances.
+             </summary>
+             <param name="left">The left operand of the addition.</param>
+             <param name="right">The right operand of the addition.</param>
+             <param name="result">A new instance that is the result of the addition.</param>
+            </member>
+        <member name="M:Urho.Matrix4x2.Add(Urho.Matrix4x2,Urho.Matrix4x2)">
+             <summary>
+             Adds two instances.
+             </summary>
+             <param name="left">The left operand of the addition.</param>
+             <param name="right">The right operand of the addition.</param>
+             <returns>A new instance that is the result of the addition.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.Subtract(Urho.Matrix4x2,Urho.Matrix4x2,Urho.Matrix4x2@)">
+             <summary>
+             Subtracts two instances.
+             </summary>
+             <param name="left">The left operand of the subtraction.</param>
+             <param name="right">The right operand of the subtraction.</param>
+             <param name="result">A new instance that is the result of the subtraction.</param>
+            </member>
+        <member name="M:Urho.Matrix4x2.Subtract(Urho.Matrix4x2,Urho.Matrix4x2)">
+             <summary>
+             Subtracts two instances.
+             </summary>
+             <param name="left">The left operand of the subtraction.</param>
+             <param name="right">The right operand of the subtraction.</param>
+             <returns>A new instance that is the result of the subtraction.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.Transpose(Urho.Matrix4x2,Urho.Matrix2x4@)">
+             <summary>
+             Calculate the transpose of the given matrix.
+             </summary>
+             <param name="mat">The matrix to transpose.</param>
+             <param name="result">The transpose of the given matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix4x2.Transpose(Urho.Matrix4x2)">
+             <summary>
+             Calculate the transpose of the given matrix.
+             </summary>
+             <param name="mat">The matrix to transpose.</param>
+             <returns>The transpose of the given matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.op_Multiply(System.Single,Urho.Matrix4x2)">
+             <summary>
+             Scalar multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix4x2 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.op_Multiply(Urho.Matrix4x2,System.Single)">
+             <summary>
+             Scalar multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix4x2 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.op_Multiply(Urho.Matrix4x2,Urho.Matrix2)">
+             <summary>
+             Matrix multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix2 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.op_Multiply(Urho.Matrix4x2,Urho.Matrix2x3)">
+             <summary>
+             Matrix multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix4x3 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.op_Multiply(Urho.Matrix4x2,Urho.Matrix2x4)">
+             <summary>
+             Matrix multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix4 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.op_Addition(Urho.Matrix4x2,Urho.Matrix4x2)">
+             <summary>
+             Matrix addition.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix4x2 which holds the result of the addition.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.op_Subtraction(Urho.Matrix4x2,Urho.Matrix4x2)">
+             <summary>
+             Matrix subtraction.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix4x2 which holds the result of the subtraction.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.op_Equality(Urho.Matrix4x2,Urho.Matrix4x2)">
+             <summary>
+             Compares two instances for equality.
+             </summary>
+             <param name="left">The first instance.</param>
+             <param name="right">The second instance.</param>
+             <returns>True, if left equals right; false otherwise.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.op_Inequality(Urho.Matrix4x2,Urho.Matrix4x2)">
+             <summary>
+             Compares two instances for inequality.
+             </summary>
+             <param name="left">The first instance.</param>
+             <param name="right">The second instance.</param>
+             <returns>True, if left does not equal right; false otherwise.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.ToString">
+             <summary>
+             Returns a System.String that represents the current Matrix3d.
+             </summary>
+             <returns>The string representation of the matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.GetHashCode">
+             <summary>
+             Returns the hashcode for this instance.
+             </summary>
+             <returns>A System.Int32 containing the unique hashcode for this instance.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.Equals(System.Object)">
+             <summary>
+             Indicates whether this instance and a specified object are equal.
+             </summary>
+             <param name="obj">The object to compare to.</param>
+             <returns>True if the instances are equal; false otherwise.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x2.Equals(Urho.Matrix4x2)">
+             <summary>
+             Indicates whether the current matrix is equal to another matrix.
+             </summary>
+             <param name="other">An matrix to compare with this matrix.</param>
+             <returns>true if the current matrix is equal to the matrix parameter; otherwise, false.</returns>
+            </member>
+        <member name="T:Urho.Matrix4x3">
+             <summary>
+             Represents a 3x4 matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix4x3.Row0">
+             <summary>
+             Top row of the matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix4x3.Row1">
+             <summary>
+             2nd row of the matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix4x3.Row2">
+             <summary>
+             3rd row of the matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix4x3.Row3">
+             <summary>
+             Bottom row of the matrix.
+             </summary>
+            </member>
+        <member name="F:Urho.Matrix4x3.Zero">
+             <summary>
+             The zero matrix.
+             </summary>
+            </member>
+        <member name="M:Urho.Matrix4x3.#ctor(Urho.Vector3,Urho.Vector3,Urho.Vector3,Urho.Vector3)">
+             <summary>
+             Initializes a new instance of the <see cref="T:Urho.Matrix4x3" /> struct.
+             </summary>
+             <param name="row0">Top row of the matrix.</param>
+             <param name="row1">Second row of the matrix.</param>
+             <param name="row2">Third row of the matrix.</param>
+             <param name="row3">Bottom row of the matrix.</param>
+            </member>
+        <member name="M:Urho.Matrix4x3.#ctor(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+             <summary>
+             Initializes a new instance of the <see cref="T:Urho.Matrix4x3" /> struct.
+             </summary>
+             <param name="m00">First item of the first row of the matrix.</param>
+             <param name="m01">Second item of the first row of the matrix.</param>
+             <param name="m02">Third item of the first row of the matrix.</param>
+             <param name="m10">First item of the second row of the matrix.</param>
+             <param name="m11">Second item of the second row of the matrix.</param>
+             <param name="m12">Third item of the second row of the matrix.</param>
+             <param name="m20">First item of the third row of the matrix.</param>
+             <param name="m21">Second item of the third row of the matrix.</param>
+             <param name="m22">Third item of the third row of the matrix.</param>
+             <param name="m30">First item of the fourth row of the matrix.</param>
+             <param name="m31">Second item of the fourth row of the matrix.</param>
+             <param name="m32">Third item of the fourth row of the matrix.</param>
+            </member>
+        <member name="P:Urho.Matrix4x3.Column0">
+             <summary>
+             Gets the first column of this matrix.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x3.Column1">
+             <summary>
+             Gets the second column of this matrix.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x3.Column2">
+             <summary>
+             Gets the third column of this matrix.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x3.M11">
+             <summary>
+             Gets or sets the value at row 1, column 1 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x3.M12">
+             <summary>
+             Gets or sets the value at row 1, column 2 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x3.M13">
+             <summary>
+             Gets or sets the value at row 1, column 3 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x3.M21">
+             <summary>
+             Gets or sets the value at row 2, column 1 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x3.M22">
+             <summary>
+             Gets or sets the value at row 2, column 2 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x3.M23">
+             <summary>
+             Gets or sets the value at row 2, column 3 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x3.M31">
+             <summary>
+             Gets or sets the value at row 3, column 1 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x3.M32">
+             <summary>
+             Gets or sets the value at row 3, column 2 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x3.M33">
+             <summary>
+             Gets or sets the value at row 3, column 3 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x3.M41">
+             <summary>
+             Gets or sets the value at row 4, column 1 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x3.M42">
+             <summary>
+             Gets or sets the value at row 4, column 2 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x3.M43">
+             <summary>
+             Gets or sets the value at row 4, column 3 of this instance.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x3.Diagonal">
+             <summary>
+             Gets or sets the values along the main diagonal of the matrix.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x3.Trace">
+             <summary>
+             Gets the trace of the matrix, the sum of the values along the diagonal.
+             </summary>
+            </member>
+        <member name="P:Urho.Matrix4x3.Item(System.Int32,System.Int32)">
+             <summary>
+             Gets or sets the value at a specified row and column.
+             </summary>
+             <param name="rowIndex">The index of the row.</param>
+             <param name="columnIndex">The index of the column.</param>
+             <returns>The element at the given row and column index.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.Invert">
+             <summary>
+             Converts this instance into it's inverse by inverting the upper-left 3x3 and replacing Row3.
+             </summary>
+            </member>
+        <member name="M:Urho.Matrix4x3.CreateFromAxisAngle(Urho.Vector3,System.Single,Urho.Matrix4x3@)">
+             <summary>
+             Build a rotation matrix from the specified axis/angle rotation.
+             </summary>
+             <param name="axis">The axis to rotate about.</param>
+             <param name="angle">Angle in radians to rotate counter-clockwise (looking in the direction of the given axis).</param>
+             <param name="result">A matrix instance.</param>
+            </member>
+        <member name="M:Urho.Matrix4x3.CreateFromAxisAngle(Urho.Vector3,System.Single)">
+             <summary>
+             Build a rotation matrix from the specified axis/angle rotation.
+             </summary>
+             <param name="axis">The axis to rotate about.</param>
+             <param name="angle">Angle in radians to rotate counter-clockwise (looking in the direction of the given axis).</param>
+             <returns>A matrix instance.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.CreateFromQuaternion(Urho.Quaternion,Urho.Matrix4x3@)">
+             <summary>
+             Builds a rotation matrix from a quaternion.
+             </summary>
+             <param name="q">The quaternion to rotate by.</param>
+             <param name="result">A matrix instance.</param>
+            </member>
+        <member name="M:Urho.Matrix4x3.CreateFromQuaternion(Urho.Quaternion)">
+             <summary>
+             Builds a rotation matrix from a quaternion.
+             </summary>
+             <param name="q">The quaternion to rotate by.</param>
+             <returns>A matrix instance.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.CreateRotationX(System.Single,Urho.Matrix4x3@)">
+             <summary>
+             Builds a rotation matrix for a rotation around the x-axis.
+             </summary>
+             <param name="angle">The counter-clockwise angle in radians.</param>
+             <param name="result">The resulting Matrix4 instance.</param>
+            </member>
+        <member name="M:Urho.Matrix4x3.CreateRotationX(System.Single)">
+             <summary>
+             Builds a rotation matrix for a rotation around the x-axis.
+             </summary>
+             <param name="angle">The counter-clockwise angle in radians.</param>
+             <returns>The resulting Matrix4 instance.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.CreateRotationY(System.Single,Urho.Matrix4x3@)">
+             <summary>
+             Builds a rotation matrix for a rotation around the y-axis.
+             </summary>
+             <param name="angle">The counter-clockwise angle in radians.</param>
+             <param name="result">The resulting Matrix4 instance.</param>
+            </member>
+        <member name="M:Urho.Matrix4x3.CreateRotationY(System.Single)">
+             <summary>
+             Builds a rotation matrix for a rotation around the y-axis.
+             </summary>
+             <param name="angle">The counter-clockwise angle in radians.</param>
+             <returns>The resulting Matrix4 instance.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.CreateRotationZ(System.Single,Urho.Matrix4x3@)">
+             <summary>
+             Builds a rotation matrix for a rotation around the z-axis.
+             </summary>
+             <param name="angle">The counter-clockwise angle in radians.</param>
+             <param name="result">The resulting Matrix4 instance.</param>
+            </member>
+        <member name="M:Urho.Matrix4x3.CreateRotationZ(System.Single)">
+             <summary>
+             Builds a rotation matrix for a rotation around the z-axis.
+             </summary>
+             <param name="angle">The counter-clockwise angle in radians.</param>
+             <returns>The resulting Matrix4 instance.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.CreateTranslation(System.Single,System.Single,System.Single,Urho.Matrix4x3@)">
+             <summary>
+             Creates a translation matrix.
+             </summary>
+             <param name="x">X translation.</param>
+             <param name="y">Y translation.</param>
+             <param name="z">Z translation.</param>
+             <param name="result">The resulting Matrix4 instance.</param>
+            </member>
+        <member name="M:Urho.Matrix4x3.CreateTranslation(Urho.Vector3,Urho.Matrix4x3@)">
+             <summary>
+             Creates a translation matrix.
+             </summary>
+             <param name="vector">The translation vector.</param>
+             <param name="result">The resulting Matrix4 instance.</param>
+            </member>
+        <member name="M:Urho.Matrix4x3.CreateTranslation(System.Single,System.Single,System.Single)">
+             <summary>
+             Creates a translation matrix.
+             </summary>
+             <param name="x">X translation.</param>
+             <param name="y">Y translation.</param>
+             <param name="z">Z translation.</param>
+             <returns>The resulting Matrix4 instance.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.CreateTranslation(Urho.Vector3)">
+             <summary>
+             Creates a translation matrix.
+             </summary>
+             <param name="vector">The translation vector.</param>
+             <returns>The resulting Matrix4 instance.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.CreateScale(System.Single)">
+             <summary>
+             Build a scaling matrix.
+             </summary>
+             <param name="scale">Single scale factor for x,y and z axes.</param>
+             <returns>A scaling matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.CreateScale(Urho.Vector3)">
+             <summary>
+             Build a scaling matrix.
+             </summary>
+             <param name="scale">Scale factors for x,y and z axes.</param>
+             <returns>A scaling matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.CreateScale(System.Single,System.Single,System.Single)">
+             <summary>
+             Build a scaling matrix.
+             </summary>
+             <param name="x">Scale factor for x-axis.</param>
+             <param name="y">Scale factor for y-axis.</param>
+             <param name="z">Scale factor for z-axis.</param>
+             <returns>A scaling matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.Mult(Urho.Matrix4x3,Urho.Matrix3x4)">
+             <summary>
+             This isn't quite a multiply, but the result may be useful in some situations.
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.Mult(Urho.Matrix4x3,Urho.Matrix3x4,Urho.Matrix4@)">
+             <summary>
+             This isn't quite a multiply, but the result may be useful in some situations.
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix4x3.Mult(Urho.Matrix4x3,Urho.Matrix4x3)">
+             <summary>
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.Mult(Urho.Matrix4x3,Urho.Matrix4x3,Urho.Matrix4x3@)">
+             <summary>
+             This isn't quite a multiply, but the result may be useful in some situations.
+             Multiplies two instances.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix4x3.Mult(Urho.Matrix4x3,System.Single)">
+             <summary>
+             Multiplies an instance by a scalar.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <returns>A new instance that is the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.Mult(Urho.Matrix4x3,System.Single,Urho.Matrix4x3@)">
+             <summary>
+             Multiplies an instance by a scalar.
+             </summary>
+             <param name="left">The left operand of the multiplication.</param>
+             <param name="right">The right operand of the multiplication.</param>
+             <param name="result">A new instance that is the result of the multiplication.</param>
+            </member>
+        <member name="M:Urho.Matrix4x3.Add(Urho.Matrix4x3,Urho.Matrix4x3)">
+             <summary>
+             Adds two instances.
+             </summary>
+             <param name="left">The left operand of the addition.</param>
+             <param name="right">The right operand of the addition.</param>
+             <returns>A new instance that is the result of the addition.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.Add(Urho.Matrix4x3,Urho.Matrix4x3,Urho.Matrix4x3@)">
+             <summary>
+             Adds two instances.
+             </summary>
+             <param name="left">The left operand of the addition.</param>
+             <param name="right">The right operand of the addition.</param>
+             <param name="result">A new instance that is the result of the addition.</param>
+            </member>
+        <member name="M:Urho.Matrix4x3.Subtract(Urho.Matrix4x3,Urho.Matrix4x3)">
+             <summary>
+             Subtracts one instance from another.
+             </summary>
+             <param name="left">The left operand of the subraction.</param>
+             <param name="right">The right operand of the subraction.</param>
+             <returns>A new instance that is the result of the subraction.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.Subtract(Urho.Matrix4x3,Urho.Matrix4x3,Urho.Matrix4x3@)">
+             <summary>
+             Subtracts one instance from another.
+             </summary>
+             <param name="left">The left operand of the subraction.</param>
+             <param name="right">The right operand of the subraction.</param>
+             <param name="result">A new instance that is the result of the subraction.</param>
+            </member>
+        <member name="M:Urho.Matrix4x3.Invert(Urho.Matrix4x3)">
+             <summary>
+             Calculate the inverse of the given matrix.
+             </summary>
+             <param name="mat">The matrix to invert.</param>
+             <returns>The inverse of the given matrix.</returns>
+             <exception cref="T:System.InvalidOperationException">Thrown if the Matrix4 is singular.</exception>
+            </member>
+        <member name="M:Urho.Matrix4x3.Invert(Urho.Matrix4x3,Urho.Matrix4x3@)">
+             <summary>
+             Calculate the inverse of the given matrix.
+             </summary>
+             <param name="mat">The matrix to invert.</param>
+             <param name="result">The inverse of the given matrix if it has one, or the input if it is singular.</param>
+             <exception cref="T:System.InvalidOperationException">Thrown if the Matrix4 is singular.</exception>
+            </member>
+        <member name="M:Urho.Matrix4x3.Transpose(Urho.Matrix4x3)">
+             <summary>
+             Calculate the transpose of the given matrix.
+             </summary>
+             <param name="mat">The matrix to transpose.</param>
+             <returns>The transpose of the given matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.Transpose(Urho.Matrix4x3,Urho.Matrix3x4@)">
+             <summary>
+             Calculate the transpose of the given matrix.
+             </summary>
+             <param name="mat">The matrix to transpose.</param>
+             <param name="result">The result of the calculation.</param>
+            </member>
+        <member name="M:Urho.Matrix4x3.op_Multiply(Urho.Matrix4x3,Urho.Matrix3x4)">
+             <summary>
+             Matrix multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix4 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.op_Multiply(Urho.Matrix4x3,Urho.Matrix4x3)">
+             <summary>
+             Matrix multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix4x3 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.op_Multiply(Urho.Matrix4x3,System.Single)">
+             <summary>
+             Matrix-scalar multiplication.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix4x3 which holds the result of the multiplication.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.op_Addition(Urho.Matrix4x3,Urho.Matrix4x3)">
+             <summary>
+             Matrix addition.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix4x3 which holds the result of the addition.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.op_Subtraction(Urho.Matrix4x3,Urho.Matrix4x3)">
+             <summary>
+             Matrix subtraction.
+             </summary>
+             <param name="left">left-hand operand.</param>
+             <param name="right">right-hand operand.</param>
+             <returns>A new Matrix4x3 which holds the result of the subtraction.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.op_Equality(Urho.Matrix4x3,Urho.Matrix4x3)">
+             <summary>
+             Compares two instances for equality.
+             </summary>
+             <param name="left">The first instance.</param>
+             <param name="right">The second instance.</param>
+             <returns>True, if left equals right; false otherwise.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.op_Inequality(Urho.Matrix4x3,Urho.Matrix4x3)">
+             <summary>
+             Compares two instances for inequality.
+             </summary>
+             <param name="left">The first instance.</param>
+             <param name="right">The second instance.</param>
+             <returns>True, if left does not equal right; false otherwise.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.ToString">
+             <summary>
+             Returns a System.String that represents the current Matrix4x3.
+             </summary>
+             <returns>The string representation of the matrix.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.GetHashCode">
+             <summary>
+             Returns the hashcode for this instance.
+             </summary>
+             <returns>A System.Int32 containing the unique hashcode for this instance.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.Equals(System.Object)">
+             <summary>
+             Indicates whether this instance and a specified object are equal.
+             </summary>
+             <param name="obj">The object to compare tresult.</param>
+             <returns>True if the instances are equal; false otherwise.</returns>
+            </member>
+        <member name="M:Urho.Matrix4x3.Equals(Urho.Matrix4x3)">
+             <summary>
+             Indicates whether the current matrix is equal to another matrix.
+             </summary>
+             <param name="other">An matrix to compare with this matrix.</param>
+             <returns>true if the current matrix is equal to the matrix parameter; otherwise, false.</returns>
+            </member>
         <member name="F:Urho.Plane.Normal">
              <summary>
              Plane normal.
@@ -16123,6 +18537,13 @@
              </summary>
              <param name="x">The x coordinate of the net Vector2.</param>
              <param name="y">The y coordinate of the net Vector2.</param>
+            </member>
+        <member name="P:Urho.Vector2.Item(System.Int32)">
+             <summary>
+             Gets or sets the value at the index of the Vector.
+             </summary>
+             <param name="index">The index of the component from the Vector.</param>
+             <exception cref="T:System.IndexOutOfRangeException">Thrown if the index is less than 0 or greater than 1.</exception>
             </member>
         <member name="M:Urho.Vector2.#ctor(Urho.Vector2)">
              <summary>
@@ -16708,6 +19129,13 @@
              Constructs a new Vector3 from the given Vector4.
              </summary>
              <param name="v">The Vector4 to copy components from.</param>
+            </member>
+        <member name="P:Urho.Vector3.Item(System.Int32)">
+             <summary>
+             Gets or sets the value at the index of the Vector.
+             </summary>
+             <param name="index">The index of the component from the Vector.</param>
+             <exception cref="T:System.IndexOutOfRangeException">Thrown if the index is less than 0 or greater than 2.</exception>
             </member>
         <member name="M:Urho.Vector3.Add(Urho.Vector3)">
              <summary>Add the Vector passed as parameter to this instance.</summary>
@@ -17416,6 +19844,13 @@
              Constructs a new Vector4 from the given Vector4.
              </summary>
              <param name="v">The Vector4 to copy components from.</param>
+            </member>
+        <member name="P:Urho.Vector4.Item(System.Int32)">
+             <summary>
+             Gets or sets the value at the index of the Vector.
+             </summary>
+             <param name="index">The index of the component from the Vector.</param>
+             <exception cref="T:System.IndexOutOfRangeException">Thrown if the index is less than 0 or greater than 3.</exception>
             </member>
         <member name="M:Urho.Vector4.Add(Urho.Vector4)">
              <summary>Add the Vector passed as parameter to this instance.</summary>
@@ -25950,10 +28385,651 @@
             </member>
         <member name="T:Urho.IKEffector">
              <summary>
+             Constructs a new IK effector.
+             </summary>
+            </member>
+        <member name="M:Urho.IKEffector.RegisterObject(Urho.Context)">
+             <summary>
+             Registers this class as an object factory.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKEffector.GetFeature(Urho.IKEffectorFeature)">
+             <summary>
+             Test if a certain feature is enabled (see IKEffector::IKEffectorFeature).
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKEffector.SetFeature(Urho.IKEffectorFeature,System.Boolean)">
+             <summary>
+             Enable or disable a certain feature (see IKEffector::IKEffectorFeature).
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKEffector.GetTargetNode">
+             <summary>
+             Retrieves the node that is being used as a target. Can be NULL.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKEffector.SetTargetNode(Urho.Node)">
+             <summary>
+             
+             
+             The position of the target node provides the target position of
+             the effector node.
+             The IK chain is solved such that the node to which this component is
+             attached to will try to move to the position of the target node.
+             
+             A scene node that acts as a target. Specifying NULL
+             will erase the target and cause the solver to ignore this chain.
+             
+             You will get very strange behaviour if you specify a target node
+             that is part the IK chain being solved for (circular dependency). Don't
+             do that.
+             </summary>
+            </member>
+        <member name="M:Urho.IKEffector.GetTargetName">
+             <summary>
+             
+             
+             Retrieves the name of the target node. The node doesn't
+             necessarily have to exist in the scene graph.
+             </summary>
+            </member>
+        <member name="M:Urho.IKEffector.SetTargetName(System.String)">
+             <summary>
+             
+             
+             Sets the name of the target node. The node doesn't necessarily
+             have to exist in the scene graph. When a node is created that matches
+             this name, it is selected as the target.
+             
+             This clears the existing target node.
+             </summary>
+            </member>
+        <member name="M:Urho.IKEffector.GetTargetPosition">
+             <summary>
+             Returns the current target position in world space.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKEffector.SetTargetPosition(Urho.Vector3)">
+             <summary>
+             Sets the current target position. If the effector has a target node then this will have no effect.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKEffector.GetTargetRotation">
+             <summary>
+             Gets the current target rotation in world space.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKEffector.SetTargetRotation(Urho.Quaternion)">
+             <summary>
+             Sets the current target rotation. If the effector has a target node then this will have no effect.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKEffector.GetTargetRotationEuler">
+             <summary>
+             Required for the editor, get the target rotation in euler angles.
+             </summary>
+            </member>
+        <member name="M:Urho.IKEffector.SetTargetRotationEuler(Urho.Vector3)">
+             <summary>
+             Required for the editor, sets the target rotation in euler angles.
+             </summary>
+            </member>
+        <member name="M:Urho.IKEffector.GetChainLength">
+             <summary>
+             Returns the number of segments that will be affected by this effector. 0 Means all nodes between this effector
+             and the next IKSolver.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKEffector.SetChainLength(System.UInt32)">
+             <summary>
+             Sets the number of segments that will be affected. 0 Means all nodes between this effector and the next
+             IKSolver.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKEffector.GetWeight">
+             <summary>
+             How strongly the effector affects the solution.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKEffector.SetWeight(System.Single)">
+             <summary>
+             
+             
+             Sets how much influence the effector has on the solution.
+             You can use this value to smoothly transition between a solved pose and
+             an initial pose  For instance, lifting a foot off of the ground or
+             letting go of an object.
+             </summary>
+            </member>
+        <member name="M:Urho.IKEffector.GetRotationWeight">
+             <summary>
+             How strongly the target node's rotation influences the solution.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKEffector.SetRotationWeight(System.Single)">
+             <summary>
+             
+             
+             Sets how much influence the target rotation should have on the
+             solution. A value of 1 means to match the target rotation exactly, if
+             possible. A value of 0 means to not match it at all.
+             
+             The solver must have target rotation enabled for this to have
+             any effect. See IKSolver::IKEffectorFeature::TARGET_ROTATIONS.
+             </summary>
+            </member>
+        <member name="M:Urho.IKEffector.GetRotationDecay">
+             <summary>
+             Retrieves the rotation decay factor. See SetRotationDecay() for info.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKEffector.SetRotationDecay(System.Single)">
+             <summary>
+             
+             
+             A factor with which to control the target rotation influence of
+             the next segments down the chain.
+             For example, if this is set to 0.5 and the rotation weight is set to
+             1.0, then the first segment will match the target rotation exactly, the
+             next segment will match it only 50%, the next segment 25%, the next
+             12.5%, etc. This parameter makes long chains look more natural when
+             matching a target rotation.
+             </summary>
+            </member>
+        <member name="M:Urho.IKEffector.GetFEATURE_WEIGHT_NLERP">
+             <summary>
+             Need these wrapper functions flags of GetFeature/SetFeature can be correctly exposed to the editor and to
+             AngelScript and lua.
+             </summary>
+            </member>
+        <member name="P:Urho.IKEffector.TargetNode">
+             <summary>
+             Retrieves the node that is being used as a target. Can be NULL.
+             
+             Or
+             
+             
+             The position of the target node provides the target position of
+             the effector node.
+             The IK chain is solved such that the node to which this component is
+             attached to will try to move to the position of the target node.
+             
+             A scene node that acts as a target. Specifying NULL
+             will erase the target and cause the solver to ignore this chain.
+             
+             You will get very strange behaviour if you specify a target node
+             that is part the IK chain being solved for (circular dependency). Don't
+             do that.
+             </summary>
+            </member>
+        <member name="P:Urho.IKEffector.TargetName">
+             <summary>
+             
+             
+             Retrieves the name of the target node. The node doesn't
+             necessarily have to exist in the scene graph.
+             Or
+             
+             
+             Sets the name of the target node. The node doesn't necessarily
+             have to exist in the scene graph. When a node is created that matches
+             this name, it is selected as the target.
+             
+             This clears the existing target node.
+             </summary>
+            </member>
+        <member name="P:Urho.IKEffector.TargetPosition">
+             <summary>
+             Returns the current target position in world space.
+             
+             Or
+             Sets the current target position. If the effector has a target node then this will have no effect.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.IKEffector.TargetRotation">
+             <summary>
+             Gets the current target rotation in world space.
+             
+             Or
+             Sets the current target rotation. If the effector has a target node then this will have no effect.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.IKEffector.TargetRotationEuler">
+             <summary>
+             Required for the editor, get the target rotation in euler angles.
+             </summary>
+            </member>
+        <member name="P:Urho.IKEffector.ChainLength">
+             <summary>
+             Returns the number of segments that will be affected by this effector. 0 Means all nodes between this effector
+             and the next IKSolver.
+             
+             Or
+             Sets the number of segments that will be affected. 0 Means all nodes between this effector and the next
+             IKSolver.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.IKEffector.Weight">
+             <summary>
+             How strongly the effector affects the solution.
+             
+             Or
+             
+             
+             Sets how much influence the effector has on the solution.
+             You can use this value to smoothly transition between a solved pose and
+             an initial pose  For instance, lifting a foot off of the ground or
+             letting go of an object.
+             </summary>
+            </member>
+        <member name="P:Urho.IKEffector.RotationWeight">
+             <summary>
+             How strongly the target node's rotation influences the solution.
+             
+             Or
+             
+             
+             Sets how much influence the target rotation should have on the
+             solution. A value of 1 means to match the target rotation exactly, if
+             possible. A value of 0 means to not match it at all.
+             
+             The solver must have target rotation enabled for this to have
+             any effect. See IKSolver::IKEffectorFeature::TARGET_ROTATIONS.
+             </summary>
+            </member>
+        <member name="P:Urho.IKEffector.RotationDecay">
+             <summary>
+             Retrieves the rotation decay factor. See SetRotationDecay() for info.
+             
+             Or
+             
+             
+             A factor with which to control the target rotation influence of
+             the next segments down the chain.
+             For example, if this is set to 0.5 and the rotation weight is set to
+             1.0, then the first segment will match the target rotation exactly, the
+             next segment will match it only 50%, the next segment 25%, the next
+             12.5%, etc. This parameter makes long chains look more natural when
+             matching a target rotation.
+             </summary>
+            </member>
+        <member name="P:Urho.IKEffector.FEATURE_WEIGHT_NLERP">
+             <summary>
+             Need these wrapper functions flags of GetFeature/SetFeature can be correctly exposed to the editor and to
+             AngelScript and lua.
+             </summary>
+            </member>
+        <member name="T:Urho.IKEffectorFeature">
+             <summary>
              If you set the effector weight (see SetWeight()) to a value in
              </summary>
             </member>
         <member name="T:Urho.IKSolver">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.RegisterObject(Urho.Context)">
+             <summary>
+             Registers this class to the context.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.GetAlgorithm">
+             <summary>
+             Returns the active algorithm.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.SetAlgorithm(Urho.IKSolverAlgorithm)">
+             <summary>
+             
+             
+             Selects the solver algorithm. Default is FABRIK. Note that this
+             may not be the most efficient algorithm available. The specialized
+             solvers will be a lot faster.
+             The currently supported solvers are listed below.
+             + **FABRIK**: This is a fairly new and highly efficient inverse
+             kinematic solving algorithm. It requires the least iterations to
+             reach its goal, it does not suffer from singularities (nearly no
+             violent snapping about), and it always converges.
+             + **2 Bone**: A specialized solver optimized for 2 bone problems (such
+             as a human leg)
+             + **1 Bone**: A specialized solver optimized for 1 bone problems (such
+             as a look-at target, e.g. eyes or a head)
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.GetFeature(Urho.IKSolverFeature)">
+             <summary>
+             Test if a certain feature is enabled (see IKSolver::IKSolverFeature).
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.SetFeature(Urho.IKSolverFeature,System.Boolean)">
+             <summary>
+             Enable or disable a certain feature (see IKSolver::IKSolverFeature).
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.GetMaximumIterations">
+             <summary>
+             Returns the configured maximum number of iterations.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.SetMaximumIterations(System.UInt32)">
+             <summary>
+             
+             
+             Sets the maximum number of iterations the solver is allowed to
+             perform before applying the result.
+             Depending on the algorithm, you may want higher or lower values.
+             FABRIK looks decent after only 10 iterations, whereas Jacobian based
+             methods often require more than a 100.
+             The default value is 20.
+             
+             Most algorithms have a convergence criteria at which the solver
+             will stop iterating, so most of the time the maximum number of
+             iterations isn't even reached.
+             
+             Number of iterations. Must be greater than 0. Higher
+             values yield more accurate results, but at the cost of performance.
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.GetTolerance">
+             <summary>
+             Returns the configured tolerance.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.SetTolerance(System.Single)">
+             <summary>
+             
+             
+             Sets the distance at which the effector is "close enough" to the
+             target node, at which point the algorithm will stop iterating.
+             
+             The distance to set. Smaller values yield more accurate
+             results, but at the cost of more iterations. Generally you'll want to
+             specify a number that is about 1/100th to 1/1000th of the total size of
+             the IK chain, e.g. if your human character has a leg that is 1 Urho3D
+             unit long, a good starting tolerance would be 0.01.
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.RebuildChainTrees">
+             <summary>
+             
+             Updates the solver's internal data structures, which is required
+             whenever the tree is modified in any way (e.g. adding or removing nodes,
+             adding or removing effectors, etc.).
+             
+             This gets called  automatically for you in Solve().
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.RecalculateSegmentLengths">
+             <summary>
+             
+             Unusual, but if you have a tree with translational motions such
+             that the distances between nodes changes (perhaps a slider?), you can
+             call this to recalculate the segment lengths after assigning new
+             positions to the nodes.
+             
+             This function gets called by RebuildData() and by extension in
+             Solve().
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.CalculateJointRotations">
+             <summary>
+             
+             Skinned models require joint rotations to be calculated so
+             skinning works correctly. This is automatically enabled by default with
+             the feature flag JOINT_ROTATIONS.
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.Solve">
+             <summary>
+             
+             Invokes the solver. The solution is applied back to the scene
+             graph automatically.
+             
+             By default this is called automatically for you if the feature
+             flag AUTO_SOLVE is set. For more complex IK problems you can disable
+             that flag and call Solve() in response to E_SCENEDRAWABLEUPDATEFINISHED.
+             This is right after the animations have been applied.
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.ApplyOriginalPoseToScene">
+             <summary>
+             Copies the original pose into the scene graph. This will reset the pose
+             to whatever state it had when the IKSolver component was first created,
+             or, if the original pose was updated since then (for example if
+             IKSolverFeature::UPDATE_ORIGINAL_POSE is set), will reset it to that state.
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.ApplySceneToOriginalPose">
+             <summary>
+             Copies the current scene graph data into the solvers original pose. You
+             generally won't need to call this, because it gets called for you
+             automatically if IKSolverFeature::UPDATE_ORIGINAL_POSE is set.
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.ApplyActivePoseToScene">
+             <summary>
+             Copies the solvers current active pose into the scene graph. You
+             generally won't need to call this because it gets called for you
+             automatically in Solve(). This is used to apply the solution back to the
+             scene graph.
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.ApplySceneToActivePose">
+             <summary>
+             Copies the current scene graph data into the solvers active pose. You
+             generally won't need to call this because it gets called for you
+             automatically if IKSolverFeature::UPDATE_ACTIVE_POSE is set.
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.ApplyOriginalPoseToActivePose">
+             <summary>
+             Copies the solvers original pose into the solvers active pose. This is
+             used in Solve() automatically if IKSolverFeature::USE_ORIGINAL_POSE is set.
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.GetFEATURE_JOINT_ROTATIONS">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.GetFEATURE_TARGET_ROTATIONS">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.GetFEATURE_UPDATE_ORIGINAL_POSE">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.GetFEATURE_UPDATE_ACTIVE_POSE">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.GetFEATURE_USE_ORIGINAL_POSE">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.GetFEATURE_CONSTRAINTS">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.GetFEATURE_AUTO_SOLVE">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.SetFEATURE_JOINT_ROTATIONS(System.Boolean)">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.SetFEATURE_TARGET_ROTATIONS(System.Boolean)">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.SetFEATURE_UPDATE_ORIGINAL_POSE(System.Boolean)">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.SetFEATURE_UPDATE_ACTIVE_POSE(System.Boolean)">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.SetFEATURE_USE_ORIGINAL_POSE(System.Boolean)">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.SetFEATURE_CONSTRAINTS(System.Boolean)">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="M:Urho.IKSolver.SetFEATURE_AUTO_SOLVE(System.Boolean)">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Urho.IKSolver.Algorithm">
+             <summary>
+             Returns the active algorithm.
+             
+             Or
+             
+             
+             Selects the solver algorithm. Default is FABRIK. Note that this
+             may not be the most efficient algorithm available. The specialized
+             solvers will be a lot faster.
+             The currently supported solvers are listed below.
+             + **FABRIK**: This is a fairly new and highly efficient inverse
+             kinematic solving algorithm. It requires the least iterations to
+             reach its goal, it does not suffer from singularities (nearly no
+             violent snapping about), and it always converges.
+             + **2 Bone**: A specialized solver optimized for 2 bone problems (such
+             as a human leg)
+             + **1 Bone**: A specialized solver optimized for 1 bone problems (such
+             as a look-at target, e.g. eyes or a head)
+             </summary>
+            </member>
+        <member name="P:Urho.IKSolver.MaximumIterations">
+             <summary>
+             Returns the configured maximum number of iterations.
+             
+             Or
+             
+             
+             Sets the maximum number of iterations the solver is allowed to
+             perform before applying the result.
+             Depending on the algorithm, you may want higher or lower values.
+             FABRIK looks decent after only 10 iterations, whereas Jacobian based
+             methods often require more than a 100.
+             The default value is 20.
+             
+             Most algorithms have a convergence criteria at which the solver
+             will stop iterating, so most of the time the maximum number of
+             iterations isn't even reached.
+             
+             Number of iterations. Must be greater than 0. Higher
+             values yield more accurate results, but at the cost of performance.
+             </summary>
+            </member>
+        <member name="P:Urho.IKSolver.Tolerance">
+             <summary>
+             Returns the configured tolerance.
+             
+             Or
+             
+             
+             Sets the distance at which the effector is "close enough" to the
+             target node, at which point the algorithm will stop iterating.
+             
+             The distance to set. Smaller values yield more accurate
+             results, but at the cost of more iterations. Generally you'll want to
+             specify a number that is about 1/100th to 1/1000th of the total size of
+             the IK chain, e.g. if your human character has a leg that is 1 Urho3D
+             unit long, a good starting tolerance would be 0.01.
+             </summary>
+            </member>
+        <member name="P:Urho.IKSolver.FEATURE_JOINT_ROTATIONS">
+             <summary>
+             
+             Or
+             
+             </summary>
+            </member>
+        <member name="P:Urho.IKSolver.FEATURE_TARGET_ROTATIONS">
+             <summary>
+             
+             Or
+             
+             </summary>
+            </member>
+        <member name="P:Urho.IKSolver.FEATURE_UPDATE_ORIGINAL_POSE">
+             <summary>
+             
+             Or
+             
+             </summary>
+            </member>
+        <member name="P:Urho.IKSolver.FEATURE_UPDATE_ACTIVE_POSE">
+             <summary>
+             
+             Or
+             
+             </summary>
+            </member>
+        <member name="P:Urho.IKSolver.FEATURE_USE_ORIGINAL_POSE">
+             <summary>
+             
+             Or
+             
+             </summary>
+            </member>
+        <member name="P:Urho.IKSolver.FEATURE_CONSTRAINTS">
+             <summary>
+             
+             Or
+             
+             </summary>
+            </member>
+        <member name="P:Urho.IKSolver.FEATURE_AUTO_SOLVE">
+             <summary>
+             
+             Or
+             
+             </summary>
+            </member>
+        <member name="T:Urho.IKSolverFeature">
              <summary>
              
              </summary>
