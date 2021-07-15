@@ -178,7 +178,7 @@ namespace NanoVGSample
 				if (state.TouchedElement != null)
 					continue;
 
-				if (state.Delta.X != 0 || state.Delta.Y != 0)
+				if ((UI.FocusElement == null) && (state.Delta.X != 0 || state.Delta.Y != 0))
 				{
 					var camera = CameraNode.GetComponent<Camera>();
 					if (camera == null)

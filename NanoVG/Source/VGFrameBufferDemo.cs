@@ -8,34 +8,8 @@ namespace NanoVGSample
     public partial class NanoVGSample : Sample
     {
 
-        const int ICON_SEARCH = 0x1F50D;
-        const int ICON_CIRCLED_CROSS = 0x2716;
-        const int ICON_CHEVRON_RIGHT = 0xE75E;
-        const int ICON_CHECK = 0x2713;
-        const int ICON_LOGIN = 0xE740;
-        const int ICON_TRASH = 0xE729;
-        void loadDemoData()
-        {
 
-            for (int i = 0; i < 12; i++)
-            {
-                string file = String.Format("nanovg/images/image{0}.jpg", i + 1);
-                demoData_.images[i] = NanoVG.CreateImage(file, 0);
-            }
-
-            demoData_.svgImage = NanoVG.CreateImage("nanosvg/23_modified.svg", 0);
-
-            demoData_.fontIcons = NanoVG.CreateFont("icons", "nanovg/fonts/entypo.ttf");
-            demoData_.fontNormal = NanoVG.CreateFont("sans", "nanovg/fonts/Roboto-Regular.ttf");
-            demoData_.fontBold = NanoVG.CreateFont("sans-bold", "nanovg/fonts/Roboto-Bold.ttf");
-            demoData_.fontEmoji = NanoVG.CreateFont("emoji", "nanovg/fonts/NotoEmoji-Regular.ttf");
-
-            NanoVG.AddFallbackFontId(demoData_.fontNormal, demoData_.fontEmoji);
-            NanoVG.AddFallbackFontId(demoData_.fontBold, demoData_.fontEmoji);
-        }
-
-
-        void renderVGElement(VGElement vge, float mx, float my, float width, float height, float t, int blowup, DemoData data)
+        void renderVGFrameBuffer(VGFrameBuffer vge, float mx, float my, float width, float height, float t, int blowup, DemoData data)
         {
             float x, y, popy;
             drawEyes(vge, width - 250, 50, 150, 100, mx, my, t);
@@ -46,6 +20,7 @@ namespace NanoVGSample
             drawWidths(vge, 10, 50, 30);
             drawCaps(vge, 10, 300, 30);
             drawScissor(vge, 50, height - 80, t);
+
 
             vge.SaveState();
             if (blowup == 1)
@@ -94,7 +69,7 @@ namespace NanoVGSample
             vge.RestoreState();
         }
 
-        void drawEyes(VGElement vge, float x, float y, float w, float h, float mx, float my, float t)
+        void drawEyes(VGFrameBuffer vge, float x, float y, float w, float h, float mx, float my, float t)
         {
             NVGpaint gloss, bg;
             float ex = w * 0.23f;
@@ -168,7 +143,7 @@ namespace NanoVGSample
             vge.Fill();
         }
 
-        void drawGraph(VGElement vge, float x, float y, float w, float h, float t)
+        void drawGraph(VGFrameBuffer vge, float x, float y, float w, float h, float t)
         {
             NVGpaint bg;
             float[] samples = new float[6];
@@ -242,7 +217,7 @@ namespace NanoVGSample
         }
 
 
-        void drawColorwheel(VGElement vge, float x, float y, float w, float h, float t)
+        void drawColorwheel(VGFrameBuffer vge, float x, float y, float w, float h, float t)
         {
             int i;
             float r0, r1, ax, ay, bx, by, cx, cy, aeps, r;
@@ -344,7 +319,7 @@ namespace NanoVGSample
             vge.RestoreState();
         }
 
-        void drawLines(VGElement vge, float x, float y, float w, float h, float t)
+        void drawLines(VGFrameBuffer vge, float x, float y, float w, float h, float t)
         {
             int i, j;
             float pad = 5.0f, s = w / 9.0f - pad * 2;
@@ -401,7 +376,7 @@ namespace NanoVGSample
             vge.RestoreState();
         }
 
-        void drawWidths(VGElement vge, float x, float y, float width)
+        void drawWidths(VGFrameBuffer vge, float x, float y, float width)
         {
             int i;
 
@@ -423,7 +398,7 @@ namespace NanoVGSample
             vge.RestoreState();
         }
 
-        void drawCaps(VGElement vge, float x, float y, float width)
+        void drawCaps(VGFrameBuffer vge, float x, float y, float width)
         {
             int i;
             int[] caps = new int[3] { NVGlineCap.Butt, NVGlineCap.Round, NVGlineCap.Square };
@@ -456,7 +431,7 @@ namespace NanoVGSample
             vge.RestoreState();
         }
 
-        void drawScissor(VGElement vge, float x, float y, float t)
+        void drawScissor(VGFrameBuffer vge, float x, float y, float t)
         {
             vge.SaveState();
 
@@ -493,15 +468,15 @@ namespace NanoVGSample
         }
 
 
-        void drawParagraph(VGElement vge, float x, float y, float width, float height, float mx, float my)
+        void drawParagraph(VGFrameBuffer vge, float x, float y, float width, float height, float mx, float my)
         {
             int lnum = 0;
             float caretx, px;
+            int gutter = 0;
             float a = 1.0f;
-            float gx, gy;
+            float gx = 0.0f, gy = 0.0f;
             string text = "This is longer chunk of text.\n  \n  Would have used lorem ipsum but she    was busy jumping over the lazy dog with the fox and all the men who came to the aid of the party.🎉";
             string hoverText = "Hover your mouse over the text to see calculated caret position.";
-            string boxText = "Testing\nsome multiline\ntext.";
 
             vge.SaveState();
 
@@ -511,21 +486,66 @@ namespace NanoVGSample
             float t1, t2, lineh;
             vge.TextMetrics(out t1, out t2, out lineh);
 
+            
+
             VGTextRowBuffer vgTextRowBuffer = vge.TextBreakLines(text, width);
 
             for (int i = 0; i < vgTextRowBuffer.Size; i++)
             {
                 VGTextRow row = vgTextRowBuffer.GetRow(i);
+                bool hit = mx > x && mx < (x + width) && my >= y && my < (y + lineh);
 
                 vge.BeginPath();
-                vge.FillColor(vge.RGBA(255, 255, 255, 16));
+                vge.FillColor(vge.RGBA(255, 255, 255, hit ? (byte)64 : (byte)16));
                 vge.Rect(x + row.Min, y, row.Max - row.Min, lineh);
                 vge.Fill();
 
                 vge.FillColor(vge.RGBA(255, 255, 255, 255));
                 vge.Text(x, y, row.Text);
+                if (hit)
+                {
+                              caretx = (mx < x + row.Width / 2) ? x : x + row.Width;
+                px = x;
+                int nglyphs = vge.TextGlyphPositions(x, y, row.Text, out NVGglyphPosition [] glyphs, 100);
+                for (int j = 0; j < nglyphs; j++)
+                {
+                    float x0 = glyphs[j].X;
+                    float x1 = (j + 1 < nglyphs) ? glyphs[j + 1].X : x + row.Width;
+                    gx = x0 * 0.3f + x1 * 0.7f;
+                    if (mx >= px && mx < gx)
+                        caretx = glyphs[j].X;
+                    px = gx;
+                }
+                vge.BeginPath();
+                vge.FillColor(vge.RGBA(255, 192, 0, 255));
+                vge.Rect(caretx, y, 1, lineh);
+                vge.Fill();
+
+                gutter = lnum + 1;
+                gx = x - 10;
+                gy = y + lineh / 2;
+                }
                 lnum++;
                 y += lineh;
+            }
+
+            if (gutter != 0)
+            {
+                string txt = String.Format("{0}", gutter);
+
+                vge.FontSize(12.0f);
+                vge.TextAlign(NVGalign.Right | NVGalign.Middle);
+
+                vge.TextBounds(gx, gy, txt, out float[] textBounds);
+
+                vge.BeginPath();
+                vge.FillColor(vge.RGBA(255, 192, 0, 255));
+                vge.RoundedRect((int)textBounds[0] - 4, (int)textBounds[1] - 2, (int)(textBounds[2] - textBounds[0]) + 8,
+                                 (int)(textBounds[3] - textBounds[1]) + 4, ((int)(textBounds[3] - textBounds[1]) + 4) / 2 - 1);
+                vge.Fill();
+
+                vge.FillColor(vge.RGBA(32, 32, 32, 255));
+                vge.Text(gx, gy, txt);
             }
 
 
@@ -562,7 +582,7 @@ namespace NanoVGSample
             vge.RestoreState();
 
         }
-        void drawWindow(VGElement vge, string title, float x, float y, float w, float h)
+        void drawWindow(VGFrameBuffer vge, string title, float x, float y, float w, float h)
         {
             float cornerRadius = 3.0f;
             NVGpaint shadowPaint;
@@ -613,7 +633,7 @@ namespace NanoVGSample
             vge.RestoreState();
         }
 
-        void drawSearchBox(VGElement vge, string text, float x, float y, float w, float h)
+        void drawSearchBox(VGFrameBuffer vge, string text, float x, float y, float w, float h)
         {
             NVGpaint bg;
             byte[] icon = new byte[8];
@@ -646,7 +666,7 @@ namespace NanoVGSample
             vge.Text(x + w - h * 0.55f, y + h * 0.55f, cpToUTF8(ICON_CIRCLED_CROSS, icon));
         }
 
-        void drawDropDown(VGElement vge, string text, float x, float y, float w, float h)
+        void drawDropDown(VGFrameBuffer vge, string text, float x, float y, float w, float h)
         {
             NVGpaint bg;
             byte[] icon = new byte[8];
@@ -677,60 +697,7 @@ namespace NanoVGSample
         }
 
 
-        string cpToUTF8(int cp, byte[] str)
-        {
-            int n = 0;
-            if (cp < 0x80)
-                n = 1;
-            else if (cp < 0x800)
-                n = 2;
-            else if (cp < 0x10000)
-                n = 3;
-            else if (cp < 0x200000)
-                n = 4;
-            else if (cp < 0x4000000)
-                n = 5;
-            else if (cp <= 0x7fffffff)
-                n = 6;
-            str[n] = (byte)'\0';
-            switch (n)
-            {
-                case 6:
-                    str[5] = (byte)(0x80 | (cp & 0x3f));
-                    cp = cp >> 6;
-                    cp |= 0x4000000;
-                    goto case 5;
-                case 5:
-                    str[4] = (byte)(0x80 | (cp & 0x3f));
-                    cp = cp >> 6;
-                    cp |= 0x200000;
-                    goto case 4;
-                case 4:
-                    str[3] = (byte)(0x80 | (cp & 0x3f));
-                    cp = cp >> 6;
-                    cp |= 0x10000;
-                    goto case 3;
-                case 3:
-                    str[2] = (byte)(0x80 | (cp & 0x3f));
-                    cp = cp >> 6;
-                    cp |= 0x800;
-                    goto case 2;
-                case 2:
-                    str[1] = (byte)(0x80 | (cp & 0x3f));
-                    cp = cp >> 6;
-                    cp |= 0xc0;
-                    goto case 1;
-                case 1:
-                    str[0] = (byte)cp;
-                    break;
-            }
-
-            return System.Text.Encoding.UTF8.GetString(str, 0, 8);
-
-        }
-
-
-        void drawEditBoxBase(VGElement vge, float x, float y, float w, float h)
+        void drawEditBoxBase(VGFrameBuffer vge, float x, float y, float w, float h)
         {
             NVGpaint bg;
             // Edit
@@ -746,7 +713,7 @@ namespace NanoVGSample
             vge.Stroke();
         }
 
-        void drawEditBox(VGElement vge, string text, float x, float y, float w, float h)
+        void drawEditBox(VGFrameBuffer vge, string text, float x, float y, float w, float h)
         {
 
             drawEditBoxBase(vge, x, y, w, h);
@@ -758,7 +725,7 @@ namespace NanoVGSample
             vge.Text(x + h * 0.3f, y + h * 0.5f, text);
         }
 
-        void drawEditBoxNum(VGElement vge, string text, string units, float x, float y, float w, float h)
+        void drawEditBoxNum(VGFrameBuffer vge, string text, string units, float x, float y, float w, float h)
         {
             float uw;
 
@@ -780,7 +747,7 @@ namespace NanoVGSample
             vge.Text(x + w - uw - h * 0.5f, y + h * 0.5f, text);
         }
 
-        void drawCheckBox(VGElement vge, string text, float x, float y, float w, float h)
+        void drawCheckBox(VGFrameBuffer vge, string text, float x, float y, float w, float h)
         {
             NVGpaint bg;
             byte[] icon = new byte[8];
@@ -805,7 +772,7 @@ namespace NanoVGSample
             vge.Text(x + 9 + 2, y + h * 0.5f, cpToUTF8(ICON_CHECK, icon));
         }
 
-        void drawButton(VGElement vge, int preicon, string text, float x, float y, float w, float h, NVGcolor col)
+        void drawButton(VGFrameBuffer vge, int preicon, string text, float x, float y, float w, float h, NVGcolor col)
         {
             NVGpaint bg;
             byte[] icon = new byte[8];
@@ -859,7 +826,7 @@ namespace NanoVGSample
             vge.Text(x + w * 0.5f - tw * 0.5f + iw * 0.25f, y + h * 0.5f, text);
         }
 
-        void drawSlider(VGElement vge, float pos, float x, float y, float w, float h)
+        void drawSlider(VGFrameBuffer vge, float pos, float x, float y, float w, float h)
         {
             NVGpaint bg, knob;
             float cy = y + (int)(h * 0.5f);
@@ -901,7 +868,7 @@ namespace NanoVGSample
             vge.RestoreState();
         }
 
-        void drawSpinner(VGElement vge, float cx, float cy, float r, float t)
+        void drawSpinner(VGFrameBuffer vge, float cx, float cy, float r, float t)
         {
             float a0 = 0.0f + t * 6;
             float a1 = MathF.PI + t * 6;
@@ -927,7 +894,7 @@ namespace NanoVGSample
             vge.RestoreState();
         }
 
-        void drawLabel(VGElement vge, string text, float x, float y, float w, float h)
+        void drawLabel(VGFrameBuffer vge, string text, float x, float y, float w, float h)
         {
 
             vge.FontSize(15.0f);
@@ -938,7 +905,7 @@ namespace NanoVGSample
             vge.Text(x, y + h * 0.5f, text);
         }
 
-        void drawThumbnails(VGElement vge, float x, float y, float w, float h, int[] images, int nimages, float t)
+        void drawThumbnails(VGFrameBuffer vge, float x, float y, float w, float h, int[] images, int nimages, float t)
         {
             float cornerRadius = 3.0f;
             NVGpaint shadowPaint, imgPaint, fadePaint;
@@ -1065,7 +1032,7 @@ namespace NanoVGSample
             vge.RestoreState();
         }
 
-        void drawSVGImage(VGElement vge, int imageID, float x, float y, float w, float h, float a)
+        void drawSVGImage(VGFrameBuffer vge, int imageID, float x, float y, float w, float h, float a)
         {
             NVGpaint imgPaint;
 
@@ -1076,15 +1043,6 @@ namespace NanoVGSample
             vge.Fill();
         }
 
-
-        bool isBlack(NVGcolor col)
-        {
-            if (col.r == 0.0f && col.g == 0.0f && col.b == 0.0f && col.a == 0.0f)
-            {
-                return true;
-            }
-            return false;
-        }
 
     }
 }
