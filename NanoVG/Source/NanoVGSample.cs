@@ -23,7 +23,7 @@ namespace NanoVGSample
 
 
 		[Preserve]
-		public NanoVGSample() : base(new ApplicationOptions(assetsFolder: "Data;CoreData")) { }
+		public NanoVGSample() : base(new ApplicationOptions(assetsFolder: "Data;CoreData"){Width=1600,Height=1200}) { }
 
 		protected override void Start ()
 		{
