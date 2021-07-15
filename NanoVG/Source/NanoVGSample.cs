@@ -139,7 +139,7 @@ namespace NanoVGSample
 			// plane mesh with a "stone" material. Note that naming the scene nodes is optional. Scale the scene node larger
 			// (100 x 100 world units)
 			var planeNode = scene.CreateChild("Plane");
-			planeNode.Scale = new Vector3 (100, 1, 100);
+			planeNode.Scale = new Vector3 (200, 1, 200);
 			var planeObject = planeNode.CreateComponent<StaticModel> ();
 			planeObject.Model = ResourceCache.GetModel ("Models/Plane.mdl");
 			planeObject.SetMaterial (ResourceCache.GetMaterial ("Materials/StoneTiled.xml"));
@@ -221,7 +221,9 @@ namespace NanoVGSample
 			camera = CameraNode.CreateComponent<Camera>();
 
 			// Set an initial position for the camera scene node above the plane
-			CameraNode.Position = new Vector3 (0.0f, 7.0f, -30.0f);
+			CameraNode.Position = new Vector3 (0.0f, 7.0f, -70.0f);
+			Yaw = -20;
+			//CameraNode.Rotate(new Quaternion(-60,new Vector3(0,1,0)));
 		}
 
 
