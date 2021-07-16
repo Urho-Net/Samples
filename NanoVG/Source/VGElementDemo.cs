@@ -512,7 +512,7 @@ namespace NanoVGSample
             float t1, t2, lineh;
             vge.TextMetrics(out t1, out t2, out lineh);
 
-            
+
 
             VGTextRowBuffer vgTextRowBuffer = vge.TextBreakLines(text, width);
 
@@ -530,26 +530,26 @@ namespace NanoVGSample
                 vge.Text(x, y, row.Text);
                 if (hit)
                 {
-                              caretx = (mx < x + row.Width / 2) ? x : x + row.Width;
-                px = x;
-                int nglyphs = vge.TextGlyphPositions(x, y, row.Text, out NVGglyphPosition [] glyphs, 100);
-                for (int j = 0; j < nglyphs; j++)
-                {
-                    float x0 = glyphs[j].X;
-                    float x1 = (j + 1 < nglyphs) ? glyphs[j + 1].X : x + row.Width;
-                    gx = x0 * 0.3f + x1 * 0.7f;
-                    if (mx >= px && mx < gx)
-                        caretx = glyphs[j].X;
-                    px = gx;
-                }
-                vge.BeginPath();
-                vge.FillColor(vge.RGBA(255, 192, 0, 255));
-                vge.Rect(caretx, y, 1, lineh);
-                vge.Fill();
+                    caretx = (mx < x + row.Width / 2) ? x : x + row.Width;
+                    px = x;
+                    int nglyphs = vge.TextGlyphPositions(x, y, row.Text, out NVGglyphPosition[] glyphs, 100);
+                    for (int j = 0; j < nglyphs; j++)
+                    {
+                        float x0 = glyphs[j].X;
+                        float x1 = (j + 1 < nglyphs) ? glyphs[j + 1].X : x + row.Width;
+                        gx = x0 * 0.3f + x1 * 0.7f;
+                        if (mx >= px && mx < gx)
+                            caretx = glyphs[j].X;
+                        px = gx;
+                    }
+                    vge.BeginPath();
+                    vge.FillColor(vge.RGBA(255, 192, 0, 255));
+                    vge.Rect(caretx, y, 1, lineh);
+                    vge.Fill();
 
-                gutter = lnum + 1;
-                gx = x - 10;
-                gy = y + lineh / 2;
+                    gutter = lnum + 1;
+                    gx = x - 10;
+                    gy = y + lineh / 2;
                 }
                 lnum++;
                 y += lineh;

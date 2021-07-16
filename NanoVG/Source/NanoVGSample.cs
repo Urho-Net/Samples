@@ -5,46 +5,46 @@ using Urho.Resources;
 
 namespace NanoVGSample
 {
-	public partial class NanoVGSample : Sample
-	{
-		Camera camera;
-		Scene scene;
+    public partial class NanoVGSample : Sample
+    {
+        Camera camera;
+        Scene scene;
 
-		float time_ = 0.0f;
+        float time_ = 0.0f;
 
         class DemoData
         {
             public int fontNormal, fontBold, fontIcons, fontEmoji;
-            public int [] images = new int[12];
+            public int[] images = new int[12];
             public int svgImage;
         };
 
-		DemoData demoData_ = new DemoData();
+        DemoData demoData_ = new DemoData();
 
 
-		[Preserve]
-		public NanoVGSample() : base(new ApplicationOptions(assetsFolder: "Data;CoreData"){Width=1600,Height=1200}) { }
+        [Preserve]
+        public NanoVGSample() : base(new ApplicationOptions(assetsFolder: "Data;CoreData") { Width = 1600, Height = 1200 }) { }
 
-		protected override void Start ()
-		{
-			base.Start ();
+        protected override void Start()
+        {
+            base.Start();
             InitUI();
             InitControls();
             loadDemoData();
             CreateScene();
-           // SimpleCreateInstructionsWithWasd();
+            // SimpleCreateInstructionsWithWasd();
             SetupViewport();
         }
 
-		void InitUI()
-		{
+        void InitUI()
+        {
             // Load the style sheet from xml
             UI.Root.SetDefaultStyle(ResourceCache.GetXmlFile("UI/DefaultStyle.xml"));
-		}
+        }
 
-		Window InitWindow()
-		{
-			Window window = new Window();
+        Window InitWindow()
+        {
+            Window window = new Window();
 
             UI.Root.AddChild(window);
             window.MinWidth = (int)(Graphics.Width / 1.5);
@@ -54,7 +54,7 @@ namespace NanoVGSample
             window.Name = "NanoVG Window";
             window.Movable = true;
             window.Resizable = true;
-			window.FocusMode = FocusMode.Focusable;
+            window.FocusMode = FocusMode.Focusable;
 
 
             // Create Window 'titlebar' container
@@ -63,7 +63,7 @@ namespace NanoVGSample
             titleBar.MaxHeight = 24;
             titleBar.VerticalAlignment = VerticalAlignment.Top;
             titleBar.LayoutMode = LayoutMode.Horizontal;
-			titleBar.FocusMode = FocusMode.Focusable;
+            titleBar.FocusMode = FocusMode.Focusable;
 
             // Create the Window title Text
             var windowTitle = new Text();
@@ -87,26 +87,26 @@ namespace NanoVGSample
             buttonClose.SetStyle("CloseButton");
 
             return window;
-		}
+        }
 
-		void InitControls()
-		{
-			var window  = InitWindow();
-			var vgCanvas = window.CreateChild<VGCanvas>("VGCanvas");
-			vgCanvas.ClearColor = new Color(0.5f,0.5f,0.5f,1.0f);
-			vgCanvas.OnVGElementRender += OnVGElementRender;
-			vgCanvas.FocusMode = FocusMode.Focusable;
+        void InitControls()
+        {
+            var window = InitWindow();
+            var vgCanvas = window.CreateChild<VGCanvas>("VGCanvas");
+            vgCanvas.ClearColor = new Color(0.5f, 0.5f, 0.5f, 1.0f);
+            vgCanvas.OnVGElementRender += OnVGElementRender;
+            vgCanvas.FocusMode = FocusMode.Focusable;
 
-			XmlFile style = ResourceCache.GetXmlFile("UI/DefaultStyle.xml");
+            XmlFile style = ResourceCache.GetXmlFile("UI/DefaultStyle.xml");
             Cursor cursor = new Cursor();
             cursor.SetStyleAuto(style);
-			int cursorSize = Graphics.Width / 60;
-            cursor.Size = new IntVector2(cursorSize,cursorSize);
+            int cursorSize = Graphics.Width / 60;
+            cursor.Size = new IntVector2(cursorSize, cursorSize);
             UI.Cursor = cursor;
-			UI.Cursor.Visible = true;
-			
+            UI.Cursor.Visible = true;
 
-		}
+
+        }
 
         private void OnVGElementRender(OnVGElementRenderEventArgs obj)
         {
@@ -119,30 +119,30 @@ namespace NanoVGSample
 
         private void OnVGFrameBufferRender(OnVGFrameBufferRenderEventArgs obj)
         {
-			VGFrameBuffer vgFrameBuffer = obj.VGFrameBuffer;
-			IntVector2 size = vgFrameBuffer.Size;
-			renderVGFrameBuffer(vgFrameBuffer, 0,0, size.X, size.Y, time_, 0, demoData_);
+            VGFrameBuffer vgFrameBuffer = obj.VGFrameBuffer;
+            IntVector2 size = vgFrameBuffer.Size;
+            renderVGFrameBuffer(vgFrameBuffer, 0, 0, size.X, size.Y, time_, 0, demoData_);
         }
 
-        void CreateScene ()
-		{
-			scene = new Scene ();
+        void CreateScene()
+        {
+            scene = new Scene();
 
-			// Create the Octree component to the scene. This is required before adding any drawable components, or else nothing will
-			// show up. The default octree volume will be from (-1000, -1000, -1000) to (1000, 1000, 1000) in world coordinates; it
-			// is also legal to place objects outside the volume but their visibility can then not be checked in a hierarchically
-			// optimizing manner
-			scene.CreateComponent<Octree> ();
+            // Create the Octree component to the scene. This is required before adding any drawable components, or else nothing will
+            // show up. The default octree volume will be from (-1000, -1000, -1000) to (1000, 1000, 1000) in world coordinates; it
+            // is also legal to place objects outside the volume but their visibility can then not be checked in a hierarchically
+            // optimizing manner
+            scene.CreateComponent<Octree>();
 
 
-			// Create a child scene node (at world origin) and a StaticModel component into it. Set the StaticModel to show a simple
-			// plane mesh with a "stone" material. Note that naming the scene nodes is optional. Scale the scene node larger
-			// (100 x 100 world units)
-			var planeNode = scene.CreateChild("Plane");
-			planeNode.Scale = new Vector3 (200, 1, 200);
-			var planeObject = planeNode.CreateComponent<StaticModel> ();
-			planeObject.Model = ResourceCache.GetModel ("Models/Plane.mdl");
-			planeObject.SetMaterial (ResourceCache.GetMaterial ("Materials/StoneTiled.xml"));
+            // Create a child scene node (at world origin) and a StaticModel component into it. Set the StaticModel to show a simple
+            // plane mesh with a "stone" material. Note that naming the scene nodes is optional. Scale the scene node larger
+            // (100 x 100 world units)
+            var planeNode = scene.CreateChild("Plane");
+            planeNode.Scale = new Vector3(200, 1, 200);
+            var planeObject = planeNode.CreateComponent<StaticModel>();
+            planeObject.Model = ResourceCache.GetModel("Models/Plane.mdl");
+            planeObject.SetMaterial(ResourceCache.GetMaterial("Materials/StoneTiled.xml"));
 
 
             // Create a directional light to the world so that we can see something. The light scene node's orientation controls the
@@ -200,7 +200,7 @@ namespace NanoVGSample
                 screenObject.Model = ResourceCache.GetModel("Models/Plane.mdl");
 
                 VGFrameBuffer vgFrameBuffer = scene.CreateComponent<VGFrameBuffer>();
-				vgFrameBuffer.OnVGFrameBufferRender += OnVGFrameBufferRender;
+                vgFrameBuffer.OnVGFrameBufferRender += OnVGFrameBufferRender;
                 vgFrameBuffer.CreateFrameBuffer(1024, 1024);
                 vgFrameBuffer.ClearColor = new Color(0.4f, 0.4f, 0.4f, 1.0f);
                 vgFrameBuffer.EnableRenderEvents();
@@ -215,32 +215,32 @@ namespace NanoVGSample
                 screenObject.SetMaterial(renderMaterial);
             }
 
-			// Create a scene node for the camera, which we will move around
-    		// The camera will use default settings (1000 far clip distance, 45 degrees FOV, set aspect ratio automatically)
-			CameraNode = scene.CreateChild ("camera");
-			camera = CameraNode.CreateComponent<Camera>();
+            // Create a scene node for the camera, which we will move around
+            // The camera will use default settings (1000 far clip distance, 45 degrees FOV, set aspect ratio automatically)
+            CameraNode = scene.CreateChild("camera");
+            camera = CameraNode.CreateComponent<Camera>();
 
-			// Set an initial position for the camera scene node above the plane
-			CameraNode.Position = new Vector3 (0.0f, 7.0f, -70.0f);
-			Yaw = -20;
-			//CameraNode.Rotate(new Quaternion(-60,new Vector3(0,1,0)));
-		}
+            // Set an initial position for the camera scene node above the plane
+            CameraNode.Position = new Vector3(0.0f, 7.0f, -70.0f);
+            Yaw = -20;
+            //CameraNode.Rotate(new Quaternion(-60,new Vector3(0,1,0)));
+        }
 
 
-        void SetupViewport ()
-		{
-			// Set up a viewport to the Renderer subsystem so that the 3D scene can be seen. We need to define the scene and the camera
-			// at minimum. Additionally we could configure the viewport screen size and the rendering path (eg. forward / deferred) to
-			// use, but now we just use full screen and default render path configured in the engine command line options
-			Renderer.SetViewport (0, new Viewport (Context, scene, camera, null));
-		}
+        void SetupViewport()
+        {
+            // Set up a viewport to the Renderer subsystem so that the 3D scene can be seen. We need to define the scene and the camera
+            // at minimum. Additionally we could configure the viewport screen size and the rendering path (eg. forward / deferred) to
+            // use, but now we just use full screen and default render path configured in the engine command line options
+            Renderer.SetViewport(0, new Viewport(Context, scene, camera, null));
+        }
 
-		protected override void OnUpdate(float timeStep)
-		{
-			base.OnUpdate(timeStep);
-			time_ += timeStep;
-           if (UI.FocusElement == null)
-               SimpleMoveCamera3D(timeStep);
-		}
-	}
+        protected override void OnUpdate(float timeStep)
+        {
+            base.OnUpdate(timeStep);
+            time_ += timeStep;
+            if (UI.FocusElement == null)
+                SimpleMoveCamera3D(timeStep);
+        }
+    }
 }
