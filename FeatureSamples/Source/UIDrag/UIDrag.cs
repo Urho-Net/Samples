@@ -49,6 +49,8 @@ namespace UIDrag
 
             // Create the UI content
             CreateGUI();
+
+            Input.SetMouseMode(MouseMode.Free);
         }
 
         protected override void Stop()
