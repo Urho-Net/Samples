@@ -12789,6 +12789,102 @@
              </summary>
             </member>
         <!--FIXME: Invalid documentation markup was found for member M:Urho.UrhoString.ToHash-->
+        <member name="T:Urho.VGComponent">
+             <summary>
+             Return child VGComponent.
+             </summary>
+            </member>
+        <member name="M:Urho.VGComponent.GetChild(System.String,System.Boolean)">
+             <summary>
+             Return child VGComponent.
+             </summary>
+            </member>
+        <member name="M:Urho.VGComponent.SetPosition(Urho.Vector2)">
+             <summary>
+             Set floating point position.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.VGComponent.SetPosition(System.Single,System.Single)">
+             <summary>
+             Set floating point position.
+             </summary>
+            </member>
+        <member name="M:Urho.VGComponent.SetHotSpot(Urho.Vector2)">
+             <summary>
+             Set hotspot for positioning and rotation.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.VGComponent.SetHotSpot(System.Single,System.Single)">
+             <summary>
+             Set hotspot for positioning and rotation.
+             </summary>
+            </member>
+        <member name="M:Urho.VGComponent.SetScale(Urho.Vector2)">
+             <summary>
+             Set scale. Scale also affects child sprites.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.VGComponent.SetScale(System.Single,System.Single)">
+             <summary>
+             Set scale. Scale also affects child sprites.
+             </summary>
+            </member>
+        <member name="M:Urho.VGComponent.SetScale(System.Single)">
+             <summary>
+             Set uniform scale. Scale also affects child sprites.
+             </summary>
+            </member>
+        <member name="M:Urho.VGComponent.SetRotation(System.Single)">
+             <summary>
+             Set rotation angle.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.VGComponent.GetHotSpot">
+             <summary>
+             Return hotspot.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.VGComponent.HotSpot">
+             <summary>
+             Return hotspot.
+             
+             Or
+             Set hotspot for positioning and rotation.
+             
+             </summary>
+            </member>
+        <member name="T:Urho.VGElement">
+             <summary>
+             Register object factory.
+             </summary>
+             <summary>
+             Register object factory.
+             </summary>
+            </member>
+        <member name="M:Urho.VGElement.RegisterObject(Urho.Context)">
+             <summary>
+             Register object factory.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.VGElement.OnResize(Urho.IntVector2,Urho.IntVector2)">
+             <summary>
+             React to resize.
+             </summary>
+            </member>
+        <member name="T:Urho.VGTextRowBuffer">
+             <summary>
+             Destruct.
+             </summary>
+             <summary>
+             Destruct.
+             </summary>
+            </member>
         <member name="T:Urho.VertexBuffer">
              <summary>
              Hardware vertex buffer.
@@ -44557,6 +44653,22 @@
              Geometry update type.
              </summary>
             </member>
+        <member name="T:Urho.VGCanvas">
+             <summary>
+             Construct.
+             </summary>
+            </member>
+        <member name="M:Urho.VGCanvas.RegisterObject(Urho.Context)">
+             <summary>
+             Register object factory.
+             
+             </summary>
+            </member>
+        <member name="T:Urho.VGTextRow">
+             <summary>
+             Destruct.
+             </summary>
+            </member>
         <member name="T:Urho.ValueAnimation">
              <summary>
              Value animation class.
@@ -44872,6 +44984,16 @@
         <member name="T:Urho.VariantType">
              <summary>
              Variant's supported types.
+             </summary>
+            </member>
+        <member name="T:Urho.VectorGraphics">
+             <summary>
+             Initialize when screen mode initially set.
+             </summary>
+            </member>
+        <member name="M:Urho.VectorGraphics.Initialize">
+             <summary>
+             Initialize when screen mode initially set.
              </summary>
             </member>
         <member name="T:Urho.VertexElementSemantic">
