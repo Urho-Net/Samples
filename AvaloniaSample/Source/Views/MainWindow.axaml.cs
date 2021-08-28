@@ -5,7 +5,6 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Urho;
 using System.Threading;
-using System.Threading.Tasks;
 using Avalonia.Interactivity;
 
 namespace AvaloniaSample.Views

@@ -13,7 +13,7 @@ namespace AvaloniaSample
         private SampleAvaloniaWindow _window;
 
         [Preserve]
-		public AvaloniaSample() : base(new ApplicationOptions(assetsFolder: "Data;CoreData")) { }
+		public AvaloniaSample() : base(new ApplicationOptions(assetsFolder: "Data;CoreData"){ResizableWindow = true}) { }
 
 		public AvaloniaSample(ApplicationOptions options):base(options){}
 
