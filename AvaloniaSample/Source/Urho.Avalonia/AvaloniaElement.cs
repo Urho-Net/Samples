@@ -2,7 +2,7 @@
 using Avalonia;
 using Avalonia.Input;
 using Avalonia.Input.Raw;
-using Urho.AvoloniaAdapter;
+using Urho.AvaloniaAdapter;
 using Urho.Gui;
 
 

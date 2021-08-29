@@ -10,7 +10,7 @@ using Avalonia.Rendering;
 using Urho.Urho2D;
 using Urho.Gui;
 
-namespace Urho.AvoloniaAdapter
+namespace Urho.AvaloniaAdapter
 {
     public class UrhoTopLevelImpl : ITopLevelImpl, IFramebufferPlatformSurface
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using Avalonia;
 using Avalonia.Dialogs;
-using Urho.AvoloniaAdapter;
+using Urho.AvaloniaAdapter;
 using Urho;
 using Urho.Gui;
 using Urho.Urho2D;

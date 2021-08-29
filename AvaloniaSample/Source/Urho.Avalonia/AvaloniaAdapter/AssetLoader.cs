@@ -6,7 +6,7 @@ using System.Reflection;
 using Avalonia.Platform;
 using Avalonia.Utilities;
 
-namespace Urho.AvoloniaAdapter
+namespace Urho.AvaloniaAdapter
 {
     // Stores the icon created as a stream to support saving even though an icon is never shown
     /// <summary>

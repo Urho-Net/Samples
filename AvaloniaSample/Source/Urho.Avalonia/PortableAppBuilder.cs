@@ -1,5 +1,5 @@
 ﻿using Avalonia.Controls;
-using Urho.AvoloniaAdapter;
+using Urho.AvaloniaAdapter;
 
 namespace Urho
 {

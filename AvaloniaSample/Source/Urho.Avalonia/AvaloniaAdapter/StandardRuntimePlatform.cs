@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using Avalonia.Platform;
 
-namespace Urho.AvoloniaAdapter
+namespace Urho.AvaloniaAdapter
 {
     internal partial class StandardRuntimePlatform : IRuntimePlatform
     {

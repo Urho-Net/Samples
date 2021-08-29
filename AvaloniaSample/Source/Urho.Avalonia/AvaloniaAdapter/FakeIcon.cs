@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Avalonia.Platform;
 
-namespace Urho.AvoloniaAdapter
+namespace Urho.AvaloniaAdapter
 {
     public class FakeIcon : IWindowIconImpl
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 using Avalonia.Input;
 using Avalonia.Platform;
-using Urho.AvoloniaAdapter;
+using Urho.AvaloniaAdapter;
 
 
 namespace Urho

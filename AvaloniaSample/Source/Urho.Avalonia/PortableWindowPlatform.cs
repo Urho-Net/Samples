@@ -5,7 +5,7 @@ using Avalonia.Input.Platform;
 using Avalonia.Platform;
 using Avalonia.Rendering;
 using Avalonia.Skia;
-using Urho.AvoloniaAdapter;
+using Urho.AvaloniaAdapter;
 
 namespace Urho
 {

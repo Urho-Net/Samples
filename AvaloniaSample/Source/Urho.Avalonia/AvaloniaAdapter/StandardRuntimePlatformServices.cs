@@ -3,7 +3,7 @@ using Avalonia;
 using Avalonia.Platform;
 using Avalonia.Platform.Interop;
 
-namespace Urho.AvoloniaAdapter
+namespace Urho.AvaloniaAdapter
 {
     internal static class StandardRuntimePlatformServices
     {
