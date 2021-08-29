@@ -2,6 +2,9 @@ using Urho;
 using System;
 using Urho.Gui;
 using Urho.Avalonia;
+using Urho.IO;
+using Todo.Services;
+using  Todo.ViewModels;
 
 namespace AvaloniaSample
 {
@@ -11,10 +14,11 @@ namespace AvaloniaSample
 		Scene scene;
 
         private AvaloniaUrhoContext _avalonia;
-        private SampleAvaloniaWindow _window;
-
+       
+	    private Todo.Views.MainWindow _window;
+		// private SampleAvaloniaWindow _window;
         [Preserve]
-		public AvaloniaSample() : base(new ApplicationOptions(assetsFolder: "Data;CoreData"){ResizableWindow = true}) { }
+		public AvaloniaSample() : base(new ApplicationOptions(assetsFolder: "Data;CoreData"){/*ResizableWindow = true*/}) { }
 
 		public AvaloniaSample(ApplicationOptions options):base(options){}
 
@@ -22,7 +26,11 @@ namespace AvaloniaSample
 		{
 			base.Start ();
 
-            _avalonia = Context.ConfigureAvalonia<AvaloniaApp>();
+            Log.LogLevel = LogLevel.Info;
+
+            _avalonia = Context.ConfigureAvalonia<Todo.App>();
+
+			// _avalonia = Context.ConfigureAvalonia<AvaloniaApp>();
 
             CreateScene ();
 			SimpleCreateInstructionsWithWasd ();
@@ -34,9 +42,14 @@ namespace AvaloniaSample
 			Input.SetMouseVisible(true);
 			Input.SetMouseMode(MouseMode.Free);
 
-            _window = new SampleAvaloniaWindow();
-            _window.Width = 960;
-            _window.Height = 63;
+            var db = new Database();
+            _window = new Todo.Views.MainWindow()
+            {
+                DataContext = new MainWindowViewModel(db),
+            };
+			// _window = new SampleAvaloniaWindow();
+            _window.Width = 500;
+            _window.Height = 800;
             _window.Show(UI.Root);
 
 		

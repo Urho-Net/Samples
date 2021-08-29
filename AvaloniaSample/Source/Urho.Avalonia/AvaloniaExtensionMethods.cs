@@ -5,7 +5,8 @@ using Urho.Avalonia;
 using Urho;
 using Urho.Gui;
 using Urho.Urho2D;
-    
+using Avalonia.ReactiveUI;
+
 namespace Urho.Avalonia
 {
     public static class AvaloniaExtensionMethods
@@ -17,7 +18,9 @@ namespace Urho.Avalonia
                 .UsePortablePlatfrom(avaloniaUrhoContext)
                 .UseSkia()
                 .UseManagedSystemDialogs()
+                .UseReactiveUI()
                 .SetupWithoutStarting();
+
             return avaloniaUrhoContext;
         }
 

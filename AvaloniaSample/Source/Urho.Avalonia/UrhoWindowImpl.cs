@@ -1,12 +1,14 @@
 ﻿using System;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Platform;
 using Avalonia.Input;
+using Avalonia.Input.Raw;
 using Avalonia.Platform;
 
 namespace Urho.Avalonia
 {
-    public class UrhoWindowImpl : UrhoTopLevelImpl, IWindowImpl
+    public class UrhoWindowImpl : UrhoTopLevelImpl, IWindowImpl  
     {
         private Size _minSize;
         private Size _maxSize;
@@ -15,6 +17,11 @@ namespace Urho.Avalonia
         public UrhoWindowImpl(AvaloniaUrhoContext avaloniaUrhoContext) : base(avaloniaUrhoContext)
         {
         }
+
+        // protected override bool ChromeHitTest (RawPointerEventArgs e)
+        // {
+        //     return false;
+        // }
 
         public virtual void Show(bool activate)
         {

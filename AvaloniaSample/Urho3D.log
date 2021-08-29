@@ -1,12 +1,63 @@
-[Sun Aug 29 10:16:39 2021] INFO: Opened log file Urho3D.log
-[Sun Aug 29 10:16:39 2021] INFO: Created 7 worker threads
-[Sun Aug 29 10:16:39 2021] INFO: Added resource path /Users/elialoni/Development/Samples/AvaloniaSample/bin/Debug/netcoreapp3.1/CoreData/
-[Sun Aug 29 10:16:39 2021] INFO: Added resource path /Users/elialoni/Development/Samples/AvaloniaSample/bin/Debug/netcoreapp3.1/Data/
-[Sun Aug 29 10:16:40 2021] INFO: Adapter used ATI Technologies Inc. AMD Radeon Pro 5500M OpenGL Engine
-[Sun Aug 29 10:16:40 2021] INFO: Set screen mode 3584x1986 rate 60 Hz windowed monitor 0 resizable highDPI
-[Sun Aug 29 10:16:40 2021] INFO: Initialized input
-[Sun Aug 29 10:16:40 2021] INFO: Initialized user interface
-[Sun Aug 29 10:16:40 2021] INFO: Initialized renderer
-[Sun Aug 29 10:16:40 2021] INFO: Set audio mode 44100 Hz stereo interpolated
-[Sun Aug 29 10:16:40 2021] INFO: Initialized VectorGraphics subsystem
-[Sun Aug 29 10:16:40 2021] INFO: Initialized engine
+[Sun Aug 29 22:40:29 2021] INFO: Opened log file Urho3D.log
+[Sun Aug 29 22:40:29 2021] INFO: Created 7 worker threads
+[Sun Aug 29 22:40:29 2021] INFO: Added resource path /Users/elialoni/Development/Samples/AvaloniaSample/bin/Debug/netcoreapp3.1/CoreData/
+[Sun Aug 29 22:40:29 2021] INFO: Added resource path /Users/elialoni/Development/Samples/AvaloniaSample/bin/Debug/netcoreapp3.1/Data/
+[Sun Aug 29 22:40:30 2021] INFO: Adapter used ATI Technologies Inc. AMD Radeon Pro 5500M OpenGL Engine
+[Sun Aug 29 22:40:30 2021] INFO: Set screen mode 2048x1536 rate 60 Hz windowed monitor 0 highDPI
+[Sun Aug 29 22:40:30 2021] INFO: Initialized input
+[Sun Aug 29 22:40:30 2021] INFO: Initialized user interface
+[Sun Aug 29 22:40:30 2021] INFO: Initialized renderer
+[Sun Aug 29 22:40:30 2021] INFO: Set audio mode 44100 Hz stereo interpolated
+[Sun Aug 29 22:40:30 2021] INFO: Initialized VectorGraphics subsystem
+[Sun Aug 29 22:40:30 2021] INFO: Initialized engine
+[Sun Aug 29 22:40:32 2021] DEBUG: Loading resource Models/Plane.mdl
+[Sun Aug 29 22:40:32 2021] DEBUG: Loading resource Materials/StoneTiled.xml
+[Sun Aug 29 22:40:32 2021] DEBUG: Loading resource Techniques/DiffNormal.xml
+[Sun Aug 29 22:40:32 2021] DEBUG: Loading resource Techniques/Diff.xml
+[Sun Aug 29 22:40:32 2021] DEBUG: Loading resource Textures/StoneDiffuse.dds
+[Sun Aug 29 22:40:32 2021] DEBUG: Loading resource Textures/StoneNormal.dds
+[Sun Aug 29 22:40:32 2021] DEBUG: Loading resource Models/Box.mdl
+[Sun Aug 29 22:40:32 2021] DEBUG: Loading resource Materials/Skybox.xml
+[Sun Aug 29 22:40:32 2021] DEBUG: Loading resource Techniques/DiffSkybox.xml
+[Sun Aug 29 22:40:32 2021] DEBUG: Loading resource Textures/Skybox.xml
+[Sun Aug 29 22:40:32 2021] DEBUG: Loading temporary resource Textures/BrightDay1_PosX.dds
+[Sun Aug 29 22:40:32 2021] DEBUG: Loading temporary resource Textures/BrightDay1_NegX.dds
+[Sun Aug 29 22:40:32 2021] DEBUG: Loading temporary resource Textures/BrightDay1_PosY.dds
+[Sun Aug 29 22:40:32 2021] DEBUG: Loading temporary resource Textures/BrightDay1_NegY.dds
+[Sun Aug 29 22:40:32 2021] DEBUG: Loading temporary resource Textures/BrightDay1_PosZ.dds
+[Sun Aug 29 22:40:32 2021] DEBUG: Loading temporary resource Textures/BrightDay1_NegZ.dds
+[Sun Aug 29 22:40:32 2021] DEBUG: Loading resource Models/Mushroom.mdl
+[Sun Aug 29 22:40:32 2021] DEBUG: Loading resource Materials/Mushroom.xml
+[Sun Aug 29 22:40:32 2021] DEBUG: Loading resource Textures/Mushroom.dds
+[Sun Aug 29 22:40:33 2021] DEBUG: Font face Anonymous Pro (15pt) has 624 glyphs
+[Sun Aug 29 22:40:34 2021] DEBUG: Reloading shaders
+[Sun Aug 29 22:40:34 2021] DEBUG: Loading resource Shaders/GLSL/LitSolid.glsl
+[Sun Aug 29 22:40:34 2021] DEBUG: Loading resource Shaders/GLSL/Skybox.glsl
+[Sun Aug 29 22:40:34 2021] DEBUG: Allocated scratch buffer with size 1632
+[Sun Aug 29 22:40:34 2021] DEBUG: Compiled vertex shader LitSolid(DIRLIGHT NORMALMAP PERPIXEL)
+[Sun Aug 29 22:40:34 2021] DEBUG: Compiled pixel shader LitSolid(AMBIENT DIFFMAP DIRLIGHT NORMALMAP PACKEDNORMAL PERPIXEL SPECULAR)
+[Sun Aug 29 22:40:34 2021] DEBUG: Linked vertex shader LitSolid(DIRLIGHT NORMALMAP PERPIXEL) and pixel shader LitSolid(AMBIENT DIFFMAP DIRLIGHT NORMALMAP PACKEDNORMAL PERPIXEL SPECULAR)
+[Sun Aug 29 22:40:34 2021] DEBUG: Compiled vertex shader LitSolid(DIRLIGHT INSTANCED PERPIXEL)
+[Sun Aug 29 22:40:34 2021] DEBUG: Compiled pixel shader LitSolid(AMBIENT DIFFMAP DIRLIGHT PERPIXEL SPECULAR)
+[Sun Aug 29 22:40:34 2021] DEBUG: Linked vertex shader LitSolid(DIRLIGHT INSTANCED PERPIXEL) and pixel shader LitSolid(AMBIENT DIFFMAP DIRLIGHT PERPIXEL SPECULAR)
+[Sun Aug 29 22:40:34 2021] DEBUG: Compiled vertex shader LitSolid(DIRLIGHT PERPIXEL)
+[Sun Aug 29 22:40:34 2021] DEBUG: Linked vertex shader LitSolid(DIRLIGHT PERPIXEL) and pixel shader LitSolid(AMBIENT DIFFMAP DIRLIGHT PERPIXEL SPECULAR)
+[Sun Aug 29 22:40:34 2021] DEBUG: Compiled vertex shader Skybox()
+[Sun Aug 29 22:40:34 2021] DEBUG: Compiled pixel shader Skybox()
+[Sun Aug 29 22:40:34 2021] DEBUG: Linked vertex shader Skybox() and pixel shader Skybox()
+[Sun Aug 29 22:40:34 2021] DEBUG: Loading resource Shaders/GLSL/Basic.glsl
+[Sun Aug 29 22:40:34 2021] DEBUG: Compiled vertex shader Basic(DIFFMAP VERTEXCOLOR)
+[Sun Aug 29 22:40:34 2021] DEBUG: Compiled pixel shader Basic(DIFFMAP VERTEXCOLOR)
+[Sun Aug 29 22:40:34 2021] DEBUG: Linked vertex shader Basic(DIFFMAP VERTEXCOLOR) and pixel shader Basic(DIFFMAP VERTEXCOLOR)
+[Sun Aug 29 22:40:34 2021] DEBUG: Compiled pixel shader Basic(ALPHAMAP VERTEXCOLOR)
+[Sun Aug 29 22:40:34 2021] DEBUG: Linked vertex shader Basic(DIFFMAP VERTEXCOLOR) and pixel shader Basic(ALPHAMAP VERTEXCOLOR)
+[Sun Aug 29 22:40:34 2021] DEBUG: Compiled pixel shader Basic(ALPHAMASK DIFFMAP VERTEXCOLOR)
+[Sun Aug 29 22:40:34 2021] DEBUG: Linked vertex shader Basic(DIFFMAP VERTEXCOLOR) and pixel shader Basic(ALPHAMASK DIFFMAP VERTEXCOLOR)
+[Sun Aug 29 22:40:35 2021] DEBUG: Resized scratch buffer to size 1680
+[Sun Aug 29 22:40:35 2021] DEBUG: Resized scratch buffer to size 1728
+[Sun Aug 29 22:40:35 2021] DEBUG: Resized scratch buffer to size 1776
+[Sun Aug 29 22:40:35 2021] DEBUG: Resized scratch buffer to size 1824
+[Sun Aug 29 22:40:35 2021] DEBUG: Resized scratch buffer to size 1968
+[Sun Aug 29 22:40:35 2021] DEBUG: Resized scratch buffer to size 2016
+[Sun Aug 29 22:40:55 2021] DEBUG: Reloading shaders
+[Sun Aug 29 22:40:57 2021] DEBUG: Reloading shaders

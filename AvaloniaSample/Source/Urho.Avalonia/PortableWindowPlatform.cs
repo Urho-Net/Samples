@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using Avalonia;
+using Avalonia.Input;
 using Avalonia.Input.Platform;
 using Avalonia.Platform;
 using Avalonia.Rendering;
@@ -28,6 +29,8 @@ namespace Urho.Avalonia
                 .Bind<IRenderTimer>().ToConstant(new DefaultRenderTimer(60))
                 .Bind<IWindowingPlatform>().ToConstant(s_instance)
                 .Bind<PlatformHotkeyConfiguration>().ToSingleton<PlatformHotkeyConfiguration>()
+                .Bind<IKeyboardDevice>().ToConstant(context.KeyboardDevice)
+                .Bind<IMouseDevice>().ToConstant(context.MouseDevice)
                 .Bind<IPlatformIconLoader>().ToConstant(new PlatformIconLoader());
             SkiaPlatform.Initialize();
         }

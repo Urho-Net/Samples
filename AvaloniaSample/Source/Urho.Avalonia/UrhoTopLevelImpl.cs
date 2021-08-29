@@ -133,7 +133,7 @@ namespace Urho.Avalonia
         }
 
         public virtual IMouseDevice MouseDevice => UrhoContext.MouseDevice;
-
+        public virtual IKeyboardDevice KeyboardDevice => UrhoContext.KeyboardDevice;
         public Action<RawInputEventArgs> Input 
         { 
             get; 

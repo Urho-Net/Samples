@@ -20,6 +20,7 @@ namespace Urho.Avalonia
         {
             Context = context;
             MouseDevice = new MouseDevice();
+            KeyboardDevice = new KeyboardDevice();
             Screen = new UrhoScreenStub(this);
 
             Application.Current.Update += ProcessWindows;
@@ -51,6 +52,8 @@ namespace Urho.Avalonia
         
         public IMouseDevice MouseDevice { get; }
 
+        public IKeyboardDevice KeyboardDevice {get;}
+
         public IScreenImpl Screen { get; }
 
         public void SchedulePaint(UrhoTopLevelImpl window)
@@ -63,7 +66,20 @@ namespace Urho.Avalonia
 
         public void EnsureInvokeOnMainThread(Action action)
         {
-            Application.InvokeOnMain(action);
+
+        
+           
+            if (!Application.isExiting)
+            {
+                try
+                {
+                    Application.InvokeOnMain(action);
+                }
+                catch (Exception ex)
+                {
+
+                }   
+            }
         }
 
 

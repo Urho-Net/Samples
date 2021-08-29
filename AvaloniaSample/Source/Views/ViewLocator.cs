@@ -1,9 +1,9 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using AvaloniaSample.ViewModels;
+using Todo.ViewModels;
 
-namespace AvaloniaSample
+namespace Todo
 {
     public class ViewLocator : IDataTemplate
     {
@@ -11,12 +11,12 @@ namespace AvaloniaSample
 
         public IControl Build(object data)
         {
-            var name = data.GetType().FullName!.Replace("ViewModel", "View");
+            var name = data.GetType().FullName.Replace("ViewModel", "View");
             var type = Type.GetType(name);
 
             if (type != null)
             {
-                return (Control)Activator.CreateInstance(type)!;
+                return (Control)Activator.CreateInstance(type);
             }
             else
             {

@@ -9,6 +9,8 @@
         <StackPanel Orientation="Vertical">
             <TextBlock>Slider:</TextBlock>
             <Slider Orientation="Horizontal" HorizontalAlignment="Stretch" Height="10" />
+             <TextBox AcceptsReturn="True"
+             Watermark="Enter your TODO"/>
         </StackPanel>
     </Grid>
 </Window>

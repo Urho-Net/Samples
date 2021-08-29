@@ -1,10 +1,11 @@
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using AvaloniaSample.ViewModels;
-using AvaloniaSample.Views;
+using Todo.Services;
+using Todo.ViewModels;
+using Todo.Views;
 
-namespace AvaloniaSample
+namespace Todo
 {
     public class App : Application
     {
@@ -15,19 +16,17 @@ namespace AvaloniaSample
 
         public override void OnFrameworkInitializationCompleted()
         {
-            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-            {
-                desktop.MainWindow = new MainWindow
-                {
-                    DataContext = new MainWindowViewModel(),
-                };
-
-                //  ((MainWindow)(desktop.MainWindow)).RunSample();
-            }
-
             base.OnFrameworkInitializationCompleted();
 
-           
+            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                var db = new Database();
+
+                desktop.MainWindow = new MainWindow
+                {
+                    DataContext = new MainWindowViewModel(db),
+                };
+            }
         }
     }
 }
