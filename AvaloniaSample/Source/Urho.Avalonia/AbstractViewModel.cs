@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Urho.MVVM
+namespace Urho.Avalonia
 {
     public abstract class AbstractViewModel: INotifyPropertyChanged
     {

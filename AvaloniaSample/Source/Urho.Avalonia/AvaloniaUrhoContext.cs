@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading;
 using Avalonia.Input;
 using Avalonia.Platform;
-using Urho.AvaloniaAdapter;
+using Urho.Avalonia;
 
 
-namespace Urho
+namespace Urho.Avalonia
 {
     public class AvaloniaUrhoContext
     {

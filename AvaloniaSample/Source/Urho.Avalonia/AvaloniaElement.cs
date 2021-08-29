@@ -2,11 +2,11 @@
 using Avalonia;
 using Avalonia.Input;
 using Avalonia.Input.Raw;
-using Urho.AvaloniaAdapter;
+using Urho.Avalonia;
 using Urho.Gui;
 
 
-namespace Urho
+namespace Urho.Avalonia
 {
     public class AvaloniaElement : Sprite
     {
@@ -102,7 +102,7 @@ namespace Urho
         {
          
             var size = this.Size;
-            var clientSize = new Avalonia.Size(size.X / _windowImpl.RenderScaling, size.Y / _windowImpl.RenderScaling);
+            var clientSize = new global::Avalonia.Size(size.X / _windowImpl.RenderScaling, size.Y / _windowImpl.RenderScaling);
             if (_windowImpl.ClientSize != clientSize)
             {
                 _windowImpl.Resize(clientSize);

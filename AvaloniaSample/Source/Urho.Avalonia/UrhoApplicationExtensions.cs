@@ -1,7 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 
-namespace Urho
+namespace Urho.Avalonia
 {
     public static class UrhoApplicationExtensions
     {

@@ -2,7 +2,7 @@
 using Avalonia.Input;
 using Avalonia.Platform;
 
-namespace Urho.AvaloniaAdapter
+namespace Urho.Avalonia
 {
     class CursorFactory : ICursorFactory
     {

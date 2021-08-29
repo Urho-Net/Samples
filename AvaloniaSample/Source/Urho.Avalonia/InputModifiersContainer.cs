@@ -1,6 +1,6 @@
 ﻿using Avalonia.Input;
 
-namespace Urho.AvaloniaAdapter
+namespace Urho.Avalonia
 {
     public class InputModifiersContainer
     {

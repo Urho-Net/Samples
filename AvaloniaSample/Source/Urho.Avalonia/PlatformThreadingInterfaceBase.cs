@@ -4,7 +4,7 @@ using System.Threading;
 using Avalonia.Platform;
 using Avalonia.Threading;
 
-namespace Urho
+namespace Urho.Avalonia
 {
     public abstract class PlatformThreadingInterfaceBase : IPlatformThreadingInterface
     {

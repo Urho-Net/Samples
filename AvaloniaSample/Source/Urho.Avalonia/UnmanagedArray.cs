@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Urho.AvaloniaAdapter
+namespace Urho.Avalonia
 {
     internal class UnmanagedArray: IDisposable
     {

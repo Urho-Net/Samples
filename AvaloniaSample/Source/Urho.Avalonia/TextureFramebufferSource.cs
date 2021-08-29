@@ -10,7 +10,7 @@ using SkiaSharp;
 using Urho.Urho2D;
 using Urho;
 
-namespace Urho.AvaloniaAdapter
+namespace Urho.Avalonia
 {
     public class TextureFramebufferSource: IDisposable
     {

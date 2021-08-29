@@ -1,7 +1,7 @@
 ﻿using System;
 using Avalonia.Platform.Interop;
 
-namespace Urho.AvaloniaAdapter
+namespace Urho.Avalonia
 {
     internal class DynamicLibraryLoader : IDynamicLibraryLoader
     {

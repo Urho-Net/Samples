@@ -5,9 +5,9 @@ using Avalonia.Input.Platform;
 using Avalonia.Platform;
 using Avalonia.Rendering;
 using Avalonia.Skia;
-using Urho.AvaloniaAdapter;
+using Urho.Avalonia;
 
-namespace Urho
+namespace Urho.Avalonia
 {
     public class PortableWindowPlatform : PlatformThreadingInterfaceBase, IPlatformSettings, IWindowingPlatform
     {

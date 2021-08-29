@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Urho.MVVM
+namespace Urho.Avalonia
 {
     public class Command : ICommand
     {

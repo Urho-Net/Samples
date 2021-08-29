@@ -1,7 +1,7 @@
 ﻿using Avalonia.Controls;
-using Urho.AvaloniaAdapter;
+using Urho.Avalonia;
 
-namespace Urho
+namespace Urho.Avalonia
 {
     public sealed class PortableAppBuilder : AppBuilderBase<PortableAppBuilder>
     {

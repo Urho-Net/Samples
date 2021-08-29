@@ -1,6 +1,7 @@
 using Urho;
 using System;
 using Urho.Gui;
+using Urho.Avalonia;
 
 namespace AvaloniaSample
 {

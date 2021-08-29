@@ -4,7 +4,7 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Platform;
 
-namespace Urho.AvaloniaAdapter
+namespace Urho.Avalonia
 {
     public class UrhoWindowImpl : UrhoTopLevelImpl, IWindowImpl
     {

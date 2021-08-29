@@ -10,7 +10,7 @@ using Avalonia.Rendering;
 using Urho.Urho2D;
 using Urho.Gui;
 
-namespace Urho.AvaloniaAdapter
+namespace Urho.Avalonia
 {
     public class UrhoTopLevelImpl : ITopLevelImpl, IFramebufferPlatformSurface
     {
@@ -30,7 +30,7 @@ namespace Urho.AvaloniaAdapter
             }
         }
 
-        private Avalonia.Rect _invalidRegion = Avalonia.Rect.Empty;
+        private global::Avalonia.Rect _invalidRegion = global::Avalonia.Rect.Empty;
         private double _dpi;
         private TextureFramebufferSource _framebufferSource;
         private bool _hasActualSize;
@@ -40,7 +40,7 @@ namespace Urho.AvaloniaAdapter
             UrhoContext = context;
             UrhoContext.AddWindow(this);
             Dpi = 96.0;
-            Invalidate(new Avalonia.Rect(0, 0, double.MaxValue, double.MaxValue));
+            Invalidate(new global::Avalonia.Rect(0, 0, double.MaxValue, double.MaxValue));
         }
 
         public AvaloniaUrhoContext UrhoContext { get; set; }
@@ -139,7 +139,7 @@ namespace Urho.AvaloniaAdapter
             get; 
             set; 
         }
-        public Action<Avalonia.Rect> Paint { get; set; }
+        public Action<global::Avalonia.Rect> Paint { get; set; }
         public Action<Size> Resized { get; set; }
         public Action<double> ScalingChanged { get; set; }
         public Action<WindowTransparencyLevel> TransparencyLevelChanged { get; set; }
@@ -204,7 +204,7 @@ namespace Urho.AvaloniaAdapter
         }
 
         /// <summary>Invalidates a rect on the toplevel.</summary>
-        public virtual void Invalidate(Avalonia.Rect rect)
+        public virtual void Invalidate(global::Avalonia.Rect rect)
         {
             _invalidRegion = _invalidRegion.Union(rect);
             SchedulePaint();
@@ -251,11 +251,11 @@ namespace Urho.AvaloniaAdapter
             if (paint == null)
                 return;
 
-            var updateTexture = _invalidRegion != Avalonia.Rect.Empty;
+            var updateTexture = _invalidRegion != global::Avalonia.Rect.Empty;
             if (updateTexture)
             {
-                var paintArea = _invalidRegion.Intersect(new Avalonia.Rect(new Point(0, 0), ClientSize));
-                _invalidRegion = Avalonia.Rect.Empty;
+                var paintArea = _invalidRegion.Intersect(new global::Avalonia.Rect(new Point(0, 0), ClientSize));
+                _invalidRegion = global::Avalonia.Rect.Empty;
                 if (paintArea.Width * paintArea.Height > 0)
                     paint?.Invoke(paintArea);
                 //_hasUpdatedImage = true;

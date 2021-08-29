@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Avalonia;
 using Avalonia.Platform;
 
-namespace Urho
+namespace Urho.Avalonia
 {
     public class UrhoScreenStub : IScreenImpl, IReadOnlyList<Screen>
     {
