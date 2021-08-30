@@ -8,7 +8,7 @@
     <Button DockPanel.Dock="Bottom" Command="{Binding Cancel}">Cancel</Button>
     <Button DockPanel.Dock="Bottom" Command="{Binding Ok}">OK</Button>
     <TextBox Name="TextBox"
-             AcceptsReturn="False"
+             AcceptsReturn="True"
              Text="{Binding Description}"
              Watermark="Enter your TODO"/>
   </DockPanel>
