@@ -13,12 +13,16 @@ namespace Urho.Avalonia
     public class AvaloniaElement : Sprite
     {
         private UrhoTopLevelImpl _windowImpl;
+        
+       Input UrhoInput = null ;
 
         public AvaloniaElement(Context context) : base(context)
         {
             SetEnabledRecursive(true);
             this.Enabled = true;
             this.Visible = true;
+
+            UrhoInput = Application.Current.Input;
     
             FocusMode = FocusMode.Focusable;
 
@@ -31,6 +35,8 @@ namespace Urho.Avalonia
             Application.Current.Input.TextInput += OnTextInputEvent;
 
         }
+
+   
 
         private void OnClickBegin(ClickEventArgs e)
         {
@@ -192,6 +198,7 @@ namespace Urho.Avalonia
                 this.ClickEnd -= OnClickEnd;
                 Application.Current.Input.KeyDown -= OnKeyDown;
                 Application.Current.Input.KeyUp -= OnKeyUp;
+                Application.Current.Input.TextInput += OnTextInputEvent;
             }
             catch (Exception ex)
             {
@@ -235,10 +242,18 @@ namespace Urho.Avalonia
         {
             if (_windowImpl != null)
             {
+                
+                RawInputModifiers modifiers = RawInputModifiers.None;
 
-                 var args = new RawPointerEventArgs(_windowImpl.MouseDevice, (ulong) DateTimeOffset.UtcNow.Ticks,
+                modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.Left)) ? RawInputModifiers.LeftMouseButton : RawInputModifiers.None;
+                modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.Right)) ? RawInputModifiers.RightMouseButton : RawInputModifiers.None;
+                modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.Middle)) ? RawInputModifiers.MiddleMouseButton : RawInputModifiers.None;
+                modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.X1)) ? RawInputModifiers.XButton1MouseButton : RawInputModifiers.None;
+                modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.X2)) ? RawInputModifiers.XButton2MouseButton : RawInputModifiers.None;
+
+                var args = new RawPointerEventArgs(_windowImpl.MouseDevice, (ulong) DateTimeOffset.UtcNow.Ticks,
                     _windowImpl.InputRoot, type, new Point(position.X, position.Y),
-                    RawInputModifiers.None);
+                    modifiers);
 
                 _windowImpl.Input?.Invoke(args);
                 
@@ -249,6 +264,13 @@ namespace Urho.Avalonia
         {
             if (_windowImpl != null)
             {
+               
+                modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.Left)) ? RawInputModifiers.LeftMouseButton : RawInputModifiers.None;
+                modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.Right)) ? RawInputModifiers.RightMouseButton : RawInputModifiers.None;
+                modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.Middle)) ? RawInputModifiers.MiddleMouseButton : RawInputModifiers.None;
+                modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.X1)) ? RawInputModifiers.XButton1MouseButton : RawInputModifiers.None;
+                modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.X2)) ? RawInputModifiers.XButton2MouseButton : RawInputModifiers.None;
+
                 var args = new RawKeyEventArgs(_windowImpl.KeyboardDevice, (ulong)DateTimeOffset.UtcNow.Ticks, _windowImpl.InputRoot, type, key, modifiers);
                 _windowImpl.Input?.Invoke(args);
             }
