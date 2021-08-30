@@ -1,5 +1,5 @@
 ﻿// TBD ELI 
-// #define MANAGED_BUFFER
+#define MANAGED_BUFFER
 
 using System;
 using System.Runtime.InteropServices;
@@ -130,11 +130,15 @@ namespace Urho.Avalonia
 
             public void Dispose()
             {
-                // TBD ELI 
+#if MANAGED_BUFFER
+                var texture = _source.Texture;
+                texture.SetData(0, 0, 0, texture.Width, texture.Height, _source._data);
+#else
                var arr =  MarshalHelper.ToBytesArray(Address,_source._data.Length);
 
                 var texture = _source.Texture;
                 texture.SetData(0, 0, 0, texture.Width, texture.Height, arr);
+#endif
 #if MANAGED_BUFFER
                 _pinnedArray.Free();
                 _pinnedArray = default;
