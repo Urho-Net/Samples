@@ -121,23 +121,53 @@ namespace Urho.Avalonia
         {
             if (!this.HasFocus()) return;
 
-            UrhoKey key = evt.Key;
-            int qualifiers = evt.Qualifiers;
-            // Log.Info("OnKeyDown:" + key.ToString());
+            //  Log.Info("OnKeyDown:" + evt.Key.ToString()+" " + evt.Buttons + " " + evt.Qualifiers + " " + evt.Scancode + " " + evt.Repeat);
 
-          //  SendRawKeyEvent(RawKeyEventType.KeyDown, AvaloniaKey.Enter, RawInputModifiers.None);
+            RawInputModifiers modifiers = RawInputModifiers.None;
+
+            if ((evt.Qualifiers & 1) != 0)
+            {
+                modifiers |= RawInputModifiers.Shift;
+            }
+            if ((evt.Qualifiers & 2) != 0)
+            {
+                modifiers |= RawInputModifiers.Control;
+            }
+            if ((evt.Qualifiers & 4) != 0)
+            {
+                modifiers |= RawInputModifiers.Alt;
+            }
+
+           if(KeyTranslate.UrhoToAvaloniaKeyMapping.TryGetValue(evt.Key , out AvaloniaKey avnKey))
+           {
+                 SendRawKeyEvent(RawKeyEventType.KeyDown, avnKey, modifiers);
+           }
             
         }
 
         private void OnKeyUp(KeyUpEventArgs evt)
         {
             if (!this.HasFocus()) return;
+            // Log.Info("OnKeyUp:" + evt.Key.ToString()+" " + evt.Buttons + " " + evt.Qualifiers + " " + evt.Scancode);
 
-            UrhoKey key = evt.Key;
-            int qualifiers = evt.Qualifiers;
-            // Log.Info("OnKeyUp:" + key.ToString());
+            RawInputModifiers modifiers = RawInputModifiers.None;
 
-          //  SendRawKeyEvent(RawKeyEventType.KeyUp, AvaloniaKey.Enter, RawInputModifiers.None);
+            if ((evt.Qualifiers & 1) != 0)
+            {
+                modifiers |= RawInputModifiers.Shift;
+            }
+            if ((evt.Qualifiers & 2) != 0)
+            {
+                modifiers |= RawInputModifiers.Control;
+            }
+            if ((evt.Qualifiers & 4) != 0)
+            {
+                modifiers |= RawInputModifiers.Alt;
+            }
+            if (KeyTranslate.UrhoToAvaloniaKeyMapping.TryGetValue(evt.Key, out AvaloniaKey avnKey))
+            {
+                SendRawKeyEvent(RawKeyEventType.KeyUp, AvaloniaKey.Enter, modifiers);
+            }
         }
 
         private void OnTextInputEvent(TextInputEventArgs evt)
@@ -217,14 +247,20 @@ namespace Urho.Avalonia
 
         private void SendRawKeyEvent(RawKeyEventType type, AvaloniaKey key, RawInputModifiers modifiers)
         {
-            var args = new RawKeyEventArgs(_windowImpl.KeyboardDevice, (ulong)DateTimeOffset.UtcNow.Ticks, _windowImpl.InputRoot, type, key, modifiers);
-             _windowImpl.Input?.Invoke(args);
+            if (_windowImpl != null)
+            {
+                var args = new RawKeyEventArgs(_windowImpl.KeyboardDevice, (ulong)DateTimeOffset.UtcNow.Ticks, _windowImpl.InputRoot, type, key, modifiers);
+                _windowImpl.Input?.Invoke(args);
+            }
         }
 
         private void SendRawTextInputEvent(string text)
         {
-            var args = new RawTextInputEventArgs(_windowImpl.KeyboardDevice, (ulong)DateTimeOffset.UtcNow.Ticks, _windowImpl.InputRoot, text);
-            _windowImpl.Input?.Invoke(args);
+            if (_windowImpl != null)
+            {
+                var args = new RawTextInputEventArgs(_windowImpl.KeyboardDevice, (ulong)DateTimeOffset.UtcNow.Ticks, _windowImpl.InputRoot, text);
+                _windowImpl.Input?.Invoke(args);
+            }
         }
 
         private InputModifiersContainer _inputModifiers = new InputModifiersContainer();
