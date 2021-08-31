@@ -31,8 +31,10 @@ namespace Urho.Avalonia
                 .Bind<PlatformHotkeyConfiguration>().ToSingleton<PlatformHotkeyConfiguration>()
                 .Bind<IKeyboardDevice>().ToConstant(context.KeyboardDevice)
                 .Bind<IMouseDevice>().ToConstant(context.MouseDevice)
+                .Bind<IClipboard>().ToConstant(new ClipboardImpl())
                 .Bind<IPlatformIconLoader>().ToConstant(new PlatformIconLoader());
             SkiaPlatform.Initialize();
+            
         }
 
         public override void EnsureInvokeOnMainThread(Action action)

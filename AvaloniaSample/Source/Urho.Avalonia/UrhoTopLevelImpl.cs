@@ -132,6 +132,7 @@ namespace Urho.Avalonia
             get { yield return this; }
         }
 
+        public virtual Urho.Platforms Platform => UrhoContext.Platform;
         public virtual IMouseDevice MouseDevice => UrhoContext.MouseDevice;
         public virtual IKeyboardDevice KeyboardDevice => UrhoContext.KeyboardDevice;
         public Action<RawInputEventArgs> Input 

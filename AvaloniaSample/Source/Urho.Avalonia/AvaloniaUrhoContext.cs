@@ -26,6 +26,7 @@ namespace Urho.Avalonia
             Application.Current.Update += ProcessWindows;
             Application.Current.Input.ExitRequested += OnExitRequested;
 
+            Platform = Application.Platform;
         }
 
         private void ProcessWindows(UpdateEventArgs obj)
@@ -55,6 +56,8 @@ namespace Urho.Avalonia
         public IKeyboardDevice KeyboardDevice {get;}
 
         public IScreenImpl Screen { get; }
+
+        public Urho.Platforms  Platform {get;}
 
         public void SchedulePaint(UrhoTopLevelImpl window)
         {

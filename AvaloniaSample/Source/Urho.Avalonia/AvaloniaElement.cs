@@ -144,6 +144,14 @@ namespace Urho.Avalonia
                 modifiers |= RawInputModifiers.Alt;
             }
 
+            if (_windowImpl.Platform == Platforms.MacOSX)
+            {
+                if (UrhoInput.GetKeyDown(UrhoKey.Gui) || UrhoInput.GetKeyDown(UrhoKey.Rgui))
+                {
+                    modifiers |= RawInputModifiers.Control;
+                }
+            }
+
            if(KeyTranslate.UrhoToAvaloniaKeyMapping.TryGetValue(evt.Key , out AvaloniaKey avnKey))
            {
                  SendRawKeyEvent(RawKeyEventType.KeyDown, avnKey, modifiers);
@@ -170,6 +178,15 @@ namespace Urho.Avalonia
             {
                 modifiers |= RawInputModifiers.Alt;
             }
+
+            if (_windowImpl.Platform == Platforms.MacOSX)
+            {
+                if (UrhoInput.GetKeyDown(UrhoKey.Gui) || UrhoInput.GetKeyDown(UrhoKey.Rgui))
+                {
+                    modifiers |= RawInputModifiers.Control;
+                }
+            }
+            
             if (KeyTranslate.UrhoToAvaloniaKeyMapping.TryGetValue(evt.Key, out AvaloniaKey avnKey))
             {
                 SendRawKeyEvent(RawKeyEventType.KeyUp, AvaloniaKey.Enter, modifiers);
