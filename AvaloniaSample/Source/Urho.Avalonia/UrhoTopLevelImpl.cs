@@ -239,7 +239,7 @@ namespace Urho.Avalonia
 
         public IPopupImpl CreatePopup()
         {
-            throw new NotImplementedException();
+           return null;
         }
 
         public void SetTransparencyLevelHint(WindowTransparencyLevel transparencyLevel)

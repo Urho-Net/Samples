@@ -48,8 +48,8 @@ namespace AvaloniaSample
                 DataContext = new MainWindowViewModel(db),
             };
 			// _window = new SampleAvaloniaWindow();
-            _window.Width = 500;
-            _window.Height = 800;
+            _window.Width = 400;
+            _window.Height = 600;
             _window.Show(UI.Root);
 
 		
