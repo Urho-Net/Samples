@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Avalonia.Input;
 using Avalonia.Input.Platform;
@@ -16,17 +17,27 @@ namespace Urho.Avalonia
         }
         public Task ClearAsync()
         {
-            throw new NotImplementedException();
+            return SetTextAsync("");
         }
 
-        public Task<object> GetDataAsync(string format)
+        public async Task<object> GetDataAsync(string format)
         {
+             if (format == DataFormats.Text)
+                return await GetTextAsync();
+
+            // TBD ELI , should it be implemented ?
+            if (format == DataFormats.FileNames)
+                throw new NotImplementedException();
+                
             throw new NotImplementedException();
         }
 
         public Task<string[]> GetFormatsAsync()
         {
-            throw new NotImplementedException();
+
+            var rv = new List<string>();
+            rv.Add(DataFormats.Text);
+            return Task.FromResult(rv.ToArray());
         }
 
         public Task<string> GetTextAsync()
