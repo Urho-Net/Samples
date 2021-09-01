@@ -16,7 +16,7 @@ namespace Urho.Avalonia
     {
         private PixelPoint _position;
         public  AvaloniaElement _urhoUIElement = new AvaloniaElement(Application.CurrentContext);
-
+        const double CONST_DPI_VALUE_96 = 96.0;
         public AvaloniaElement UrhoUIElement
         {
             get
@@ -39,7 +39,7 @@ namespace Urho.Avalonia
         {
             UrhoContext = context;
             UrhoContext.AddWindow(this);
-            Dpi = 96.0;
+            Dpi = CONST_DPI_VALUE_96;
             Invalidate(new global::Avalonia.Rect(0, 0, double.MaxValue, double.MaxValue));
         }
 
@@ -109,11 +109,11 @@ namespace Urho.Avalonia
         /// </summary>
         public virtual double RenderScaling
         {
-            get => _dpi / 96.0;
+            get => _dpi / CONST_DPI_VALUE_96;
             set
             {
                 var scaling = RenderScaling;
-                if (scaling != value) Dpi = 96.0 * value;
+                if (scaling != value) Dpi = CONST_DPI_VALUE_96 * value;
             }
         }
 

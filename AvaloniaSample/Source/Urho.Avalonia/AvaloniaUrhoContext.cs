@@ -16,6 +16,8 @@ namespace Urho.Avalonia
 
         readonly HashSet<UrhoTopLevelImpl> _windowsToPaint = new HashSet<UrhoTopLevelImpl>();
 
+        public double RenderScaling {get;set;} = 1.0;
+
         public AvaloniaUrhoContext(Context context)
         {
             Context = context;

@@ -16,6 +16,7 @@ namespace Urho.Avalonia
 
         public UrhoWindowImpl(AvaloniaUrhoContext avaloniaUrhoContext) : base(avaloniaUrhoContext)
         {
+             RenderScaling = avaloniaUrhoContext.RenderScaling;
         }
 
         // protected override bool ChromeHitTest (RawPointerEventArgs e)

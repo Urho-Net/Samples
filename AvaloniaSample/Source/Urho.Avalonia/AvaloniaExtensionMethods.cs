@@ -1,8 +1,6 @@
 ﻿using System;
 using Avalonia;
 using Avalonia.Dialogs;
-using Urho.Avalonia;
-using Urho;
 using Urho.Gui;
 using Urho.Urho2D;
 using Avalonia.ReactiveUI;

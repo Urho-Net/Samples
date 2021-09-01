@@ -43,7 +43,11 @@ namespace Urho.Avalonia
             if (e.Element != this)
                 return;
             var screenPos = this.ScreenPosition;
-            var position = new IntVector2(e.X - screenPos.X, e.Y - screenPos.Y);
+            var position = new Vector2(e.X - screenPos.X, e.Y - screenPos.Y);
+            // var position = new Vector2((e.X - screenPos.X) / (float)_windowImpl.RenderScaling, (e.Y - screenPos.Y) / (float)_windowImpl.RenderScaling);
+            
+             Log.Info("" + screenPos + " " + position);
+
             switch ((MouseButton)e.Button)
             {
                 case MouseButton.Left:
@@ -74,7 +78,7 @@ namespace Urho.Avalonia
             if (e.Element != this)
                 return;
             var screenPos = this.ScreenPosition;
-            var position = new IntVector2(e.X - screenPos.X, e.Y - screenPos.Y);
+            var position = new Vector2(e.X - screenPos.X, e.Y - screenPos.Y);
             switch ((MouseButton)e.Button)
             {
                 case MouseButton.Left:
@@ -107,7 +111,7 @@ namespace Urho.Avalonia
             if (e.Element != this)
                 return;
             var screenPos = this.ScreenPosition;
-            var position = new IntVector2(e.X - screenPos.X, e.Y - screenPos.Y);
+            var position = new Vector2(e.X - screenPos.X, e.Y - screenPos.Y);
             SendRawPointerEvent(RawPointerEventType.Move, position);
         }
 
@@ -255,11 +259,15 @@ namespace Urho.Avalonia
 
         
 
-        private void SendRawPointerEvent(RawPointerEventType type, IntVector2 position)
+        private void SendRawPointerEvent(RawPointerEventType type, Vector2 position)
         {
             if (_windowImpl != null)
             {
+
                 
+                 position = new Vector2((position.X) / (float)_windowImpl.RenderScaling, (position.Y) / (float)_windowImpl.RenderScaling);
+
+              
                 RawInputModifiers modifiers = RawInputModifiers.None;
 
                 modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.Left)) ? RawInputModifiers.LeftMouseButton : RawInputModifiers.None;

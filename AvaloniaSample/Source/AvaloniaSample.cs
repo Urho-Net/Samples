@@ -5,20 +5,24 @@ using Urho.Avalonia;
 using Urho.IO;
 using Todo.Services;
 using  Todo.ViewModels;
+using Avalonia.Styling;
+using Avalonia.Markup.Xaml.Styling;
 
 namespace AvaloniaSample
 {
 	public class AvaloniaSample : Sample
 	{
+		
+
 		Camera camera;
 		Scene scene;
 
-        private AvaloniaUrhoContext _avalonia;
+        private AvaloniaUrhoContext avaloniaContext;
        
-	    private Todo.Views.MainWindow _window;
+
 		// private SampleAvaloniaWindow _window;
         [Preserve]
-		public AvaloniaSample() : base(new ApplicationOptions(assetsFolder: "Data;CoreData"){/*ResizableWindow = true*/}) { }
+		public AvaloniaSample() : base(new ApplicationOptions(assetsFolder: "Data;CoreData"){ResizableWindow = true}) { }
 
 		public AvaloniaSample(ApplicationOptions options):base(options){}
 
@@ -27,11 +31,6 @@ namespace AvaloniaSample
 			base.Start ();
 
             Log.LogLevel = LogLevel.Info;
-
-            _avalonia = Context.ConfigureAvalonia<Todo.App>();
-
-			// _avalonia = Context.ConfigureAvalonia<AvaloniaApp>();
-
             CreateScene ();
 			SimpleCreateInstructionsWithWasd ();
 			SetupViewport ();
@@ -39,26 +38,76 @@ namespace AvaloniaSample
             UIElement root = UI.Root;
             // Load the style sheet from xml
             root.SetDefaultStyle(ResourceCache.GetXmlFile("UI/DefaultStyle.xml"));
+			
 			Input.SetMouseVisible(true);
 			Input.SetMouseMode(MouseMode.Free);
 
-            var db = new Database();
-            _window = new Todo.Views.MainWindow()
-            {
-                DataContext = new MainWindowViewModel(db),
-            };
-			// _window = new SampleAvaloniaWindow();
-            _window.Width = 400;
-            _window.Height = 600;
-            _window.Show(UI.Root);
+			// InitializeAvaloniaTodoDemo();
+			// InitializeAvaloniaDockDemo();
+			InitializeAvaloniaDockDemo2();
 
 		
 		}
 
-        // protected override void OnResize(IntVector2 graphicsSize)
-        // {
+       void InitializeAvaloniaTodoDemo()
+	   {
+		    avaloniaContext = Context.ConfigureAvalonia<Todo.App>();
+			avaloniaContext.RenderScaling = 2.0;
 
-        // }
+            var db = new Database();
+            var mainWindow = new Todo.Views.MainWindow()
+            {
+                DataContext = new Todo.ViewModels.MainWindowViewModel(db),
+            };
+            mainWindow.Position = new Avalonia.PixelPoint(10, 10);
+            mainWindow.Show(UI.Root);
+	   }
+
+	   void InitializeAvaloniaDockDemo()
+	   {
+
+            avaloniaContext = Context.ConfigureAvalonia<AvaloniaDockApplication.App>();
+			avaloniaContext.RenderScaling = 2.0;
+
+            var factory = new AvaloniaDockApplication.MainDockFactory(new AvaloniaDockApplication.Models.DemoData());
+            var layout = factory.CreateLayout();
+            factory.InitLayout(layout);
+
+            var mainWindowViewModel = new AvaloniaDockApplication.ViewModels.MainWindowViewModel()
+            {
+                Factory = factory,
+                Layout = layout
+            };
+
+            var mainWindow = new AvaloniaDockApplication.Views.MainWindow
+            {
+                DataContext = mainWindowViewModel
+            };
+
+			 mainWindow.Show(UI.Root);
+	   }
+
+
+        void InitializeAvaloniaDockDemo2()
+        {
+
+            avaloniaContext = Context.ConfigureAvalonia<AvaloniaDemo.App>();
+			avaloniaContext.RenderScaling = 2.0;
+
+            var mainWindowViewModel = new AvaloniaDemo.ViewModels.MainWindowViewModel();
+            var mainWindow = new AvaloniaDemo.Views.MainWindow
+            {
+                DataContext = mainWindowViewModel
+            };
+
+            mainWindow.Closing += (_, _) =>
+            {
+                mainWindowViewModel.CloseLayout();
+            };
+
+            mainWindow.Show(UI.Root);
+            mainWindow.Position = new Avalonia.PixelPoint(0, 0);
+        }
 
 		void CreateScene ()
 		{
