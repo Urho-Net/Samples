@@ -44,7 +44,8 @@ namespace AvaloniaSample
 
 			// InitializeAvaloniaTodoDemo();
 			// InitializeAvaloniaDockDemo();
-			InitializeAvaloniaDockDemo2();
+			// InitializeAvaloniaDockDemo2();
+			 InitializeAvaloniaNotePadDemo();
 
 		
 		}
@@ -100,14 +101,37 @@ namespace AvaloniaSample
                 DataContext = mainWindowViewModel
             };
 
-            mainWindow.Closing += (_, _) =>
-            {
-                mainWindowViewModel.CloseLayout();
-            };
+            // mainWindow.Closing += (_, _) =>
+            // {
+            //     mainWindowViewModel.CloseLayout();
+            // };
 
             mainWindow.Show(UI.Root);
             mainWindow.Position = new Avalonia.PixelPoint(0, 0);
         }
+
+		void InitializeAvaloniaNotePadDemo()
+		{
+			 avaloniaContext = Context.ConfigureAvalonia<Notepad.App>();
+			avaloniaContext.RenderScaling = 2.0;
+
+            var mainWindowViewModel = new Notepad.ViewModels.MainWindowViewModel();
+
+            var mainWindow = new Notepad.Views.MainWindow
+            {
+                DataContext = mainWindowViewModel
+            };
+
+            // mainWindow.Closing += (_, _) =>
+            // {
+            //     mainWindowViewModel.CloseLayout();
+            // };
+
+			AvaloniaUrhoContext.MainWindow = mainWindow;
+            mainWindow.Show(UI.Root);
+            mainWindow.Position = new Avalonia.PixelPoint(0, 0);
+
+		}
 
 		void CreateScene ()
 		{

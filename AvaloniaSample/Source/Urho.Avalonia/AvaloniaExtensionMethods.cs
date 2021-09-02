@@ -13,13 +13,15 @@ namespace Urho.Avalonia
         {
             var avaloniaUrhoContext = new AvaloniaUrhoContext(context);
             PortableAppBuilder.Configure<T>()
+                .UsePlatformDetect()
                 .UsePortablePlatfrom(avaloniaUrhoContext)
                 .UseSkia()
-                .UseManagedSystemDialogs()
                 .UseReactiveUI()
                 .SetupWithoutStarting();
 
             return avaloniaUrhoContext;
+
+            //   
         }
 
         public static void Show(this global::Avalonia.Controls.Window window, UIElement parent)

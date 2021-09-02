@@ -151,7 +151,7 @@ namespace AvaloniaDemo.ViewModels
 
         public void ResetLayout()
         {
-            if (Layout is not null)
+            if (Layout !=  null)
             {
                 if (Layout.Close.CanExecute(null))
                 {
@@ -160,7 +160,7 @@ namespace AvaloniaDemo.ViewModels
             }
 
             var layout = _factory?.CreateLayout();
-            if (layout is not null)
+            if (layout != null)
             {
                 Layout = layout as IRootDock;
                 _factory?.InitLayout(layout);

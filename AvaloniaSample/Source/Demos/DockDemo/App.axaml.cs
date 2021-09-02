@@ -35,7 +35,7 @@ namespace AvaloniaDockApplication
                     DataContext = mainWindowViewModel
                 };
 
-                mainWindow.Closing += (_, _) =>
+                mainWindow.Closing += (x, y) =>
                 {
                     if (layout is IDock dock)
                     {
@@ -48,7 +48,7 @@ namespace AvaloniaDockApplication
 
                 desktopLifetime.MainWindow = mainWindow;
 
-                desktopLifetime.Exit += (_, _) =>
+                desktopLifetime.Exit += (x, y) =>
                 {
                     if (layout is IDock dock)
                     {

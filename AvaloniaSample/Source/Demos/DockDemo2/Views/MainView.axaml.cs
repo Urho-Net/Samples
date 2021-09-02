@@ -23,7 +23,7 @@ namespace AvaloniaDemo.Views
         {
             var themes = this.Find<ComboBox>("Themes");
 
-            themes.SelectionChanged += (_, _) =>
+            themes.SelectionChanged += (x, y) =>
             {
                 Application.Current.Styles[0] = themes.SelectedIndex switch
                 {
@@ -38,7 +38,7 @@ namespace AvaloniaDemo.Views
 
         private void InitializeMenu()
         {
-            this.FindControl<MenuItem>("OptionsIsDragEnabled").Click += (_, _) =>
+            this.FindControl<MenuItem>("OptionsIsDragEnabled").Click += (x, y) =>
             {
                 if (VisualRoot is Window window)
                 {
@@ -47,7 +47,7 @@ namespace AvaloniaDemo.Views
                 }
             };
 
-            this.FindControl<MenuItem>("OptionsIsDropEnabled").Click += (_, _) =>
+            this.FindControl<MenuItem>("OptionsIsDropEnabled").Click += (x, y) =>
             {
                 if (VisualRoot is Window window)
                 {

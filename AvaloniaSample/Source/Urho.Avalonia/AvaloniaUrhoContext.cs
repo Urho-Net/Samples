@@ -6,6 +6,7 @@ using Avalonia.Input;
 using Avalonia.Platform;
 using Urho.Avalonia;
 
+using AvaloniaWindow=Avalonia.Controls.Window;
 
 namespace Urho.Avalonia
 {
@@ -17,6 +18,11 @@ namespace Urho.Avalonia
         readonly HashSet<UrhoTopLevelImpl> _windowsToPaint = new HashSet<UrhoTopLevelImpl>();
 
         public double RenderScaling {get;set;} = 1.0;
+
+        public static AvaloniaWindow MainWindow {
+            get;
+            set;
+            }
 
         public AvaloniaUrhoContext(Context context)
         {
