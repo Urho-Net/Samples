@@ -64,11 +64,18 @@ namespace Urho.Avalonia
                 if (_dpi != value)
                 {
                     var clientSize = ClientSize;
+                    // TBD ELI
+                    // make sure the window created is valid in size , use default size incase of zero width or height
+                    if (clientSize.Width == 0 || clientSize.Height == 0)
+                    {
+                        clientSize = new Size(1300, 700);
+                       _hasActualSize = true;
+                    }
+
                     _dpi = value;
                     if (_framebufferSource != null) _framebufferSource.Dpi = new Vector(_dpi, _dpi);
                     if (_hasActualSize) Resize(clientSize);
                     ScalingChanged?.Invoke(RenderScaling);
-                    //Invalidate(new Rect(new Point(0,0), ClientSize));
                 }
             }
         }
@@ -308,6 +315,7 @@ namespace Urho.Avalonia
             {
                 _clientSizeCache = size;
                 Resized?.Invoke(size);
+                
             }
 
             if (UrhoUIElement != null)
