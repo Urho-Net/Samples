@@ -9,6 +9,7 @@ using Avalonia.Platform;
 using Avalonia.Controls.Platform;
 using Avalonia.Native;
 using Avalonia.FreeDesktop;
+using Avalonia.Win32;
 
 namespace Urho.Avalonia
 {
@@ -36,7 +37,7 @@ namespace Urho.Avalonia
 
             if (os == OperatingSystemType.WinNT)
             {
-
+                AvaloniaLocator.CurrentMutable.Bind<IMountedVolumeInfoProvider>().ToConstant(new WindowsMountedVolumeInfoProvider());
             }
             else if (os == OperatingSystemType.OSX)
             {
