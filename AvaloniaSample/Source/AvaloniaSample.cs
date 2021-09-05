@@ -130,6 +130,7 @@ namespace AvaloniaSample
 			AvaloniaUrhoContext.MainWindow = mainWindow;
             mainWindow.Show(UI.Root);
             mainWindow.Position = new Avalonia.PixelPoint(0, 0);
+		
 
 		}
 

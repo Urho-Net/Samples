@@ -4,7 +4,9 @@ using Avalonia.Controls;
 using Avalonia.Controls.Platform;
 using Avalonia.Input;
 using Avalonia.Input.Raw;
+using Avalonia.Layout;
 using Avalonia.Platform;
+using Urho.IO;
 
 namespace Urho.Avalonia
 {
@@ -14,18 +16,22 @@ namespace Urho.Avalonia
         private Size _maxSize;
         private WindowState _windowState;
 
+      
+
         public UrhoWindowImpl(AvaloniaUrhoContext avaloniaUrhoContext) : base(avaloniaUrhoContext)
         {
              RenderScaling = avaloniaUrhoContext.RenderScaling;
         }
 
-        // protected override bool ChromeHitTest (RawPointerEventArgs e)
-        // {
-        //     return false;
-        // }
+
 
         public virtual void Show(bool activate)
         {
+            //TBD ELI
+            if (UrhoUIElement.Parent == null)
+            {
+                UrhoUIElement.SetParent(Application.Current.UI.Root);
+            }
         }
 
         public virtual void Hide()
@@ -56,6 +62,12 @@ namespace Urho.Avalonia
 
         public virtual void SetParent(IWindowImpl parent)
         {
+            var urhoParentWindowImpl = parent as UrhoWindowImpl;
+            if (urhoParentWindowImpl != null && urhoParentWindowImpl.UrhoUIElement != null)
+            {
+                UrhoUIElement.SetParent(urhoParentWindowImpl.UrhoUIElement);
+                Invalidate();
+            }  
         }
 
         public virtual void SetEnabled(bool enable)
@@ -110,6 +122,7 @@ namespace Urho.Avalonia
         {
         }
 
+
         public virtual WindowState WindowState
         {
             get => _windowState;
@@ -131,7 +144,11 @@ namespace Urho.Avalonia
 
         public Action<WindowState> WindowStateChanged { get; set; }
         public Action GotInputWhenDisabled { get; set; }
-        public Func<bool> Closing { get; set; }
+        public Func<bool> Closing 
+        { 
+            get; 
+            set; 
+            }
         public bool IsClientAreaExtendedToDecorations { get; }
         public Action<bool> ExtendClientAreaToDecorationsChanged { get; set; }
         public bool NeedsManagedDecorations { get; }

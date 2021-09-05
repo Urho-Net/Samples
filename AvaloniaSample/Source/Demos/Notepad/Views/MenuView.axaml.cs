@@ -1,5 +1,6 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Urho.Avalonia;
 
 namespace Notepad.Views
 {
@@ -14,5 +15,7 @@ namespace Notepad.Views
         {
             AvaloniaXamlLoader.Load(this);
         }
+
+          Window GetWindow() => (Window)this.VisualRoot;
     }
 }

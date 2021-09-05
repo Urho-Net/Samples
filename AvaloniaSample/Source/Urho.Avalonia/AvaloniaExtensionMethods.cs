@@ -4,24 +4,53 @@ using Avalonia.Dialogs;
 using Urho.Gui;
 using Urho.Urho2D;
 using Avalonia.ReactiveUI;
+using System.Runtime.InteropServices;
+using Avalonia.Platform;
+using Avalonia.Controls.Platform;
+using Avalonia.Native;
+using Avalonia.FreeDesktop;
 
 namespace Urho.Avalonia
 {
     public static class AvaloniaExtensionMethods
     {
+        // [DllImport("libAvaloniaNative")]
+        // static extern IntPtr CreateAvaloniaNative();
         public static AvaloniaUrhoContext ConfigureAvalonia<T>(this Context context) where T: global::Avalonia.Application, new()
         {
             var avaloniaUrhoContext = new AvaloniaUrhoContext(context);
-            PortableAppBuilder.Configure<T>()
+            var builder = PortableAppBuilder.Configure<T>()
                 .UsePlatformDetect()
                 .UsePortablePlatfrom(avaloniaUrhoContext)
                 .UseSkia()
                 .UseReactiveUI()
+                .UseManagedSystemDialogs()
                 .SetupWithoutStarting();
 
-            return avaloniaUrhoContext;
 
-            //   
+            // IntPtr _native =  CreateAvaloniaNative();
+
+
+            var os = builder.RuntimePlatform.GetRuntimeInfo().OperatingSystem;
+            AvaloniaUrhoContext.OperatingSystemType = os;
+
+            if (os == OperatingSystemType.WinNT)
+            {
+
+            }
+            else if (os == OperatingSystemType.OSX)
+            {
+                AvaloniaLocator.CurrentMutable.Bind<IMountedVolumeInfoProvider>().ToConstant(new MacOSMountedVolumeInfoProvider());
+            }
+            else
+            {
+                AvaloniaLocator.CurrentMutable.Bind<IMountedVolumeInfoProvider>().ToConstant(new LinuxMountedVolumeInfoProvider());
+            }
+
+            
+
+            return avaloniaUrhoContext;
+ 
         }
 
         public static void Show(this global::Avalonia.Controls.Window window, UIElement parent)

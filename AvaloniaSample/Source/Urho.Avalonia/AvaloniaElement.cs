@@ -33,10 +33,30 @@ namespace Urho.Avalonia
             Application.Current.Input.KeyDown += OnKeyDown;
             Application.Current.Input.KeyUp += OnKeyUp;
             Application.Current.Input.TextInput += OnTextInputEvent;
+            Application.Current.Input.MouseMoved += OnMouseMove;
 
         }
 
-   
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+
+            try
+            {
+                this.Resized -= OnResized;
+                this.DragMove -= OnDragMove;
+                this.Click -= OnClickBegin;
+                this.ClickEnd -= OnClickEnd;
+                Application.Current.Input.KeyDown -= OnKeyDown;
+                Application.Current.Input.KeyUp -= OnKeyUp;
+                Application.Current.Input.TextInput -= OnTextInputEvent;
+                Application.Current.Input.MouseMoved -= OnMouseMove;
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
 
         private void OnClickBegin(ClickEventArgs e)
         {
@@ -104,7 +124,15 @@ namespace Urho.Avalonia
             }
         }
 
-        
+
+        private void OnMouseMove(MouseMovedEventArgs e)
+        {
+            
+            if (!this.HasFocus()) return;
+            var screenPos = this.ScreenPosition;
+            var position = new Vector2(e.X - screenPos.X, e.Y - screenPos.Y);
+            SendRawPointerEvent(RawPointerEventType.Move, position);
+        }
 
         private void OnDragMove(DragMoveEventArgs e)
         {
@@ -207,25 +235,7 @@ namespace Urho.Avalonia
     
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
-
-            try
-            {
-                this.Resized -= OnResized;
-                this.DragMove -= OnDragMove;
-                this.Click -= OnClickBegin;
-                this.ClickEnd -= OnClickEnd;
-                Application.Current.Input.KeyDown -= OnKeyDown;
-                Application.Current.Input.KeyUp -= OnKeyUp;
-                Application.Current.Input.TextInput += OnTextInputEvent;
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
+  
 
         public UrhoTopLevelImpl Canvas
         {
@@ -276,7 +286,7 @@ namespace Urho.Avalonia
                 modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.X1)) ? RawInputModifiers.XButton1MouseButton : RawInputModifiers.None;
                 modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.X2)) ? RawInputModifiers.XButton2MouseButton : RawInputModifiers.None;
 
-                var args = new RawPointerEventArgs(_windowImpl.MouseDevice, (ulong) DateTimeOffset.UtcNow.Ticks,
+                var args = new RawPointerEventArgs(_windowImpl.MouseDevice, (ulong) AvaloniaUrhoContext.GlobalTimer.GetMSec(false),
                     _windowImpl.InputRoot, type, new Point(position.X, position.Y),
                     modifiers);
 
@@ -296,7 +306,7 @@ namespace Urho.Avalonia
                 modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.X1)) ? RawInputModifiers.XButton1MouseButton : RawInputModifiers.None;
                 modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.X2)) ? RawInputModifiers.XButton2MouseButton : RawInputModifiers.None;
 
-                var args = new RawKeyEventArgs(_windowImpl.KeyboardDevice, (ulong)DateTimeOffset.UtcNow.Ticks, _windowImpl.InputRoot, type, key, modifiers);
+                var args = new RawKeyEventArgs(_windowImpl.KeyboardDevice, (ulong)AvaloniaUrhoContext.GlobalTimer.GetMSec(false), _windowImpl.InputRoot, type, key, modifiers);
                 _windowImpl.Input?.Invoke(args);
             }
         }
@@ -305,7 +315,7 @@ namespace Urho.Avalonia
         {
             if (_windowImpl != null)
             {
-                var args = new RawTextInputEventArgs(_windowImpl.KeyboardDevice, (ulong)DateTimeOffset.UtcNow.Ticks, _windowImpl.InputRoot, text);
+                var args = new RawTextInputEventArgs(_windowImpl.KeyboardDevice, (ulong)AvaloniaUrhoContext.GlobalTimer.GetMSec(false), _windowImpl.InputRoot, text);
                 _windowImpl.Input?.Invoke(args);
             }
         }

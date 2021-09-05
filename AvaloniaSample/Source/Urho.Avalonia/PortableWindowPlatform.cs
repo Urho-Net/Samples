@@ -8,6 +8,7 @@ using Avalonia.Platform;
 using Avalonia.Rendering;
 using Avalonia.Skia;
 using Urho.Avalonia;
+using Avalonia.Native;
 
 namespace Urho.Avalonia
 {
@@ -16,8 +17,10 @@ namespace Urho.Avalonia
         private static readonly PortableWindowPlatform s_instance = new PortableWindowPlatform();
         private static AvaloniaUrhoContext _context;
 
-        public Size DoubleClickSize { get; } = new Size(2, 2);
-        public TimeSpan DoubleClickTime { get; } = TimeSpan.FromSeconds(0.5);
+        public Size DoubleClickSize { get; } = new Size(4, 4);
+        public TimeSpan DoubleClickTime { 
+            get; 
+            } = TimeSpan.FromMilliseconds(500);
 
         public static void Initialize(AvaloniaUrhoContext context)
         {
@@ -34,8 +37,9 @@ namespace Urho.Avalonia
                 .Bind<IKeyboardDevice>().ToConstant(context.KeyboardDevice)
                 .Bind<IMouseDevice>().ToConstant(context.MouseDevice)
                 .Bind<IClipboard>().ToConstant(new ClipboardImpl())
-                .Bind<ISystemDialogImpl>().ToConstant(new SystemDialogImp())
+                // .Bind<ISystemDialogImpl>().ToConstant(new SystemDialogImp())
                 .Bind<IPlatformIconLoader>().ToConstant(new PlatformIconLoader());
+
             SkiaPlatform.Initialize();
             
         }

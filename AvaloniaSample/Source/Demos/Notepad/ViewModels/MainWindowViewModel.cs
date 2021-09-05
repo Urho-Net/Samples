@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Avalonia;
@@ -138,8 +139,11 @@ namespace Notepad.ViewModels
             dlg.Filters.Add(new FileDialogFilter() { Name = "Text document", Extensions = { "txt" } });
             dlg.Filters.Add(new FileDialogFilter() { Name = "All", Extensions = { "*" } });
             dlg.AllowMultiple = true;
+            dlg.Title = "Open File";
             var parentWindow = GetWindow();
 
+
+            
             var result = await dlg.ShowAsync(parentWindow);
             if (result is { } && result.Length > 0)
             {
@@ -177,6 +181,17 @@ namespace Notepad.ViewModels
             }
         }
 
+        private string RemoveWhitespace(string input)
+        {
+            if(!string.IsNullOrEmpty(input))
+            {
+            return new string(input.ToCharArray()
+                .Where(c => !Char.IsWhiteSpace(c))
+                .ToArray());
+            }
+            else return string.Empty;
+        }
+ 
         private async Task FileSaveAsImpl(FileViewModel fileViewModel)
         {
             var dlg = new SaveFileDialog();
@@ -184,9 +199,12 @@ namespace Notepad.ViewModels
             dlg.Filters.Add(new FileDialogFilter() { Name = "All", Extensions = { "*" } });
             dlg.InitialFileName = fileViewModel.Title;
             dlg.DefaultExtension = "txt";
+
             var result = await dlg.ShowAsync(GetWindow());
+   
             if (result is { })
             {
+                result = RemoveWhitespace(result);
                 if (!string.IsNullOrEmpty(result))
                 {
                     UpdateFileViewModel(fileViewModel, result);

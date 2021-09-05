@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Platform;
 using Urho.Avalonia;
@@ -19,6 +20,10 @@ namespace Urho.Avalonia
 
         public double RenderScaling {get;set;} = 1.0;
 
+        public static OperatingSystemType OperatingSystemType;
+
+        public static Timer GlobalTimer;
+
         public static AvaloniaWindow MainWindow {
             get;
             set;
@@ -35,6 +40,8 @@ namespace Urho.Avalonia
             Application.Current.Input.ExitRequested += OnExitRequested;
 
             Platform = Application.Platform;
+            GlobalTimer = new Timer();
+          
         }
 
         private void ProcessWindows(UpdateEventArgs obj)
@@ -71,7 +78,10 @@ namespace Urho.Avalonia
         {
             lock (_windowsCollectionLock)
             {
-                _windowsToPaint.Add(window);
+                if (_windows.Contains(window))
+                {
+                    _windowsToPaint.Add(window);
+                }
             }
         }
 
@@ -113,6 +123,8 @@ namespace Urho.Avalonia
                 _windows.Remove(window);
             }
         }
+
+    
 
     }
 }

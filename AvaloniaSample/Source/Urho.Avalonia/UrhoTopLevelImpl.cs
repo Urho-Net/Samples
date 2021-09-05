@@ -9,12 +9,18 @@ using Avalonia.Platform;
 using Avalonia.Rendering;
 using Urho.Urho2D;
 using Urho.Gui;
+using Avalonia.Layout;
+using Avalonia.VisualTree;
+using Avalonia.Media;
+using Avalonia.Collections;
+using Avalonia.Controls.Primitives;
 
 namespace Urho.Avalonia
 {
     public class UrhoTopLevelImpl : ITopLevelImpl, IFramebufferPlatformSurface
     {
         private PixelPoint _position;
+
         public  AvaloniaElement _urhoUIElement = new AvaloniaElement(Application.CurrentContext);
         const double CONST_DPI_VALUE_96 = 96.0;
         public AvaloniaElement UrhoUIElement
@@ -35,12 +41,15 @@ namespace Urho.Avalonia
         private TextureFramebufferSource _framebufferSource;
         private bool _hasActualSize;
         private Size _clientSizeCache;
+
+
         public UrhoTopLevelImpl(AvaloniaUrhoContext context)
         {
             UrhoContext = context;
             UrhoContext.AddWindow(this);
             Dpi = CONST_DPI_VALUE_96;
             Invalidate(new global::Avalonia.Rect(0, 0, double.MaxValue, double.MaxValue));
+
         }
 
         public AvaloniaUrhoContext UrhoContext { get; set; }
@@ -153,6 +162,13 @@ namespace Urho.Avalonia
 
         public virtual void Resize(Size clientSize)
         {
+            // TBD ELI
+            if (clientSize.Width == 0 || clientSize.Height == 0)
+            {
+                clientSize = new Size(1300, 700);
+                Invalidate();
+            }
+
             var scaling = RenderScaling;
             var pixelSize = new PixelSize((int)(clientSize.Width * scaling), (int)(clientSize.Height * scaling));
             _hasActualSize = true;
@@ -178,6 +194,7 @@ namespace Urho.Avalonia
             }
         }
 
+        
         private TextureFramebufferSource CreateFramebuffer()
         {
             _framebufferSource = new TextureFramebufferSource(UrhoContext);
@@ -194,9 +211,18 @@ namespace Urho.Avalonia
 
         public virtual void Dispose()
         {
+
+            _urhoUIElement.SetParent(null);
+            _urhoUIElement.Visible = false;
+
             UrhoContext.RemoveWindow(this);
             _framebufferSource?.Dispose();
+
+            // TBD ELI
             _urhoUIElement.Dispose();
+            _urhoUIElement = null;
+
+            this.Closed?.Invoke();
         }
 
         public ILockedFramebuffer Lock()
@@ -207,7 +233,14 @@ namespace Urho.Avalonia
         /// <summary>Invalidates a rect on the toplevel.</summary>
         public virtual void Invalidate(global::Avalonia.Rect rect)
         {
+
             _invalidRegion = _invalidRegion.Union(rect);
+            SchedulePaint();
+        }
+
+        public virtual void Invalidate()
+        {
+            _invalidRegion = new global::Avalonia.Rect(ClientSize);
             SchedulePaint();
         }
 
@@ -282,5 +315,6 @@ namespace Urho.Avalonia
                 UrhoUIElement.Size = VisibleSize;
             }
         }
+
     }
 }
