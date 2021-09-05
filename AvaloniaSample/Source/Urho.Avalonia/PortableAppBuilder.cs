@@ -6,7 +6,7 @@ namespace Urho.Avalonia
     public sealed class PortableAppBuilder : AppBuilderBase<PortableAppBuilder>
     {
         public PortableAppBuilder() : base(new StandardRuntimePlatform(),
-            builder => StandardRuntimePlatformServices.Register(builder.Instance?.GetType()?.Assembly))
+            builder => StandardRuntimePlatformServices.Register(Application.Current.GetType()?.Assembly))
         {
         }
     }
