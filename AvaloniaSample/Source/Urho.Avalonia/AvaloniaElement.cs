@@ -27,7 +27,7 @@ namespace Urho.Avalonia
             FocusMode = FocusMode.Focusable;
 
             this.Resized += OnResized;
-            this.DragMove += OnDragMove;
+            // this.DragMove += OnDragMove;
             this.Click += OnClickBegin;
             this.ClickEnd += OnClickEnd;
             Application.Current.Input.KeyDown += OnKeyDown;
@@ -44,7 +44,7 @@ namespace Urho.Avalonia
             try
             {
                 this.Resized -= OnResized;
-                this.DragMove -= OnDragMove;
+                // this.DragMove -= OnDragMove;
                 this.Click -= OnClickBegin;
                 this.ClickEnd -= OnClickEnd;
                 Application.Current.Input.KeyDown -= OnKeyDown;
@@ -134,14 +134,14 @@ namespace Urho.Avalonia
             SendRawPointerEvent(RawPointerEventType.Move, position);
         }
 
-        private void OnDragMove(DragMoveEventArgs e)
-        {
-            if (e.Element != this)
-                return;
-            var screenPos = this.ScreenPosition;
-            var position = new Vector2(e.X - screenPos.X, e.Y - screenPos.Y);
-            SendRawPointerEvent(RawPointerEventType.Move, position);
-        }
+        // private void OnDragMove(DragMoveEventArgs e)
+        // {
+        //     if (e.Element != this)
+        //         return;
+        //     var screenPos = this.ScreenPosition;
+        //     var position = new Vector2(e.X - screenPos.X, e.Y - screenPos.Y);
+        //     SendRawPointerEvent(RawPointerEventType.Move, position);
+        // }
 
         private void OnResized(ResizedEventArgs obj)
         {
