@@ -31,7 +31,5 @@
         </DataTemplate>
       </Setter>
     </Style>
-    <FluentTheme Mode="Light"/>
-    <StyleInclude Source="avares://Dock.Avalonia/Themes/FluentTheme.axaml"/>
   </Application.Styles>
 </Application>

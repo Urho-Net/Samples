@@ -14,40 +14,39 @@ namespace AvaloniaDemo
     {       
         public static readonly Styles FluentDark = new Styles
         {
-            new StyleInclude(new Uri("avares://AvaloniaDemo/Styles"))
+            new StyleInclude(new Uri("avares://AvaloniaSample/Styles"))
             {
-                Source = new Uri("avares://AvaloniaDemo/Themes/FluentDark.axaml")
+                Source = new Uri("avares://Game/Source/Demos/DockDemo2/Themes/FluentDark.axaml")
             }
         };
 
         public static readonly Styles FluentLight = new Styles
         {
-            new StyleInclude(new Uri("avares://AvaloniaDemo/Styles"))
+            new StyleInclude(new Uri("avares://AvaloniaSample/Styles"))
             {
-                Source = new Uri("avares://AvaloniaDemo/Themes/FluentLight.axaml")
-                // //avares://Dock.Avalonia/Themes/FluentTheme.axaml
+                Source = new Uri("avares://Game/Source/Demos/DockDemo2/Themes/FluentLight.axaml")
             }
         };
 
         public static readonly Styles DefaultLight = new Styles
         {
-            new StyleInclude(new Uri("avares://AvaloniaDemo/Styles"))
+            new StyleInclude(new Uri("avares://AvaloniaSample/Styles"))
             {
-                Source = new Uri("avares://AvaloniaDemo/Themes/DefaultLight.axaml")
+                Source = new Uri("avares://Game/Source/Demos/DockDemo2/Themes/DefaultLight.axaml")
             }
         };
 
         public static readonly Styles DefaultDark = new Styles
         {
-            new StyleInclude(new Uri("avares://AvaloniaDemo/Styles"))
+            new StyleInclude(new Uri("avares://AvaloniaSample/Styles"))
             {
-                Source = new Uri("avares://AvaloniaDemo/Themes/DefaultDark.axaml")
+                Source = new Uri("avares://Game/Source/Demos/DockDemo2/Themes/DefaultDark.axaml")
             },
         };
 
         public override void Initialize()
         {
-            // Styles.Insert(0, FluentLight);
+            Styles.Insert(0, FluentLight);
 
             AvaloniaXamlLoader.Load(this);
         }
