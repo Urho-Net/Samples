@@ -2,6 +2,7 @@
 using Avalonia;
 using Avalonia.Input;
 using Avalonia.Input.Raw;
+using Avalonia.Visuals;
 using Urho.Gui;
 using Urho.IO;
 
@@ -34,8 +35,11 @@ namespace Urho.Avalonia
             Application.Current.Input.KeyUp += OnKeyUp;
             Application.Current.Input.TextInput += OnTextInputEvent;
             Application.Current.Input.MouseMoved += OnMouseMove;
-
+            Application.Current.Input.MouseWheel += OnMouseWheel;
+    
         }
+
+    
 
         protected override void Dispose(bool disposing)
         {
@@ -51,6 +55,8 @@ namespace Urho.Avalonia
                 Application.Current.Input.KeyUp -= OnKeyUp;
                 Application.Current.Input.TextInput -= OnTextInputEvent;
                 Application.Current.Input.MouseMoved -= OnMouseMove;
+                Application.Current.Input.MouseWheel -= OnMouseWheel;
+           
             }
             catch (Exception ex)
             {
@@ -132,6 +138,44 @@ namespace Urho.Avalonia
             var screenPos = this.ScreenPosition;
             var position = new Vector2(e.X - screenPos.X, e.Y - screenPos.Y);
             SendRawPointerEvent(RawPointerEventType.Move, position);
+        }
+
+        private void OnMouseWheel(MouseWheelEventArgs evt)
+        {
+            if (!this.HasFocus()) return;
+         
+           RawInputModifiers modifiers = RawInputModifiers.None;
+
+            if ((evt.Qualifiers & 1) != 0)
+            {
+                modifiers |= RawInputModifiers.Shift;
+            }
+            if ((evt.Qualifiers & 2) != 0)
+            {
+                modifiers |= RawInputModifiers.Control;
+            }
+            if ((evt.Qualifiers & 4) != 0)
+            {
+                modifiers |= RawInputModifiers.Alt;
+            }
+
+            if (_windowImpl.Platform == Platforms.MacOSX)
+            {
+                if (UrhoInput.GetKeyDown(UrhoKey.Gui) || UrhoInput.GetKeyDown(UrhoKey.Rgui))
+                {
+                    modifiers |= RawInputModifiers.Control;
+                }
+            }
+
+            modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.Left)) ? RawInputModifiers.LeftMouseButton : RawInputModifiers.None;
+            modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.Right)) ? RawInputModifiers.RightMouseButton : RawInputModifiers.None;
+            modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.Middle)) ? RawInputModifiers.MiddleMouseButton : RawInputModifiers.None;
+            modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.X1)) ? RawInputModifiers.XButton1MouseButton : RawInputModifiers.None;
+            modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.X2)) ? RawInputModifiers.XButton2MouseButton : RawInputModifiers.None;
+
+
+            SendMouseWheelEvent(evt.WheelX,evt.WheelY,modifiers);
+      
         }
 
         // private void OnDragMove(DragMoveEventArgs e)
@@ -318,6 +362,17 @@ namespace Urho.Avalonia
                 var args = new RawTextInputEventArgs(_windowImpl.KeyboardDevice, (ulong)AvaloniaUrhoContext.GlobalTimer.GetMSec(false), _windowImpl.InputRoot, text);
                 _windowImpl.Input?.Invoke(args);
             }
+        }
+
+        private void SendMouseWheelEvent(int wheel_x,int wheel_y, RawInputModifiers modifiers)
+        {
+
+            IntVector2 mousePosition = UrhoInput.MousePosition;
+            Vector2 position = new Vector2((mousePosition.X) / (float)_windowImpl.RenderScaling, (mousePosition.Y) / (float)_windowImpl.RenderScaling);
+            Vector vector = new Vector(wheel_x * -0.5, wheel_y * 0.5);
+
+            var args = new RawMouseWheelEventArgs(_windowImpl.MouseDevice, (ulong)AvaloniaUrhoContext.GlobalTimer.GetMSec(false), _windowImpl.InputRoot, new Point(position.X, position.Y), vector, modifiers);
+            _windowImpl.Input?.Invoke(args);
         }
 
         private InputModifiersContainer _inputModifiers = new InputModifiersContainer();
