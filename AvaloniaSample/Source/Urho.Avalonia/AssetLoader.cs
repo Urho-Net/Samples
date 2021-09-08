@@ -117,7 +117,16 @@ namespace Urho.Avalonia
         {
             if (!uri.IsAbsoluteUri && baseUri != null)
                 uri = new Uri(baseUri, uri);
-            return GetAssembly(uri).Assembly;
+
+            var assembly = GetAssembly(uri);
+            if (assembly != null)
+            {
+                return assembly.Assembly;
+            }
+            
+            // TBD ELI , return default assembly if uri not found
+            return Application.Current.GetType()?.Assembly;
+
         }
 
         /// <summary>
@@ -164,14 +173,16 @@ namespace Urho.Avalonia
                 throw new ArgumentException($"Relative uri {uri} without base url");
             if (!baseUri.IsAbsoluteUri)
                 throw new ArgumentException($"Base uri {baseUri} is relative");
-            if (baseUri.Scheme == "resm")
-                throw new ArgumentException(
-                    $"Relative uris for 'resm' scheme aren't supported; {baseUri} uses resm");
+                // TBD ELI
+            // if (baseUri.Scheme == "resm")
+            //     throw new ArgumentException(
+            //         $"Relative uris for 'resm' scheme aren't supported; {baseUri} uses resm");
             return new Uri(baseUri, uri);
         }
 
         private IAssetDescriptor GetAsset(Uri uri, Uri baseUri)
         {
+         
             if (uri.IsAbsoluteUri && uri.Scheme == "resm")
             {
                 var asm = GetAssembly(uri) ?? GetAssembly(baseUri) ?? _defaultResmAssembly;
@@ -197,6 +208,28 @@ namespace Urho.Avalonia
                     return null;
                 asm.AvaloniaResources.TryGetValue(path, out var desc);
                 return desc;
+            }
+
+            // TBD ELI , last try
+            {
+                var asm = _defaultResmAssembly;
+                IAssetDescriptor rv = null;
+
+                var resourceKey = uri.AbsolutePath;
+                resourceKey = resourceKey.Replace('/', '.');
+
+                rv = asm.Resources.First(x => x.Key.Contains(resourceKey)).Value;
+
+                // asm.Resources.TryGetValue(resourceKey, out rv);
+                if(rv != null) return rv;
+
+                foreach(var res in asm.Resources)
+                {
+                    if(res.Key.Contains(resourceKey))
+                    {
+                        return res.Value;
+                    }
+                }
             }
 
             throw new ArgumentException("Unsupported url type: " + uri.Scheme, nameof(uri));

@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <PropertyGroup>          
@@ -30,6 +31,9 @@
 
   <ItemGroup>
     <AssetsSourceFiles Include="Assets/**/*.*" />
+    <EmbeddedResource Include="Assets/*.*" />
+    <EmbeddedResource Include="Source\Demos\ControlCatalog\**\*.axaml" />
+    <AvaloniaResource Include="Source\Demos\ControlCatalog\Assets\**\*" />
   </ItemGroup>
   
   <PropertyGroup>
@@ -176,7 +180,7 @@
     <PackageReference Include="Avalonia.Desktop" Version="0.10.6" />
     <PackageReference Include="Avalonia.Diagnostics" Version="0.10.6" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.6" />
-    <PackageReference Include="Dock.Avalonia" Version="0.10.6" />
     <PackageReference Include="Dock.Model.ReactiveUI" Version="0.10.6" />
+    <PackageReference Include="Dock.Avalonia" Version="0.10.6" />
   </ItemGroup>
 </Project>

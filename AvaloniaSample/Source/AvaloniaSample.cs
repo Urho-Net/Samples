@@ -45,7 +45,8 @@ namespace AvaloniaSample
 			// InitializeAvaloniaTodoDemo();
 			// InitializeAvaloniaDockDemo();
 			// InitializeAvaloniaDockDemo2();
-			 InitializeAvaloniaNotePadDemo();
+			//  InitializeAvaloniaNotePadDemo();
+			InitializeAvaloniaControlCatalogDemo();
 
 		
 		}
@@ -101,11 +102,6 @@ namespace AvaloniaSample
                 DataContext = mainWindowViewModel
             };
 
-            // mainWindow.Closing += (_, _) =>
-            // {
-            //     mainWindowViewModel.CloseLayout();
-            // };
-
             mainWindow.Show(UI.Root);
             mainWindow.Position = new Avalonia.PixelPoint(0, 0);
         }
@@ -122,16 +118,25 @@ namespace AvaloniaSample
                 DataContext = mainWindowViewModel
             };
 
-            // mainWindow.Closing += (_, _) =>
-            // {
-            //     mainWindowViewModel.CloseLayout();
-            // };
-
 			AvaloniaUrhoContext.MainWindow = mainWindow;
             mainWindow.Show(UI.Root);
             mainWindow.Position = new Avalonia.PixelPoint(0, 0);
 		
 
+		}
+
+		void InitializeAvaloniaControlCatalogDemo()
+		{
+            avaloniaContext = Context.ConfigureAvalonia<ControlCatalog.App>();
+            avaloniaContext.RenderScaling = 2.0;
+
+            var mainWindow = new ControlCatalog.MainWindow();
+            AvaloniaUrhoContext.MainWindow = mainWindow;
+            mainWindow.Show(UI.Root);
+            mainWindow.Position = new Avalonia.PixelPoint(0, 0);
+			mainWindow.Width = Graphics.Width/3.0;
+			mainWindow.Height = Graphics.Height/2.5;
+		
 		}
 
 		void CreateScene ()
