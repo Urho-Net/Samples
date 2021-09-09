@@ -6,6 +6,7 @@ using Avalonia.Dialogs;
 using Avalonia.Platform;
 using System;
 using MiniMvvm;
+using Urho.Avalonia;
 
 namespace ControlCatalog.ViewModels
 {
@@ -46,14 +47,14 @@ namespace ControlCatalog.ViewModels
             {
                 var dialog = new AboutAvaloniaDialog();
 
-                var mainWindow = (App.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
+                var mainWindow = AvaloniaUrhoContext.MainWindow;
 
                 await dialog.ShowDialog(mainWindow);
             });
 
             ExitCommand = MiniCommand.Create(() =>
             {
-                (App.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime).Shutdown();
+                Urho.Application.Current.Exit();
             });
 
             ToggleMenuItemCheckedCommand = MiniCommand.Create(() =>

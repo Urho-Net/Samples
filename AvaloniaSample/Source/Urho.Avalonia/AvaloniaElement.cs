@@ -17,6 +17,11 @@ namespace Urho.Avalonia
         
        Input UrhoInput = null ;
 
+       float WheelX = 0.0f;
+       float WheelY = 0.0f;
+
+       float WHEEL_DECAY_STEP = 50.0f;
+
         public AvaloniaElement(Context context) : base(context)
         {
             SetEnabledRecursive(true);
@@ -36,10 +41,26 @@ namespace Urho.Avalonia
             Application.Current.Input.TextInput += OnTextInputEvent;
             Application.Current.Input.MouseMoved += OnMouseMove;
             Application.Current.Input.MouseWheel += OnMouseWheel;
+
+            Application.Current.Engine.PostUpdate += OnPostUpdate;
     
         }
 
+        private void OnPostUpdate(PostUpdateEventArgs evt)
+        {
+            if (!this.HasFocus()) return;
+            RawInputModifiers modifiers = RawInputModifiers.None;
+
+            if(MathF.Abs(WheelX) > 1.0f || MathF.Abs(WheelY) > 1.0f)
+            {
+                UpdateInputModifiers(ref modifiers);
+                WheelX = MathHelper.Lerp(WheelX,0.0f,0.1f*evt.TimeStep*WHEEL_DECAY_STEP);
+                WheelY = MathHelper.Lerp(WheelY,0.0f,0.1f*evt.TimeStep*WHEEL_DECAY_STEP);
+                SendMouseWheelEvent(WheelX,WheelY,modifiers);
+                // Log.Info(WheelY.ToString());
+            }
     
+        }
 
         protected override void Dispose(bool disposing)
         {
@@ -56,6 +77,7 @@ namespace Urho.Avalonia
                 Application.Current.Input.TextInput -= OnTextInputEvent;
                 Application.Current.Input.MouseMoved -= OnMouseMove;
                 Application.Current.Input.MouseWheel -= OnMouseWheel;
+                Application.Current.Engine.PostUpdate -= OnPostUpdate;
            
             }
             catch (Exception ex)
@@ -72,7 +94,9 @@ namespace Urho.Avalonia
             var position = new Vector2(e.X - screenPos.X, e.Y - screenPos.Y);
             // var position = new Vector2((e.X - screenPos.X) / (float)_windowImpl.RenderScaling, (e.Y - screenPos.Y) / (float)_windowImpl.RenderScaling);
             
-             Log.Info("" + screenPos + " " + position);
+            //  Log.Info("" + screenPos + " " + position);
+            WheelX = 0.0f;
+            WheelY = 0.0f;
 
             switch ((MouseButton)e.Button)
             {
@@ -140,6 +164,40 @@ namespace Urho.Avalonia
             SendRawPointerEvent(RawPointerEventType.Move, position);
         }
 
+        private void UpdateInputModifiers(ref RawInputModifiers modifiers )
+        {
+
+            if (UrhoInput.GetKeyDown(UrhoKey.Shift) || UrhoInput.GetKeyDown(UrhoKey.Rshift))
+            {
+                modifiers |= RawInputModifiers.Shift;
+            }
+            
+            if (UrhoInput.GetKeyDown(UrhoKey.Ctrl) || UrhoInput.GetKeyDown(UrhoKey.Rctrl))
+            {
+                modifiers |= RawInputModifiers.Control;
+            }
+             
+            if (UrhoInput.GetKeyDown(UrhoKey.Alt) || UrhoInput.GetKeyDown(UrhoKey.Ralt))
+            {
+                modifiers |= RawInputModifiers.Alt;
+            }
+
+            if (_windowImpl.Platform == Platforms.MacOSX)
+            {
+                if (UrhoInput.GetKeyDown(UrhoKey.Gui) || UrhoInput.GetKeyDown(UrhoKey.Rgui))
+                {
+                    modifiers |= RawInputModifiers.Control;
+                }
+            }
+
+            modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.Left)) ? RawInputModifiers.LeftMouseButton : RawInputModifiers.None;
+            modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.Right)) ? RawInputModifiers.RightMouseButton : RawInputModifiers.None;
+            modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.Middle)) ? RawInputModifiers.MiddleMouseButton : RawInputModifiers.None;
+            modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.X1)) ? RawInputModifiers.XButton1MouseButton : RawInputModifiers.None;
+            modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.X2)) ? RawInputModifiers.XButton2MouseButton : RawInputModifiers.None;
+
+        }
+
         private void OnMouseWheel(MouseWheelEventArgs evt)
         {
             if (!this.HasFocus()) return;
@@ -173,9 +231,12 @@ namespace Urho.Avalonia
             modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.X1)) ? RawInputModifiers.XButton1MouseButton : RawInputModifiers.None;
             modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.X2)) ? RawInputModifiers.XButton2MouseButton : RawInputModifiers.None;
 
-
+            this.WheelX = evt.WheelX;
+            this.WheelY = evt.WheelY;
             SendMouseWheelEvent(evt.WheelX,evt.WheelY,modifiers);
-      
+
+            // Log.Info("" + evt.WheelX + " " + evt.WheelY);
+
         }
 
         // private void OnDragMove(DragMoveEventArgs e)
@@ -364,12 +425,12 @@ namespace Urho.Avalonia
             }
         }
 
-        private void SendMouseWheelEvent(int wheel_x,int wheel_y, RawInputModifiers modifiers)
+        private void SendMouseWheelEvent(float wheel_x,float wheel_y, RawInputModifiers modifiers)
         {
 
             IntVector2 mousePosition = UrhoInput.MousePosition;
             Vector2 position = new Vector2((mousePosition.X) / (float)_windowImpl.RenderScaling, (mousePosition.Y) / (float)_windowImpl.RenderScaling);
-            Vector vector = new Vector(wheel_x * -0.5, wheel_y * 0.5);
+            Vector vector = new Vector(wheel_x * -0.1, wheel_y * 0.1);
 
             var args = new RawMouseWheelEventArgs(_windowImpl.MouseDevice, (ulong)AvaloniaUrhoContext.GlobalTimer.GetMSec(false), _windowImpl.InputRoot, new Point(position.X, position.Y), vector, modifiers);
             _windowImpl.Input?.Invoke(args);
