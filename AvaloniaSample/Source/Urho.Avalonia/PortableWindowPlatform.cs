@@ -15,7 +15,7 @@ namespace Urho.Avalonia
     public class PortableWindowPlatform : PlatformThreadingInterfaceBase, IPlatformSettings, IWindowingPlatform
     {
         private static readonly PortableWindowPlatform s_instance = new PortableWindowPlatform();
-        private static AvaloniaUrhoContext _context;
+      
 
         public Size DoubleClickSize { get; } = new Size(4, 4);
         public TimeSpan DoubleClickTime { 
@@ -30,7 +30,7 @@ namespace Urho.Avalonia
                 .Bind<IPlatformSettings>().ToConstant(s_instance)
                 .Bind<ICursorFactory>().ToTransient<CursorFactory>()
                 .Bind<IPlatformThreadingInterface>().ToConstant(s_instance)
-                .Bind<IRenderLoop>().ToConstant(new RenderLoop())
+                .Bind<IRenderLoop>().ToConstant(new Urho.Avalonia.RenderLoop(_context))
                 .Bind<IRenderTimer>().ToConstant(new DefaultRenderTimer(60))
                 .Bind<IWindowingPlatform>().ToConstant(s_instance)
                 .Bind<PlatformHotkeyConfiguration>().ToSingleton<PlatformHotkeyConfiguration>()

@@ -10,6 +10,8 @@ namespace Urho.Avalonia
     {
         public event Action<DispatcherPriority?> Signaled;
 
+        public static AvaloniaUrhoContext _context;
+
         public virtual bool CurrentThreadIsLoopThread => true;
 
         public abstract void EnsureInvokeOnMainThread(Action action);
@@ -37,17 +39,21 @@ namespace Urho.Avalonia
                     if (scheduled)
                         return;
                     scheduled = true;
+                    
                     EnsureInvokeOnMainThread(() =>
                     {
-                        try
+                        using (var l = _context.DeferredRendererLock.Lock())
                         {
-                            tick();
-                        }
-                        finally
-                        {
-                            lock (l)
+                            try
                             {
-                                scheduled = false;
+                                tick();
+                            }
+                            finally
+                            {
+                                lock (l)
+                                {
+                                    scheduled = false;
+                                }
                             }
                         }
                     });
@@ -66,7 +72,14 @@ namespace Urho.Avalonia
 
         public void Signal(DispatcherPriority prio)
         {
-            EnsureInvokeOnMainThread(() => Signaled?.Invoke(null));
+            EnsureInvokeOnMainThread(() =>
+            {
+                using (var l = _context.DeferredRendererLock.Lock())
+                {
+                    Signaled?.Invoke(null);
+                }
+            });
+
         }
     }
 }

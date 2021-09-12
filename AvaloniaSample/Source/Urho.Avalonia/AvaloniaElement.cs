@@ -68,16 +68,19 @@ namespace Urho.Avalonia
 
             try
             {
-                this.Resized -= OnResized;
-                // this.DragMove -= OnDragMove;
-                this.Click -= OnClickBegin;
-                this.ClickEnd -= OnClickEnd;
-                Application.Current.Input.KeyDown -= OnKeyDown;
-                Application.Current.Input.KeyUp -= OnKeyUp;
-                Application.Current.Input.TextInput -= OnTextInputEvent;
-                Application.Current.Input.MouseMoved -= OnMouseMove;
-                Application.Current.Input.MouseWheel -= OnMouseWheel;
-                Application.Current.Engine.PostUpdate -= OnPostUpdate;
+                if(!Application.isExiting)
+                {
+                    this.Resized -= OnResized;
+                    // this.DragMove -= OnDragMove;
+                    this.Click -= OnClickBegin;
+                    this.ClickEnd -= OnClickEnd;
+                    Application.Current.Input.KeyDown -= OnKeyDown;
+                    Application.Current.Input.KeyUp -= OnKeyUp;
+                    Application.Current.Input.TextInput -= OnTextInputEvent;
+                    Application.Current.Input.MouseMoved -= OnMouseMove;
+                    Application.Current.Input.MouseWheel -= OnMouseWheel;
+                    Application.Current.Engine.PostUpdate -= OnPostUpdate;
+                }
            
             }
             catch (Exception ex)

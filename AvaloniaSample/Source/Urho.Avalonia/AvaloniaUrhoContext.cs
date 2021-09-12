@@ -5,7 +5,9 @@ using System.Threading;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Platform;
+using Avalonia.Rendering;
 using Urho.Avalonia;
+using Urho.IO;
 
 using AvaloniaWindow=Avalonia.Controls.Window;
 
@@ -23,6 +25,8 @@ namespace Urho.Avalonia
         public static OperatingSystemType OperatingSystemType;
 
         public static Timer GlobalTimer;
+
+        public ManagedDeferredRendererLock DeferredRendererLock = new ManagedDeferredRendererLock();
 
         public static AvaloniaWindow MainWindow {
             get;
@@ -87,9 +91,6 @@ namespace Urho.Avalonia
 
         public void EnsureInvokeOnMainThread(Action action)
         {
-
-        
-           
             if (!Application.isExiting)
             {
                 try
@@ -98,7 +99,7 @@ namespace Urho.Avalonia
                 }
                 catch (Exception ex)
                 {
-
+                    Log.Error(ex.ToString());
                 }   
             }
         }

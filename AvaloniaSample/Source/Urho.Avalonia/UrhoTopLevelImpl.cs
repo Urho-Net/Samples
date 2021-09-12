@@ -253,7 +253,14 @@ namespace Urho.Avalonia
 
         public IRenderer CreateRenderer(IRenderRoot root)
         {
-            return new ImmediateRenderer(root);
+            var loop = AvaloniaLocator.Current.GetService<IRenderLoop>();
+         ;
+
+            return new DeferredRenderer(root, loop,null,null,UrhoContext.DeferredRendererLock)  {
+                     RenderOnlyOnRenderThread = true
+                };
+
+                // return new ImmediateRenderer(root);
         }
 
         public void SetInputRoot(IInputRoot inputRoot)
