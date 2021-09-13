@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace Urho.Avalonia
 {
-    internal class UnmanagedArray: IDisposable
+    public class UnmanagedArray: IDisposable
     {
         public static readonly UnmanagedArray Empty = new UnmanagedArray();
 

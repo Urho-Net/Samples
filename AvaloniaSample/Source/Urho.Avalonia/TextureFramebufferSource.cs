@@ -18,7 +18,6 @@ namespace Urho.Avalonia
     class LockedFramebuffer : ILockedFramebuffer
     {
         private readonly TextureFramebufferSource _source;
-        //  private readonly object _lock = new object();
 #if MANAGED_BUFFER
         private GCHandle _pinnedArray;
 #endif
@@ -46,7 +45,7 @@ namespace Urho.Avalonia
                     }
 
                     if (countAttempt > 1)
-                        Log.Error("countAttempt:" + countAttempt);
+                        Log.Error("LockedFramebuffer::Lock()  AllocData countAttempt:" + countAttempt);
                 }
 #else
                      Address = _source._data.Addr;
@@ -57,16 +56,18 @@ namespace Urho.Avalonia
 
         public void Dispose()
         {
+             using (var l = _source._avaloniaContext.DeferredRendererLock.Lock())
+             {
 #if MANAGED_BUFFER
                 var obj = _pinnedArray.Target;
                 _source.DisposeData((byte[])obj);
                 _pinnedArray.Free();
                 _pinnedArray = default;
 #else
-                var arr =  MarshalHelper.ToBytesArray(Address,_source._data.Length);
-                var texture = _source.Texture;
-                texture.SetData(0, 0, 0, texture.Width, texture.Height, arr);
+                var arr = MarshalHelper.ToBytesArray(Address, _source._data.Length);
+                _source.DisposeData(arr);
 #endif
+             }
         }
 
         public IntPtr Address
@@ -94,10 +95,8 @@ namespace Urho.Avalonia
         public readonly AvaloniaUrhoContext _avaloniaContext;
         private LockedFramebuffer _lockedFramebuffer;
 #if MANAGED_BUFFER
-        public byte[] _data = Array.Empty<byte>();
-
-        private Queue<byte[]> _freeByteArrayPool = new Queue<byte[]>() ;
-        const int FREE_BYTE_ARRAY_POOL_SIZE = 3;
+        private ConcurrentQueue<byte[]> _freeByteArrayPool = new ConcurrentQueue<byte[]>() ;
+        const int FREE_BYTE_ARRAY_POOL_SIZE = 2;
         public byte[] AllocData()
         {
 
@@ -108,22 +107,24 @@ namespace Urho.Avalonia
 
             return null;
         }
+#else
+        public UnmanagedArray _data = UnmanagedArray.Empty;
+#endif
 
-        private Queue<byte[]> _disposedByteArrayPool = new Queue<byte[]>() ;
+        private ConcurrentQueue<byte[]> _disposedByteArrayPool = new ConcurrentQueue<byte[]>() ;
 
         public void DisposeData(byte[] data)
         {
             _disposedByteArrayPool.Enqueue(data);
         }
-
-#else
-        public UnmanagedArray _data = UnmanagedArray.Empty;
-#endif
+        
         private readonly Texture2D _texture;
         private PixelSize _size;
 
         int Width {get;set;} = 0;
         int Height {get;set;} = 0;
+
+        int Length {get;set;} = 0;
 
         private TextureUsage _textureUsage = TextureUsage.Dynamic;
 
@@ -163,10 +164,13 @@ namespace Urho.Avalonia
 
         private void OnUpdate(UpdateEventArgs obj)
         {
+
             if (_disposedByteArrayPool.TryDequeue(out byte[] data))
             {
                 _texture.SetData(0, 0, 0, _texture.Width, _texture.Height, data);
+#if MANAGED_BUFFER
                 _freeByteArrayPool.Enqueue(data);
+#endif
             }
         }
 
@@ -198,24 +202,30 @@ namespace Urho.Avalonia
                     if (Width != texture2D.Width || Height != texture2D.Height)
                     {
                         RowBytes = Width * 4;
-                        if (RowBytes * Height > _data.Length)
+                        using (var l = _avaloniaContext.DeferredRendererLock.Lock())
                         {
-#if MANAGED_BUFFER
-                            _data = new byte[RowBytes * Height];
-
-                            for (int i = 0; i < FREE_BYTE_ARRAY_POOL_SIZE; i++)
+                            if (RowBytes * Height > Length)
                             {
-                                _freeByteArrayPool.Enqueue(new byte[RowBytes * Height]);
-                            }
+#if MANAGED_BUFFER
+                                Length = RowBytes * Height;
+                                _freeByteArrayPool.Clear();
+                                _disposedByteArrayPool.Clear();
+
+                                for (int i = 0; i < FREE_BYTE_ARRAY_POOL_SIZE; i++)
+                                {
+                                    _freeByteArrayPool.Enqueue(new byte[RowBytes * Height]);
+                                }
 #else
+                            Length = RowBytes * Height;
                             _data?.Dispose();
                             _data = new UnmanagedArray(RowBytes * Height);
 #endif
-                        }
+                            }
 
-                        if (!texture2D.SetSize(Width, Height, GetFormat(Format), _textureUsage))
-                        {
-                            throw new InvalidOperationException("Can't resize texture");
+                            if (!texture2D.SetSize(Width, Height, GetFormat(Format), _textureUsage))
+                            {
+                                throw new InvalidOperationException("Can't resize texture");
+                            }
                         }
                     }
                 }
