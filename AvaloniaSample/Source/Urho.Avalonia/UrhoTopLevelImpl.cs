@@ -316,17 +316,20 @@ namespace Urho.Avalonia
 
         private void FireResizedIfNecessary()
         {
-            var size = ClientSize;
-            if (_clientSizeCache != size)
+            using (var l = UrhoContext.DeferredRendererLock.Lock())
             {
-                _clientSizeCache = size;
-                Resized?.Invoke(size);
-                
-            }
+                var size = ClientSize;
+                if (_clientSizeCache != size)
+                {
+                    _clientSizeCache = size;
+                    Resized?.Invoke(size);
 
-            if (UrhoUIElement != null)
-            {
-                UrhoUIElement.Size = VisibleSize;
+                }
+
+                if (UrhoUIElement != null)
+                {
+                    UrhoUIElement.Size = VisibleSize;
+                }
             }
         }
 
