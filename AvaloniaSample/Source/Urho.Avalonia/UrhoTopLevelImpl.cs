@@ -20,10 +20,9 @@ namespace Urho.Avalonia
     public class UrhoTopLevelImpl : ITopLevelImpl, IFramebufferPlatformSurface
     {
         private PixelPoint _position;
-
-        public  AvaloniaElement _urhoUIElement = new AvaloniaElement(Application.CurrentContext);
+        private  UIElement _urhoUIElement = null; //new UrhoAvaloniaSprite(Application.CurrentContext);
         const double CONST_DPI_VALUE_96 = 96.0;
-        public AvaloniaElement UrhoUIElement
+        public UIElement UrhoUIElement
         {
             get
             {
@@ -207,7 +206,7 @@ namespace Urho.Avalonia
             _framebufferSource = new TextureFramebufferSource(UrhoContext);
 
             var parentUiElement = ParentUIElement;
-            var element = new AvaloniaElement(UrhoContext.Context);
+            var element = new UrhoAvaloniaElement(UrhoContext.Context);
             element.Canvas = this;
             element.SetParent(parentUiElement);
             this.UrhoUIElement = element;

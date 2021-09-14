@@ -189,7 +189,7 @@ namespace Urho.Avalonia
                 {
                     _size = value;
 
-                    if (value.Width == 0 || value.Height == 0)
+                    if (value.Width <= 0 || value.Height <= 0)
                     {
                         return;
                         //throw new ArgumentOutOfRangeException("Size can't be zero");

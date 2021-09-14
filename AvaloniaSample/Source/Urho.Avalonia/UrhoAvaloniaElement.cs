@@ -11,7 +11,7 @@ using UrhoKey = Urho.Key;
 
 namespace Urho.Avalonia
 {
-    public class AvaloniaElement : Sprite
+    public class UrhoAvaloniaElement : Sprite
     {
         private UrhoTopLevelImpl _windowImpl;
         
@@ -22,7 +22,15 @@ namespace Urho.Avalonia
 
        float WHEEL_DECAY_STEP = 50.0f;
 
-        public AvaloniaElement(Context context) : base(context)
+        IntVector2 dragBeginCursor_ = IntVector2.Zero;
+        IntVector2 dragBeginPosition_ = IntVector2.Zero;
+
+        IntRect resizeBorder_ = new IntRect(20, 20, 20, 20);
+        WindowDragMode dragMode_ = WindowDragMode.None;
+
+        bool Movable = true;
+
+        public UrhoAvaloniaElement(Context context) : base(context)
         {
             SetEnabledRecursive(true);
             this.Enabled = true;
@@ -33,9 +41,12 @@ namespace Urho.Avalonia
             FocusMode = FocusMode.Focusable;
 
             this.Resized += OnResized;
-            // this.DragMove += OnDragMove;
+            this.DragBegin += OnDragBegin;
+            this.DragMove += OnDragMove;
+            this.DragEnd += OnDragEnd;
             this.Click += OnClickBegin;
             this.ClickEnd += OnClickEnd;
+            
             Application.Current.Input.KeyDown += OnKeyDown;
             Application.Current.Input.KeyUp += OnKeyUp;
             Application.Current.Input.TextInput += OnTextInputEvent;
@@ -45,6 +56,8 @@ namespace Urho.Avalonia
             Application.Current.Engine.PostUpdate += OnPostUpdate;
     
         }
+
+    
 
         private void OnPostUpdate(PostUpdateEventArgs evt)
         {
@@ -71,7 +84,9 @@ namespace Urho.Avalonia
                 if(!Application.isExiting)
                 {
                     this.Resized -= OnResized;
-                    // this.DragMove -= OnDragMove;
+                    this.DragBegin -= OnDragBegin;
+                     this.DragMove -= OnDragMove;
+                     this.DragEnd += OnDragEnd;
                     this.Click -= OnClickBegin;
                     this.ClickEnd -= OnClickEnd;
                     Application.Current.Input.KeyDown -= OnKeyDown;
@@ -242,14 +257,56 @@ namespace Urho.Avalonia
 
         }
 
-        // private void OnDragMove(DragMoveEventArgs e)
-        // {
-        //     if (e.Element != this)
-        //         return;
-        //     var screenPos = this.ScreenPosition;
-        //     var position = new Vector2(e.X - screenPos.X, e.Y - screenPos.Y);
-        //     SendRawPointerEvent(RawPointerEventType.Move, position);
-        // }
+        private WindowDragMode GetDragMode()
+        {
+            WindowDragMode mode = WindowDragMode.None;
+
+            IntVector2 mousePosition = UrhoInput.MousePosition - ScreenPosition;
+            // Log.Info(mousePosition.ToString() + ":" +  this.Size);
+
+            if (Movable == true && mousePosition.Y < resizeBorder_.Top)
+            {
+                mode = WindowDragMode.Move;
+            }
+
+            return mode;
+        }
+
+        private void OnDragBegin(DragBeginEventArgs e)
+        {
+            if (e.Element != this)
+                return;
+
+            
+            dragBeginCursor_ = new IntVector2(e.X, e.Y);
+            dragBeginPosition_ = Position;
+
+            dragMode_ = GetDragMode();
+
+        }
+
+        private void OnDragMove(DragMoveEventArgs e)
+        {
+            if (e.Element != this)
+                return;
+            if (dragMode_ == WindowDragMode.Move)
+            {
+                IntVector2 delta = new IntVector2(e.X - dragBeginCursor_.X, e.Y - dragBeginCursor_.Y);
+                Position = dragBeginPosition_ + delta;
+            }
+        }
+
+        private void OnDragEnd(DragEndEventArgs e)
+        {
+            if (e.Element != this)
+                return;
+
+            dragMode_ = WindowDragMode.None;
+            var screenPos = this.ScreenPosition;
+            var position = new Vector2(e.X - screenPos.X, e.Y - screenPos.Y);
+            _inputModifiers.Set(RawInputModifiers.LeftMouseButton);
+            SendRawPointerEvent(RawPointerEventType.LeftButtonUp, position);
+        }
 
         private void OnResized(ResizedEventArgs obj)
         {
@@ -431,8 +488,10 @@ namespace Urho.Avalonia
         private void SendMouseWheelEvent(float wheel_x,float wheel_y, RawInputModifiers modifiers)
         {
 
-            IntVector2 mousePosition = UrhoInput.MousePosition;
-            Vector2 position = new Vector2((mousePosition.X) / (float)_windowImpl.RenderScaling, (mousePosition.Y) / (float)_windowImpl.RenderScaling);
+            var screenPos = this.ScreenPosition;
+            var position = new Vector2((UrhoInput.MousePosition.X - screenPos.X)/(float)_windowImpl.RenderScaling, (UrhoInput.MousePosition.Y - screenPos.Y)/(float)_windowImpl.RenderScaling);
+
+           
             Vector vector = new Vector(wheel_x * -0.1, wheel_y * 0.1);
 
             var args = new RawMouseWheelEventArgs(_windowImpl.MouseDevice, (ulong)AvaloniaUrhoContext.GlobalTimer.GetMSec(false), _windowImpl.InputRoot, new Point(position.X, position.Y), vector, modifiers);
