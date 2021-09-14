@@ -70,8 +70,8 @@ namespace Urho.Avalonia
                 {
                     this.Resized -= OnResized;
                     this.DragBegin -= OnDragBegin;
-                     this.DragMove -= OnDragMove;
-                     this.DragEnd += OnDragEnd;
+                    this.DragMove -= OnDragMove;
+                    this.DragEnd -= OnDragEnd;
                     this.Click -= OnClickBegin;
                     this.ClickEnd -= OnClickEnd;
                     Application.Current.Input.KeyDown -= OnKeyDown;
