@@ -20,15 +20,18 @@ namespace Urho.Avalonia
        float WheelX = 0.0f;
        float WheelY = 0.0f;
 
-       float WHEEL_DECAY_STEP = 50.0f;
+       float WHEEL_DECAY_STEP = 25.0f;
 
         IntVector2 dragBeginCursor_ = IntVector2.Zero;
         IntVector2 dragBeginPosition_ = IntVector2.Zero;
+
+         IntVector2 dragBeginSize_ = IntVector2.Zero;
 
         IntRect resizeBorder_ = new IntRect(20, 20, 20, 20);
         WindowDragMode dragMode_ = WindowDragMode.None;
 
         bool Movable = true;
+        bool Resizable = true;
 
         public UrhoAvaloniaElement(Context context) : base(context)
         {
@@ -54,24 +57,6 @@ namespace Urho.Avalonia
             Application.Current.Input.MouseWheel += OnMouseWheel;
 
             Application.Current.Engine.PostUpdate += OnPostUpdate;
-    
-        }
-
-    
-
-        private void OnPostUpdate(PostUpdateEventArgs evt)
-        {
-            if (!this.HasFocus()) return;
-            RawInputModifiers modifiers = RawInputModifiers.None;
-
-            if(MathF.Abs(WheelX) > 1.0f || MathF.Abs(WheelY) > 1.0f)
-            {
-                UpdateInputModifiers(ref modifiers);
-                WheelX = MathHelper.Lerp(WheelX,0.0f,0.1f*evt.TimeStep*WHEEL_DECAY_STEP);
-                WheelY = MathHelper.Lerp(WheelY,0.0f,0.1f*evt.TimeStep*WHEEL_DECAY_STEP);
-                SendMouseWheelEvent(WheelX,WheelY,modifiers);
-                // Log.Info(WheelY.ToString());
-            }
     
         }
 
@@ -102,6 +87,23 @@ namespace Urho.Avalonia
             {
 
             }
+        }
+
+        private void OnPostUpdate(PostUpdateEventArgs evt)
+        {
+            if (!this.HasFocus()) return;
+
+            RawInputModifiers modifiers = RawInputModifiers.None;
+
+            if (MathF.Abs(WheelX) > 1.0f || MathF.Abs(WheelY) > 1.0f)
+            {
+                UpdateInputModifiers(ref modifiers);
+                WheelX = MathHelper.Lerp(WheelX, 0.0f, 0.1f * evt.TimeStep * WHEEL_DECAY_STEP);
+                WheelY = MathHelper.Lerp(WheelY, 0.0f, 0.1f * evt.TimeStep * WHEEL_DECAY_STEP);
+                SendMouseWheelEvent(WheelX, WheelY, modifiers);
+                // Log.Info(WheelY.ToString());
+            }
+
         }
 
         private void OnClickBegin(ClickEventArgs e)
@@ -268,6 +270,22 @@ namespace Urho.Avalonia
             {
                 mode = WindowDragMode.Move;
             }
+            else if(Resizable == true && mousePosition.Y  >= Size.Y - resizeBorder_.Bottom)
+            {
+                mode = WindowDragMode.ResizeBottom;
+
+                if (mousePosition.X >= Width - resizeBorder_.Right)
+                {
+                    mode = WindowDragMode.ResizeBottomRight;
+                }
+            }
+            else
+            {
+                if (Resizable == true && mousePosition.X >= Width - resizeBorder_.Right)
+                {
+                    mode = WindowDragMode.ResizeRight;
+                }
+            }
 
             return mode;
         }
@@ -281,6 +299,8 @@ namespace Urho.Avalonia
             dragBeginCursor_ = new IntVector2(e.X, e.Y);
             dragBeginPosition_ = Position;
 
+            dragBeginSize_ = Size;
+
             dragMode_ = GetDragMode();
 
         }
@@ -293,6 +313,21 @@ namespace Urho.Avalonia
             {
                 IntVector2 delta = new IntVector2(e.X - dragBeginCursor_.X, e.Y - dragBeginCursor_.Y);
                 Position = dragBeginPosition_ + delta;
+            }
+            else if(dragMode_ == WindowDragMode.ResizeBottom)
+            {
+                  IntVector2 delta = new IntVector2(e.X - dragBeginCursor_.X, e.Y - dragBeginCursor_.Y);
+                  this.SetSize(dragBeginSize_.X,dragBeginSize_.Y + delta.Y);
+            }
+            else if(dragMode_ == WindowDragMode.ResizeBottomRight)
+            {
+                IntVector2 delta = new IntVector2(e.X - dragBeginCursor_.X, e.Y - dragBeginCursor_.Y);
+                this.SetSize(dragBeginSize_.X + delta.X, dragBeginSize_.Y + delta.Y);
+            }
+            else if (dragMode_ == WindowDragMode.ResizeRight)
+            {
+                IntVector2 delta = new IntVector2(e.X - dragBeginCursor_.X, e.Y - dragBeginCursor_.Y);
+                this.SetSize(dragBeginSize_.X + delta.X, dragBeginSize_.Y);
             }
         }
 
