@@ -123,7 +123,7 @@ namespace Urho.Avalonia
                             Interlocked.CompareExchange(ref _inUpdate, 1, 0) == 0)
                         {
 
-                            _avaloniaUrhoContext.EnsureInvokeOnMainThread(() =>
+                            AvaloniaUrhoContext.EnsureInvokeOnMainThread(() =>
                             {
                                 using (var l = _avaloniaUrhoContext.DeferredRendererLock.Lock())
                                 {

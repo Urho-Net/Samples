@@ -46,7 +46,7 @@ namespace Urho.Avalonia
 
         public override void EnsureInvokeOnMainThread(Action action)
         {
-            _context.EnsureInvokeOnMainThread(action);
+            AvaloniaUrhoContext.EnsureInvokeOnMainThread(action);
         }
 
         public override void RunLoop(CancellationToken cancellationToken)

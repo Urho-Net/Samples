@@ -89,7 +89,7 @@ namespace Urho.Avalonia
             }
         }
 
-        public void EnsureInvokeOnMainThread(Action action)
+        public static void EnsureInvokeOnMainThread(Action action)
         {
             if (!Application.isExiting)
             {
