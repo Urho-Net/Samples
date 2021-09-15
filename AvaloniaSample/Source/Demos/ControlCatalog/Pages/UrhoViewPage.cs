@@ -35,15 +35,20 @@ namespace ControlCatalog.Pages
         Scene scene;
         protected Node CameraNode { get; set; }
 
-        private readonly Image _urhoPlaceHolder;
+		protected const float TouchSensitivity = 2;
+		protected float Yaw { get; set; }
+		protected float Pitch { get; set; }
+
+
+        private readonly Image _urhoPlaceHolder = null;
 
         private bool isDirty = false;
 
         public UrhoViewPage()
         {
             this.InitializeComponent();
-
             _urhoPlaceHolder = this.FindControl<Image>("UrhoPlaceHolder");
+            _urhoPlaceHolder.Focusable = true;
             _urhoPlaceHolder.Stretch = Stretch.Fill;
             _urhoPlaceHolder.LayoutUpdated += OnLayoutUpdated;
         }
@@ -53,9 +58,9 @@ namespace ControlCatalog.Pages
             AvaloniaXamlLoader.Load(this);
         }
 
-        private void OnUrhoUpdate(UpdateEventArgs obj)
+        private void OnUrhoUpdate(UpdateEventArgs evt)
         {
-            UpdateUrho3D();
+            UpdateUrho3D(evt.TimeStep);
         }
 
         private void OnLayoutUpdated(object sender, EventArgs e)
@@ -63,21 +68,33 @@ namespace ControlCatalog.Pages
             isDirty = true;
         }
 
-        private void UpdateUrho3D()
+        private void UpdateUrho3D(float timeStep)
         {
             if (isDirty == true && _urhoPlaceHolder.TransformedBounds != null)
             {
                 isDirty = false;
                 var urhoWindow = GetUrhoWindow();
-                var transBounds = _urhoPlaceHolder.TransformedBounds.Value;
-        
+                var renderScaling =  urhoWindow.RenderScaling;
+                var transformedBounds = _urhoPlaceHolder.TransformedBounds.Value;
+
+                // Urho UI and Graphics handling must be done on the Main Thread only.
                 AvaloniaUrhoContext.EnsureInvokeOnMainThread(() =>
                    {
-                       urhoView3D.Position = new IntVector2((int)(transBounds.Clip.Left * urhoWindow.RenderScaling), (int)(transBounds.Clip.Top * urhoWindow.RenderScaling));
-                       urhoView3D.Width = (int)(transBounds.Clip.Width * urhoWindow.RenderScaling);
-                       urhoView3D.Height = (int)(transBounds.Clip.Height * urhoWindow.RenderScaling);
+                       urhoView3D.Position = new IntVector2((int)(transformedBounds.Clip.Left * renderScaling), (int)(transformedBounds.Clip.Top * renderScaling));
+                       urhoView3D.Width = (int)(transformedBounds.Clip.Width * renderScaling);
+                       urhoView3D.Height = (int)(transformedBounds.Clip.Height * renderScaling);
                    });
             }
+
+          
+          AvaloniaUrhoContext.EnsureInvokeOnMainThread(() =>
+          {
+              bool IsFocused = urhoView3D.HasFocus();
+              if (IsFocused)
+              {
+                  SimpleMoveCamera3D(timeStep);
+              }
+          });
         }
 
         protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
@@ -88,6 +105,7 @@ namespace ControlCatalog.Pages
                 if (urhoWindow != null)
                 {
                     urhoView3D = urhoWindow.UrhoUIElement.CreateView3D();
+                    urhoView3D.FocusMode = FocusMode.Focusable;
                     CreateScene();
                     SetupViewport();
                 }
@@ -213,6 +231,26 @@ namespace ControlCatalog.Pages
         {
             urhoView3D.SetView(scene, camera);
         }
+
+        protected void SimpleMoveCamera3D (float timeStep, float moveSpeed = 10.0f)
+		{
+			const float mouseSensitivity = .1f;
+
+            var Input = Urho.Application.Current.Input;
+
+
+			var mouseMove = Input.MouseMove;
+			Yaw += mouseSensitivity * mouseMove.X;
+			Pitch += mouseSensitivity * mouseMove.Y;
+			Pitch = MathHelper.Clamp(Pitch, -90, 90);
+
+			CameraNode.Rotation = new Quaternion(Pitch, Yaw, 0);
+
+			if (Input.GetKeyDown (Key.W)) CameraNode.Translate ( Vector3.UnitZ * moveSpeed * timeStep);
+			if (Input.GetKeyDown (Key.S)) CameraNode.Translate (-Vector3.UnitZ * moveSpeed * timeStep);
+			if (Input.GetKeyDown (Key.A)) CameraNode.Translate (-Vector3.UnitX * moveSpeed * timeStep);
+			if (Input.GetKeyDown (Key.D)) CameraNode.Translate ( Vector3.UnitX * moveSpeed * timeStep);
+		}
 
         class Mover : Component
         {
