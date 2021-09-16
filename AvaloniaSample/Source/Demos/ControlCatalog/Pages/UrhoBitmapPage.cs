@@ -2,24 +2,35 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Dialogs;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
 using Avalonia.Rendering;
+using Avalonia.Threading;
 using Urho;
 using Urho.Avalonia;
 using Urho.Gui;
 using Urho.IO;
+using Urho.Urho2D;
 #pragma warning disable 4014
 
 namespace ControlCatalog.Pages
 {
-    public class UrhoViewPage : UserControl
+    public class UrhoBitmapPage : UserControl
     {
 
+        Camera camera;
+        Scene scene;
+        protected Node CameraNode { get; set; }
+        protected const float TouchSensitivity = 2;
+        protected float Yaw { get; set; }
+		protected float Pitch { get; set; }
         static readonly Random random = new Random();
         /// Return a random float between 0.0 (inclusive) and 1.0 (exclusive.)
         public static float NextRandom() { return (float)random.NextDouble(); }
@@ -30,65 +41,71 @@ namespace ControlCatalog.Pages
         /// Return a random integer between min and max - 1.
         public static int NextRandom(int min, int max) { return random.Next(min, max); }
 
-        Urho.Gui.View3D urhoView3D = null;
-
-        Camera camera;
-        Scene scene;
-        protected Node CameraNode { get; set; }
-
-		protected const float TouchSensitivity = 2;
-		protected float Yaw { get; set; }
-		protected float Pitch { get; set; }
-
-
         private readonly Image _urhoPlaceHolder = null;
 
-        private bool isDirty
-        {
-            get
-            {
+        const int SCREEN_WIDTH = 1200;
+        const int SCREEN_HEIGHT = 800;
 
-                if (dirtyCounter > 0)
-                {
-                    dirtyCounter--;
-                    return true;
-                }
-                else
-                    return false;
-            }
-            set
-            {
-                if (value == true)
-                {
-                    dirtyCounter = 3;
-                }
-                else
-                {
-                    dirtyCounter = 0;
-                }
-            }
-        }
 
-        private int dirtyCounter = 0;
+        private WriteableBitmap _bitmap;
+        private PixelSize _bitmapSize = new PixelSize();
+        private bool isDirty = false;
 
-        public UrhoViewPage()
+        public Avalonia.Media.Color SelectedBrush { get; set; } = Colors.Red;
+
+        Texture2D renderTexture = null;
+
+        public UrhoBitmapPage()
         {
             this.InitializeComponent();
             _urhoPlaceHolder = this.FindControl<Image>("UrhoPlaceHolder");
             _urhoPlaceHolder.Focusable = true;
+            this.Focusable = true;
             _urhoPlaceHolder.Stretch = Stretch.Fill;
             _urhoPlaceHolder.LayoutUpdated += OnLayoutUpdated;
-            
         }
 
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
+            CreateScene();
+        }
+
+        void CreateRenderTexture(int width, int height)
+        {
+
+            if (renderTexture != null && renderTexture.Width == width && renderTexture.Height == height)
+            {
+                return;
+            }
+
+            if (renderTexture != null)
+            {
+                renderTexture.Dispose();
+                renderTexture = null;
+            }
+
+            renderTexture = new Texture2D();
+            renderTexture.SetSize(width, height, Graphics.RGBAFormat, TextureUsage.Rendertarget);
+        }
+
+        public override void Render(DrawingContext context)
+        {
+
+            if (_bitmap != null)
+            {
+                context.DrawImage(_bitmap, new Avalonia.Rect(0, 0, _bitmap.PixelSize.Width, _bitmap.PixelSize.Height),
+                                new Avalonia.Rect(Bounds.Size));
+            }
+
+            base.Render(context);
         }
 
         private void OnUrhoUpdate(UpdateEventArgs evt)
         {
             UpdateUrho3D(evt.TimeStep);
+
+            AvaloniaUrhoContext.EnsureInvokeOnMainThread(() => this.InvalidateVisual());
         }
 
         private void OnLayoutUpdated(object sender, EventArgs e)
@@ -100,51 +117,34 @@ namespace ControlCatalog.Pages
         {
             if (isDirty == true && _urhoPlaceHolder.TransformedBounds != null)
             {
-                var urhoWindow = GetUrhoWindow();
-                var renderScaling =  urhoWindow.RenderScaling;
-                var transformedBounds = _urhoPlaceHolder.TransformedBounds.Value;
-                int width = (int)(transformedBounds.Clip.Width * renderScaling);
-                int height =  (int)(transformedBounds.Clip.Height * renderScaling);
+                isDirty = false;
+                
+                int width = Urho.Application.Current.Graphics.Width / 2;
+                int height = Urho.Application.Current.Graphics.Height / 2;
 
-                // Urho UI and Graphics handling must be done on the Main Thread only.
-                AvaloniaUrhoContext.EnsureInvokeOnMainThread(() =>
-                   {
-                       urhoView3D.Position = new IntVector2((int)(transformedBounds.Clip.Left * renderScaling), (int)(transformedBounds.Clip.Top * renderScaling));
-                       urhoView3D.Width = width;
-                       urhoView3D.Height = height;
-                   });
+                if (width != _bitmapSize.Width || height != _bitmapSize.Height)
+                {
+                    CreateRenderTexture(width, height);
+                    SetViewPort();
+                    _bitmapSize = new PixelSize(width, height);
+                    _bitmap?.Dispose();
+                    _bitmap = new WriteableBitmap(_bitmapSize, new Vector(96, 96), PixelFormat.Rgba8888, AlphaFormat.Opaque);
+                }
             }
 
-          
-          AvaloniaUrhoContext.EnsureInvokeOnMainThread(() =>
-          {
-              bool IsFocused = urhoView3D.HasFocus();
-              if (IsFocused)
-              {
-                  SimpleMoveCamera3D(timeStep);
-              }
-          });
+            CopyRenderTextureToBitmap();
+
+            if (this.IsFocused)
+            {
+                SimpleMoveCamera3D(timeStep);
+            }
+
+
         }
 
         protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
         {
-            if (urhoView3D == null)
-            {
-                var urhoWindow = GetUrhoWindow();
-                if (urhoWindow != null)
-                {
-                    urhoView3D = urhoWindow.UrhoUIElement.CreateView3D();
-                    urhoView3D.FocusMode = FocusMode.Focusable;
-                    CreateScene();
-                    SetupViewport();
-                }
-            }
 
-            if (urhoView3D != null)
-            {
-                urhoView3D.Visible = true;
-                urhoView3D.Enabled = true;
-            }
 
             Urho.Application.Current.Update += OnUrhoUpdate;
 
@@ -156,21 +156,33 @@ namespace ControlCatalog.Pages
         {
             Urho.Application.Current.Update -= OnUrhoUpdate;
 
-            if (urhoView3D != null)
-            {
-                urhoView3D.Visible = false;
-                urhoView3D.Enabled = false;
-            }
+
         }
 
-
-        Avalonia.Controls.Window GetWindow() => (Avalonia.Controls.Window)this.VisualRoot;
-        UrhoWindowImpl GetUrhoWindow()
+        private unsafe void CopyRenderTextureToBitmap()
         {
-            if (((Avalonia.Controls.Window)this.VisualRoot).PlatformImpl != null)
-                return ((Avalonia.Controls.Window)this.VisualRoot).PlatformImpl as UrhoWindowImpl;
-            else
-                return null;
+            if (renderTexture != null)
+            {
+                var image = renderTexture.Image;
+
+                if (_bitmap == null)
+                    _bitmap = new WriteableBitmap(new PixelSize(image.Width, image.Height), new Vector(96, 96), PixelFormat.Rgba8888, AlphaFormat.Opaque);
+
+                if (_bitmap.PixelSize.Width != image.Width || _bitmap.PixelSize.Height != image.Height)
+                {
+                    _bitmap?.Dispose();
+                    _bitmap = new WriteableBitmap(new PixelSize(image.Width, image.Height), new Vector(96, 96), PixelFormat.Rgba8888, AlphaFormat.Opaque);
+                }
+
+                byte[] bytes = image.DataBytes;
+                using (var l = _bitmap.Lock())
+                {
+                    // Assumption is that  source and destination are the same size and pixel-format
+                    var copySize = 4 * image.Width * image.Height;
+                    Marshal.Copy(bytes, 0,new IntPtr(l.Address.ToInt64()), copySize);
+                }
+
+            }
         }
 
         void CreateScene()
@@ -256,16 +268,17 @@ namespace ControlCatalog.Pages
             // Set an initial position for the camera scene node above the plane
             CameraNode.Position = new Vector3(0.0f, 5.0f, 0.0f);
         }
-        void SetupViewport()
+        void SetViewPort()
         {
-            urhoView3D.SetView(scene, camera);
-
-           
+            RenderSurface surface = renderTexture.RenderSurface;
+            Viewport viewport = new Viewport(scene, camera, null);
+            surface.SetViewport(0, viewport);
+            surface.UpdateMode = RenderSurfaceUpdateMode.Updatealways;
         }
 
-        protected void SimpleMoveCamera3D (float timeStep, float moveSpeed = 10.0f)
-		{
-			const float mouseSensitivity = .1f;
+        protected void SimpleMoveCamera3D(float timeStep, float moveSpeed = 10.0f)
+        {
+            const float mouseSensitivity = .1f;
 
             var Input = Urho.Application.Current.Input;
 
@@ -279,11 +292,11 @@ namespace ControlCatalog.Pages
                 CameraNode.Rotation = new Quaternion(Pitch, Yaw, 0);
             }
 
-            if (Input.GetKeyDown (Key.W)) CameraNode.Translate ( Vector3.UnitZ * moveSpeed * timeStep);
-			if (Input.GetKeyDown (Key.S)) CameraNode.Translate (-Vector3.UnitZ * moveSpeed * timeStep);
-			if (Input.GetKeyDown (Key.A)) CameraNode.Translate (-Vector3.UnitX * moveSpeed * timeStep);
-			if (Input.GetKeyDown (Key.D)) CameraNode.Translate ( Vector3.UnitX * moveSpeed * timeStep);
-		}
+            if (Input.GetKeyDown(Key.W)) CameraNode.Translate(Vector3.UnitZ * moveSpeed * timeStep);
+            if (Input.GetKeyDown(Key.S)) CameraNode.Translate(-Vector3.UnitZ * moveSpeed * timeStep);
+            if (Input.GetKeyDown(Key.A)) CameraNode.Translate(-Vector3.UnitX * moveSpeed * timeStep);
+            if (Input.GetKeyDown(Key.D)) CameraNode.Translate(Vector3.UnitX * moveSpeed * timeStep);
+        }
 
         class Mover : Component
         {
@@ -321,6 +334,15 @@ namespace ControlCatalog.Pages
                     state.AddTime(timeStep);
                 }
             }
+        }
+
+        Avalonia.Controls.Window GetWindow() => (Avalonia.Controls.Window)this.VisualRoot;
+        UrhoWindowImpl GetUrhoWindow()
+        {
+            if (((Avalonia.Controls.Window)this.VisualRoot).PlatformImpl != null)
+                return ((Avalonia.Controls.Window)this.VisualRoot).PlatformImpl as UrhoWindowImpl;
+            else
+                return null;
         }
 
     }

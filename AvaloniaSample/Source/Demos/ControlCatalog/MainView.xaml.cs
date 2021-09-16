@@ -30,14 +30,6 @@ namespace ControlCatalog
                     Content = new ScreenPage()
                 });
 
-                tabItems.Insert(0,new TabItem()
-                {
-                    Header = "UrhoView",
-                    Content = new UrhoViewPage()
-                });
-
-                
-
             }
 
             var themes = this.Find<ComboBox>("Themes");

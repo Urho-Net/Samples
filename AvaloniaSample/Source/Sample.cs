@@ -153,12 +153,15 @@ namespace AvaloniaSample
 			if (UI.FocusElement != null)
 				return;
 
-			var mouseMove = Input.MouseMove;
-			Yaw += mouseSensitivity * mouseMove.X;
-			Pitch += mouseSensitivity * mouseMove.Y;
-			Pitch = MathHelper.Clamp(Pitch, -90, 90);
+            if (Input.GetMouseButtonDown(MouseButton.Left))
+            {
+                var mouseMove = Input.MouseMove;
+                Yaw += mouseSensitivity * mouseMove.X;
+                Pitch += mouseSensitivity * mouseMove.Y;
+                Pitch = MathHelper.Clamp(Pitch, -90, 90);
 
-			CameraNode.Rotation = new Quaternion(Pitch, Yaw, 0);
+                CameraNode.Rotation = new Quaternion(Pitch, Yaw, 0);
+            }
 
 			if (Input.GetKeyDown (Key.W)) CameraNode.Translate ( Vector3.UnitZ * moveSpeed * timeStep);
 			if (Input.GetKeyDown (Key.S)) CameraNode.Translate (-Vector3.UnitZ * moveSpeed * timeStep);
