@@ -1,22 +1,15 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Dialogs;
-using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
-using Avalonia.Rendering;
-using Avalonia.Threading;
 using Urho;
 using Urho.Avalonia;
-using Urho.Gui;
-using Urho.IO;
 using Urho.Urho2D;
 #pragma warning disable 4014
 
@@ -43,17 +36,14 @@ namespace ControlCatalog.Pages
 
         private readonly Image _urhoPlaceHolder = null;
 
-        const int SCREEN_WIDTH = 1200;
-        const int SCREEN_HEIGHT = 800;
-
-
         private WriteableBitmap _bitmap;
         private PixelSize _bitmapSize = new PixelSize();
         private bool isDirty = false;
 
-        public Avalonia.Media.Color SelectedBrush { get; set; } = Colors.Red;
-
         Texture2D renderTexture = null;
+
+        Task runner = null;
+        bool isRunnerRunning = false;
 
         public UrhoBitmapPage()
         {
@@ -104,8 +94,6 @@ namespace ControlCatalog.Pages
         private void OnUrhoUpdate(UpdateEventArgs evt)
         {
             UpdateUrho3D(evt.TimeStep);
-
-            AvaloniaUrhoContext.EnsureInvokeOnMainThread(() => this.InvalidateVisual());
         }
 
         private void OnLayoutUpdated(object sender, EventArgs e)
@@ -118,7 +106,7 @@ namespace ControlCatalog.Pages
             if (isDirty == true && _urhoPlaceHolder.TransformedBounds != null)
             {
                 isDirty = false;
-                
+
                 int width = Urho.Application.Current.Graphics.Width / 2;
                 int height = Urho.Application.Current.Graphics.Height / 2;
 
@@ -132,14 +120,10 @@ namespace ControlCatalog.Pages
                 }
             }
 
-            CopyRenderTextureToBitmap();
-
             if (this.IsFocused)
             {
                 SimpleMoveCamera3D(timeStep);
             }
-
-
         }
 
         protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
@@ -148,6 +132,8 @@ namespace ControlCatalog.Pages
 
             Urho.Application.Current.Update += OnUrhoUpdate;
 
+            isRunnerRunning = true;
+            runner = System.Threading.Tasks.Task.Run(Runner);
         
             isDirty = true;
 
@@ -157,6 +143,10 @@ namespace ControlCatalog.Pages
         {
             Urho.Application.Current.Update -= OnUrhoUpdate;
 
+            
+            isRunnerRunning = false;
+            runner.Wait();
+
             if (renderTexture != null)
             {
                 renderTexture.Dispose();
@@ -165,6 +155,20 @@ namespace ControlCatalog.Pages
 
             _bitmapSize = new PixelSize(0,0);
 
+        }
+
+        private unsafe void Runner()
+        {
+            while (isRunnerRunning)
+            {
+                AvaloniaUrhoContext.EnsureInvokeOnMainThread(() =>
+                {
+                    CopyRenderTextureToBitmap();
+                    this.InvalidateVisual();
+                });
+
+                Thread.Sleep(40);
+            }
         }
 
         private unsafe void CopyRenderTextureToBitmap()

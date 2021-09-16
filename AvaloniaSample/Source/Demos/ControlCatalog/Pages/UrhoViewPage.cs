@@ -1,18 +1,13 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Dialogs;
-using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
-using Avalonia.Rendering;
 using Urho;
 using Urho.Avalonia;
 using Urho.Gui;
-using Urho.IO;
+
 #pragma warning disable 4014
 
 namespace ControlCatalog.Pages
