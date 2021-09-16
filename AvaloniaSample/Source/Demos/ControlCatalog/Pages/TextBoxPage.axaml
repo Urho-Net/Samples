@@ -50,18 +50,18 @@
       </StackPanel>
       <StackPanel Orientation="Vertical" Spacing="8">
         <Label Classes="h2" Target="{Binding #firstResMFont}">res_m fonts</Label>
-        <TextBox Width="200" x:Name="firstResMFont" Text="Custom font regular" FontWeight="Normal" FontStyle="Normal" FontFamily="resm:ControlCatalog.Assets.Fonts?assembly=Game#Source Sans Pro"/>
-        <TextBox Width="200" Text="Custom font bold" FontWeight="Bold" FontStyle="Normal" FontFamily="resm:Assets.Fonts?assembly=ControlCatalog#Source Sans Pro"/>
-        <TextBox Width="200" Text="Custom font italic" FontWeight="Normal" FontStyle="Italic" FontFamily="resm:Assets.Fonts.SourceSansPro-Italic.ttf?assembly=Game#Source Sans Pro"/>
-        <TextBox Width="200" Text="Custom font italic bold" FontWeight="Bold" FontStyle="Italic" FontFamily="resm:Assets.Fonts.SourceSansPro-*.ttf?assembly=Game#Source Sans Pro"/>
+        <TextBox Width="200" x:Name="firstResMFont" Text="Custom font regular" FontWeight="Normal" FontStyle="Normal" FontFamily="avares://Game/Source/Demos/ControlCatalog/Assets/Fonts#Source Sans Pro"/>
+        <TextBox Width="200" Text="Custom font bold" FontWeight="Bold" FontStyle="Normal" FontFamily="avares://Game/Source/Demos/ControlCatalog/Assets/Fonts#Source Sans Pro"/>
+        <TextBox Width="200" Text="Custom font italic" FontWeight="Normal" FontStyle="Italic" FontFamily="avares://Game/Source/Demos/ControlCatalog/Assets/Fonts/SourceSansPro-Italic.ttf#Source Sans Pro"/>
+        <TextBox Width="200" Text="Custom font italic bold" FontWeight="Bold" FontStyle="Italic" FontFamily="avares://Game/Source/Demos/ControlCatalog/Assets/Fonts/SourceSansPro-*.ttf#Source Sans Pro"/>
       </StackPanel>
 
       <StackPanel Orientation="Vertical" Spacing="8">
         <Label Classes="h2" Target="{Binding #firstResFont}">_res fonts</Label>
         <TextBox Width="200" x:Name="firstResFont" Text="Custom font regular" FontWeight="Normal" FontStyle="Normal" FontFamily="avares://Game/Source/Demos/ControlCatalog/Assets/Fonts#Source Sans Pro"/>
         <TextBox Width="200" Text="Custom font bold" FontWeight="Bold" FontStyle="Normal" FontFamily="avares://Game/Source/Demos/ControlCatalog/Assets/Fonts#Source Sans Pro"/>
-        <TextBox Width="200" Text="Custom font italic" FontWeight="Normal" FontStyle="Italic" FontFamily="/Assets/Fonts/SourceSansPro-Italic.ttf#Source Sans Pro"/>
-        <TextBox Width="200" Text="Custom font italic bold" FontWeight="Bold" FontStyle="Italic" FontFamily="/Assets/Fonts/SourceSansPro-*.ttf#Source Sans Pro"/>
+        <TextBox Width="200" Text="Custom font italic" FontWeight="Normal" FontStyle="Italic" FontFamily="avares://Game/Source/Demos/ControlCatalog/Assets/Fonts/SourceSansPro-Italic.ttf#Source Sans Pro"/>
+        <TextBox Width="200" Text="Custom font italic bold" FontWeight="Bold" FontStyle="Italic" FontFamily="avares://Game/Source/Demos/ControlCatalog/Assets/Fonts/SourceSansPro-*.ttf#Source Sans Pro"/>
       </StackPanel>
     </StackPanel>
     <TextBox AcceptsReturn="True" TextWrapping="Wrap" Height="200" MaxWidth="400"

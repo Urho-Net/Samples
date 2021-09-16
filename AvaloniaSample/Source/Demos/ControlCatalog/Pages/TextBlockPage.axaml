@@ -36,8 +36,8 @@
         <StackPanel Width="200" Spacing="8">
           <TextBlock Text="Custom font regular" FontWeight="Normal" FontStyle="Normal" FontFamily="avares://Game/Source/Demos/ControlCatalog/Assets/Fonts#Source Sans Pro"/>
           <TextBlock Text="Custom font bold" FontWeight="Bold" FontStyle="Normal" FontFamily="avares://Game/Source/Demos/ControlCatalog/Assets/Fonts#Source Sans Pro"/>
-          <TextBlock Text="Custom font italic" FontWeight="Normal" FontStyle="Italic" FontFamily="/Assets/Fonts/SourceSansPro-Italic.ttf#Source Sans Pro"/>
-          <TextBlock Text="Custom font italic bold" FontWeight="Bold" FontStyle="Italic" FontFamily="/Assets/Fonts/SourceSansPro-*.ttf#Source Sans Pro"/>
+          <TextBlock Text="Custom font italic" FontWeight="Normal" FontStyle="Italic" FontFamily="avares://Game/Source/Demos/ControlCatalog/Assets/Fonts/SourceSansPro-Italic.ttf#Source Sans Pro"/>
+          <TextBlock Text="Custom font italic bold" FontWeight="Bold" FontStyle="Italic" FontFamily="avares://Game/Source/Demos/ControlCatalog/Assets/Fonts/SourceSansPro-*.ttf#Source Sans Pro"/>
         </StackPanel>
       </Border>
     </StackPanel>
