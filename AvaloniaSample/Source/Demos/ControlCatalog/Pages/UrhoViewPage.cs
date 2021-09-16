@@ -60,7 +60,7 @@ namespace ControlCatalog.Pages
             {
                 if (value == true)
                 {
-                    dirtyCounter = 3;
+                    dirtyCounter = 5;
                 }
                 else
                 {

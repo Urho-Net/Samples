@@ -148,6 +148,7 @@ namespace ControlCatalog.Pages
 
             Urho.Application.Current.Update += OnUrhoUpdate;
 
+        
             isDirty = true;
 
         }
@@ -156,6 +157,13 @@ namespace ControlCatalog.Pages
         {
             Urho.Application.Current.Update -= OnUrhoUpdate;
 
+            if (renderTexture != null)
+            {
+                renderTexture.Dispose();
+                renderTexture = null;
+            }
+
+            _bitmapSize = new PixelSize(0,0);
 
         }
 
@@ -174,12 +182,16 @@ namespace ControlCatalog.Pages
                     _bitmap = new WriteableBitmap(new PixelSize(image.Width, image.Height), new Vector(96, 96), PixelFormat.Rgba8888, AlphaFormat.Opaque);
                 }
 
-                byte[] bytes = image.DataBytes;
                 using (var l = _bitmap.Lock())
                 {
+                    
                     // Assumption is that  source and destination are the same size and pixel-format
                     var copySize = 4 * image.Width * image.Height;
-                    Marshal.Copy(bytes, 0,new IntPtr(l.Address.ToInt64()), copySize);
+                    
+                    Buffer.MemoryCopy(image.Data, (void*)l.Address,copySize,copySize);
+
+                    // byte[] bytes = image.DataBytes;
+                    // Marshal.Copy(bytes, 0,new IntPtr(l.Address.ToInt64()), copySize);
                 }
 
             }
