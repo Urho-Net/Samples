@@ -45,7 +45,7 @@ namespace ControlCatalog.Pages
         BorderImage textureContainer = null;
         Texture2D renderTexture = null;
 
-        Task runner = null;
+        Task warmupRunner = null;
         bool isRunnerRunning = false;
 
         public UrhoTexturePage()
@@ -55,7 +55,6 @@ namespace ControlCatalog.Pages
             _urhoPlaceHolder.Focusable = true;
             this.Focusable = true;
             _urhoPlaceHolder.Stretch = Stretch.Fill;
-
         }
 
         private void InitializeComponent()
@@ -171,20 +170,21 @@ namespace ControlCatalog.Pages
             }
         }
 
-        private unsafe void Runner()
+        private unsafe void WarmupRunner()
         {
-            int [] sleepArray  = {50,50,50,50,50,50,50,50,50,50,500};
-            int sleepIndex = 0;
+            int runningCounter = 0;
             while (isRunnerRunning)
             {
                 AvaloniaUrhoContext.EnsureInvokeOnMainThread(() =>
                 {
-                    this.InvalidateVisual();
+                     this.InvalidateVisual();
                 });
 
-                Thread.Sleep(sleepArray[sleepIndex]);
+                Thread.Sleep(50);
 
-                sleepIndex = (sleepIndex < sleepArray.Length-1)? sleepIndex+1:sleepIndex;
+                runningCounter++;
+
+                if(runningCounter > 20)isRunnerRunning = false;
             }
         }
 
@@ -192,7 +192,7 @@ namespace ControlCatalog.Pages
         {
             Urho.Application.Current.Update += OnUrhoUpdate;
             isRunnerRunning = true;
-            runner = System.Threading.Tasks.Task.Run(Runner);
+            warmupRunner = System.Threading.Tasks.Task.Run(WarmupRunner);
         }
 
         protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
@@ -201,7 +201,7 @@ namespace ControlCatalog.Pages
 
 
             isRunnerRunning = false;
-            runner.Wait();
+            warmupRunner.Wait();
 
             if (renderTexture != null)
             {
