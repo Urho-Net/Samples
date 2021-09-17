@@ -104,9 +104,7 @@ namespace ControlCatalog.Pages
             renderPlaceHolder.Width = width;
             renderPlaceHolder.Height = height;
 
-
-            var Urhowindow = GetUrhoWindow();
-            Urhowindow.UrhoUIElement.Priority = 100;
+            // decrease the priorty below the windows priority (100)
             textureContainer.Priority = 99;
         }
 

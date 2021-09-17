@@ -21,6 +21,7 @@ namespace Urho.Avalonia
         public UrhoWindowImpl(AvaloniaUrhoContext avaloniaUrhoContext) : base(avaloniaUrhoContext)
         {
              RenderScaling = avaloniaUrhoContext.RenderScaling;
+             UrhoUIElement.Priority = 100;
         }
 
 
