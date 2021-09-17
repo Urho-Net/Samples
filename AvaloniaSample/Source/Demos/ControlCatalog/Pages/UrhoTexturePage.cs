@@ -185,7 +185,7 @@ namespace ControlCatalog.Pages
                     this.InvalidateVisual();
                 });
 
-                Thread.Sleep(100);
+                Thread.Sleep(500);
             }
         }
 
