@@ -129,9 +129,11 @@ namespace ControlCatalog.Pages
 
         private void UpdateUrho3D(float timeStep)
         {
+
+            var urhoWindow = GetUrhoWindow();
             if ( _urhoPlaceHolder.TransformedBounds != null)
             {
-                var urhoWindow = GetUrhoWindow();
+                
                 var renderScaling = urhoWindow.RenderScaling;
                 var transformedBounds = _urhoPlaceHolder.TransformedBounds.Value;
                 int transformedBoundsWidth = (int)(transformedBounds.Clip.Width * renderScaling);
@@ -165,7 +167,7 @@ namespace ControlCatalog.Pages
                 textureContainer.Position = renderPlaceHolder.ScreenPosition;
             }
 
-            if (this.IsFocused)
+            if (urhoWindow.UrhoUIElement.HasFocus())
             {
                 SimpleMoveCamera3D(timeStep);
             }

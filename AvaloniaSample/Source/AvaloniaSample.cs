@@ -133,7 +133,7 @@ namespace AvaloniaSample
             var mainWindow = new ControlCatalog.MainWindow();
             AvaloniaUrhoContext.MainWindow = mainWindow;
             mainWindow.Show(UI.Root);
-            mainWindow.Position = new Avalonia.PixelPoint(0, 0);
+            mainWindow.Position = new Avalonia.PixelPoint(100, 100);
 			// mainWindow.Width = Graphics.Width / avaloniaContext.RenderScaling;
 			// mainWindow.Height = Graphics.Height / avaloniaContext.RenderScaling;
 
