@@ -40,7 +40,32 @@ namespace ControlCatalog.Pages
 
         private WriteableBitmap _transparentBitmap;
         private PixelSize _transparentBitmapSize = new PixelSize();
-        private bool isDirty = false;
+        private bool isDirty
+        {
+            get
+            {
+
+                if (dirtyCounter > 0)
+                {
+                    dirtyCounter--;
+                    return true;
+                }
+                else
+                    return false;
+            }
+            set
+            {
+                if (value == true)
+                {
+                    dirtyCounter = 5;
+                }
+                else
+                {
+                    dirtyCounter = 0;
+                }
+            }
+        }
+        private int dirtyCounter = 0;
 
         UIElement renderPlaceHolder = null;
         BorderImage textureContainer = null;
@@ -178,6 +203,8 @@ namespace ControlCatalog.Pages
 
         private unsafe void Runner()
         {
+            int [] sleepArray  = {50,50,50,50,50,50,50,50,50,50,500};
+            int sleepIndex = 0;
             while (isRunnerRunning)
             {
                 AvaloniaUrhoContext.EnsureInvokeOnMainThread(() =>
@@ -185,7 +212,9 @@ namespace ControlCatalog.Pages
                     this.InvalidateVisual();
                 });
 
-                Thread.Sleep(500);
+                Thread.Sleep(sleepArray[sleepIndex]);
+
+                sleepIndex = (sleepIndex < sleepArray.Length-1)? sleepIndex+1:sleepIndex;
             }
         }
 
@@ -215,6 +244,12 @@ namespace ControlCatalog.Pages
             {
                 textureContainer.Remove();
                 textureContainer = null;
+            }
+
+            if (_transparentBitmap != null)
+            {
+                _transparentBitmap?.Dispose();
+                _transparentBitmap = null;
             }
 
 

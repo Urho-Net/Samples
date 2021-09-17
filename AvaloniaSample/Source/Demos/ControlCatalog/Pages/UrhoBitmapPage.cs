@@ -153,6 +153,12 @@ namespace ControlCatalog.Pages
                 renderTexture = null;
             }
 
+            if (_bitmap != null)
+            {
+                _bitmap?.Dispose();
+                _bitmap = null;
+            }
+
             _bitmapSize = new PixelSize(0,0);
 
         }
