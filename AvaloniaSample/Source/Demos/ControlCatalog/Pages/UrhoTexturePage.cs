@@ -40,32 +40,6 @@ namespace ControlCatalog.Pages
 
         private WriteableBitmap _transparentBitmap;
         private PixelSize _transparentBitmapSize = new PixelSize();
-        private bool isDirty
-        {
-            get
-            {
-
-                if (dirtyCounter > 0)
-                {
-                    dirtyCounter--;
-                    return true;
-                }
-                else
-                    return false;
-            }
-            set
-            {
-                if (value == true)
-                {
-                    dirtyCounter = 5;
-                }
-                else
-                {
-                    dirtyCounter = 0;
-                }
-            }
-        }
-        private int dirtyCounter = 0;
 
         UIElement renderPlaceHolder = null;
         BorderImage textureContainer = null;
@@ -81,8 +55,7 @@ namespace ControlCatalog.Pages
             _urhoPlaceHolder.Focusable = true;
             this.Focusable = true;
             _urhoPlaceHolder.Stretch = Stretch.Fill;
-            _urhoPlaceHolder.LayoutUpdated += OnLayoutUpdated;
-            // Background = new SolidColorBrush(Colors.Transparent);
+
         }
 
         private void InitializeComponent()
@@ -154,16 +127,10 @@ namespace ControlCatalog.Pages
             UpdateUrho3D(evt.TimeStep);
         }
 
-        private void OnLayoutUpdated(object sender, EventArgs e)
-        {
-            isDirty = true;
-        }
-
         private void UpdateUrho3D(float timeStep)
         {
-            if (isDirty == true && _urhoPlaceHolder.TransformedBounds != null)
+            if ( _urhoPlaceHolder.TransformedBounds != null)
             {
-                isDirty = false;
                 var urhoWindow = GetUrhoWindow();
                 var renderScaling = urhoWindow.RenderScaling;
                 var transformedBounds = _urhoPlaceHolder.TransformedBounds.Value;
@@ -182,11 +149,14 @@ namespace ControlCatalog.Pages
                     _transparentBitmap = new WriteableBitmap(new PixelSize(width, height), new Vector(96, 96), PixelFormat.Rgba8888, AlphaFormat.Opaque);
                 }
 
-                renderPlaceHolder.Position = new IntVector2((int)(transformedBounds.Clip.Left * renderScaling), (int)(transformedBounds.Clip.Top * renderScaling));
-                renderPlaceHolder.Width = transformedBoundsWidth;
-                renderPlaceHolder.Height = transformedBoundsHeight;
-                textureContainer.Width = renderPlaceHolder.Width;
-                textureContainer.Height = renderPlaceHolder.Height;
+                if (renderPlaceHolder.Width != transformedBoundsWidth || renderPlaceHolder.Height != transformedBoundsHeight)
+                {
+                    renderPlaceHolder.Position = new IntVector2((int)(transformedBounds.Clip.Left * renderScaling), (int)(transformedBounds.Clip.Top * renderScaling));
+                    renderPlaceHolder.Width = transformedBoundsWidth;
+                    renderPlaceHolder.Height = transformedBoundsHeight;
+                    textureContainer.Width = renderPlaceHolder.Width;
+                    textureContainer.Height = renderPlaceHolder.Height;
+                }
             }
 
 
@@ -223,7 +193,6 @@ namespace ControlCatalog.Pages
             Urho.Application.Current.Update += OnUrhoUpdate;
             isRunnerRunning = true;
             runner = System.Threading.Tasks.Task.Run(Runner);
-            isDirty = true;
         }
 
         protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
