@@ -11,11 +11,13 @@ using Avalonia.Platform;
 using Urho;
 using Urho.Avalonia;
 using Urho.Urho2D;
+using Urho.Gui;
+
 #pragma warning disable 4014
 
 namespace ControlCatalog.Pages
 {
-    public class UrhoBitmapPage : UserControl
+    public class UrhoTexturePage : UserControl
     {
 
         Camera camera;
@@ -23,7 +25,7 @@ namespace ControlCatalog.Pages
         protected Node CameraNode { get; set; }
         protected const float TouchSensitivity = 2;
         protected float Yaw { get; set; }
-		protected float Pitch { get; set; }
+        protected float Pitch { get; set; }
         static readonly Random random = new Random();
         /// Return a random float between 0.0 (inclusive) and 1.0 (exclusive.)
         public static float NextRandom() { return (float)random.NextDouble(); }
@@ -36,16 +38,18 @@ namespace ControlCatalog.Pages
 
         private readonly Image _urhoPlaceHolder = null;
 
-        private WriteableBitmap _bitmap;
-        private PixelSize _bitmapSize = new PixelSize();
+        private WriteableBitmap _transparentBitmap;
+        private PixelSize _transparentBitmapSize = new PixelSize();
         private bool isDirty = false;
 
+        UIElement renderPlaceHolder = null;
+        BorderImage textureContainer = null;
         Texture2D renderTexture = null;
 
         Task runner = null;
         bool isRunnerRunning = false;
 
-        public UrhoBitmapPage()
+        public UrhoTexturePage()
         {
             this.InitializeComponent();
             _urhoPlaceHolder = this.FindControl<Image>("UrhoPlaceHolder");
@@ -53,6 +57,7 @@ namespace ControlCatalog.Pages
             this.Focusable = true;
             _urhoPlaceHolder.Stretch = Stretch.Fill;
             _urhoPlaceHolder.LayoutUpdated += OnLayoutUpdated;
+            // Background = new SolidColorBrush(Colors.Transparent);
         }
 
         private void InitializeComponent()
@@ -75,16 +80,44 @@ namespace ControlCatalog.Pages
                 renderTexture = null;
             }
 
+            if (textureContainer != null)
+            {
+                textureContainer.Remove();
+                textureContainer = null;
+            }
+
+            if (renderPlaceHolder != null)
+            {
+                renderPlaceHolder.Remove();
+                renderPlaceHolder = null;
+            }
+
+
             renderTexture = new Texture2D();
             renderTexture.SetSize(width, height, Graphics.RGBAFormat, TextureUsage.Rendertarget);
+
+            textureContainer = Urho.Application.Current.UI.Root.CreateBorderImage();
+            textureContainer.Width = width;
+            textureContainer.Height = height;
+            textureContainer.Texture = renderTexture;
+
+            var urhoWindow = GetUrhoWindow();
+            renderPlaceHolder = urhoWindow.UrhoUIElement.CreateChild<UIElement>();
+            renderPlaceHolder.Width = width;
+            renderPlaceHolder.Height = height;
+
+
+            var Urhowindow = GetUrhoWindow();
+            Urhowindow.UrhoUIElement.Priority = 100;
+            textureContainer.Priority = 99;
         }
 
         public override void Render(DrawingContext context)
         {
 
-            if (_bitmap != null)
+            if (_transparentBitmap != null)
             {
-                context.DrawImage(_bitmap, new Avalonia.Rect(0, 0, _bitmap.PixelSize.Width, _bitmap.PixelSize.Height),
+                context.DrawImage(_transparentBitmap, new Avalonia.Rect(0, 0, _transparentBitmap.PixelSize.Width, _transparentBitmap.PixelSize.Height),
                                 new Avalonia.Rect(Bounds.Size));
             }
 
@@ -106,18 +139,35 @@ namespace ControlCatalog.Pages
             if (isDirty == true && _urhoPlaceHolder.TransformedBounds != null)
             {
                 isDirty = false;
+                var urhoWindow = GetUrhoWindow();
+                var renderScaling = urhoWindow.RenderScaling;
+                var transformedBounds = _urhoPlaceHolder.TransformedBounds.Value;
+                int transformedBoundsWidth = (int)(transformedBounds.Clip.Width * renderScaling);
+                int transformedBoundsHeight = (int)(transformedBounds.Clip.Height * renderScaling);
 
-                int width = Urho.Application.Current.Graphics.Width / 2;
-                int height = Urho.Application.Current.Graphics.Height / 2;
-
-                if (width != _bitmapSize.Width || height != _bitmapSize.Height)
+                if (renderTexture == null)
                 {
+                    int width = Urho.Application.Current.Graphics.Width;
+                    int height = Urho.Application.Current.Graphics.Height;
+
                     CreateRenderTexture(width, height);
                     SetViewPort();
-                    _bitmapSize = new PixelSize(width, height);
-                    _bitmap?.Dispose();
-                    _bitmap = new WriteableBitmap(_bitmapSize, new Vector(96, 96), PixelFormat.Rgba8888, AlphaFormat.Opaque);
+                    _transparentBitmapSize = new PixelSize(width, height);
+                    _transparentBitmap?.Dispose();
+                    _transparentBitmap = new WriteableBitmap(new PixelSize(width, height), new Vector(96, 96), PixelFormat.Rgba8888, AlphaFormat.Opaque);
                 }
+
+                renderPlaceHolder.Position = new IntVector2((int)(transformedBounds.Clip.Left * renderScaling), (int)(transformedBounds.Clip.Top * renderScaling));
+                renderPlaceHolder.Width = transformedBoundsWidth;
+                renderPlaceHolder.Height = transformedBoundsHeight;
+                textureContainer.Width = renderPlaceHolder.Width;
+                textureContainer.Height = renderPlaceHolder.Height;
+            }
+
+
+            if (textureContainer != null)
+            {
+                textureContainer.Position = renderPlaceHolder.ScreenPosition;
             }
 
             if (this.IsFocused)
@@ -126,24 +176,32 @@ namespace ControlCatalog.Pages
             }
         }
 
+        private unsafe void Runner()
+        {
+            while (isRunnerRunning)
+            {
+                AvaloniaUrhoContext.EnsureInvokeOnMainThread(() =>
+                {
+                    this.InvalidateVisual();
+                });
+
+                Thread.Sleep(100);
+            }
+        }
+
         protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
         {
-
-
             Urho.Application.Current.Update += OnUrhoUpdate;
-
             isRunnerRunning = true;
             runner = System.Threading.Tasks.Task.Run(Runner);
-        
             isDirty = true;
-
         }
 
         protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
         {
             Urho.Application.Current.Update -= OnUrhoUpdate;
 
-            
+
             isRunnerRunning = false;
             runner.Wait();
 
@@ -153,49 +211,18 @@ namespace ControlCatalog.Pages
                 renderTexture = null;
             }
 
-            _bitmapSize = new PixelSize(0,0);
-
-        }
-
-        private unsafe void Runner()
-        {
-            while (isRunnerRunning)
+            if (textureContainer != null)
             {
-                AvaloniaUrhoContext.EnsureInvokeOnMainThread(() =>
-                {
-                    CopyRenderTextureToBitmap();
-                    this.InvalidateVisual();
-                });
-
-                Thread.Sleep(40);
+                textureContainer.Remove();
+                textureContainer = null;
             }
+
+
+            _transparentBitmapSize = new PixelSize(0, 0);
+
         }
 
-        private unsafe void CopyRenderTextureToBitmap()
-        {
-            if (renderTexture != null)
-            {
-                var image = renderTexture.Image;
 
-                if (_bitmap == null)
-                    _bitmap = new WriteableBitmap(new PixelSize(image.Width, image.Height), new Vector(96, 96), PixelFormat.Rgba8888, AlphaFormat.Opaque);
-
-                if (_bitmap.PixelSize.Width != image.Width || _bitmap.PixelSize.Height != image.Height)
-                {
-                    _bitmap?.Dispose();
-                    _bitmap = new WriteableBitmap(new PixelSize(image.Width, image.Height), new Vector(96, 96), PixelFormat.Rgba8888, AlphaFormat.Opaque);
-                }
-
-                using (var l = _bitmap.Lock())
-                {
-                    
-                    // Assumption is that  source and destination are the same size and pixel-format
-                    var copySize = 4 * image.Width * image.Height;
-                    Buffer.MemoryCopy(image.Data, (void*)l.Address,copySize,copySize);
-                }
-
-            }
-        }
 
         void CreateScene()
         {

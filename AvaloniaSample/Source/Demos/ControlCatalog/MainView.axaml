@@ -11,6 +11,7 @@
         </Style>
     </Grid.Styles>  
     <TabControl Classes="sidebar" Name="Sidebar">
+      <TabItem Header="UrhoTexture"><pages:UrhoTexturePage/></TabItem>
       <TabItem Header="UrhoView"><pages:UrhoViewPage/></TabItem>
       <TabItem Header="UrhoBitmap"><pages:UrhoBitmapPage/></TabItem>
       <TabItem Header="Acrylic"><pages:AcrylicPage/></TabItem>
