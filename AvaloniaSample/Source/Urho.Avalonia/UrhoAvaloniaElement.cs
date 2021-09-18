@@ -1,5 +1,6 @@
 ﻿using System;
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Input.Raw;
 using Avalonia.Visuals;
@@ -14,6 +15,8 @@ namespace Urho.Avalonia
     public class UrhoAvaloniaElement : Sprite
     {
         public UrhoTopLevelImpl _windowImpl;
+        public Size minSize ;
+        public Size maxSize;
         
        Input UrhoInput = null ;
 
@@ -31,7 +34,7 @@ namespace Urho.Avalonia
         WindowDragMode dragMode_ = WindowDragMode.None;
 
         bool Movable = false;
-        bool Resizable = false;
+        public bool Resizable = true;
 
         public WindowTitleBar windowTitleBar = null;
 
@@ -68,12 +71,52 @@ namespace Urho.Avalonia
 
         }
 
+        public void MaximizeWindow(bool maximize)
+        {
+            if(Resizable == false )return;
+
+            if (maximize == true && isMaximized == false)
+            {
+                isMaximized = true;
+
+               var window = (_windowImpl as UrhoWindowImpl );
+               window.WindowState = WindowState.Maximized;
+
+                previousPosition = Position;
+                previousSize = Size;
+                if (windowTitleBar != null)
+                {
+                    this.SetPosition(-ScreenPosition.X + Position.X, -ScreenPosition.Y + Position.Y + windowTitleBar.Height);
+                    this.Size = new IntVector2(Application.Current.Graphics.Width, Application.Current.Graphics.Height - windowTitleBar.Height);
+                }
+                else
+                {
+                    this.SetPosition(-ScreenPosition.X + Position.X, -ScreenPosition.Y + Position.Y);
+                    this.Size = new IntVector2(Application.Current.Graphics.Width, Application.Current.Graphics.Height);
+                }
+            }
+            else if (maximize == false && isMaximized == true)
+            {
+                isMaximized = false;
+                var window = (_windowImpl as UrhoWindowImpl);
+                window.WindowState = WindowState.Normal;
+                this.SetPosition(previousPosition.X, previousPosition.Y);
+                this.Size = previousSize;
+            }
+        }
+
+      
         public void ToggleMaximizeWindow()
         {
+            if(Resizable == false )return;
+
             isMaximized = ! isMaximized;
 
             if(isMaximized == true)
             {
+                var window = (_windowImpl as UrhoWindowImpl);
+                window.WindowState = WindowState.Maximized;
+
                 previousPosition = Position;
                 previousSize = Size;
 
@@ -82,6 +125,9 @@ namespace Urho.Avalonia
             }
             else
             {
+                var window = (_windowImpl as UrhoWindowImpl);
+                window.WindowState = WindowState.Normal;
+
                 this.SetPosition(previousPosition.X,previousPosition.Y);
                 this.Size = previousSize;
             }
@@ -114,7 +160,6 @@ namespace Urho.Avalonia
                 }
 
                 Movable = false;
-                Resizable = true;
             }
         }
 
@@ -127,7 +172,6 @@ namespace Urho.Avalonia
                 windowTitleBar = null;
 
                 Movable = false;
-                Resizable = false;
             }
         }
 
@@ -439,17 +483,61 @@ namespace Urho.Avalonia
         private void OnResized(ResizedEventArgs obj)
         {
          
-            var size = this.Size;
-            var clientSize = new global::Avalonia.Size(size.X / _windowImpl.RenderScaling, size.Y / _windowImpl.RenderScaling);
+          
+            var clientSize = new global::Avalonia.Size(Size.X / _windowImpl.RenderScaling, Size.Y / _windowImpl.RenderScaling);
+
+            bool isClamped = false;
+
+            if(minSize.Width != 0)
+            {
+                if (clientSize.Width < minSize.Width)
+                {
+                    clientSize = clientSize.WithWidth(minSize.Width);
+                    isClamped = true;
+                }
+            }
+
+            if (minSize.Height != 0)
+            {
+                if (clientSize.Height < minSize.Height)
+                {
+                    clientSize = clientSize.WithHeight(minSize.Height);
+                    isClamped = true;
+                }
+            }
+
+            if (maxSize.Width != 0)
+            {
+                if (clientSize.Width > maxSize.Width)
+                {
+                    clientSize = clientSize.WithWidth(maxSize.Width);
+                    isClamped = true;
+                }
+            }
+
+            if (maxSize.Height != 0)
+            {
+                if (clientSize.Height > maxSize.Height)
+                {
+                    clientSize = clientSize.WithHeight(maxSize.Height);
+                    isClamped = true;
+                }
+            }
+
+            if( isClamped == true)
+            {
+                Size = new IntVector2((int)(clientSize.Width * _windowImpl.RenderScaling), (int)(clientSize.Height * _windowImpl.RenderScaling));
+            }
+
             if (_windowImpl.ClientSize != clientSize)
             {
                 _windowImpl.Resize(clientSize);
             }
-            ImageRect = new IntRect(0, 0, size.X, size.Y);
+            ImageRect = new IntRect(0, 0, Size.X, Size.Y);
 
             if (windowTitleBar != null)
             {
-                windowTitleBar.Width = size.X;
+                windowTitleBar.Width = Size.X;
             }
         }
 

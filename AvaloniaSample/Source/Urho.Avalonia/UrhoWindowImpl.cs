@@ -12,8 +12,6 @@ namespace Urho.Avalonia
 {
     public class UrhoWindowImpl : UrhoTopLevelImpl, IWindowImpl  
     {
-        private Size _minSize;
-        private Size _maxSize;
         private WindowState _windowState;
 
         SystemDecorations _systemDecorations = SystemDecorations.Full;
@@ -104,6 +102,7 @@ namespace Urho.Avalonia
 
         public virtual void CanResize(bool value)
         {
+            UrhoUIElement.Resizable = value;
         }
 
         public virtual void BeginMoveDrag(PointerPressedEventArgs e)
@@ -122,8 +121,8 @@ namespace Urho.Avalonia
 
         public virtual void SetMinMaxSize(Size minSize, Size maxSize)
         {
-            _minSize = minSize;
-            _maxSize = maxSize;
+            UrhoUIElement.minSize = minSize;
+            UrhoUIElement.maxSize = maxSize;
         }
 
         public virtual void SetExtendClientAreaToDecorationsHint(bool extendIntoClientAreaHint)
@@ -148,9 +147,18 @@ namespace Urho.Avalonia
                 {
                     _windowState = value;
                     if (_windowState == WindowState.Maximized)
+                    {
                         IsFullscreen = true;
-                    else
+                        UrhoUIElement.MaximizeWindow(true);
+                    }
+                    else if (_windowState == WindowState.Normal)
+                    {
                         IsFullscreen = false;
+                        UrhoUIElement.MaximizeWindow(false);
+                    }
+                    else{
+                        IsFullscreen = false;
+                    }
                     WindowStateChanged?.Invoke(_windowState);
                 }
             }
