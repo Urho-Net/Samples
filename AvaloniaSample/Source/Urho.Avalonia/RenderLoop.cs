@@ -72,7 +72,7 @@ namespace Urho.Avalonia
             Contract.Requires<ArgumentNullException>(i != null);
             Dispatcher.UIThread.VerifyAccess();
 
-            lock (_items)
+            using (var l = _avaloniaUrhoContext.DeferredRendererLock.Lock())
             {
                 _items.Add(i);
 
@@ -88,7 +88,7 @@ namespace Urho.Avalonia
         {
             Contract.Requires<ArgumentNullException>(i != null);
             Dispatcher.UIThread.VerifyAccess();
-            lock (_items)
+            using (var l = _avaloniaUrhoContext.DeferredRendererLock.Lock())
             {
                 _items.Remove(i);
 
@@ -151,19 +151,20 @@ namespace Urho.Avalonia
 
                         try
                         {
-                            lock (_items)
+                            using (var l2 = _avaloniaUrhoContext.DeferredRendererLock.Lock())
                             {
                                 _itemsCopy.Clear();
                                 foreach (var i in _items)
                                     _itemsCopy.Add(i);
-                            }
 
-                            for (int i = 0; i < _itemsCopy.Count; i++)
-                            {
-                                _itemsCopy[i].Render();
-                            }
 
-                            _itemsCopy.Clear();
+                                for (int i = 0; i < _itemsCopy.Count; i++)
+                                {
+                                    _itemsCopy[i].Render();
+                                }
+
+                                _itemsCopy.Clear();
+                            }
                         }
                         catch (Exception ex)
                         {

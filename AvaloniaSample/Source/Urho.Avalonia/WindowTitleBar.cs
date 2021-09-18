@@ -14,10 +14,11 @@ namespace Urho.Avalonia
         int windowTitleBarHeight;
         UrhoAvaloniaElement  parent;
 
+
         public VGLabel windowTitle = null;
 
         VGButton closeButton = null;
-        VGButton minimizeButton = null;
+        // VGButton minimizeButton = null;
 
         VGButton maximizeButton = null;
 
@@ -43,7 +44,7 @@ namespace Urho.Avalonia
             windowTitle = new VGLabel(this, "", Color.Black, new Color(1.0f, 1.0f, 1.0f, 1.0f));
             windowTitle.CornerRadius = 0f;
 
-            int buttonContainerSize = 3 * (Application.Current.Graphics.Height / 40 + 5);
+            int buttonContainerSize = 2 * (Application.Current.Graphics.Height / 40 + 5);
             int buttonSize = Application.Current.Graphics.Height / 40;
 
             var buttonsContainer = CreateChild<UIElement>();
@@ -53,13 +54,14 @@ namespace Urho.Avalonia
             buttonsContainer.LayoutSpacing = 5;
 
 
-            minimizeButton = new VGButton(this, "__","", new Color(0.5f, 0.5f, 0.5f, 1.0f),6);
-            buttonsContainer.AddChild(minimizeButton);
-            minimizeButton.MaxWidth = buttonSize;
+            // minimizeButton = new VGButton(this, "__","", new Color(0.5f, 0.5f, 0.5f, 1.0f),6);
+            // buttonsContainer.AddChild(minimizeButton);
+            // minimizeButton.MaxWidth = buttonSize;
 
             maximizeButton = new VGButton(this, "[  ]","", new Color(0.5f, 0.5f, 0.5f, 1.0f),6);
             buttonsContainer.AddChild(maximizeButton);
             maximizeButton.MaxWidth = buttonSize;
+            maximizeButton.Click += OnToggleMaximizeWindow;
 
             closeButton = new VGButton(this, "X","", new Color(0.5f, 0.5f, 0.5f, 1.0f),6);
             buttonsContainer.AddChild(closeButton);
@@ -69,14 +71,22 @@ namespace Urho.Avalonia
 
         }
 
+        private void OnToggleMaximizeWindow(ClickEventArgs obj)
+        {
+            parent.ToggleMaximizeWindow(); 
+        }
+
         protected override void Dispose(bool disposing)
         {
      
             if (!Application.isExiting)
             {
-             
+
+                closeButton.Click -= OnCloseWindow;
+                maximizeButton.Click -= OnToggleMaximizeWindow;
+
                 windowTitle.Dispose();
-                minimizeButton.Dispose();
+                // minimizeButton.Dispose();
                 maximizeButton.Dispose();
                 closeButton.Dispose();
 

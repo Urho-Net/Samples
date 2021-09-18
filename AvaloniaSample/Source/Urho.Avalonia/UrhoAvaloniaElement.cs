@@ -37,6 +37,10 @@ namespace Urho.Avalonia
 
         string windowTitle = string.Empty;
 
+        bool isMaximized = false;
+        IntVector2 previousPosition;
+        IntVector2 previousSize;
+
         public UrhoAvaloniaElement(Context context) : base(context)
         {
             SetEnabledRecursive(true);
@@ -62,6 +66,25 @@ namespace Urho.Avalonia
 
             Application.Current.Engine.PostUpdate += OnPostUpdate;
 
+        }
+
+        public void ToggleMaximizeWindow()
+        {
+            isMaximized = ! isMaximized;
+
+            if(isMaximized == true)
+            {
+                previousPosition = Position;
+                previousSize = Size;
+
+                this.SetPosition( -ScreenPosition.X+Position.X,-ScreenPosition.Y+Position.Y+windowTitleBar.Height);
+                this.Size = new IntVector2(Application.Current.Graphics.Width,Application.Current.Graphics.Height-windowTitleBar.Height);
+            }
+            else
+            {
+                this.SetPosition(previousPosition.X,previousPosition.Y);
+                this.Size = previousSize;
+            }
         }
 
         public void SetTitle(string title)
