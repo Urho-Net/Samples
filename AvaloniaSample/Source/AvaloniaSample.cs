@@ -30,6 +30,8 @@ namespace AvaloniaSample
 		{
 			base.Start ();
 
+			VGRendering.LoadResources();
+
             Log.LogLevel = LogLevel.Info;
             CreateScene ();
 			SimpleCreateInstructionsWithWasd ();

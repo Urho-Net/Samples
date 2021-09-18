@@ -13,7 +13,7 @@ namespace Urho.Avalonia
 {
     public class UrhoAvaloniaElement : Sprite
     {
-        private UrhoTopLevelImpl _windowImpl;
+        public UrhoTopLevelImpl _windowImpl;
         
        Input UrhoInput = null ;
 
@@ -30,8 +30,12 @@ namespace Urho.Avalonia
         IntRect resizeBorder_ = new IntRect(20, 20, 20, 20);
         WindowDragMode dragMode_ = WindowDragMode.None;
 
-        bool Movable = true;
-        bool Resizable = true;
+        bool Movable = false;
+        bool Resizable = false;
+
+        public WindowTitleBar windowTitleBar = null;
+
+        string windowTitle = string.Empty;
 
         public UrhoAvaloniaElement(Context context) : base(context)
         {
@@ -57,7 +61,51 @@ namespace Urho.Avalonia
             Application.Current.Input.MouseWheel += OnMouseWheel;
 
             Application.Current.Engine.PostUpdate += OnPostUpdate;
-    
+
+        }
+
+        public void SetTitle(string title)
+        {
+            if (windowTitleBar == null)
+            {
+                CreateTitleBar();
+            }
+
+            windowTitle = title;
+            windowTitleBar.windowTitle.Text = windowTitle;
+
+        }
+        public void CreateTitleBar()
+        {
+            if (windowTitleBar == null)
+            {
+                windowTitleBar = new WindowTitleBar(this);
+                AddChild(windowTitleBar);
+                windowTitleBar.Width = this.Width;
+
+                this.SetPosition(Position.X,Position.Y + windowTitleBar.Height);
+
+                if (windowTitle != string.Empty)
+                {
+                    windowTitleBar.windowTitle.Text = windowTitle;
+                }
+
+                Movable = false;
+                Resizable = true;
+            }
+        }
+
+        public void DeleteTitleBar()
+        {
+            if (windowTitleBar != null)
+            {
+                this.SetPosition(Position.X,Position.Y - windowTitleBar.Height);
+                windowTitleBar.Dispose();
+                windowTitleBar = null;
+
+                Movable = false;
+                Resizable = false;
+            }
         }
 
         protected override void Dispose(bool disposing)
@@ -80,6 +128,12 @@ namespace Urho.Avalonia
                     Application.Current.Input.MouseMoved -= OnMouseMove;
                     Application.Current.Input.MouseWheel -= OnMouseWheel;
                     Application.Current.Engine.PostUpdate -= OnPostUpdate;
+
+                    if (windowTitleBar != null)
+                    {
+                        windowTitleBar.Dispose();
+                        windowTitleBar = null;
+                    }
                 }
            
             }
@@ -290,6 +344,22 @@ namespace Urho.Avalonia
             return mode;
         }
 
+        public void OnWindowTitleDragBegin(DragBeginEventArgs e)
+        {
+            dragBeginCursor_ = new IntVector2(e.X, e.Y);
+            dragBeginPosition_ = Position;
+        }
+
+        public void OnWindowTitleDragMove(DragMoveEventArgs e)
+        {
+            IntVector2 delta = new IntVector2(e.X - dragBeginCursor_.X, e.Y - dragBeginCursor_.Y);
+            Position = dragBeginPosition_ + delta;
+        }
+        public void OnWindowTitleDragEnd(DragEndEventArgs e)
+        {
+
+        }
+
         private void OnDragBegin(DragBeginEventArgs e)
         {
             if (e.Element != this)
@@ -353,6 +423,11 @@ namespace Urho.Avalonia
                 _windowImpl.Resize(clientSize);
             }
             ImageRect = new IntRect(0, 0, size.X, size.Y);
+
+            if (windowTitleBar != null)
+            {
+                windowTitleBar.Width = size.X;
+            }
         }
 
         private void OnKeyDown(KeyDownEventArgs evt)

@@ -16,7 +16,7 @@ namespace Urho.Avalonia
         private Size _maxSize;
         private WindowState _windowState;
 
-      
+        SystemDecorations _systemDecorations = SystemDecorations.Full;
 
         public UrhoWindowImpl(AvaloniaUrhoContext avaloniaUrhoContext) : base(avaloniaUrhoContext)
         {
@@ -25,13 +25,17 @@ namespace Urho.Avalonia
         }
 
 
-
         public virtual void Show(bool activate)
         {
             //TBD ELI
             if (UrhoUIElement.Parent == null)
             {
                 UrhoUIElement.SetParent(Application.Current.UI.Root);
+            }
+
+            if (_systemDecorations == SystemDecorations.Full)
+            {
+                UrhoUIElement.CreateTitleBar();
             }
         }
 
@@ -59,6 +63,7 @@ namespace Urho.Avalonia
         
         public virtual void SetTitle(string title)
         {
+            UrhoUIElement.SetTitle(title);    
         }
 
         public virtual void SetParent(IWindowImpl parent)
@@ -77,6 +82,16 @@ namespace Urho.Avalonia
 
         public virtual void SetSystemDecorations(SystemDecorations enabled)
         {
+            _systemDecorations = enabled;
+
+            if(_systemDecorations == SystemDecorations.None)
+            {
+                UrhoUIElement.DeleteTitleBar();
+            }
+            else if (_systemDecorations == SystemDecorations.Full)
+            {
+                UrhoUIElement.CreateTitleBar();
+            }
         }
 
         public virtual void SetIcon(IWindowIconImpl icon)

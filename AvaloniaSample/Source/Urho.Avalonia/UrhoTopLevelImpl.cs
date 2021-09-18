@@ -20,9 +20,9 @@ namespace Urho.Avalonia
     public class UrhoTopLevelImpl : ITopLevelImpl, IFramebufferPlatformSurface
     {
         private PixelPoint _position;
-        private  UIElement _urhoUIElement = null; //new UrhoAvaloniaSprite(Application.CurrentContext);
+        private  UrhoAvaloniaElement _urhoUIElement = null; //new UrhoAvaloniaSprite(Application.CurrentContext);
         const double CONST_DPI_VALUE_96 = 96.0;
-        public UIElement UrhoUIElement
+        public UrhoAvaloniaElement UrhoUIElement
         {
             get
             {
