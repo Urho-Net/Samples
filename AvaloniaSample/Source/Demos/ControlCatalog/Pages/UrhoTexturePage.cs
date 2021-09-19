@@ -12,6 +12,7 @@ using Urho;
 using Urho.Avalonia;
 using Urho.Urho2D;
 using Urho.Gui;
+using Urho.IO;
 
 #pragma warning disable 4014
 
@@ -48,6 +49,11 @@ namespace ControlCatalog.Pages
         Task warmupRunner = null;
         bool isRunnerRunning = false;
 
+        Urho.Timer fpsTimer = null;
+        float fpsCounter = 0;
+
+        Urho.Gui.Text fpsText = null;
+
         public UrhoTexturePage()
         {
             this.InitializeComponent();
@@ -60,7 +66,10 @@ namespace ControlCatalog.Pages
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
+             fpsTimer = new Urho.Timer();
+             fpsCounter = 0;
             CreateScene();
+           
         }
 
         void CreateRenderTexture(int width, int height)
@@ -105,6 +114,10 @@ namespace ControlCatalog.Pages
 
             // decrease the priorty below the windows priority (100)
             textureContainer.Priority = 99;
+
+            fpsText = textureContainer.CreateText("fps");
+            fpsText.SetFont(Urho.Application.Current.ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 25);
+            fpsText.Visible = true;
         }
 
         public override void Render(DrawingContext context)
@@ -122,12 +135,25 @@ namespace ControlCatalog.Pages
         private void OnUrhoUpdate(UpdateEventArgs evt)
         {
             UpdateUrho3D(evt.TimeStep);
+
+            fpsCounter++;
+            if(fpsTimer.GetMSec(false) >= 1000)
+            {
+                fpsTimer.Reset();
+                if (fpsText != null)
+                    fpsText.Value = " FPS:" + fpsCounter.ToString();
+                fpsCounter = 0;
+            }
         }
 
         private void UpdateUrho3D(float timeStep)
         {
 
             var urhoWindow = GetUrhoWindow();
+            var Input = Urho.Application.Current.Input;
+
+         
+
             if ( _urhoPlaceHolder.TransformedBounds != null)
             {
                 
@@ -158,16 +184,23 @@ namespace ControlCatalog.Pages
                 }
             }
 
-
+            
             if (textureContainer != null)
             {
                 textureContainer.Position = renderPlaceHolder.ScreenPosition;
             }
 
-            if (urhoWindow.UrhoUIElement.HasFocus())
+            var renderPlaceHolderScreenPosition = renderPlaceHolder.ScreenPosition;
+            var mousePosition = Input.MousePosition;
+
+            if (urhoWindow.UrhoUIElement.HasFocus() &&
+                mousePosition.X > renderPlaceHolderScreenPosition.X && mousePosition.X < renderPlaceHolderScreenPosition.X + renderPlaceHolder.Width &&
+                mousePosition.Y > renderPlaceHolderScreenPosition.Y && mousePosition.Y <  renderPlaceHolderScreenPosition.Y + renderPlaceHolder.Height )
             {
                 SimpleMoveCamera3D(timeStep);
             }
+
+            
         }
 
         private unsafe void WarmupRunner()
@@ -221,6 +254,7 @@ namespace ControlCatalog.Pages
                 _transparentBitmap = null;
             }
 
+            fpsText = null;
 
             _transparentBitmapSize = new PixelSize(0, 0);
 
