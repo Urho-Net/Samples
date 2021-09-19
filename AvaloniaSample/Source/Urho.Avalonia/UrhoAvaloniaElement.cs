@@ -693,12 +693,6 @@ namespace Urho.Avalonia
               
                 RawInputModifiers modifiers = RawInputModifiers.None;
 
-                modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.Left)) ? RawInputModifiers.LeftMouseButton : RawInputModifiers.None;
-                modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.Right)) ? RawInputModifiers.RightMouseButton : RawInputModifiers.None;
-                modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.Middle)) ? RawInputModifiers.MiddleMouseButton : RawInputModifiers.None;
-                modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.X1)) ? RawInputModifiers.XButton1MouseButton : RawInputModifiers.None;
-                modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.X2)) ? RawInputModifiers.XButton2MouseButton : RawInputModifiers.None;
-
                 UpdateInputModifiers(ref  modifiers);
 
                 var args = new RawPointerEventArgs(_windowImpl.MouseDevice, (ulong) AvaloniaUrhoContext.GlobalTimer.GetMSec(false),
@@ -715,11 +709,7 @@ namespace Urho.Avalonia
             if (_windowImpl != null)
             {
                
-                modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.Left)) ? RawInputModifiers.LeftMouseButton : RawInputModifiers.None;
-                modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.Right)) ? RawInputModifiers.RightMouseButton : RawInputModifiers.None;
-                modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.Middle)) ? RawInputModifiers.MiddleMouseButton : RawInputModifiers.None;
-                modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.X1)) ? RawInputModifiers.XButton1MouseButton : RawInputModifiers.None;
-                modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.X2)) ? RawInputModifiers.XButton2MouseButton : RawInputModifiers.None;
+                UpdateInputModifiers(ref  modifiers);
 
                 var args = new RawKeyEventArgs(_windowImpl.KeyboardDevice, (ulong)AvaloniaUrhoContext.GlobalTimer.GetMSec(false), _windowImpl.InputRoot, type, key, modifiers);
                 _windowImpl.Input?.Invoke(args);
@@ -743,6 +733,8 @@ namespace Urho.Avalonia
 
            
             Vector vector = new Vector(wheel_x * -0.1, wheel_y * 0.1);
+
+            UpdateInputModifiers(ref modifiers);
 
             var args = new RawMouseWheelEventArgs(_windowImpl.MouseDevice, (ulong)AvaloniaUrhoContext.GlobalTimer.GetMSec(false), _windowImpl.InputRoot, new Point(position.X, position.Y), vector, modifiers);
             _windowImpl.Input?.Invoke(args);
