@@ -89,7 +89,7 @@ namespace Urho.Avalonia
                 {
                     _position = value;
                     PositionChanged?.Invoke(_position);
-                    UrhoUIElement.Position = new IntVector2(_position.X, _position.Y);
+                    UrhoUIElement.SetAvaloniaPosition(_position.X, _position.Y);
                 }
             }
         }

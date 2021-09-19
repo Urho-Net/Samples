@@ -188,6 +188,19 @@ namespace Urho.Avalonia
             }
         }
 
+        public void SetAvaloniaPosition(int x ,int y)
+        {
+
+            if (windowTitleBar != null)
+            {
+                Position = new IntVector2(x, y + windowTitleBar.Height);
+            }
+            else{
+                Position = new IntVector2(x, y);
+            }
+
+        }
+
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
@@ -239,6 +252,7 @@ namespace Urho.Avalonia
             }
 
         }
+
 
         private void OnClickBegin(ClickEventArgs e)
         {
