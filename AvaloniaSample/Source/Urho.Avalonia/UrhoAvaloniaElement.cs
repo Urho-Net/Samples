@@ -699,6 +699,8 @@ namespace Urho.Avalonia
                 modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.X1)) ? RawInputModifiers.XButton1MouseButton : RawInputModifiers.None;
                 modifiers |= (UrhoInput.GetMouseButtonDown(MouseButton.X2)) ? RawInputModifiers.XButton2MouseButton : RawInputModifiers.None;
 
+                UpdateInputModifiers(ref  modifiers);
+
                 var args = new RawPointerEventArgs(_windowImpl.MouseDevice, (ulong) AvaloniaUrhoContext.GlobalTimer.GetMSec(false),
                     _windowImpl.InputRoot, type, new Point(position.X, position.Y),
                     modifiers);
