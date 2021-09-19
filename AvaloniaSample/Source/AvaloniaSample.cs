@@ -14,11 +14,12 @@ namespace AvaloniaSample
 	{
 		
 
-		Camera camera;
+		Camera camera = null;
 		Scene scene;
 
         private AvaloniaUrhoContext avaloniaContext;
        
+	   private bool isAvloaniaInitialized =false;
 
 		// private SampleAvaloniaWindow _window;
         [Preserve]
@@ -26,6 +27,10 @@ namespace AvaloniaSample
 
 		public AvaloniaSample(ApplicationOptions options):base(options){}
 
+        protected override void Setup()
+        {
+            base.Setup();
+        }
 		protected override void Start ()
 		{
 			base.Start ();
@@ -37,23 +42,42 @@ namespace AvaloniaSample
 			SimpleCreateInstructionsWithWasd ();
 			SetupViewport ();
 
-            UIElement root = UI.Root;
-            // Load the style sheet from xml
-            root.SetDefaultStyle(ResourceCache.GetXmlFile("UI/DefaultStyle.xml"));
+
+            UI.Root.SetDefaultStyle(ResourceCache.GetXmlFile("UI/DefaultStyle.xml"));
 			
 			Input.SetMouseVisible(true);
 			Input.SetMouseMode(MouseMode.Free);
+		
+		}
 
+
+		protected override void OnUpdate(float timeStep)
+		{
+			base.OnUpdate(timeStep);
+
+            if (camera != null)
+                SimpleMoveCamera3D(timeStep);
+
+			// Initializing Avlonia sample from here because the Graphics resolution might change in the startup of the application
+			if(isAvloaniaInitialized == false)
+			{
+				isAvloaniaInitialized = true;
+				InitializeAvlonaiSample();
+			}
+		}
+
+		void InitializeAvlonaiSample()
+		{
 			// InitializeAvaloniaTodoDemo();
 			// InitializeAvaloniaDockDemo();
 			// InitializeAvaloniaDockDemo2();
 			//  InitializeAvaloniaNotePadDemo();
+			
 			InitializeAvaloniaControlCatalogDemo();
-
-		
 		}
+   
 
-       void InitializeAvaloniaTodoDemo()
+        void InitializeAvaloniaTodoDemo()
 	   {
 		    avaloniaContext = Context.ConfigureAvalonia<Todo.App>();
 			avaloniaContext.RenderScaling = 2.0;
@@ -216,10 +240,5 @@ namespace AvaloniaSample
 			Renderer.SetViewport (0, new Viewport (Context, scene, camera, null));
 		}
 
-		protected override void OnUpdate(float timeStep)
-		{
-			base.OnUpdate(timeStep);
-			SimpleMoveCamera3D(timeStep);
-		}
 	}
 }
