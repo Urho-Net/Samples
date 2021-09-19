@@ -160,6 +160,13 @@ namespace Urho.Avalonia
                 }
 
                 Movable = false;
+
+                if(isMaximized == true)
+                {
+                    previousPosition.Y += windowTitleBar.Height;
+
+                    this.SetSize(Width,Height-windowTitleBar.Height);
+                }
             }
         }
 
@@ -167,6 +174,12 @@ namespace Urho.Avalonia
         {
             if (windowTitleBar != null)
             {
+                if (isMaximized == true)
+                {
+                    previousPosition.Y -= windowTitleBar.Height;
+                    this.SetSize(Width,Height+windowTitleBar.Height);
+                }
+
                 this.SetPosition(Position.X,Position.Y - windowTitleBar.Height);
                 windowTitleBar.Dispose();
                 windowTitleBar = null;
