@@ -45,6 +45,8 @@ namespace Urho.Avalonia
         IntVector2 previousPosition;
         IntVector2 previousSize;
 
+        IntVector2 ApplicationGraphicsSize =  new IntVector2() ;
+
         public UrhoAvaloniaElement(Context context) : base(context)
         {
             SetEnabledRecursive(true);
@@ -69,6 +71,8 @@ namespace Urho.Avalonia
             Application.Current.Input.MouseWheel += OnMouseWheel;
 
             Application.Current.Engine.PostUpdate += OnPostUpdate;
+
+            ApplicationGraphicsSize = Urho.Application.Current.Graphics.Size;
 
         }
 
@@ -239,6 +243,18 @@ namespace Urho.Avalonia
 
         private void OnPostUpdate(PostUpdateEventArgs evt)
         {
+
+            if (ApplicationGraphicsSize != Urho.Application.Current.Graphics.Size)
+            {
+                ApplicationGraphicsSize = Urho.Application.Current.Graphics.Size;
+
+                if (windowTitleBar != null)
+                {
+                    DeleteTitleBar();
+                    CreateTitleBar();
+                }
+            }
+
             if (!this.HasFocus()) return;
 
             RawInputModifiers modifiers = RawInputModifiers.None;
