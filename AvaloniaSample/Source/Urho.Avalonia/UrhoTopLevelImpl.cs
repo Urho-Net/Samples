@@ -73,7 +73,7 @@ namespace Urho.Avalonia
 
                     _dpi = value;
                     if (_framebufferSource != null) _framebufferSource.Dpi = new Vector(_dpi, _dpi);
-                    if (_hasActualSize) Resize(clientSize);
+                    if (_hasActualSize) Resize(clientSize,PlatformResizeReason.DpiChange);
                     ScalingChanged?.Invoke(RenderScaling);
                 }
             }
@@ -166,23 +166,8 @@ namespace Urho.Avalonia
         public AcrylicPlatformCompensationLevels AcrylicCompensationLevels { get; } =
             new AcrylicPlatformCompensationLevels(1, 1, 1);
 
-        public virtual void Resize(Size clientSize)
-        {
-            // TBD ELI
-            if (clientSize.Width == 0 || clientSize.Height == 0)
-            {
-                clientSize = new Size(1300, 700);
-                Invalidate();
-            }
-
-            var scaling = RenderScaling;
-            var pixelSize = new PixelSize((int)(clientSize.Width * scaling), (int)(clientSize.Height * scaling));
-            _hasActualSize = true;
-            FramebufferSource.Size = pixelSize;
-            FireResizedIfNecessary();
-        }
-
-        public void Resize(Size clientSize, PlatformResizeReason reason = PlatformResizeReason.Application)
+  
+        public virtual void Resize(Size clientSize, PlatformResizeReason reason = PlatformResizeReason.Application)
         {
             if (clientSize.Width == 0 || clientSize.Height == 0)
             {
@@ -194,7 +179,7 @@ namespace Urho.Avalonia
             var pixelSize = new PixelSize((int)(clientSize.Width * scaling), (int)(clientSize.Height * scaling));
             _hasActualSize = true;
             FramebufferSource.Size = pixelSize;
-            FireResizedIfNecessary();
+            FireResizedIfNecessary(reason);
 
         }
 
@@ -230,7 +215,7 @@ namespace Urho.Avalonia
         }
 
         public Action<Size, PlatformResizeReason> Resized { get; set; }
-    //   public  Action<Size> Resized {  get; set;}
+
      
         private TextureFramebufferSource CreateFramebuffer()
         {
@@ -255,7 +240,6 @@ namespace Urho.Avalonia
             UrhoContext.RemoveWindow(this);
             _framebufferSource?.Dispose();
 
-            // TBD ELI
             _urhoUIElement.Dispose();
             _urhoUIElement = null;
 
@@ -336,7 +320,6 @@ namespace Urho.Avalonia
                 _invalidRegion = global::Avalonia.Rect.Empty;
                 if (paintArea.Width * paintArea.Height > 0)
                     paint?.Invoke(paintArea);
-                //_hasUpdatedImage = true;
             }
         }
 
@@ -345,7 +328,7 @@ namespace Urho.Avalonia
             UrhoContext.SchedulePaint(this);
         }
 
-        private void FireResizedIfNecessary()
+        private void FireResizedIfNecessary(PlatformResizeReason reason = PlatformResizeReason.Application)
         {
             using (var l = UrhoContext.DeferredRendererLock.Lock())
             {
@@ -353,8 +336,7 @@ namespace Urho.Avalonia
                 if (_clientSizeCache != size)
                 {
                     _clientSizeCache = size;
-                     Resized?.Invoke(size,PlatformResizeReason.User);
-                    // Resized?.Invoke(size);
+                     Resized?.Invoke(size,reason);
                 }
 
                 if (UrhoUIElement != null)

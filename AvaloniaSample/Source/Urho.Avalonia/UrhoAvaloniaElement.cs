@@ -3,6 +3,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Input.Raw;
+using Avalonia.Platform;
 using Avalonia.Visuals;
 using Urho.Gui;
 using Urho.IO;
@@ -558,7 +559,7 @@ namespace Urho.Avalonia
 
             if (_windowImpl.ClientSize != clientSize)
             {
-                _windowImpl.Resize(clientSize);
+                _windowImpl.Resize(clientSize,PlatformResizeReason.User);
             }
             ImageRect = new IntRect(0, 0, Size.X, Size.Y);
 
