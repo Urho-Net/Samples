@@ -37,6 +37,19 @@ namespace Urho.Avalonia
             }
         }
 
+        public virtual void Show(bool activate, bool isDialog)
+        {
+            if (UrhoUIElement.Parent == null)
+            {
+                UrhoUIElement.SetParent(Application.Current.UI.Root);
+            }
+
+            if (_systemDecorations == SystemDecorations.Full)
+            {
+                UrhoUIElement.CreateTitleBar();
+            }
+        }
+
         public virtual void Hide()
         {
         }

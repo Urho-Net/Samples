@@ -176,11 +176,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.10.6" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.10.6" />
-    <PackageReference Include="Avalonia.Diagnostics" Version="0.10.6" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.6" />
-    <PackageReference Include="Dock.Model.ReactiveUI" Version="0.10.6" />
-    <PackageReference Include="Dock.Avalonia" Version="0.10.6" />
+    <PackageReference Include="Avalonia" Version="0.10.7" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.7" />
+    <PackageReference Include="Avalonia.Diagnostics" Version="0.10.7" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.7" />
+    <PackageReference Include="Dock.Model.ReactiveUI" Version="0.10.7" />
+    <PackageReference Include="Dock.Avalonia" Version="0.10.7" />
   </ItemGroup>
 </Project>

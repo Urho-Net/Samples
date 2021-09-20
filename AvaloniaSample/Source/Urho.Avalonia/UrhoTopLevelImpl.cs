@@ -156,7 +156,7 @@ namespace Urho.Avalonia
             set; 
         }
         public Action<global::Avalonia.Rect> Paint { get; set; }
-        public Action<Size> Resized { get; set; }
+
         public Action<double> ScalingChanged { get; set; }
         public Action<WindowTransparencyLevel> TransparencyLevelChanged { get; set; }
         public Action Closed { get; set; }
@@ -182,6 +182,22 @@ namespace Urho.Avalonia
             FireResizedIfNecessary();
         }
 
+        public void Resize(Size clientSize, PlatformResizeReason reason = PlatformResizeReason.Application)
+        {
+            if (clientSize.Width == 0 || clientSize.Height == 0)
+            {
+                clientSize = new Size(1300, 700);
+                Invalidate();
+            }
+
+            var scaling = RenderScaling;
+            var pixelSize = new PixelSize((int)(clientSize.Width * scaling), (int)(clientSize.Height * scaling));
+            _hasActualSize = true;
+            FramebufferSource.Size = pixelSize;
+            FireResizedIfNecessary();
+
+        }
+
         public TextureFramebufferSource FramebufferSource
         {
             get
@@ -200,7 +216,22 @@ namespace Urho.Avalonia
             }
         }
 
-        
+        private Size? _frameSize = new Size(1300, 700);
+        public Size? FrameSize
+        {
+            get
+            {
+                return _frameSize;
+            }
+            protected set
+            {
+                _frameSize = value;
+            }
+        }
+
+        public Action<Size, PlatformResizeReason> Resized { get; set; }
+    //   public  Action<Size> Resized {  get; set;}
+     
         private TextureFramebufferSource CreateFramebuffer()
         {
             _framebufferSource = new TextureFramebufferSource(UrhoContext);
@@ -322,8 +353,8 @@ namespace Urho.Avalonia
                 if (_clientSizeCache != size)
                 {
                     _clientSizeCache = size;
-                    Resized?.Invoke(size);
-
+                     Resized?.Invoke(size,PlatformResizeReason.User);
+                    // Resized?.Invoke(size);
                 }
 
                 if (UrhoUIElement != null)
