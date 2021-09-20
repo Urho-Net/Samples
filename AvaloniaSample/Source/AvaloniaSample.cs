@@ -19,7 +19,6 @@ namespace AvaloniaSample
 
         private AvaloniaUrhoContext avaloniaContext;
        
-	   private bool isAvloaniaInitialized =false;
 
 		// private SampleAvaloniaWindow _window;
         [Preserve]
@@ -47,8 +46,21 @@ namespace AvaloniaSample
 			
 			Input.SetMouseVisible(true);
 			Input.SetMouseMode(MouseMode.Free);
+
+            InitializeAvlonaiSample();
+			
 		
 		}
+
+        void InitializeAvlonaiSample()
+        {
+            // InitializeAvaloniaTodoDemo();
+            // InitializeAvaloniaDockDemo();
+            // InitializeAvaloniaDockDemo2();
+            //  InitializeAvaloniaNotePadDemo();
+
+            InitializeAvaloniaControlCatalogDemo();
+        }
 
 
 		protected override void OnUpdate(float timeStep)
@@ -57,25 +69,7 @@ namespace AvaloniaSample
 
             if (camera != null)
                 SimpleMoveCamera3D(timeStep);
-
-			// Initializing Avlonia sample from here because the Graphics resolution might change in the startup of the application
-			if(isAvloaniaInitialized == false)
-			{
-				isAvloaniaInitialized = true;
-				InitializeAvlonaiSample();
-			}
 		}
-
-		void InitializeAvlonaiSample()
-		{
-			// InitializeAvaloniaTodoDemo();
-			// InitializeAvaloniaDockDemo();
-			// InitializeAvaloniaDockDemo2();
-			//  InitializeAvaloniaNotePadDemo();
-			
-			InitializeAvaloniaControlCatalogDemo();
-		}
-   
 
         void InitializeAvaloniaTodoDemo()
 	   {
