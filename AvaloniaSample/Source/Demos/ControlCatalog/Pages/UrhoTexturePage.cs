@@ -13,6 +13,7 @@ using Urho.Avalonia;
 using Urho.Urho2D;
 using Urho.Gui;
 using Urho.IO;
+using ControlCatalog.ViewModels;
 
 #pragma warning disable 4014
 
@@ -40,7 +41,6 @@ namespace ControlCatalog.Pages
         private readonly Image _urhoPlaceHolder = null;
 
         private WriteableBitmap _transparentBitmap;
-        private PixelSize _transparentBitmapSize = new PixelSize();
 
         UIElement renderPlaceHolder = null;
         BorderImage textureContainer = null;
@@ -54,6 +54,8 @@ namespace ControlCatalog.Pages
 
         Urho.Gui.Text fpsText = null;
 
+        private ContextMenuPageViewModel contextMenu = null;
+
         public UrhoTexturePage()
         {
             this.InitializeComponent();
@@ -61,6 +63,7 @@ namespace ControlCatalog.Pages
             _urhoPlaceHolder.Focusable = true;
             this.Focusable = true;
             _urhoPlaceHolder.Stretch = Stretch.Fill;
+
         }
 
         private void InitializeComponent()
@@ -113,12 +116,13 @@ namespace ControlCatalog.Pages
             renderPlaceHolder.Height = height;
 
             // decrease the priorty below the windows priority (100)
-            textureContainer.Priority = 99;
-
+            textureContainer.Priority = 100;
+     
             fpsText = textureContainer.CreateText("fps");
             fpsText.SetFont(Urho.Application.Current.ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 25);
             fpsText.Visible = true;
         }
+
 
         public override void Render(DrawingContext context)
         {
@@ -169,9 +173,8 @@ namespace ControlCatalog.Pages
 
                     CreateRenderTexture(width, height);
                     SetViewPort();
-                    _transparentBitmapSize = new PixelSize(width, height);
                     _transparentBitmap?.Dispose();
-                    _transparentBitmap = new WriteableBitmap(new PixelSize(width, height), new Vector(96, 96), PixelFormat.Rgba8888, AlphaFormat.Opaque);
+                    _transparentBitmap = new WriteableBitmap(new PixelSize(100, 100), new Vector(96, 96), PixelFormat.Rgba8888, AlphaFormat.Opaque);
                 }
 
                 if (renderPlaceHolder.Width != transformedBoundsWidth || renderPlaceHolder.Height != transformedBoundsHeight)
@@ -184,6 +187,19 @@ namespace ControlCatalog.Pages
                 }
             }
 
+            if (textureContainer != null)
+            {
+                if (urhoWindow.UrhoUIElement.HasFocus())
+                {
+                    textureContainer.Priority = 101;
+                    urhoWindow.UrhoUIElement.Priority = 102;
+                }
+                else
+                {
+                    textureContainer.Priority = 100;
+                    urhoWindow.UrhoUIElement.Priority = 100;
+                }
+            }
             
             if (textureContainer != null)
             {
@@ -255,8 +271,6 @@ namespace ControlCatalog.Pages
             }
 
             fpsText = null;
-
-            _transparentBitmapSize = new PixelSize(0, 0);
 
         }
 
@@ -413,6 +427,21 @@ namespace ControlCatalog.Pages
             }
         }
 
+
+
+        protected override void OnDataContextChanged(EventArgs e)
+        {
+
+            if (contextMenu == null)
+            {
+                contextMenu = new ContextMenuPageViewModel();
+                DataContext = contextMenu;
+                contextMenu.View = this;
+            }
+
+            base.OnDataContextChanged(e);
+
+        }
         Avalonia.Controls.Window GetWindow() => (Avalonia.Controls.Window)this.VisualRoot;
         UrhoWindowImpl GetUrhoWindow()
         {

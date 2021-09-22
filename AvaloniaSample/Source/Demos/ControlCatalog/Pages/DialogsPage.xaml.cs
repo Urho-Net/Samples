@@ -6,15 +6,20 @@ using Avalonia.Controls;
 using Avalonia.Dialogs;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
+using Avalonia.Markup.Xaml.Styling;
+using Avalonia.Styling;
+using Urho.Avalonia;
 #pragma warning disable 4014
 
 namespace ControlCatalog.Pages
 {
     public class DialogsPage : UserControl
     {
+        
         public DialogsPage()
         {
             this.InitializeComponent();
+            
 
             List<FileDialogFilter> GetFilters()
             {
@@ -108,6 +113,41 @@ namespace ControlCatalog.Pages
                 window.ShowInTaskbar = false;
 
                 window.Show(GetWindow());
+            };
+
+            this.FindControl<Button>("Notepad").Click += delegate
+            {
+                Styles FluentLight = new Styles
+                {
+                    new StyleInclude(new Uri("avares://AvaloniaSample/Styles"))
+                    {
+                        Source = new Uri("avares://Dock.Avalonia/Themes/FluentTheme.axaml")
+                    }
+                };
+
+                var window = new Notepad.Views.MainWindow();
+        
+                window.Styles.Insert(0, FluentLight);
+                window.DataContext = new Notepad.ViewModels.MainWindowViewModel();
+                window.Show();
+                window.Position = new Avalonia.PixelPoint(300, 50);
+            };
+
+            this.FindControl<Button>("DockWindow").Click += delegate
+            {
+                Styles FluentLight = new Styles
+                {
+                    new StyleInclude(new Uri("avares://AvaloniaSample/Styles"))
+                    {
+                        Source = new Uri("avares://Game/Source/Demos/DockDemo2/Themes/FluentLight.axaml")
+                    }
+                };
+
+                var window = new AvaloniaDemo.Views.MainWindow();
+                window.Styles.Insert(0, FluentLight);
+                window.DataContext = new AvaloniaDemo.ViewModels.MainWindowViewModel();
+                window.Show();
+                window.Position = new Avalonia.PixelPoint(300, 50);
             };
         }
 

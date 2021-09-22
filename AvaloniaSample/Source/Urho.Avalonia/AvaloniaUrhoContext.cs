@@ -33,6 +33,7 @@ namespace Urho.Avalonia
             set;
             }
 
+        public static AvaloniaUrhoContext Instance = null;
         public AvaloniaUrhoContext(Context context)
         {
             Context = context;
@@ -45,6 +46,8 @@ namespace Urho.Avalonia
 
             Platform = Application.Platform;
             GlobalTimer = new Timer();
+
+            Instance = this;
           
         }
 
@@ -83,6 +86,17 @@ namespace Urho.Avalonia
             lock (_windowsCollectionLock)
             {
                 if (_windows.Contains(window))
+                {
+                    _windowsToPaint.Add(window);
+                }
+            }
+        }
+
+        public void RepaintAllWindows()
+        {
+            lock (_windowsCollectionLock)
+            {
+                foreach (var window in _windows)
                 {
                     _windowsToPaint.Add(window);
                 }

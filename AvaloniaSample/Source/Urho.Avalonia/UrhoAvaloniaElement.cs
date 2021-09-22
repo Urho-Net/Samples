@@ -63,7 +63,10 @@ namespace Urho.Avalonia
             this.DragEnd += OnDragEnd;
             this.Click += OnClickBegin;
             this.ClickEnd += OnClickEnd;
-            
+            this.BringToFrontOnFocus =true;
+            this.Focused += OnFocus;
+            this.Defocused += OnDefocused;
+
             Application.Current.Input.KeyDown += OnKeyDown;
             Application.Current.Input.KeyUp += OnKeyUp;
             Application.Current.Input.TextInput += OnTextInputEvent;
@@ -74,6 +77,18 @@ namespace Urho.Avalonia
 
             ApplicationGraphicsSize = Urho.Application.Current.Graphics.Size;
 
+        }
+
+        private void OnDefocused(DefocusedEventArgs obj)
+        {
+            Priority = 100;
+
+            _windowImpl.LostFocus?.Invoke();
+        }
+
+        private void OnFocus(FocusedEventArgs obj)
+        {
+            Priority = 101;
         }
 
         public void MaximizeWindow(bool maximize)
@@ -136,6 +151,7 @@ namespace Urho.Avalonia
                 this.SetPosition(previousPosition.X,previousPosition.Y);
                 this.Size = previousSize;
             }
+
         }
 
         public void SetTitle(string title)
@@ -172,6 +188,7 @@ namespace Urho.Avalonia
 
                     this.SetSize(Width,Height-windowTitleBar.Height);
                 }
+
             }
         }
 
@@ -190,6 +207,7 @@ namespace Urho.Avalonia
                 windowTitleBar = null;
 
                 Movable = false;
+
             }
         }
 
@@ -220,6 +238,9 @@ namespace Urho.Avalonia
                     this.DragEnd -= OnDragEnd;
                     this.Click -= OnClickBegin;
                     this.ClickEnd -= OnClickEnd;
+                    this.Focused -= OnFocus;
+                    this.Defocused -= OnDefocused;
+
                     Application.Current.Input.KeyDown -= OnKeyDown;
                     Application.Current.Input.KeyUp -= OnKeyUp;
                     Application.Current.Input.TextInput -= OnTextInputEvent;

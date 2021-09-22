@@ -1,6 +1,10 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:ControlCatalog"
              x:Class="ControlCatalog.App">
+  <Application.DataTemplates>
+      <local:ViewLocator/>
+  </Application.DataTemplates>
   <Application.Styles>
     <Style Selector="TextBlock.h1">
       <Setter Property="FontSize" Value="16" />

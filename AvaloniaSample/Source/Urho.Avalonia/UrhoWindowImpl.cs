@@ -20,6 +20,7 @@ namespace Urho.Avalonia
         {
              RenderScaling = avaloniaUrhoContext.RenderScaling;
              UrhoUIElement.Priority = 100;
+             
         }
 
 
@@ -35,6 +36,9 @@ namespace Urho.Avalonia
             {
                 UrhoUIElement.CreateTitleBar();
             }
+            
+            UrhoUIElement.SetFocus(true);
+            UrhoUIElement.BringToFront();
         }
 
         public virtual void Show(bool activate, bool isDialog)
@@ -48,6 +52,9 @@ namespace Urho.Avalonia
             {
                 UrhoUIElement.CreateTitleBar();
             }
+
+            UrhoUIElement.SetFocus(true);
+            UrhoUIElement.BringToFront();
         }
 
         public virtual void Hide()

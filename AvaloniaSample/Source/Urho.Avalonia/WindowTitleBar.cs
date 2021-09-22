@@ -34,6 +34,8 @@ namespace Urho.Avalonia
             DragBegin += OnWindowTitleBarDragBegin;
             DragMove += OnWindowTitleBarDragMove;
             DragEnd += OnWindowTitleBarDragEnd;
+            Focused += OnFocused;
+            Defocused += OnDefocused;
 
             SetLayout(LayoutMode.Horizontal, 0, new IntRect(0, 0, 0, 0));
             LayoutSpacing = 0;
@@ -71,6 +73,16 @@ namespace Urho.Avalonia
 
         }
 
+        private void OnDefocused(DefocusedEventArgs obj)
+        {
+            parent.SetFocus(false);
+        }
+
+        private void OnFocused(FocusedEventArgs obj)
+        {
+             parent.SetFocus(true);
+        }
+
         private void OnToggleMaximizeWindow(ClickEventArgs obj)
         {
             parent.ToggleMaximizeWindow(); 
@@ -95,6 +107,10 @@ namespace Urho.Avalonia
                 DragEnd -= OnWindowTitleBarDragEnd;
 
                 closeButton.Click -= OnCloseWindow;
+                maximizeButton.Click -= OnToggleMaximizeWindow;
+
+                Focused -= OnFocused;
+                Defocused -= OnDefocused;
 
                 this.Remove();
             }
