@@ -14,6 +14,7 @@ namespace Urho.Avalonia
         public ClipboardImpl()
         {
             UI = Application.Current.UI;
+            UI.UseSystemClipboard = true;
         }
         public Task ClearAsync()
         {
