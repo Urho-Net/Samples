@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="ControlCatalog.Pages.UrhoTexturePage">
+             <StackPanel Orientation="Vertical" Spacing="4">
+                <Image Name="UrhoPlaceHolder"/>
+                <Border  Margin="16" Padding="16,16,16,16">
+                    <Border.ContextMenu>
+                        <ContextMenu Items="{Binding MenuItems}">
+                            <ContextMenu.Styles>
+                                <Style Selector="MenuItem">
+                                    <Setter Property="Header" Value="{Binding Header}"/>
+                                    <Setter Property="Items" Value="{Binding Items}"/>
+                                    <Setter Property="Command" Value="{Binding Command}"/>
+                                    <Setter Property="CommandParameter" Value="{Binding CommandParameter}"/>
+                                </Style>
+                            </ContextMenu.Styles>
+                        </ContextMenu>
+                    </Border.ContextMenu>
+                    <TextBlock Text="Context Menu"/>
+                </Border>
+            </StackPanel>
+</UserControl>
