@@ -47,6 +47,8 @@ namespace Urho.Avalonia
 
         IntVector2 ApplicationGraphicsSize =  new IntVector2() ;
 
+        bool AvloniaBeginDrag = false;
+
         public UrhoAvaloniaElement(Context context) : base(context)
         {
             SetEnabledRecursive(true);
@@ -465,12 +467,13 @@ namespace Urho.Avalonia
                     mode = WindowDragMode.ResizeBottomRight;
                 }
             }
-            else
+            else if (Resizable == true && mousePosition.X >= Width - resizeBorder_.Right)
             {
-                if (Resizable == true && mousePosition.X >= Width - resizeBorder_.Right)
-                {
                     mode = WindowDragMode.ResizeRight;
-                }
+            }
+            else if(AvloniaBeginDrag == true)
+            {
+                mode = WindowDragMode.Move;
             }
 
             return mode;
@@ -490,6 +493,12 @@ namespace Urho.Avalonia
         public void OnWindowTitleDragEnd(DragEndEventArgs e)
         {
 
+        }
+
+        // this one is called from Avlonia if the user starts to drag a window
+        public void BeginMoveDrag()
+        {
+            AvloniaBeginDrag = true;
         }
 
         private void OnDragBegin(DragBeginEventArgs e)
@@ -535,6 +544,9 @@ namespace Urho.Avalonia
 
         private void OnDragEnd(DragEndEventArgs e)
         {
+
+            AvloniaBeginDrag = false;
+
             if (e.Element != this)
                 return;
 

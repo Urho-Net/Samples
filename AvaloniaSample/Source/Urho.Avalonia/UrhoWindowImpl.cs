@@ -127,6 +127,7 @@ namespace Urho.Avalonia
 
         public virtual void BeginMoveDrag(PointerPressedEventArgs e)
         {
+            UrhoUIElement.BeginMoveDrag();
         }
 
         public virtual void BeginResizeDrag(WindowEdge edge, PointerPressedEventArgs e)
