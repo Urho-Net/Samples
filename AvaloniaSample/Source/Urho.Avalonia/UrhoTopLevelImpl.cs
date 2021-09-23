@@ -9,11 +9,8 @@ using Avalonia.Platform;
 using Avalonia.Rendering;
 using Urho.Urho2D;
 using Urho.Gui;
-using Avalonia.Layout;
-using Avalonia.VisualTree;
-using Avalonia.Media;
-using Avalonia.Collections;
-using Avalonia.Controls.Primitives;
+using Urho.IO;
+using static Urho.Avalonia.CursorFactory;
 
 namespace Urho.Avalonia
 {
@@ -296,6 +293,15 @@ namespace Urho.Avalonia
 
         public void SetCursor(ICursorImpl cursor)
         {
+            if(cursor != null)
+            {
+                var cursorStub = cursor as CursorStub;
+                CursorFactory.SetCursor(cursorStub._cursorType);
+            }
+            else{
+                CursorFactory.SetCursor(StandardCursorType.Arrow);
+            }
+         
         }
 
         public IPopupImpl CreatePopup()
