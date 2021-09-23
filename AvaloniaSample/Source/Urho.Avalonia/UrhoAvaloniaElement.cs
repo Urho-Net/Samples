@@ -281,7 +281,10 @@ namespace Urho.Avalonia
                 CursorFactory.ResetCursorFactory();
             }
 
-            Application.Current.UI.Cursor.SetShape(AvaloniaUrhoContext.CursorShape);
+            if (Application.Current.UI.Cursor != null)
+            {
+                Application.Current.UI.Cursor.SetShape(AvaloniaUrhoContext.CursorShape);
+            }
 
 
             if (!this.HasFocus()) return;

@@ -50,9 +50,18 @@ namespace Urho.Avalonia
 
         public static void SetCursor(StandardCursorType type)
         {
+            // Configure default values
             CursorShape urhoShape = CursorShape.Normal;
             _urhoCursor.UseSystemShapes = true;
             cursorType  =  type;
+
+            AvaloniaUrhoContext.EnsureInvokeOnMainThread(() =>
+            {
+                Application.Current.Input.SetMouseVisible(true);
+                Application.Current.Input.SetMouseMode(MouseMode.Free);
+                Application.Current.UI.Cursor.Visible = true;
+            });
+
             switch (type)
             {
                 case StandardCursorType.Arrow:
@@ -157,6 +166,15 @@ namespace Urho.Avalonia
 
                 case StandardCursorType.DragMove:
                     urhoShape = CursorShape.Acceptdrop;
+                    break;
+
+                case StandardCursorType.None:
+                    AvaloniaUrhoContext.EnsureInvokeOnMainThread(() =>
+                    {
+                        Application.Current.UI.Cursor.Visible = false;
+                        _urhoCursor.UseSystemShapes = false;
+                        Application.Current.Input.SetMouseVisible(false);
+                    });
                     break;
 
 
