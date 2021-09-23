@@ -7,6 +7,7 @@ using Avalonia.Input;
 using Avalonia.Platform;
 using Avalonia.Rendering;
 using Urho.Avalonia;
+using Urho.Gui;
 using Urho.IO;
 
 using AvaloniaWindow=Avalonia.Controls.Window;
@@ -28,6 +29,7 @@ namespace Urho.Avalonia
 
         public ManagedDeferredRendererLock DeferredRendererLock = new ManagedDeferredRendererLock();
 
+        public static CursorShape CursorShape = CursorShape.Normal;
         public static AvaloniaWindow MainWindow {
             get;
             set;

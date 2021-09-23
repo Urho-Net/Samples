@@ -31,8 +31,9 @@ namespace Urho.Avalonia
 
          IntVector2 dragBeginSize_ = IntVector2.Zero;
 
-        IntRect resizeBorder_ = new IntRect(20, 20, 20, 20);
+        IntRect resizeBorder_ = new IntRect(10, 10, 10, 10);
         WindowDragMode dragMode_ = WindowDragMode.None;
+        WindowDragMode hoverMode_ = WindowDragMode.None;
 
         bool Movable = false;
         public bool Resizable = true;
@@ -267,6 +268,9 @@ namespace Urho.Avalonia
         private void OnPostUpdate(PostUpdateEventArgs evt)
         {
 
+            Application.Current.UI.Cursor.SetShape(AvaloniaUrhoContext.CursorShape);
+
+
             if (ApplicationGraphicsSize != Urho.Application.Current.Graphics.Size)
             {
                 ApplicationGraphicsSize = Urho.Application.Current.Graphics.Size;
@@ -370,6 +374,30 @@ namespace Urho.Avalonia
             var screenPos = this.ScreenPosition;
             var position = new Vector2(e.X - screenPos.X, e.Y - screenPos.Y);
             SendRawPointerEvent(RawPointerEventType.Move, position);
+
+            var hoverMode = GetDragMode();
+            if (hoverMode == WindowDragMode.ResizeBottom)
+            {
+                CursorFactory.SetCursor(StandardCursorType.SizeNorthSouth);
+            }
+            else if (hoverMode == WindowDragMode.ResizeBottomRight)
+            {
+                CursorFactory.SetCursor(StandardCursorType.BottomRightCorner);
+            }
+            else if (hoverMode == WindowDragMode.ResizeRight)
+            {
+                CursorFactory.SetCursor(StandardCursorType.SizeWestEast);
+            }
+            else
+            {
+                if (hoverMode_ != hoverMode)
+                {
+                    CursorFactory.SetCursor(StandardCursorType.Arrow);
+                }
+            }
+
+            hoverMode_ = hoverMode;
+
         }
 
         private void UpdateInputModifiers(ref RawInputModifiers modifiers )
@@ -458,16 +486,16 @@ namespace Urho.Avalonia
             {
                 mode = WindowDragMode.Move;
             }
-            else if(Resizable == true && mousePosition.Y  >= Size.Y - resizeBorder_.Bottom)
+            else if(Resizable == true && mousePosition.Y  >= Size.Y - resizeBorder_.Bottom &&  mousePosition.Y  < Size.Y )
             {
                 mode = WindowDragMode.ResizeBottom;
 
-                if (mousePosition.X >= Width - resizeBorder_.Right)
+                if (mousePosition.X >= Width - resizeBorder_.Right &&  mousePosition.X < Width)
                 {
                     mode = WindowDragMode.ResizeBottomRight;
                 }
             }
-            else if (Resizable == true && mousePosition.X >= Width - resizeBorder_.Right)
+            else if (Resizable == true && mousePosition.X >= Width - resizeBorder_.Right &&  mousePosition.X < Width )
             {
                     mode = WindowDragMode.ResizeRight;
             }
@@ -529,16 +557,22 @@ namespace Urho.Avalonia
             {
                   IntVector2 delta = new IntVector2(e.X - dragBeginCursor_.X, e.Y - dragBeginCursor_.Y);
                   this.SetSize(dragBeginSize_.X,dragBeginSize_.Y + delta.Y);
+
+                  CursorFactory.SetCursor(StandardCursorType.SizeNorthSouth);
             }
             else if(dragMode_ == WindowDragMode.ResizeBottomRight)
             {
                 IntVector2 delta = new IntVector2(e.X - dragBeginCursor_.X, e.Y - dragBeginCursor_.Y);
                 this.SetSize(dragBeginSize_.X + delta.X, dragBeginSize_.Y + delta.Y);
+
+                CursorFactory.SetCursor(StandardCursorType.BottomRightCorner);
             }
             else if (dragMode_ == WindowDragMode.ResizeRight)
             {
                 IntVector2 delta = new IntVector2(e.X - dragBeginCursor_.X, e.Y - dragBeginCursor_.Y);
                 this.SetSize(dragBeginSize_.X + delta.X, dragBeginSize_.Y);
+
+                 CursorFactory.SetCursor(StandardCursorType.SizeWestEast);
             }
         }
 
@@ -546,6 +580,8 @@ namespace Urho.Avalonia
         {
 
             AvloniaBeginDrag = false;
+             
+            CursorFactory.SetCursor(StandardCursorType.Arrow);
 
             if (e.Element != this)
                 return;
@@ -727,7 +763,8 @@ namespace Urho.Avalonia
         public override void Update(float timeStep)
         {
             base.Update(timeStep);
-           
+
+          
         }
 
         
