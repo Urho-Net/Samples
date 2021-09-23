@@ -50,6 +50,8 @@ namespace Urho.Avalonia
 
         public static void SetCursor(StandardCursorType type)
         {
+            if(type == cursorType)return;
+
             // Configure default values
             CursorShape urhoShape = CursorShape.Normal;
             _urhoCursor.UseSystemShapes = true;
@@ -62,7 +64,7 @@ namespace Urho.Avalonia
                 Application.Current.UI.Cursor.Visible = true;
             });
 
-            switch (type)
+            switch (cursorType)
             {
                 case StandardCursorType.Arrow:
                     urhoShape = CursorShape.Normal;
@@ -133,28 +135,19 @@ namespace Urho.Avalonia
 
                 case StandardCursorType.TopLeftCorner:
                     urhoShape = CursorShape.Cross;
-                    // urhoShape = CursorShape.ResizediagonalTopLeft;
-                    // _urhoCursor.UseSystemShapes = false;
                     break;
 
                 case StandardCursorType.TopRightCorner:
                     urhoShape = CursorShape.Cross;
-                    // urhoShape = CursorShape.ResizediagonalTopright;
-                    // _urhoCursor.UseSystemShapes = false;
                     break;
 
                 case StandardCursorType.BottomLeftCorner:
                     urhoShape = CursorShape.Cross;
-                    // urhoShape = CursorShape.ResizediagonalTopright;
-                    // _urhoCursor.UseSystemShapes = false;
                     break;
 
                 case StandardCursorType.BottomRightCorner:
                     urhoShape = CursorShape.Cross;
-                    // urhoShape = CursorShape.ResizediagonalTopLeft;
-                    // _urhoCursor.UseSystemShapes = false;
                     break;
-
 
                 case StandardCursorType.DragCopy:
                     urhoShape = CursorShape.Acceptdrop;
