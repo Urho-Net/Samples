@@ -18,6 +18,26 @@ namespace Urho.Avalonia
 
         public CursorFactory()
         {
+            if (_urhoCursor == null)
+            {
+                XmlFile style = Application.Current.ResourceCache.GetXmlFile("UI/DefaultStyle.xml");
+                _urhoCursor = new Gui.Cursor();
+                _urhoCursor.SetStyleAuto(style);
+                _urhoCursor.UseSystemShapes = true;
+                int cursorSize = Application.Current.Graphics.Width / 60;
+                _urhoCursor.Size = new IntVector2(cursorSize / 2, cursorSize);
+                Application.Current.UI.Cursor = _urhoCursor;
+                Application.Current.UI.Cursor.Visible = true;
+            }
+
+        }
+
+        public static void ResetCursorFactory()
+        {
+            if(_urhoCursor != null)
+            {
+                _urhoCursor.Dispose();
+            }
             XmlFile style = Application.Current.ResourceCache.GetXmlFile("UI/DefaultStyle.xml");
             _urhoCursor = new Gui.Cursor();
             _urhoCursor.SetStyleAuto(style);
@@ -26,7 +46,6 @@ namespace Urho.Avalonia
             _urhoCursor.Size = new IntVector2(cursorSize / 2, cursorSize);
             Application.Current.UI.Cursor = _urhoCursor;
             Application.Current.UI.Cursor.Visible = true;
-
         }
 
         public static void SetCursor(StandardCursorType type)

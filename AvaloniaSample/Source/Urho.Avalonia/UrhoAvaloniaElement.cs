@@ -268,9 +268,6 @@ namespace Urho.Avalonia
         private void OnPostUpdate(PostUpdateEventArgs evt)
         {
 
-            Application.Current.UI.Cursor.SetShape(AvaloniaUrhoContext.CursorShape);
-
-
             if (ApplicationGraphicsSize != Urho.Application.Current.Graphics.Size)
             {
                 ApplicationGraphicsSize = Urho.Application.Current.Graphics.Size;
@@ -280,7 +277,12 @@ namespace Urho.Avalonia
                     DeleteTitleBar();
                     CreateTitleBar();
                 }
+
+                CursorFactory.ResetCursorFactory();
             }
+
+            Application.Current.UI.Cursor.SetShape(AvaloniaUrhoContext.CursorShape);
+
 
             if (!this.HasFocus()) return;
 
