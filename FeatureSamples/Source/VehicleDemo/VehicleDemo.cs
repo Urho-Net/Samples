@@ -130,42 +130,44 @@ namespace VehicleDemo
 
             if (vehicle != null)
             {
-        
-                    if (isMobile)
+
+                if (isMobile)
+                {
+                    UpdateJoystickInputs(vehicle.Controls);
+                }
+                else
+                {
+                    vehicle.Controls.Set(Vehicle.CtrlForward, input.GetKeyDown(Key.W));
+                    vehicle.Controls.Set(Vehicle.CtrlBack, input.GetKeyDown(Key.S));
+                    vehicle.Controls.Set(Vehicle.CtrlLeft, input.GetKeyDown(Key.A));
+                    vehicle.Controls.Set(Vehicle.CtrlRight, input.GetKeyDown(Key.D));
+                }
+
+                // Check for loading / saving the scene
+                // currently saving is only supported on desktop
+                if (!isMobile && input.GetKeyPress(Key.F5))
+                {
+                    string path = FileSystem.ProgramDir + "Assets/Data/Scenes";
+                    if (!FileSystem.DirExists(path))
                     {
-                        UpdateJoystickInputs(vehicle.Controls);
-                    }
-                    else
-                    {
-                        vehicle.Controls.Set(Vehicle.CtrlForward, input.GetKeyDown(Key.W));
-                        vehicle.Controls.Set(Vehicle.CtrlBack, input.GetKeyDown(Key.S));
-                        vehicle.Controls.Set(Vehicle.CtrlLeft, input.GetKeyDown(Key.A));
-                        vehicle.Controls.Set(Vehicle.CtrlRight, input.GetKeyDown(Key.D));
+                        FileSystem.CreateDir(path);
                     }
 
-                    // Check for loading / saving the scene
-                    // currently saving is only supported on desktop
-                    if (!isMobile && input.GetKeyPress(Key.F5))
-                    {
-                        string path = FileSystem.ProgramDir + "Assets/Data/Scenes";
-                        if (!FileSystem.DirExists(path))
-                        {
-                            FileSystem.CreateDir(path);
-                        }
-                        scene.SaveXml(path + "/VehicleDemo.xml");
-                    }
-                    if (input.GetKeyPress(Key.F7))
-                    {
-                        LoadScene();
-                    }
-       
+                    if (FileSystem.FileExists(path + "/VehicleDemo.xml"))
+                        FileSystem.Delete(path + "/VehicleDemo.xml");
+
+                    scene.SaveXml(path + "/VehicleDemo.xml");
+                }
+                if (input.GetKeyPress(Key.F7))
+                {
+                    LoadScene();
+                }
+
             }
         }
 
         void LoadScene()
         {
-            scene = scene ?? new Scene();
-
             string path = "";
 
             if (isMobile)
@@ -181,18 +183,18 @@ namespace VehicleDemo
 
             if (!FileSystem.FileExists(path)) return;
 
+            UnSubscribeFromEvents();
+
+            scene = new Scene();
+
             scene.LoadXml(path);
 
-            // Camera is not part of the scene , so check if it is not created yet.
-            if (CameraNode == null)
-            {
-                CameraNode = new Node();
-                Camera camera = CameraNode.CreateComponent<Camera>();
-                camera.FarClip = 500.0f;
-                Renderer.SetViewport(0, new Viewport(Context, scene, camera, null));
-            }
+            // Camera is not part of the scene , i'ts not saved during serialization , so it sould be created.
+            CameraNode = new Node();
+            Camera camera = CameraNode.CreateComponent<Camera>();
+            camera.FarClip = 500.0f;
+            Renderer.SetViewport(0, new Viewport(Context, scene, camera, null));
 
-            scene.GetComponent<PhysicsWorld>().PhysicsPreStep += OnFixedUpdate;
             // After loading we have to reacquire the weak pointer to the Vehicle component, as it has been recreated
             // Simply find the vehicle's scene node by name as there's only one of them
             Node vehicleNode = scene.GetChild("Vehicle", true);
@@ -200,6 +202,8 @@ namespace VehicleDemo
             {
                 vehicle = vehicleNode.GetComponent<Vehicle>();
             }
+
+            SubscribeToEvents();
 
         }
 
