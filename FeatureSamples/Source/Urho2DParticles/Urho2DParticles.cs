@@ -44,6 +44,7 @@ namespace Urho2DParticles
 			SimpleCreateInstructions("Use mouse/touch to move the particle.");
 			SetupViewport();
 			SubscribeToEvents();
+            Input.SetMouseVisible(true);
 		}
 
         protected override void Stop()

@@ -76,7 +76,7 @@ namespace AvaloniaSample
 		    avaloniaContext = Context.ConfigureAvalonia<Todo.App>();
 			avaloniaContext.RenderScaling = 2.0;
 
-            var db = new Database();
+            var db = new Todo.Services.Database();
             var mainWindow = new Todo.Views.MainWindow()
             {
                 DataContext = new Todo.ViewModels.MainWindowViewModel(db),

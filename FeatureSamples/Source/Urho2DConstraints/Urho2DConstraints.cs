@@ -51,6 +51,7 @@ namespace Urho2DConstraints
             Input.SetMouseVisible(true, false);
             SetupViewport();
             SubscribeToEvents();
+            Input.SetMouseVisible(true);
         }
 
         protected override void Stop()

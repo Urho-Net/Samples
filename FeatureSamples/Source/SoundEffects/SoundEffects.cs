@@ -49,6 +49,7 @@ namespace SoundEffects
             Input.SetMouseVisible(true, false);
             SimpleCreateInstructions();
             CreateUI();
+            Input.SetMouseVisible(true);
         }
 
         Button CreateButton(int x, int y, int xSize, int ySize, string text)
