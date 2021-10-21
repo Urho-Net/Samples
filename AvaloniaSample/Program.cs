@@ -6,7 +6,11 @@ namespace AvaloniaSample
     {
         static void Main(string[] args)
         {
-             new AvaloniaSample().Run();
+#if _DESKTOP_PUBLISHED_BINARY_
+            var applicationPath = System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
+            System.IO.Directory.SetCurrentDirectory(applicationPath);
+#endif
+            new AvaloniaSample().Run();
         }
     }
 }

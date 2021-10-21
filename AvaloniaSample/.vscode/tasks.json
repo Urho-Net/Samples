@@ -26,11 +26,18 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "publish",
+            "label": "publish-osx",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "publish",
+                "-c","Release",
+                "-r","osx-x64",
+                "--self-contained","true",
+                "/property:PublishFlavor=osx-x64",
+                "/property:PublishSingleFile=true",
+                "/property:PublishTrimmed=true",
+                "/property:DefineConstants=_DESKTOP_PUBLISHED_BINARY_",
                 "${workspaceFolder}/${workspaceFolderBasename}.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
@@ -41,6 +48,52 @@
                 "isDefault": true
             }
         },
+        {
+            "label": "publish-windows",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "-c","Release",
+                "-r","win-x64",
+                "--self-contained","true",
+                "/property:PublishFlavor=win-x64",
+                "/property:PublishSingleFile=true",
+                "/property:PublishTrimmed=true",
+                "/property:DefineConstants=_DESKTOP_PUBLISHED_BINARY_",
+                "${workspaceFolder}/${workspaceFolderBasename}.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "publish-linux",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "-c","Release",
+                "-r","linux-x64",
+                "--self-contained","true",
+                "/property:PublishFlavor=linux-x64",
+                "/property:PublishSingleFile=true",
+                "/property:PublishTrimmed=true",
+                "/property:DefineConstants=_DESKTOP_PUBLISHED_BINARY_",
+                "${workspaceFolder}/${workspaceFolderBasename}.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }, 
         {
             "label": "watch",
             "command": "dotnet",

@@ -158,6 +158,17 @@
     <Copy SourceFiles="$(OutDir)/Game.dll" DestinationFolder="@(AndroidAssetsDestinationDir)" SkipUnchangedFiles="true" />
   </Target>
 
+  <Target Name="CopyCustomContentPublish" AfterTargets="Publish" Condition="'$(PublishFlavor)'=='linux-x64' Or '$(PublishFlavor)'=='win-x64' Or '$(PublishFlavor)'=='osx-x64'">
+    <PropertyGroup>
+      <libUrho3D Condition="'$(PublishFlavor)'=='linux-x64'">@(URHONET_HOME_ROOT)/template/libs/linux/libUrho3D.so</libUrho3D>
+      <libUrho3D Condition="'$(PublishFlavor)'=='win-x64'">@(URHONET_HOME_ROOT)/template/libs/windows/Urho3D.dll</libUrho3D>
+      <libUrho3D Condition="'$(PublishFlavor)'=='osx-x64'">@(URHONET_HOME_ROOT)/template/libs/macos/libUrho3D.dylib</libUrho3D>
+    </PropertyGroup>
+    <Error Condition="! Exists('$(libUrho3D)')" Text="libUrho3D.dylib not found are you sure URHONET_HOME_ROOT is pointing to the right place ?" /> 
+    <Copy SourceFiles="@(AssetsSourceFiles)" DestinationFolder="$(OutDir)\publish\%(RecursiveDir)" SkipUnchangedFiles="true" Retries="3" RetryDelayMilliseconds="300" />
+    <Copy SourceFiles="$(libUrho3D)" DestinationFolder="$(OutDir)\publish" SkipUnchangedFiles="true" />
+  </Target>
+  
   <Target Name = "CustomAfterClean" AfterTargets="AfterClean">
         <Message Text="Urho.Net clean all" Importance="high" />
         <RemoveDir Directories="bin" />
