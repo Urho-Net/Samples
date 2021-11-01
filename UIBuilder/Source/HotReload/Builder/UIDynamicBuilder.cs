@@ -15,7 +15,10 @@ namespace UIBuilder
         private void Start()
         {
             // Only 1 window should be uncommented
-            new MathWindow();
+
+            new TreeViewWindow();
+            
+            // new MathWindow();
             //  new LoginWindow();   
             //   new InviteMatchWindow("Player 2");
             // new RegisterWindow();
