@@ -27,10 +27,20 @@ namespace UIBuilder
 
         void DisposeElementAndChildren(UIElement uiElement)
         {
-            foreach (var child in uiElement.Children)
+            try
             {
-                DisposeElementAndChildren(child);
-                child.Dispose();
+                foreach (var child in uiElement.Children)
+                {
+                    if (!child.IsDeleted)
+                    {
+                        DisposeElementAndChildren(child);
+                        child.Dispose();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.ToString());
             }
         }
         private void Stop()
