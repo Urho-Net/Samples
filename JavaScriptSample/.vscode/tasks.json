@@ -1,0 +1,257 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "ios-build",
+            "command": "./script/build-ios.sh",
+            "type": "shell",
+            "args": [
+                "-t",
+                "${input:DeveloperID}",
+                "-r",
+                "gles"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "ios-deploy",
+            "command": "./script/build-ios.sh",
+            "type": "shell",
+            "args": [
+                "-d",
+                "launch",
+                "-t",
+                "${input:DeveloperID}",
+                "-r",
+                "gles"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "ios-debug",
+            "command": "./script/build-ios.sh",
+            "type": "shell",
+            "args": [
+                "-d",
+                "debug",
+                "-t",
+                "${input:DeveloperID}",
+                "-r",
+                "gles"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "ios-build-metal",
+            "command": "./script/build-ios.sh",
+            "type": "shell",
+            "args": [
+                "-t",
+                "${input:DeveloperID}",
+                "-r",
+                "metal"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "ios-deploy-metal",
+            "command": "./script/build-ios.sh",
+            "type": "shell",
+            "args": [
+                "-d",
+                "launch",
+                "-t",
+                "${input:DeveloperID}",
+                "-r",
+                "metal"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "ios-debug-metal",
+            "command": "./script/build-ios.sh",
+            "type": "shell",
+            "args": [
+                "-d",
+                "debug",
+                "-t",
+                "${input:DeveloperID}",
+                "-r",
+                "metal"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "android-build-debug",
+            "command": "./script/build-android.sh",
+            "windows":{
+                "command": "call \"tools/bash/git-bash.exe\" script/build-android.sh"
+            },
+            "type": "shell",
+            "args": [
+                "-b","debug"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "android-deploy-debug",
+            "command": "./script/build-android.sh",
+            "windows":{
+                "command": "call \"tools/bash/git-bash.exe\" script/build-android.sh"
+            },
+            "type": "shell",
+            "args": [
+                "-b","debug",
+                "-d","1"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "android-build-release",
+            "command": "./script/build-android.sh",
+            "windows":{
+                "command": "call \"tools/bash/git-bash.exe\" script/build-android.sh"
+            },
+            "type": "shell",
+            "args": [
+                "-b","release",
+                "-k","${input:keystore}",
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "android-deploy-release",
+            "command": "./script/build-android.sh",
+            "windows":{
+                "command": "call \"tools/bash/git-bash.exe\" script/build-android.sh"
+            },
+            "type": "shell",
+            "args": [
+                "-b","release",
+                "-k","${input:keystore}",
+                "-d","1"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "clean",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "clean",
+                "${workspaceFolder}/${workspaceFolderBasename}.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/${workspaceFolderBasename}.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish-osx",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "-c","Release",
+                "-r","osx-x64",
+                "--self-contained","true",
+                "/property:PublishFlavor=osx-x64",
+                "/property:PublishSingleFile=true",
+                "/property:PublishTrimmed=true",
+                "/property:DefineConstants=_DESKTOP_PUBLISHED_BINARY_",
+                "${workspaceFolder}/${workspaceFolderBasename}.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "publish-windows",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "-c","Release",
+                "-r","win-x64",
+                "--self-contained","true",
+                "/property:PublishFlavor=win-x64",
+                "/property:PublishSingleFile=true",
+                "/property:PublishTrimmed=true",
+                "/property:DefineConstants=_DESKTOP_PUBLISHED_BINARY_",
+                "${workspaceFolder}/${workspaceFolderBasename}.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "publish-linux",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "-c","Release",
+                "-r","linux-x64",
+                "--self-contained","true",
+                "/property:PublishFlavor=linux-x64",
+                "/property:PublishSingleFile=true",
+                "/property:PublishTrimmed=true",
+                "/property:DefineConstants=_DESKTOP_PUBLISHED_BINARY_",
+                "${workspaceFolder}/${workspaceFolderBasename}.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }, 
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "${workspaceFolder}/${workspaceFolderBasename}.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ],
+    "inputs": [
+        {
+            "type": "promptString",
+            "id": "DeveloperID",
+            "description": "iOS developer team id",
+            "default": " "
+        },
+        {
+            "type": "promptString",
+            "id": "keystore",
+            "description": "keystore file path including file name",
+            "default": "."
+        }
+    ]
+}
