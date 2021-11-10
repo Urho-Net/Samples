@@ -2,6 +2,7 @@
 ### Description
 -----------------------------------------------------------------------------------
 This demo sample integrates [Avalonia UI](https://avaloniaui.net) framework within [Urho.Net](https://github.com/Urho-Net/Urho.Net).\
+This demo runs only on desktop platforms , it won't run on mobile devices (I don't have any plans to support it on mobile devices).  
 Avalonia is running inside a [Urho.Net](https://github.com/Urho-Net/Urho.Net) context resulting in a super fast render cycle. \
 [Avalonia](https://avaloniaui.net)  communicates with [Urho.Net](https://github.com/Urho-Net/Urho.Net) through a glue layer ,the 'glue' source code can be found in the Urho.Avalonia folder.
 
