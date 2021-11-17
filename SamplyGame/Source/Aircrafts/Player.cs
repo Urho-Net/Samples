@@ -100,6 +100,11 @@ namespace SamplyGame
 			{
 				Vector3 destWorldPos = ((SamplyGame)Application).Viewport.ScreenToWorldPoint(positionX, positionY, 10);
 				destWorldPos.Z = 0;
+				// on the browser it's in landscape mode , so adjust position 
+                if (Application.Platform == Platforms.Web)
+                {
+                    destWorldPos.Y -= 3;
+                }
 				aircraft.Translate(destWorldPos - aircraft.WorldPosition, TransformSpace.World);
 				foreach (var weapon in Node.Components.OfType<Weapon>())
 				{

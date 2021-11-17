@@ -82,7 +82,7 @@ namespace SamplyGame
 			cameraNode.CreateComponent<Camera>();
 			Viewport = new Viewport(Context, scene, cameraNode.GetComponent<Camera>(), null);
 
-			if (Platform != Platforms.Android && Platform != Platforms.iOS)
+			if (Platform != Platforms.Android && Platform != Platforms.iOS && Platform != Platforms.Web)
 			{
 				RenderPath effectRenderPath = Viewport.RenderPath.Clone();
 				var fxaaRp = ResourceCache.GetXmlFile(Assets.PostProcess.FXAA3);
