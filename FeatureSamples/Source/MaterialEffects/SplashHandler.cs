@@ -203,6 +203,9 @@ namespace MaterialEffects
 
             float timeStep = e.TimeStep;
 
+            // TBD ELI , hack , causing exception on browser
+            if(Application.Platform == Platforms.Web)return;
+            
             for (uint i = 0; i < activeSplashList_.Count; ++i)
             {
                 SplashData splashData = activeSplashList_.ToArray()[i];

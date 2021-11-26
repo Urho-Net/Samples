@@ -32,6 +32,7 @@ namespace SceneReplication
 {
     public class SceneReplication : Sample
     {
+        protected Network Network;
         Camera camera;
 
         const short ServerPort = 2345;
@@ -65,6 +66,8 @@ namespace SceneReplication
         protected override void Start()
         {
             base.Start();
+            Network = Application.Network;
+            
             Input.SetMouseVisible(true, false);
             if (isMobile)
             {

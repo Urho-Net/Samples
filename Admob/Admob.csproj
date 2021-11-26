@@ -163,6 +163,7 @@
         <RemoveDir Directories="output" />
         <RemoveDir Directories="obj" />
         <RemoveDir Directories= "Assets/Data/DotNet" />
+        <RemoveDir Directories="Web" />
   </Target>
 
   <!-- needed for intellisense -->

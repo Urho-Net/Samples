@@ -28,7 +28,6 @@ using Urho.Resources;
 using Urho.Gui;
 using Urho.Audio;
 using Urho.IO;
-using Urho.Network;
 using Urho.Urho2D;
 
 
@@ -59,8 +58,6 @@ namespace UrhoNetSamples
         protected FileSystem FileSystem;
 
         protected Engine Engine;
-
-        protected Network Network;
 
         protected Log Log;
         public Button backButton;
@@ -165,7 +162,6 @@ namespace UrhoNetSamples
             Graphics = Application.Graphics;
             FileSystem = Application.FileSystem;
             Engine = Application.Engine;
-            Network = Application.Network;
             Log = Application.Log;
 
             this.ReceiveSceneUpdates = true;
@@ -340,6 +336,11 @@ namespace UrhoNetSamples
             if (isMobile)
             {
                 text += "\nPress <<<< to go back to the main list";
+            }
+            else if(Application.Platform == Platforms.Web)
+            {
+                    text += "\nPress Esacpe to show Mouse cursor";
+                    text += "\nPress 2nd Esacpe to go back to the main list";
             }
             else
             {

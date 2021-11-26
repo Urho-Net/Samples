@@ -134,6 +134,17 @@
             "problemMatcher": []
         },
         {
+            "label": "web-build",
+            "command": "./script/build-web.sh",
+            "windows":{
+                "command": "call \"tools/bash/git-bash.exe\" script/build-web.sh"
+            },
+            "type": "shell",
+            "args": [
+            ],
+            "problemMatcher": []
+        },
+        {
             "label": "clean",
             "command": "dotnet",
             "type": "process",

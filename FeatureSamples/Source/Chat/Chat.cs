@@ -36,6 +36,8 @@ namespace Chat
     public class Chat : Sample
     {
         // Identifier for the chat network messages
+
+         protected Network Network;
         const int MsgChat = Protocol.msg_user + 0;
         // UDP port we will use
         const short ChatServerPort = 2345;
@@ -67,6 +69,8 @@ namespace Chat
         protected override void Start()
         {
             base.Start();
+            Network = Application.Network;
+            
             Input.SetMouseVisible(true, false);
             CreateUI();
             SimpleCreateInstructions("This is a demo of a simple chat application\n"+

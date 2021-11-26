@@ -126,6 +126,7 @@
     <Error Condition="! Exists('$(libUrho3D)')" Text="Urho3D.dll not found are you sure URHONET_HOME_ROOT is pointing to the right place ?" /> 
     <Copy SourceFiles="@(AssetsSourceFiles)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="true" Retries="3" RetryDelayMilliseconds="300" />
     <Copy SourceFiles="$(libUrho3D)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(OutDir)/Game.dll" DestinationFolder="Assets/Data/DotNet" SkipUnchangedFiles="true" />
     <Copy SourceFiles="$(OutDir)/Game.dll" DestinationFolder="@(AndroidAssetsDestinationDir)" SkipUnchangedFiles="true" />
   </Target>
 
@@ -137,6 +138,7 @@
     <Error Condition="! Exists('$(libUrho3D)')" Text="libUrho3D.dylib not found are you sure URHONET_HOME_ROOT is pointing to the right place ?" /> 
     <Copy SourceFiles="@(AssetsSourceFiles)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="true" Retries="3" RetryDelayMilliseconds="300" />
     <Copy SourceFiles="$(libUrho3D)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(OutDir)/Game.dll" DestinationFolder="Assets/Data/DotNet" SkipUnchangedFiles="true" />
     <Copy SourceFiles="$(OutDir)/Game.dll" DestinationFolder="@(AndroidAssetsDestinationDir)" SkipUnchangedFiles="true" />
   </Target>
 
@@ -148,6 +150,7 @@
     <Error Condition="! Exists('$(libUrho3D)')" Text="libUrho3D.so not found are you sure URHONET_HOME_ROOT is pointing to the right place ?" /> 
     <Copy SourceFiles="@(AssetsSourceFiles)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="true" Retries="3" RetryDelayMilliseconds="300" />
     <Copy SourceFiles="$(libUrho3D)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(OutDir)/Game.dll" DestinationFolder="Assets/Data/DotNet" SkipUnchangedFiles="true" />
     <Copy SourceFiles="$(OutDir)/Game.dll" DestinationFolder="@(AndroidAssetsDestinationDir)" SkipUnchangedFiles="true" />
   </Target>
 
@@ -170,6 +173,7 @@
         <RemoveDir Directories="libs" />
         <RemoveDir Directories="output" />
         <RemoveDir Directories="obj" />
+        <RemoveDir Directories="Web" />
   </Target>
 
   <!-- needed for intellisense -->
