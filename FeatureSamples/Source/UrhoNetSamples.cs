@@ -38,7 +38,32 @@ namespace UrhoNetSamples
 
         ListView listView;
 
-        bool isMobile = false;
+        public static bool isMobile
+        {
+            get
+            {
+
+                if (Application.Platform == Platforms.iOS || Application.Platform == Platforms.Android)
+                    return true;
+
+                if (Application.Platform == Platforms.Web)
+                {
+                    string UserAgent = Environment.GetEnvironmentVariable("UserAgent");
+                    if (UserAgent != null)
+                    {
+                        if (UserAgent.Contains("Android", StringComparison.CurrentCultureIgnoreCase) ||
+                        UserAgent.Contains("iPhone", StringComparison.CurrentCultureIgnoreCase) ||
+                        UserAgent.Contains("iPad", StringComparison.CurrentCultureIgnoreCase) ||
+                        UserAgent.Contains("Mobile", StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
+            }
+        }
 
         Type[] samples;
 
@@ -62,13 +87,15 @@ namespace UrhoNetSamples
         {
             base.Start();
 
+            Log.LogLevel = LogLevel.Info;
+            
             Input.KeyDown += HandleKeyDown;
-
-            isMobile = (Platform == Platforms.iOS || Platform == Platforms.Android);
 
             if (isMobile)
             {
                 Input.SetScreenJoystickVisible(screenJoystickIndex, false);
+                if (Application.Platform == Platforms.Web)
+                    Input.TouchEmulation = true;
             }
 
             CreateUI();

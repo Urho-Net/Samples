@@ -45,7 +45,31 @@ namespace UrhoNetSamples
         Text infoText;
 
         protected int screenJoystickIndex = -1;
-        public static bool isMobile;
+        public static bool isMobile
+        {
+            get{
+
+                if (Application.Platform == Platforms.iOS || Application.Platform == Platforms.Android)
+                    return true;
+
+                if (Application.Platform == Platforms.Web)
+                {
+                    string UserAgent = Environment.GetEnvironmentVariable("UserAgent");
+                    if (UserAgent != null)
+                    {
+                        if (UserAgent.Contains("Android", StringComparison.CurrentCultureIgnoreCase) ||
+                        UserAgent.Contains("iPhone", StringComparison.CurrentCultureIgnoreCase) ||
+                        UserAgent.Contains("iPad", StringComparison.CurrentCultureIgnoreCase) ||
+                        UserAgent.Contains("Mobile", StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
+            }
+        }
         public event Action RequestToExit;
 
         protected Renderer Renderer;
@@ -166,10 +190,8 @@ namespace UrhoNetSamples
 
             this.ReceiveSceneUpdates = true;
 
-            isMobile = (Application.Platform == Platforms.iOS || Application.Platform == Platforms.Android);
-
-            if (Application.Platform == Platforms.Android ||
-                Application.Platform == Platforms.iOS ||
+          
+            if (isMobile || 
                 Application.Options.TouchEmulation)
             {
                 InitTouchInput();
@@ -407,7 +429,7 @@ namespace UrhoNetSamples
             logoSprite.SetSize(w, h);
             logoSprite.SetHotSpot(0, h);
             // logoSprite.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Bottom);
-            logoSprite.Position = new IntVector2(Graphics.Width / 2 - 200, Graphics.Height - 80);
+            logoSprite.Position = new IntVector2(0, Graphics.Height - 80);
             logoSprite.Opacity = 0.75f;
             logoSprite.Priority = -100;
 
