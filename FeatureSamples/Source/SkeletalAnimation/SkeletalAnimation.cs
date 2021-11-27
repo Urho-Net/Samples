@@ -40,7 +40,7 @@ namespace SkeletalAnimation
             base.Start();
             Graphics.WindowTitle = "SkeletalAnimation";
             CreateScene();
-            if (isMobile)
+            if (IsMobile)
                 SimpleCreateInstructionsWithWasd("Debug to toggle debug geometry");
             else
                 SimpleCreateInstructionsWithWasd("Space to toggle debug geometry");

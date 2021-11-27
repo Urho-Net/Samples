@@ -202,7 +202,7 @@ namespace MaterialEffects
             base.OnFixedUpdate(e);
 
             float timeStep = e.TimeStep;
-
+            
             for (uint i = 0; i < activeSplashList_.Count; ++i)
             {
                 SplashData splashData = activeSplashList_.ToArray()[i];

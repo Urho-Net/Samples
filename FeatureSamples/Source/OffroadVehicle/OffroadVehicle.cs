@@ -58,7 +58,7 @@ namespace OffroadVehicle
         protected override void Start()
         {
             base.Start();
-            if (isMobile)
+            if (IsMobile)
             {
                 CreateScreenJoystick(E_JoystickType.OneJoyStick_TwoButtons);
             }
@@ -143,7 +143,7 @@ namespace OffroadVehicle
             textKmH_.HorizontalAlignment = (HorizontalAlignment.Center);
             textKmH_.Position = new IntVector2(0, UI.Root.Height - 140);
 
-            if (isMobile)
+            if (IsMobile)
                 SimpleCreateInstructions("Use Virtual Joystick to turn left/right\nPress A to move forward\nPress B to move backwards", Color.Black);
             else
                 SimpleCreateInstructionsWithWasd("", Color.Black);
@@ -195,7 +195,7 @@ namespace OffroadVehicle
 
             if (vehicle != null)
             {
-                if (isMobile)
+                if (IsMobile)
                 {
                     UpdateJoystickInputs(vehicle.Controls);
                 }

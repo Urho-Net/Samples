@@ -468,7 +468,7 @@ namespace Urho2DIsometricDemo
             
             string path = "";
 
-            if(Sample.isMobile)
+            if(Sample.IsMobile)
             {
                 path = Application.FileSystem.ProgramDir + "Data/Scenes/";
             }

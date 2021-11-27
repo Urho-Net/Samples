@@ -38,7 +38,29 @@ namespace UrhoNetSamples
 
         ListView listView;
 
-        bool isMobile = false;
+        public static bool IsMobile
+        {
+            get{
+
+                if (Application.Platform == Platforms.iOS || Application.Platform == Platforms.Android)
+                    return true;
+
+                if (Application.Platform == Platforms.Web)
+                {
+                    string UserAgent = Environment.GetEnvironmentVariable("UserAgent");
+                    if (UserAgent != null)
+                    {
+                        var mobileStrings = new List<string> { "Android", "iPhone", "iPad","Mobile","webOS","iPod","BlackBerry","Windows Phone"};
+                        if(mobileStrings.Any(x => UserAgent.Contains(x,StringComparison.CurrentCultureIgnoreCase)))
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
+            }
+        }
 
         Type[] samples;
 
@@ -62,13 +84,15 @@ namespace UrhoNetSamples
         {
             base.Start();
 
+            Log.LogLevel = LogLevel.Info;
+            
             Input.KeyDown += HandleKeyDown;
 
-            isMobile = (Platform == Platforms.iOS || Platform == Platforms.Android);
-
-            if (isMobile)
+            if (IsMobile)
             {
                 Input.SetScreenJoystickVisible(screenJoystickIndex, false);
+                if (Application.Platform == Platforms.Web)
+                    Input.TouchEmulation = true;
             }
 
             CreateUI();
@@ -117,7 +141,15 @@ namespace UrhoNetSamples
                 string SampleName = ExtractSampleName(sample);
 
                 // PBRMaterials doesn't work well on mobiles
-                if (isMobile && SampleName == "PBRMaterials") continue;
+                if ((Application.Platform == Platforms.Web || IsMobile) && SampleName == "PBRMaterials") continue;
+
+                if(Application.Platform == Platforms.Web)
+                {
+                    
+                    if(SampleName == "DynamicGeometry")continue;
+                    // TBD ELI , Networking is not supported on Browser
+                    if(SampleName == "Chat" || SampleName == "SceneReplication")continue;
+                }
 
                 samplesList[SampleName] = sample;
             }
@@ -131,7 +163,14 @@ namespace UrhoNetSamples
                 string SampleName = ExtractSampleName(sample);
 
                 // PBRMaterials doesn't work well on mobiles
-                if (isMobile && SampleName == "PBRMaterials") continue;
+                if ((Application.Platform == Platforms.Web || IsMobile ) && SampleName == "PBRMaterials") continue;
+
+                if (Application.Platform == Platforms.Web)
+                {
+                    if(SampleName == "DynamicGeometry")continue;
+                    // TBD ELI , Networking is not supported on Browser
+                    if (SampleName == "Chat" || SampleName == "SceneReplication") continue;
+                }
 
                 ListAddSampleEntry(SampleName);
             }
@@ -168,7 +207,8 @@ namespace UrhoNetSamples
                 UI.Root.Resized -= OnUIResized;
                 Input.SetMouseVisible(false);
                 Input.SetMouseMode(MouseMode.Relative);
-                currentSample.RequestToExit += SampleRequetedToExit;
+                if (Application.Platform != Platforms.Web)
+                    currentSample.RequestToExit += SampleRequetedToExit;
                 currentSample.Run();
                 currentSample.backButton.Released += OnBackButtonReleased;
                 currentSample.infoButton.Released += OnInfoButttonReleased;
@@ -198,7 +238,8 @@ namespace UrhoNetSamples
             {
                 currentSample.backButton.Released -= OnBackButtonReleased;
                 currentSample.infoButton.Released -= OnInfoButttonReleased;
-                currentSample.RequestToExit -= SampleRequetedToExit;
+                if (Application.Platform != Platforms.Web)
+                    currentSample.RequestToExit -= SampleRequetedToExit;
                 currentSample.Exit();
                 currentSample.UnSubscribeFromAllEvents();
                 currentSample.Dispose();
@@ -222,7 +263,8 @@ namespace UrhoNetSamples
                     }
                     else
                     {
-                        Exit();
+                        if (Application.Platform != Platforms.Web)
+                            Exit();
                     }
                     return;
             }

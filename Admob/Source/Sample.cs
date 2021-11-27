@@ -261,7 +261,8 @@ namespace Admob
 			switch (e.Key)
 			{
 				case Key.Esc:
-					Exit();
+                    if (Application.Platform != Platforms.Web)
+                        Exit();
 					return;
 				case Key.F1:
 					console.Toggle();

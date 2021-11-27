@@ -39,7 +39,7 @@ namespace Physics
             base.Start();
             Graphics.WindowTitle = "Physics";
             CreateScene();
-            if (isMobile)
+            if (IsMobile)
             {
                 SimpleCreateInstructionsWithWasd(
                     "Button to spawn physics objects\n" +
@@ -92,7 +92,7 @@ namespace Physics
             if (input.GetMouseButtonPress(MouseButton.Left))
                 SpawnObject();
 
-            if (!isMobile && input.GetKeyPress(Key.F5))
+            if (!IsMobile && input.GetKeyPress(Key.F5))
             {
                 string path = FileSystem.CurrentDir + "Assets/Data/Scenes";
                 if (!FileSystem.DirExists(path))
@@ -102,7 +102,7 @@ namespace Physics
                 scene.SaveXml(path + "/Physics.xml");
             }
 
-            if (!isMobile && input.GetKeyPress(Key.F7))
+            if (!IsMobile && input.GetKeyPress(Key.F7))
             {
                 string path = FileSystem.CurrentDir + "Assets/Data/Scenes/Physics.xml";
                 if (FileSystem.FileExists(path))

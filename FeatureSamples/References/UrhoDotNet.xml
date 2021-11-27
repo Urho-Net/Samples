@@ -1756,6 +1756,44 @@
              Type: vec2, Defined in Uniforms.glsl:L87
              </summary>
             </member>
+        <member name="T:Urho.SQLite">
+             <summary>
+             % SQlite Database connection.
+             </summary>
+            </member>
+        <member name="T:Urho.DbConnection">
+             <summary>
+             %Database connection.
+             </summary>
+             <summary>
+             %Database connection.
+             </summary>
+            </member>
+        <member name="M:Urho.DbConnection.Finalize">
+             <summary>
+             Finalize all prepared statements, close all BLOB handles, and finish all sqlite3_backup objects.
+             </summary>
+            </member>
+        <member name="M:Urho.DbConnection.GetConnectionString">
+             <summary>
+             Return database connection string. The connection string for SQLite3 is using the URI format described in https://www.sqlite.org/uri.html, while the connection string for ODBC is using DSN format as per ODBC standard.
+             </summary>
+            </member>
+        <member name="M:Urho.DbConnection.IsConnected">
+             <summary>
+             Return true when the connection object is connected to the associated database.
+             </summary>
+            </member>
+        <member name="P:Urho.DbConnection.ConnectionString">
+             <summary>
+             Return database connection string. The connection string for SQLite3 is using the URI format described in https://www.sqlite.org/uri.html, while the connection string for ODBC is using DSN format as per ODBC standard.
+             </summary>
+            </member>
+        <member name="P:Urho.DbConnection.Connected">
+             <summary>
+             Return true when the connection object is connected to the associated database.
+             </summary>
+            </member>
         <member name="F:Urho.Protocol.msg_identity">
              Client-&gt;server: send VariantMap of identity and authentication data.
             </member>
@@ -13147,6 +13185,11 @@
         <member name="M:Urho.Viewport.AllocateView">
              <summary>
              Allocate the view structure. Called by Renderer.
+             </summary>
+            </member>
+        <member name="M:Urho.Viewport.SetClearColor(Urho.Color)">
+             <summary>
+             Set  Viewport clear color , will override the color set in the RenderPath (CLEAR_CMD) , setting  the value of Color(0,0,0,0) will reset it to the default clear color used in the RenderPath
              </summary>
             </member>
         <member name="P:Urho.Viewport.Scene">
@@ -25766,6 +25809,69 @@
              Create the rigid body, or re-add to the physics world with changed flags. Calls UpdateMass().
              </summary>
             </member>
+        <member name="T:Urho.DBAPI">
+             <summary>
+             Supported database API.
+             </summary>
+            </member>
+        <member name="T:Urho.Database">
+             <summary>
+             %Database subsystem. Manage database connections.
+             </summary>
+            </member>
+        <member name="M:Urho.Database.GetAPI">
+             <summary>
+             Return the underlying database API.
+             </summary>
+            </member>
+        <member name="M:Urho.Database.Connect(System.String)">
+             <summary>
+             Create new database connection. Return 0 if failed.
+             </summary>
+            </member>
+        <member name="M:Urho.Database.Disconnect(Urho.DbConnection)">
+             <summary>
+             Disconnect a database connection. The connection object pointer should not be used anymore after this.
+             </summary>
+            </member>
+        <member name="M:Urho.Database.IsPooling">
+             <summary>
+             Return true when using internal database connection pool. The internal database pool is managed by the Database subsystem itself and should not be confused with ODBC connection pool option when ODBC is being used.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Database.GetPoolSize">
+             <summary>
+             Get internal database connection pool size.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Database.SetPoolSize(System.UInt32)">
+             <summary>
+             Set internal database connection pool size.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Database.API">
+             <summary>
+             Return the underlying database API.
+             </summary>
+            </member>
+        <member name="P:Urho.Database.Pooling">
+             <summary>
+             Return true when using internal database connection pool. The internal database pool is managed by the Database subsystem itself and should not be confused with ODBC connection pool option when ODBC is being used.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Database.PoolSize">
+             <summary>
+             Get internal database connection pool size.
+             
+             Or
+             Set internal database connection pool size.
+             
+             </summary>
+            </member>
         <member name="T:Urho.DebugHud">
              <summary>
              Displays rendering stats and profiling information.
@@ -32682,6 +32788,11 @@
         <member name="M:Urho.View.FindNamedTexture(System.String,System.Boolean,System.Boolean)">
              <summary>
              Get a named texture from the rendertarget list or from the resource cache, to be either used as a rendertarget or texture binding.
+             </summary>
+            </member>
+        <member name="M:Urho.View.SetClearColor(Urho.Color)">
+             <summary>
+             Set  View clear color , will override the color set in the RenderPath (CLEAR_CMD) , setting  the value of Color(0,0,0,0) will reset it to the default clear color used in the RenderPath
              </summary>
             </member>
         <member name="P:Urho.View.Graphics">

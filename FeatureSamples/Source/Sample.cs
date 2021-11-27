@@ -28,9 +28,9 @@ using Urho.Resources;
 using Urho.Gui;
 using Urho.Audio;
 using Urho.IO;
-using Urho.Network;
 using Urho.Urho2D;
-
+using System.Collections.Generic;
+using System.Linq;
 
 namespace UrhoNetSamples
 {
@@ -46,7 +46,29 @@ namespace UrhoNetSamples
         Text infoText;
 
         protected int screenJoystickIndex = -1;
-        public static bool isMobile;
+        public static bool IsMobile
+        {
+            get{
+
+                if (Application.Platform == Platforms.iOS || Application.Platform == Platforms.Android)
+                    return true;
+
+                if (Application.Platform == Platforms.Web)
+                {
+                    string UserAgent = Environment.GetEnvironmentVariable("UserAgent");
+                    if (UserAgent != null)
+                    {
+                        var mobileStrings = new List<string> { "Android", "iPhone", "iPad","Mobile","webOS","iPod","BlackBerry","Windows Phone"};
+                        if(mobileStrings.Any(x => UserAgent.Contains(x,StringComparison.CurrentCultureIgnoreCase)))
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
+            }
+        }
         public event Action RequestToExit;
 
         protected Renderer Renderer;
@@ -59,8 +81,6 @@ namespace UrhoNetSamples
         protected FileSystem FileSystem;
 
         protected Engine Engine;
-
-        protected Network Network;
 
         protected Log Log;
         public Button backButton;
@@ -165,15 +185,12 @@ namespace UrhoNetSamples
             Graphics = Application.Graphics;
             FileSystem = Application.FileSystem;
             Engine = Application.Engine;
-            Network = Application.Network;
             Log = Application.Log;
 
             this.ReceiveSceneUpdates = true;
 
-            isMobile = (Application.Platform == Platforms.iOS || Application.Platform == Platforms.Android);
-
-            if (Application.Platform == Platforms.Android ||
-                Application.Platform == Platforms.iOS ||
+          
+            if (IsMobile || 
                 Application.Options.TouchEmulation)
             {
                 InitTouchInput();
@@ -206,7 +223,7 @@ namespace UrhoNetSamples
 
             MonoDebugHud?.Hide();
             MonoDebugHud = null;
-            if (isMobile)
+            if (IsMobile)
             {
                 Application.Input.RemoveScreenJoystick(screenJoystickIndex);
             }
@@ -316,7 +333,7 @@ namespace UrhoNetSamples
         {
             string text = "";
 
-            if (isMobile)
+            if (IsMobile)
             {
                 text = "Use virtual joystick to move";
             }
@@ -337,9 +354,14 @@ namespace UrhoNetSamples
         {
             text += "\nPress Info to toggle this textual information";
 
-            if (isMobile)
+            if (IsMobile)
             {
                 text += "\nPress <<<< to go back to the main list";
+            }
+            else if(Application.Platform == Platforms.Web)
+            {
+                    text += "\nPress Esacpe to show Mouse cursor";
+                    text += "\nPress 2nd Esacpe to go back to the main list";
             }
             else
             {
@@ -353,7 +375,12 @@ namespace UrhoNetSamples
                 VerticalAlignment = VerticalAlignment.Top
             };
 
-            if (Graphics.Width <= 1024)
+
+            if (Graphics.Width <= 480)
+            {
+                infoText.SetFont(Application.ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 10);
+            }
+            else if (Graphics.Width <= 1024)
             {
                 infoText.SetFont(Application.ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 16);
             }
@@ -365,6 +392,7 @@ namespace UrhoNetSamples
             {
                 infoText.SetFont(Application.ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 25);
             }
+
 
             if (textColor != Color.Transparent)
                 infoText.SetColor(textColor);
@@ -400,13 +428,8 @@ namespace UrhoNetSamples
 
             logoSprite = UI.Root.CreateSprite();
             logoSprite.Texture = logoTexture;
-            int w = logoTexture.Width;
-            int h = logoTexture.Height;
-            logoSprite.SetScale(256.0f / w);
-            logoSprite.SetSize(w, h);
-            logoSprite.SetHotSpot(0, h);
-            // logoSprite.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Bottom);
-            logoSprite.Position = new IntVector2(Graphics.Width / 2 - 200, Graphics.Height - 80);
+            logoSprite.SetSize(Graphics.Width/10, Graphics.Height/10);
+            logoSprite.Position = new IntVector2(0, Graphics.Height - logoSprite.Height-10);
             logoSprite.Opacity = 0.75f;
             logoSprite.Priority = -100;
 

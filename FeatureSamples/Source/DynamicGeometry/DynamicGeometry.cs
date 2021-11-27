@@ -45,7 +45,7 @@ namespace DynamicGeometry
         {
             base.Start();
             CreateScene();
-            if (isMobile)
+            if (IsMobile)
             {
 				SimpleCreateInstructionsWithWasd("Toggle button to toggle animation");
             }

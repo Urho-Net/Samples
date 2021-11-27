@@ -42,7 +42,7 @@ namespace UIDrag
             elements = new Dictionary<UIElement, ElementInfo>();
             // Set mouse visible
 
-            if (!isMobile)
+            if (!IsMobile)
                 Input.SetMouseVisible(true, false);
 
 			SimpleCreateInstructions( "Drag on the buttons to move them around.\nMulti- button drag also supported.");

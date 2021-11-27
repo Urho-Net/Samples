@@ -73,12 +73,12 @@ namespace CharacterDemo
             CreateScene();
             CreateCharacter();
             
-            if (isMobile)
+            if (IsMobile)
             {
                 CreateScreenJoystick(E_JoystickType.OneJoyStick_OneButton);
             }
 
-            if (isMobile)
+            if (IsMobile)
             {
                 SimpleCreateInstructionsWithWasd("Button A to jump", Color.Black);
             }
@@ -179,7 +179,7 @@ namespace CharacterDemo
                 // Update controls using keys
                 if (UI.FocusElement == null)
                 {
-                    if (isMobile == false && touch == null || !touch.UseGyroscope)
+                    if (IsMobile == false && touch == null || !touch.UseGyroscope)
                     {
                         character.Controls.Set(CtrlForward, input.GetKeyDown(Key.W));
                         character.Controls.Set(CtrlBack, input.GetKeyDown(Key.S));
@@ -187,7 +187,7 @@ namespace CharacterDemo
                         character.Controls.Set(CtrlRight, input.GetKeyDown(Key.D));
                     }
 
-                    if (isMobile == false)
+                    if (IsMobile == false)
                     {
                         character.Controls.Set(CtrlJump, input.GetKeyDown(Key.Space));
                     }
@@ -226,7 +226,7 @@ namespace CharacterDemo
                     if (touch != null && input.GetKeyPress(Key.G))
                         touch.UseGyroscope = !touch.UseGyroscope;
 
-                    if (!isMobile && input.GetKeyPress(Key.F5))
+                    if (!IsMobile && input.GetKeyPress(Key.F5))
                     {
 
                         string path = FileSystem.CurrentDir + "Assets/Data/Scenes";
@@ -236,7 +236,7 @@ namespace CharacterDemo
                         }
                         scene.SaveXml(path + "/CharacterDemo.xml");
                     }
-                    if (!isMobile && input.GetKeyPress(Key.F7))
+                    if (!IsMobile && input.GetKeyPress(Key.F7))
                     {
                         string path = FileSystem.CurrentDir + "Assets/Data/Scenes/CharacterDemo.xml";
                         if (FileSystem.FileExists(path))
