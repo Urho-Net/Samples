@@ -41,7 +41,7 @@ namespace VehicleDemo
             base.Start();
 
             //  LogSharp.LogLevel = LogSharpLevel.Debug;
-            if (isMobile)
+            if (IsMobile)
             {
                 CreateScreenJoystick(E_JoystickType.OneJoyStick_TwoButtons);
             }
@@ -53,7 +53,7 @@ namespace VehicleDemo
             CreateVehicle();
 
             // Create the UI content
-            if (isMobile)
+            if (IsMobile)
             {
                 SimpleCreateInstructions("Use Virtual Joystick to turn left/right\nPress A to move forward\nPress B to move backwards", Color.Black);
             }
@@ -131,7 +131,7 @@ namespace VehicleDemo
             if (vehicle != null)
             {
 
-                if (isMobile)
+                if (IsMobile)
                 {
                     UpdateJoystickInputs(vehicle.Controls);
                 }
@@ -145,7 +145,7 @@ namespace VehicleDemo
 
                 // Check for loading / saving the scene
                 // currently saving is only supported on desktop
-                if (!isMobile && input.GetKeyPress(Key.F5))
+                if (!IsMobile && input.GetKeyPress(Key.F5))
                 {
                     string path = FileSystem.ProgramDir + "Assets/Data/Scenes";
                     if (!FileSystem.DirExists(path))
@@ -170,7 +170,7 @@ namespace VehicleDemo
         {
             string path = "";
 
-            if (isMobile)
+            if (IsMobile)
             {
                 path = FileSystem.ProgramDir + "Data/Scenes";
             }

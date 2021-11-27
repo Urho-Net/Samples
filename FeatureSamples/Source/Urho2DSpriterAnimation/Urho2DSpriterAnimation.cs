@@ -49,7 +49,7 @@ namespace Urho2DSpriterAnimation
         {
             base.Start();
             CreateScene();
-            if(isMobile)
+            if(IsMobile)
             SimpleCreateInstructions("Touch screen to play next animation");
             else
             SimpleCreateInstructions("Mouse click to play next animation");

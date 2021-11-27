@@ -45,7 +45,7 @@ namespace Urho2DIsometricDemo
             // Create the scene content
             CreateScene();
 
-            if (isMobile)
+            if (IsMobile)
             {
                 CreateScreenJoystick(E_JoystickType.OneJoyStick_OneButton);
             }
@@ -211,7 +211,7 @@ namespace Urho2DIsometricDemo
             if (Input.GetKeyPress(Key.Z))
                 drawDebug_ = !drawDebug_;
 
-            if (isMobile)
+            if (IsMobile)
                 UpdateJoystickInputs(character2D_.Controls);
 
 

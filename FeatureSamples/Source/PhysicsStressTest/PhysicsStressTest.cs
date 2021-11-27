@@ -39,7 +39,7 @@ namespace PhysicsStressTest
             base.Start();
             Graphics.WindowTitle = "PhysicsStressTest";
             CreateScene();
-            if (isMobile)
+            if (IsMobile)
             {
                 SimpleCreateInstructionsWithWasd(
                     "Button to spawn physics objects\n" +

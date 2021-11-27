@@ -45,9 +45,9 @@ namespace Charts
         {
             base.Start();
 
-            if (isMobile)
+            if (IsMobile)
                 RemoveScreenJoystick();
-            if (isMobile)
+            if (IsMobile)
                 SimpleCreateInstructions("Touch the screen to rotate or pick the chart bars");
             else
                 SimpleCreateInstructions();

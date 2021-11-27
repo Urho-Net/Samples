@@ -39,7 +39,7 @@ namespace Ragdolls
             base.Start();
             Graphics.WindowTitle = "Ragdolls";
             CreateScene();
-            if (isMobile)
+            if (IsMobile)
             {
                 SimpleCreateInstructionsWithWasd(
                     "Fire to spawn physics objects\n" +
@@ -94,7 +94,7 @@ namespace Ragdolls
                 SpawnObject();
 
             // Check for loading / saving the scene
-            if (!isMobile && input.GetKeyPress(Key.F5))
+            if (!IsMobile && input.GetKeyPress(Key.F5))
             {
                 string path = FileSystem.CurrentDir + "Assets/Data/Scenes";
                 if (!FileSystem.DirExists(path))
@@ -104,7 +104,7 @@ namespace Ragdolls
                 scene.SaveXml(path + "/Ragdolls.xml");
             }
 
-            if (!isMobile && input.GetKeyPress(Key.F7))
+            if (!IsMobile && input.GetKeyPress(Key.F7))
             {
                 string path = FileSystem.CurrentDir + "Assets/Data/Scenes/Ragdolls.xml";
                 if (FileSystem.FileExists(path))

@@ -72,7 +72,7 @@ namespace Decals
             ui.Cursor = cursor;
             cursor.SetPosition(graphics.Width / 2, graphics.Height / 2);
 
-			if(isMobile)
+			if(IsMobile)
 			{
 				SimpleCreateInstructionsWithWasd(
 					"Touch screen to move cursor\nPaint to paint decals at cursor position\n" +

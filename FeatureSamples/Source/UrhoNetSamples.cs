@@ -38,10 +38,9 @@ namespace UrhoNetSamples
 
         ListView listView;
 
-        public static bool isMobile
+        public static bool IsMobile
         {
-            get
-            {
+            get{
 
                 if (Application.Platform == Platforms.iOS || Application.Platform == Platforms.Android)
                     return true;
@@ -51,10 +50,8 @@ namespace UrhoNetSamples
                     string UserAgent = Environment.GetEnvironmentVariable("UserAgent");
                     if (UserAgent != null)
                     {
-                        if (UserAgent.Contains("Android", StringComparison.CurrentCultureIgnoreCase) ||
-                        UserAgent.Contains("iPhone", StringComparison.CurrentCultureIgnoreCase) ||
-                        UserAgent.Contains("iPad", StringComparison.CurrentCultureIgnoreCase) ||
-                        UserAgent.Contains("Mobile", StringComparison.CurrentCultureIgnoreCase))
+                        var mobileStrings = new List<string> { "Android", "iPhone", "iPad","Mobile","webOS","iPod","BlackBerry","Windows Phone"};
+                        if(mobileStrings.Any(x => UserAgent.Contains(x,StringComparison.CurrentCultureIgnoreCase)))
                         {
                             return true;
                         }
@@ -91,7 +88,7 @@ namespace UrhoNetSamples
             
             Input.KeyDown += HandleKeyDown;
 
-            if (isMobile)
+            if (IsMobile)
             {
                 Input.SetScreenJoystickVisible(screenJoystickIndex, false);
                 if (Application.Platform == Platforms.Web)
@@ -144,7 +141,7 @@ namespace UrhoNetSamples
                 string SampleName = ExtractSampleName(sample);
 
                 // PBRMaterials doesn't work well on mobiles
-                if ((Application.Platform == Platforms.Web || isMobile) && SampleName == "PBRMaterials") continue;
+                if ((Application.Platform == Platforms.Web || IsMobile) && SampleName == "PBRMaterials") continue;
 
                 if(Application.Platform == Platforms.Web)
                 {
@@ -166,7 +163,7 @@ namespace UrhoNetSamples
                 string SampleName = ExtractSampleName(sample);
 
                 // PBRMaterials doesn't work well on mobiles
-                if ((Application.Platform == Platforms.Web || isMobile ) && SampleName == "PBRMaterials") continue;
+                if ((Application.Platform == Platforms.Web || IsMobile ) && SampleName == "PBRMaterials") continue;
 
                 if (Application.Platform == Platforms.Web)
                 {

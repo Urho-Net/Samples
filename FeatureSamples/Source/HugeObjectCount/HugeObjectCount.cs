@@ -47,7 +47,7 @@ namespace HugeObjectCount
         {
             base.Start();
             CreateScene();
-            if (isMobile)
+            if (IsMobile)
             {
                 SimpleCreateInstructionsWithWasd(
                     "Button to toggle animation\n" +

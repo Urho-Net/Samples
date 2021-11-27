@@ -38,7 +38,7 @@ namespace Billboards
         {
             base.Start();
             CreateScene();
-            if (isMobile)
+            if (IsMobile)
             {
                 SimpleCreateInstructionsWithWasd("Debug to toggle debug geometry");
             }

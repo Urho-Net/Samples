@@ -69,7 +69,7 @@ namespace SceneReplication
             Network = Application.Network;
             
             Input.SetMouseVisible(true, false);
-            if (isMobile)
+            if (IsMobile)
             {
                 RemoveScreenJoystick();
             }
@@ -385,7 +385,7 @@ namespace SceneReplication
             Connection serverConnection = network.ServerConnection;
             bool serverRunning = network.ServerRunning;
 
-            if (isMobile)
+            if (IsMobile)
             {
                 if (serverConnection != null)
                 {
@@ -478,7 +478,7 @@ namespace SceneReplication
 
             if (serverConnection != null) // Client: collect controls
             {
-                if (isMobile)
+                if (IsMobile)
                 {
                     Vector2 axis_0 = GetJoystickAxisInput();
 
@@ -489,7 +489,7 @@ namespace SceneReplication
 
                 }
 
-                if (!isMobile && UI.FocusElement == null)
+                if (!IsMobile && UI.FocusElement == null)
                 {
 
                     controls.Set(CTRL_FORWARD, input.GetKeyDown(Key.W));

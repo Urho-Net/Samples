@@ -76,7 +76,7 @@ namespace CrowdNavigation
 
             UI.Cursor.Visible = true;
 
-            if (isMobile)
+            if (IsMobile)
             {
                 SimpleCreateInstructionsWithWasd("Touch screen to move cursor\nSet to move Jack to cursor position\nSpawn to spawn a Jack at cursor position\n" +
                 "Obstacles to add obstacles or remove obstacles/agents at cursor position\n" +
@@ -226,7 +226,7 @@ namespace CrowdNavigation
 
             // Check for loading/saving the scene. Save the scene to the file Data/Scenes/CrowdNavigation.xml relative to the executable
             // directory
-            if (!isMobile && input.GetKeyPress(Key.F5))
+            if (!IsMobile && input.GetKeyPress(Key.F5))
             {
                 string path = FileSystem.CurrentDir + "Assets/Data/Scenes";
                 if (!FileSystem.DirExists(path))
@@ -236,7 +236,7 @@ namespace CrowdNavigation
                 scene.SaveXml(path + "/CrowdNavigation.xml");
             }
 
-            if (!isMobile && input.GetKeyPress(Key.F7))
+            if (!IsMobile && input.GetKeyPress(Key.F7))
             {
                 string path = FileSystem.CurrentDir + "Assets/Data/Scenes/CrowdNavigation.xml";
                 if (FileSystem.FileExists(path))

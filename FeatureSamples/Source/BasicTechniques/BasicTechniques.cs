@@ -44,7 +44,7 @@ namespace BasicTechniques
         {
             base.Start();
 
-            if (isMobile)
+            if (IsMobile)
                 SimpleCreateInstructionsWithWasd("Up & Down Buttons to move up/down");
             else
                 SimpleCreateInstructionsWithWasd();

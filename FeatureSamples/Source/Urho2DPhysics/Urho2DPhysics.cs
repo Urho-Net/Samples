@@ -40,7 +40,7 @@ namespace Urho2DPhysics
 		{
 			base.Start();
 			CreateScene();
-			if(isMobile)
+			if(IsMobile)
 			SimpleCreateInstructionsWithWasd("Use Zoom In/Out to zoom.");
 			else
 			SimpleCreateInstructionsWithWasd("Use PageUp PageDown keys to zoom.");

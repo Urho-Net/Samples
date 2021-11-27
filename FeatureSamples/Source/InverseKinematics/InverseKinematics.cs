@@ -37,12 +37,12 @@ namespace InverseKinematics
             base.Start();
             CreateScene();
 
-            if (isMobile)
+            if (IsMobile)
             {
                 CreateScreenJoystick(E_JoystickType.OneJoyStick_TwoButtons);
             }
 
-            if (isMobile)
+            if (IsMobile)
             {
                 SimpleCreateInstructions("Use touch to look around\nUse Joystick to change incline\nPress A to reset floor\nPress B to draw debug geometry", Color.Black);
             }
@@ -189,7 +189,7 @@ namespace InverseKinematics
             base.OnUpdate(timeStep);
             const float mouseSensitivity = .1f;
 
-            if (isMobile || Input.GetMouseButtonDown(MouseButton.Left) == true)
+            if (IsMobile || Input.GetMouseButtonDown(MouseButton.Left) == true)
             {
                 var mouseMove = Application.Input.MouseMove;
                 Yaw += mouseSensitivity * mouseMove.X;
@@ -224,7 +224,7 @@ namespace InverseKinematics
                 drawDebug_ = !drawDebug_;
             }
 
-            if (isMobile)
+            if (IsMobile)
             {
                 JoystickState joystick;
                 if (screenJoystickIndex != -1 && Input.GetJoystick(screenJoystickIndex, out joystick))

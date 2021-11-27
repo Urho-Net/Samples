@@ -49,13 +49,13 @@ namespace KinematicCharacterDemo
             CreateScene();
             CreateCharacter();
 
-            if (isMobile)
+            if (IsMobile)
             {
                 CreateScreenJoystick(E_JoystickType.OneJoyStick_OneButton);
             }
 
 
-            if (isMobile)
+            if (IsMobile)
             {
                 SimpleCreateInstructionsWithWasd("Button A to jump", Color.Black);
             }
@@ -157,7 +157,7 @@ namespace KinematicCharacterDemo
                         character.Controls.Set(Global.CtrlRight, input.GetKeyDown(Key.D));
                     }
 
-                    if (isMobile == false)
+                    if (IsMobile == false)
                     {
                         character.Controls.Set(Global.CtrlJump, input.GetKeyDown(Key.Space));
                     }

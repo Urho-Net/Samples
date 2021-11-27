@@ -41,7 +41,7 @@ namespace MultipleViewports
             base.Start();
             Graphics.WindowTitle = "MultipleViewports";
             CreateScene();
-            if (isMobile)
+            if (IsMobile)
                 SimpleCreateInstructionsWithWasd("Bloom to toggle bloom, FXAA to toggle FXAA\n" +"Debug to toggle debug geometry");
             else
                 SimpleCreateInstructionsWithWasd("B to toggle bloom, F to toggle FXAA\n" +"Space to toggle debug geometry");
