@@ -13187,6 +13187,11 @@
              Allocate the view structure. Called by Renderer.
              </summary>
             </member>
+        <member name="M:Urho.Viewport.SetClearColor(Urho.Color)">
+             <summary>
+             Set  Viewport clear color , will override the color set in the RenderPath (CLEAR_CMD) , setting  the value of Color(0,0,0,0) will reset it to the default clear color used in the RenderPath
+             </summary>
+            </member>
         <member name="P:Urho.Viewport.Scene">
              <summary>
              Return scene.
@@ -32783,6 +32788,11 @@
         <member name="M:Urho.View.FindNamedTexture(System.String,System.Boolean,System.Boolean)">
              <summary>
              Get a named texture from the rendertarget list or from the resource cache, to be either used as a rendertarget or texture binding.
+             </summary>
+            </member>
+        <member name="M:Urho.View.SetClearColor(Urho.Color)">
+             <summary>
+             Set  View clear color , will override the color set in the RenderPath (CLEAR_CMD) , setting  the value of Color(0,0,0,0) will reset it to the default clear color used in the RenderPath
              </summary>
             </member>
         <member name="P:Urho.View.Graphics">

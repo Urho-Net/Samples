@@ -30,7 +30,7 @@ namespace UIBuilder
 {
 	public class UIBuilder : Sample
 	{
-#if !_MOBILE_
+#if !_MOBILE_ && !_WEB_
 		DynamicComponentManager dynamicComponentManager = null;
 #endif
 		Scene scene;
@@ -75,7 +75,7 @@ namespace UIBuilder
             VGRendering.LoadResources();
 
             // This is needed for Hot-Reload usecase on desktop only.
-            if (!isMobile)
+            if (!isMobile && Application.Platform != Platforms.Web)
             {
                 ResourceCache.AddResourceDir("Assets/Data", 0);
                 ResourceCache.AddResourceDir("Assets/CoreData", 1);
@@ -90,7 +90,7 @@ namespace UIBuilder
         void Init()
         {
 
-#if _MOBILE_
+#if _MOBILE_ || _WEB_
             var uiDynamicBuilder = new UIDynamicBuilder();
             scene.AddComponent(uiDynamicBuilder);  
 #else
@@ -107,7 +107,7 @@ namespace UIBuilder
         protected override void Stop()
         {
 			
-#if !_MOBILE_
+#if !_MOBILE_ && !_WEB_
             dynamicComponentManager?.Stop();
             dynamicComponentManager = null;
 #endif
@@ -122,7 +122,7 @@ namespace UIBuilder
                 Init();
             }
             
-#if !_MOBILE_
+#if !_MOBILE_ && !_WEB_
             if(screenSize != Graphics.Size)
             {
                 screenSize = Graphics.Size;

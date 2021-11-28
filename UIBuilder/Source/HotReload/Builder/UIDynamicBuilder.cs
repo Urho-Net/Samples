@@ -16,11 +16,11 @@ namespace UIBuilder
         {
             // Only 1 window should be uncommented
 
-            new TreeViewWindow();
+            // new TreeViewWindow();
             
             // new MathWindow();
             //  new LoginWindow();   
-            //   new InviteMatchWindow("Player 2");
+              new InviteMatchWindow("Player 2");
             // new RegisterWindow();
 
         }
