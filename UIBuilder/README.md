@@ -22,6 +22,7 @@ Any file/s can be modified , will be instantly compiled and hot-reloaded in less
 - If the compilation fails , the display will become black .   Compilation errors will be presented in the Debug Console.
 
 - One can preview the UI scene on mobile devices (Android and iOS) by deploying to the mobile device using the regular way of Urho.Net mobile deployment
+- One can preview the UI scene on Web browsers using the regular way of Urho.Net Web deployment.
 
 
 

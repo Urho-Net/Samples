@@ -2,7 +2,7 @@
 ### Description
 -----------------------------------------------------------
 This is a showcase of a JavaScript code running inside .NET utilizing  [Jint](https://github.com/sebastienros/jint)  a Javascript interpreter.  \
-Runs on all supported platforms , macOS,Windows,Linux,iOS,Android .
+Runs on all supported platforms , macOS,Windows,Linux,iOS,Android and Web browsers .
 
 It took me literally less than an hour to figure out how to use JInt and write this demo.\
 I am not a Javascript guy , it's not my cup of tea , but it's cool to see such a solution that allows fluent bi-directional interaction between the .NET side and the Javascript side  and at the same time allows easy integration into a .NET application with zero effort.
