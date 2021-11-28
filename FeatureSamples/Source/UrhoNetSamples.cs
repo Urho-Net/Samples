@@ -145,8 +145,6 @@ namespace UrhoNetSamples
 
                 if(Application.Platform == Platforms.Web)
                 {
-                    
-                    if(SampleName == "DynamicGeometry")continue;
                     // TBD ELI , Networking is not supported on Browser
                     if(SampleName == "Chat" || SampleName == "SceneReplication")continue;
                 }
@@ -167,7 +165,6 @@ namespace UrhoNetSamples
 
                 if (Application.Platform == Platforms.Web)
                 {
-                    if(SampleName == "DynamicGeometry")continue;
                     // TBD ELI , Networking is not supported on Browser
                     if (SampleName == "Chat" || SampleName == "SceneReplication") continue;
                 }
