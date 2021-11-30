@@ -1,0 +1,3 @@
+<technique vs="Ocean" ps="Ocean">
+    <pass name="refract" depthwrite="true" blend="alpha" />
+</technique>

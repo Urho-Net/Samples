@@ -1,0 +1,19 @@
+<renderpath>
+    <rendertarget name="BlurH" tag="Blur" sizedivisor="1 1" format="rgba" filter="true" />
+    <rendertarget name="BlurV" tag="Blur" sizedivisor="1 1" format="rgba" filter="true" />
+    <command type="quad" tag="Blur" vs="Blur" ps="Blur" psdefines="BLUR3" output="BlurH">
+        <parameter name="BlurDir" value="1.0 0.0" />
+        <parameter name="BlurRadius" value="1" />
+        <parameter name="BlurSigma" value="1" />
+        <texture unit="diffuse" name="viewport" />
+    </command>
+    <command type="quad" tag="Blur" vs="Blur" ps="Blur" psdefines="BLUR3" output="BlurV">
+        <parameter name="BlurDir" value="0.0 1.0" />
+        <parameter name="BlurRadius" value="1" />
+        <parameter name="BlurSigma" value="1" />
+        <texture unit="diffuse" name="BlurH" />
+    </command>
+    <command type="quad" tag="Blur" vs="CopyFramebuffer" ps="CopyFramebuffer" output="viewport">
+        <texture unit="diffuse" name="BlurV" />
+    </command>
+</renderpath>
