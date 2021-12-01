@@ -12,132 +12,129 @@ namespace ShapeBlaster
 {
     public class Grid
     {
-        class PointMass
-        {
-            public Vector3 Position = Vector3.Zero;
-            public Vector3 Velocity  = Vector3.Zero;
-            public float InverseMass
-            {
-                get;
-                set;
-            } = 0;
+    class PointMass
+		{
+			public Vector3 Position;
+			public Vector3 Velocity;
+			public float InverseMass;
 
-            private Vector3 acceleration = Vector3.Zero;
-            private float damping = 0.98f;
+			private Vector3 acceleration;
+			private float damping = 0.98f;
 
-            public PointMass(Vector3 position, float invMass)
-            {
-                Position = position;
-                InverseMass = invMass;
-            }
+			public PointMass(Vector3 position, float invMass)
+			{
+				Position = position;
+				InverseMass = invMass;
+			}
 
-            public void ApplyForce(Vector3 force)
-            {
-                acceleration += force * InverseMass;
-            }
+			public void ApplyForce(Vector3 force)
+			{
+				acceleration += force * InverseMass;
+			}
 
-            public void IncreaseDamping(float factor)
-            {
-                damping *= factor ;
-            }
+			public void IncreaseDamping(float factor)
+			{
+				damping *= factor;
+			}
 
-            public void Update(float deltaTime)
-            {
-                Velocity += acceleration * deltaTime ;
-                Position += Velocity;
-                acceleration = Vector3.Zero;
-                if (Velocity.LengthSquared < 0.001f * 0.001f)
-                    Velocity = Vector3.Zero;
+			public void Update()
+			{   
+				Velocity += acceleration ;
+				Position += Velocity;
+				acceleration = Vector3.Zero;
+				if (Velocity.Length < 0.001f)
+					Velocity = Vector3.Zero;
 
-                Velocity *= damping;
-                damping = 0.98f;
-            }
-        }
+				Velocity *= damping;
+				damping = 0.98f;
+			}
+		}
 
         struct Spring
-        {
-            public PointMass End1;
-            public PointMass End2;
-            public float TargetLength;
-            public float Stiffness;
-            public float Damping;
+		{
+			public PointMass End1;
+			public PointMass End2;
+			public float TargetLength;
+			public float Stiffness;
+			public float Damping;
 
-            public Spring(PointMass end1, PointMass end2, float stiffness, float damping)
-            {
-                End1 = end1;
-                End2 = end2;
-                Stiffness = stiffness;
-                Damping = damping;
-                TargetLength = Vector3.Distance(end1.Position, end2.Position) * 0.95f;
-            }
+			public Spring(PointMass end1, PointMass end2, float stiffness, float damping)
+			{
+				End1 = end1;
+				End2 = end2;
+				Stiffness = stiffness;
+				Damping = damping;
+				TargetLength = Vector3.Distance(end1.Position, end2.Position) * 0.95f;
+			}
 
-            public void Update(float deltaTime)
-            {
-                var x = End1.Position - End2.Position;
+			public void Update()
+			{
+				var x = End1.Position - End2.Position;
 
-                float length = x.Length;
-                // these springs can only pull, not push
-                if (length > TargetLength)
-                {
-                    x = (x / length) * (length - TargetLength);
-                    var dv = End2.Velocity - End1.Velocity;
-                    var force = Stiffness * x - dv * Damping;
+				float length = x.Length;
+				// these springs can only pull, not push
+				if (length <= TargetLength)
+					return;
 
-                    End1.ApplyForce(-force);
-                    End2.ApplyForce(force);
-                }
-            }
-        }
+				x = (x / length) * (length - TargetLength);
+				var dv = End2.Velocity - End1.Velocity;
+				var force = Stiffness * x - dv * Damping;
+
+				End1.ApplyForce(-force);
+				End2.ApplyForce(force);
+			}
+		}
+
 
         Spring[] springs;
         PointMass[,] points;
         Vector2 screenSize;
 
         public Grid(IntRect size, Vector2 spacing)
-        {
-            var springList = new List<Spring>();
+		{
+			var springList  = new List<Spring>();
+			
+			int numColumns = (int)(size.Width() / spacing.X) + 1;
+			int numRows = (int)(size.Height() / spacing.Y) + 1;
+			points = new PointMass[numColumns, numRows];
 
-            int numColumns = (int)(size.Width() / spacing.X) + 1;
-            int numRows = (int)(size.Height() / spacing.Y) + 1;
-            points = new PointMass[numColumns, numRows];
+			// these fixed points will be used to anchor the grid to fixed positions on the screen
+			PointMass[,] fixedPoints = new PointMass[numColumns, numRows];
 
-            // these fixed points will be used to anchor the grid to fixed positions on the screen
-            PointMass[,] fixedPoints = new PointMass[numColumns, numRows];
+			// create the point masses
+			int column = 0, row = 0;
+			for (float y = size.Top; y <= size.Bottom; y += spacing.Y)
+			{
+				for (float x = size.Left; x <= size.Right; x += spacing.X)
+				{
+					points[column, row] = new PointMass(new Vector3(x, y, 0), 1);
+					fixedPoints[column, row] = new PointMass(new Vector3(x, y, 0), 0);
+					column++;
+				}
+				row++;
+				column = 0;
+			}
 
-            // create the point masses
-            int column = 0, row = 0;
-            for (float y = size.Top; y <= size.Bottom; y += spacing.Y)
-            {
-                for (float x = size.Left; x <= size.Right; x += spacing.X)
-                {
-                    points[column, row] = new PointMass(new Vector3(x, y, 0), 1f);
-                    fixedPoints[column, row] = new PointMass(new Vector3(x, y, 0), 0f);
-                    column++;
-                }
-                row++;
-                column = 0;
-            }
+			// link the point masses with springs
+			for (int y = 0; y < numRows; y++)
+				for (int x = 0; x < numColumns; x++)
+				{
+					if (x == 0 || y == 0 || x == numColumns - 1 || y == numRows - 1)	// anchor the border of the grid
+						springList.Add(new Spring(fixedPoints[x, y], points[x, y], 0.1f, 0.1f));
+					else if (x % 3 == 0 && y % 3 == 0)									// loosely anchor 1/9th of the point masses
+						springList.Add(new Spring(fixedPoints[x, y], points[x, y], 0.002f, 0.02f));
 
-            // link the point masses with springs
-            for (int y = 0; y < numRows; y++)
-                for (int x = 0; x < numColumns; x++)
-                {
-                    if (x == 0 || y == 0 || x == numColumns - 1 || y == numRows - 1)    // anchor the border of the grid
-                        springList.Add(new Spring(fixedPoints[x, y], points[x, y], 0.1f, 0.1f));
-                    else if (x % 3 == 0 && y % 3 == 0)                                  // loosely anchor 1/9th of the point masses
-                        springList.Add(new Spring(fixedPoints[x, y], points[x, y], 0.002f, 0.02f));
+					const float stiffness = 0.28f;
+					const float damping = 0.06f;
 
-                    const float stiffness = 0.28f;
-                    const float damping = 0.06f;
+					if (x > 0)
+						springList.Add(new Spring(points[x - 1, y], points[x, y], stiffness, damping));
+					if (y > 0)
+						springList.Add(new Spring(points[x, y - 1], points[x, y], stiffness, damping));
+				}
 
-                    if (x > 0)
-                        springList.Add(new Spring(points[x - 1, y], points[x, y], stiffness, damping));
-                    if (y > 0)
-                        springList.Add(new Spring(points[x, y - 1], points[x, y], stiffness, damping));
-                }
-
-            springs = springList.ToArray();
-        }
+			springs = springList.ToArray();
+		}
 
         public void ApplyDirectedForce(Vector2 force, Vector2 position, float radius)
         {
@@ -179,7 +176,7 @@ namespace ShapeBlaster
             foreach (var mass in points)
             {
                 float dist2 = Vector3.Distance(position, mass.Position);
-                if (dist2 < radius * radius)
+                if (dist2 < radius )
                 {
                     mass.ApplyForce(100 * force * (mass.Position - position) / (10000 + dist2));
                     mass.IncreaseDamping(0.6f);
@@ -189,11 +186,11 @@ namespace ShapeBlaster
 
         public void Update(float deltaTime)
         {
-            // foreach (var spring in springs)
-            //     spring.Update(deltaTime);
+            foreach (var spring in springs)
+                spring.Update();
 
-            // foreach (var mass in points)
-            //     mass.Update(deltaTime);
+            foreach (var mass in points)
+                mass.Update();
         }
 
         public void Draw2()
