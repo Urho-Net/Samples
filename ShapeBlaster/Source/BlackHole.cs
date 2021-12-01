@@ -95,7 +95,7 @@ namespace ShapeBlaster
 
                 ShapeBlaster.ParticleManager.CreateParticle(Art.LineParticle, pos, color, 90, 1.5f, state);
             }
-
+            SoundManager.PlayExplosion();
             //Sound.Explosion.Play(0.5f, rand.NextFloat(-0.2f, 0.2f), 0);
         }
 

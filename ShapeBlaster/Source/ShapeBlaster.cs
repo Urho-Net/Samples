@@ -14,7 +14,7 @@ namespace ShapeBlaster
     public class ShapeBlaster : Sample
     {
         [Preserve]
-        public ShapeBlaster() : base(new ApplicationOptions(assetsFolder: "Data;CoreData")) { }
+        public ShapeBlaster() : base(new ApplicationOptions(assetsFolder: "Data;CoreData"){ Height=600 ,Width=800,Orientation=ApplicationOptions.OrientationType.Landscape}) { }
 
 
         protected override void Start()
@@ -88,29 +88,25 @@ namespace ShapeBlaster
 
             Input.SetMouseVisible(true);
 
+            SoundManager.Init();
+
+            SoundManager.PlayMusic();
 
         }
 
 
-        float deltaTime = 0.0f;
+         float accDeltaTime = 0.0f;
 
 
-        protected override void OnUpdate(float time)
+        protected override void OnUpdate(float deltaTime)
         {
-            base.OnUpdate(time);
+            base.OnUpdate(deltaTime);
 
 
-            ElapsedTime += time;
-
-#if !ATOMIC_IOS
-            deltaTime += time;
-
-            if (deltaTime < 1.0f / 60.0f)
+            ElapsedTime += deltaTime;
+            accDeltaTime += deltaTime;
+            if (accDeltaTime < 1.0f / 60.0f)
                 return;
-
-            deltaTime = 0.0f;
-
-#endif
 
             ShipInput.Update();
 
@@ -120,8 +116,10 @@ namespace ShapeBlaster
                 EntityManager.Update();
                 EnemySpawner.Update();
                 ParticleManager.Update();
-                Grid.Update();
+                Grid.Update(accDeltaTime);
             }
+
+            accDeltaTime = 0.0f;
 
         }
 

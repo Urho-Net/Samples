@@ -84,7 +84,7 @@ namespace ShapeBlaster
 
                 offset = MathUtil.Transform(new Vector2(35, 8), aimQuat);
                 EntityManager.Add(new Bullet(Position + offset, vel));
-
+                SoundManager.PlayShot();
                 // Sound.Shot.Play(0.2f, rand.NextFloat(-0.2f, 0.2f), 0);
             }
 

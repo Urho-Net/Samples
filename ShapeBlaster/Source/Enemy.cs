@@ -119,7 +119,7 @@ namespace ShapeBlaster
                 Color color = MathUtil.Lerp(color1, color2, rand.NextFloat(0, 1));
                 ShapeBlaster.ParticleManager.CreateParticle(Art.LineParticle, Position, color, 190, 1.5f, state);
             }
-
+            SoundManager.PlayExplosion();
             //Sound.Explosion.Play(0.5f, rand.NextFloat(-0.2f, 0.2f), 0);
         }
 

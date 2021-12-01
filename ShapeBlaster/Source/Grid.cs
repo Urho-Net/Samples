@@ -14,11 +14,15 @@ namespace ShapeBlaster
     {
         class PointMass
         {
-            public Vector3 Position;
-            public Vector3 Velocity;
-            public float InverseMass;
+            public Vector3 Position = Vector3.Zero;
+            public Vector3 Velocity  = Vector3.Zero;
+            public float InverseMass
+            {
+                get;
+                set;
+            } = 0;
 
-            private Vector3 acceleration;
+            private Vector3 acceleration = Vector3.Zero;
             private float damping = 0.98f;
 
             public PointMass(Vector3 position, float invMass)
@@ -34,12 +38,12 @@ namespace ShapeBlaster
 
             public void IncreaseDamping(float factor)
             {
-                damping *= factor;
+                damping *= factor ;
             }
 
-            public void Update()
+            public void Update(float deltaTime)
             {
-                Velocity += acceleration;
+                Velocity += acceleration * deltaTime ;
                 Position += Velocity;
                 acceleration = Vector3.Zero;
                 if (Velocity.LengthSquared < 0.001f * 0.001f)
@@ -67,21 +71,21 @@ namespace ShapeBlaster
                 TargetLength = Vector3.Distance(end1.Position, end2.Position) * 0.95f;
             }
 
-            public void Update()
+            public void Update(float deltaTime)
             {
                 var x = End1.Position - End2.Position;
 
                 float length = x.Length;
                 // these springs can only pull, not push
-                if (length <= TargetLength)
-                    return;
+                if (length > TargetLength)
+                {
+                    x = (x / length) * (length - TargetLength);
+                    var dv = End2.Velocity - End1.Velocity;
+                    var force = Stiffness * x - dv * Damping;
 
-                x = (x / length) * (length - TargetLength);
-                var dv = End2.Velocity - End1.Velocity;
-                var force = Stiffness * x - dv * Damping;
-
-                End1.ApplyForce(-force);
-                End2.ApplyForce(force);
+                    End1.ApplyForce(-force);
+                    End2.ApplyForce(force);
+                }
             }
         }
 
@@ -106,8 +110,8 @@ namespace ShapeBlaster
             {
                 for (float x = size.Left; x <= size.Right; x += spacing.X)
                 {
-                    points[column, row] = new PointMass(new Vector3(x, y, 0), 1);
-                    fixedPoints[column, row] = new PointMass(new Vector3(x, y, 0), 0);
+                    points[column, row] = new PointMass(new Vector3(x, y, 0), 1f);
+                    fixedPoints[column, row] = new PointMass(new Vector3(x, y, 0), 0f);
                     column++;
                 }
                 row++;
@@ -183,13 +187,13 @@ namespace ShapeBlaster
             }
         }
 
-        public void Update()
+        public void Update(float deltaTime)
         {
             // foreach (var spring in springs)
-            //     spring.Update();
+            //     spring.Update(deltaTime);
 
             // foreach (var mass in points)
-            //     mass.Update();
+            //     mass.Update(deltaTime);
         }
 
         public void Draw2()
