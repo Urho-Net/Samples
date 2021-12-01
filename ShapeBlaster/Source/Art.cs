@@ -21,8 +21,11 @@ namespace ShapeBlaster
             TexCoordTL = rect.Min;
             TexCoordBR = rect.Max;
 
-            Height = Math.Max(1,(int)(rect.Height() * 128.0f));
-            Width = Math.Max(1,(int)(rect.Width() * 128.0f));
+            var Graphics = Application.Current.Graphics;
+            float scale = Math.Max(Graphics.Width,Graphics.Height)/8.0f;
+
+            Height = Math.Max(1,(int)(rect.Height() * scale));
+            Width = Math.Max(1,(int)(rect.Width() * scale));
 
         }
 

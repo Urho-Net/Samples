@@ -193,33 +193,7 @@ namespace ShapeBlaster
                 mass.Update();
         }
 
-        public void Draw2()
-        {
-            int width = points.GetLength(0);
-            int height = points.GetLength(1);
-             Color color = new Color(30 / 255.0f, 30 / 255.0f, 139 / 255.0f, 100 / 255.0f);   // dark blue
-
-            for (int y = 1; y < height; y++)
-            {
-                for (int x = 1; x < width; x++)
-                {
-                    Vector2 left = new Vector2(), up = new Vector2(); Vector2 p = ToVec2(points[x, y].Position); 
-                    if (x > 1)
-                    {
-                        left = ToVec2(points[x - 1, y].Position);
-                        float thickness = y % 3 == 1 ? 3f : 1f;
-                        CustomRenderer.DrawLine(left, p, color, thickness);
-                    }
-                    if (y > 1)
-                    {
-                        up = ToVec2(points[x, y - 1].Position);
-                        float thickness = x % 3 == 1 ? 3f : 1f;
-                        CustomRenderer.DrawLine(up, p, color, thickness);
-                    }
-                }
-            }
-        }
-        public void Draw(/*SpriteBatch spriteBatch*/)
+        public void Draw()
         {
             var graphics = Application.Current.Graphics;
             screenSize = GameRoot.ScreenSize;

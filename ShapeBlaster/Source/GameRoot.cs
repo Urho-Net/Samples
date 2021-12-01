@@ -66,11 +66,11 @@ namespace ShapeBlaster
                 maxGridPoints = 400;
             }
 
-            float amt = (float)Math.Sqrt(ScreenBounds.Width() * ScreenBounds.Height() / maxGridPoints);
+            float amt = (float)Math.Sqrt(ScreenBounds.Width() * ScreenBounds.Height() / (float)maxGridPoints);
             Vector2 gridSpacing = new Vector2(amt, amt);
 
             IntRect expandedBounds = ScreenBounds;
-            expandedBounds.Inflate((int)gridSpacing.X, (int)gridSpacing.Y);
+            MathUtil.Inflate(ref expandedBounds,(int)gridSpacing.X, (int)gridSpacing.Y);
             Grid = new Grid(expandedBounds, gridSpacing);
 
             EntityManager.Add(PlayerShip.Instance);

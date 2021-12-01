@@ -153,7 +153,7 @@ namespace ShapeBlaster
                     Orientation -= 0.05f;
 
                     var bounds = GameRoot.ScreenBounds;
-                    bounds.Inflate(-image.Width / 2 - 1, -image.Height / 2 - 1);
+                    MathUtil.Inflate(ref bounds,-image.Width / 2 - 1, -image.Height / 2 - 1);
 
                     // if the enemy is outside the bounds, make it move away from the edge
                     if (!bounds.Contains(Position))

@@ -56,8 +56,8 @@ namespace ShapeBlaster
 
             var graphics = Application.Current.Graphics;
 
-            pixelShader = graphics.GetShader(ShaderType.PS, "Atomic2D");
-            vertexShader = graphics.GetShader(ShaderType.VS, "Atomic2D");
+            pixelShader = graphics.GetShader(ShaderType.PS, "ShapeBlaster");
+            vertexShader = graphics.GetShader(ShaderType.VS, "ShapeBlaster");
 
             vertexBuffer = new VertexBuffer(Application.CurrentContext);
             vertexBuffer.SetSize(maxVertices, ElementMask.Position | ElementMask.Color | ElementMask.TexCoord1, true);

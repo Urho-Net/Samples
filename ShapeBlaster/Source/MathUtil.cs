@@ -102,5 +102,15 @@ namespace ShapeBlaster
             result.X = v.X;
             result.Y = v.Y;
         }
+
+        public static void Inflate(ref IntRect rect , int horizontalAmount, int verticalAmount)
+        {
+            rect.Left -= horizontalAmount;
+            rect.Right += horizontalAmount;
+
+            rect.Top -= verticalAmount;
+            rect.Bottom += verticalAmount;
+
+        }
     }
 }

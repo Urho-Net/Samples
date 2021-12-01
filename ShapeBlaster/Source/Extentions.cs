@@ -60,15 +60,7 @@ namespace Urho
 			return new Vector2(length * (float)Math.Cos(theta), length * (float)Math.Sin(theta));
 		}
 
-		public static void Inflate(this IntRect rect , int horizontalAmount, int verticalAmount)
-        {
-            rect.Left -= horizontalAmount;
-            rect.Right += horizontalAmount;
-
-            rect.Top -= verticalAmount;
-            rect.Bottom += verticalAmount;
-
-        }
+	
 
         public static bool Contains(this IntRect rect, Vector2 vector)
         {
