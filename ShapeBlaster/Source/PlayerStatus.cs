@@ -17,6 +17,7 @@ namespace ShapeBlaster
 
         public static int Lives { get; private set; }
         public static int Score { get; private set; }
+        public static int HighScore { get; private set; }
         public static int Multiplier { get; private set; }
         public static bool IsGameOver { get { return Lives == 0; } }
 
@@ -27,10 +28,14 @@ namespace ShapeBlaster
         static PlayerStatus()
         {
             Reset();
+            HighScore = LoadHighScore();
         }
 
         public static void Reset()
         {
+            if (Score > HighScore)
+				SaveHighScore(HighScore = Score);
+                
             Score = 0;
             Multiplier = 1;
             Lives = 4;
@@ -82,6 +87,17 @@ namespace ShapeBlaster
         public static void RemoveLife()
         {
             Lives--;
+        }
+
+        private static int LoadHighScore()
+        {
+            // return the saved high score if possible and return 0 otherwise
+           return PlayerPrefs.GetInt("HighScore");
+        }
+
+        private static void SaveHighScore(int score)
+        {
+           PlayerPrefs.SetInt("HighScore",score);
         }
     }
 }

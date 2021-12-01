@@ -75,6 +75,8 @@ namespace ShapeBlaster
             }
         }
 
+		public static Text playerStatusText;
+
         protected const float TouchSensitivity = 2;
         protected float Yaw { get; set; }
         protected float Pitch { get; set; }
@@ -235,21 +237,33 @@ namespace ShapeBlaster
             }
         }
 
-        protected void SimpleCreateInstructionsWithWasd(string extra = "")
+        protected void CreatePlayerStatusUI(string text = "")
         {
-            SimpleCreateInstructions("Use WASD keys and mouse/touch to move" + extra);
-        }
-
-        protected void SimpleCreateInstructions(string text = "")
-        {
-            var textElement = new Text()
+            playerStatusText = new Text()
             {
                 Value = text,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center
+                VerticalAlignment = VerticalAlignment.Top
             };
-            textElement.SetFont(ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 15);
-            UI.Root.AddChild(textElement);
+
+            if (Graphics.Width <= 480)
+            {
+                playerStatusText.SetFont(ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 10);
+            }
+            else if (Graphics.Width <= 1024)
+            {
+                playerStatusText.SetFont(ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 16);
+            }
+            else if (Graphics.Width <= 1440)
+            {
+                playerStatusText.SetFont(ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 20);
+            }
+            else
+            {
+                playerStatusText.SetFont(ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 25);
+            }
+      
+            UI.Root.AddChild(playerStatusText);
         }
 
         void CreateLogo()

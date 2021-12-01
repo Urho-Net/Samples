@@ -14,12 +14,14 @@ namespace ShapeBlaster
     public class GameRoot : Sample
     {
         [Preserve]
-        public GameRoot() : base(new ApplicationOptions(assetsFolder: "Data;CoreData"){ Height=600 ,Width=800,Orientation=ApplicationOptions.OrientationType.Landscape}) { }
+        public GameRoot() : base(new ApplicationOptions(assetsFolder: "Data;CoreData") { Height = 600, Width = 800, Orientation = ApplicationOptions.OrientationType.Landscape }) { }
 
 
         protected override void Start()
         {
             base.Start();
+
+            PlayerPrefs.Init(this);
 
             Art.Load();
 
@@ -57,12 +59,11 @@ namespace ShapeBlaster
 
             ParticleManager = new ParticleManager<ParticleState>(1024 * 20, ParticleState.UpdateParticle);
 
-#if _MOBILE_
-            const int maxGridPoints = 400;
-
-#else
-            const int maxGridPoints = 1600;
-#endif
+            int maxGridPoints = 1600;
+            if (IsMobile)
+            {
+                maxGridPoints = 400;
+            }
 
             float amt = (float)Math.Sqrt(ScreenBounds.Width() * ScreenBounds.Height() / maxGridPoints);
             Vector2 gridSpacing = new Vector2(amt, amt);
@@ -97,10 +98,12 @@ namespace ShapeBlaster
                 CreateScreenJoystick();
             }
 
+            CreatePlayerStatusUI();
+
         }
 
 
-         float accDeltaTime = 0.0f;
+        float accDeltaTime = 0.0f;
 
 
         protected override void OnUpdate(float deltaTime)
@@ -129,6 +132,18 @@ namespace ShapeBlaster
             }
 
             accDeltaTime = 0.0f;
+
+            playerStatusText.Value = "Lives: " + PlayerStatus.Lives + "\n";
+            playerStatusText.Value += "Score: " + PlayerStatus.Score + "\n";
+            playerStatusText.Value += "Multiplier: " + PlayerStatus.Multiplier;
+
+            if (PlayerStatus.IsGameOver)
+            {
+                string text = "Game Over\n" +
+                    "Your Score: " + PlayerStatus.Score + "\n" +
+                    "High Score: " + ((PlayerStatus.HighScore != 0) ? PlayerStatus.HighScore : PlayerStatus.Score);
+                playerStatusText.Value = text;
+            }
 
         }
 
