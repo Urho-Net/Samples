@@ -29,15 +29,15 @@ namespace ShapeBlaster
                 Orientation = Velocity.ToAngle();
 
             Position += Velocity;
-            ShapeBlaster.Grid.ApplyExplosiveForce(0.5f * Velocity.Length, Position, 80);
+            GameRoot.Grid.ApplyExplosiveForce(0.5f * Velocity.Length, Position, 80);
 
             // delete bullets that go off-screen
-            if (!ShapeBlaster.ScreenBounds.Contains(Position))
+            if (!GameRoot.ScreenBounds.Contains(Position))
             {
                 IsExpired = true;
 
                 for (int i = 0; i < 30; i++)
-                    ShapeBlaster.ParticleManager.CreateParticle(Art.LineParticle, Position, Color.Blue, 50, 1,
+                    GameRoot.ParticleManager.CreateParticle(Art.LineParticle, Position, Color.Blue, 50, 1,
                         new ParticleState() { Velocity = rand.NextVector2(0, 9), Type = ParticleType.Bullet, LengthMultiplier = 1 });
 
             }

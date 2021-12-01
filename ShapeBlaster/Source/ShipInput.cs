@@ -23,77 +23,31 @@ namespace ShapeBlaster
         public static Vector2 GetMovementDirection()
         {
 
-            var input = Application.Current.Input;
+            var Input = Application.Current.Input;
 
-            Vector2 direction = new Vector2(0, 0);
+            Vector2 direction =  Vector2.Zero;
 
-#if !_MOBILE_
-            if (input.GetKeyDown(Key.A))
-                direction.X -= 1;
-            if (input.GetKeyDown(Key.D))
-                direction.X += 1;
-            if (input.GetKeyDown(Key.S))
-                direction.Y -= 1;
-            if (input.GetKeyDown(Key.W))
-                direction.Y += 1;
-#endif      
-
-        
-#if _MOBILE_
-
-            var touchPos = lastTouchPos;
-
-            if (input.NumTouches == 1)
+            if (GameRoot.IsMobile)
             {
-                touchPos = input.GetTouch(0).LastPosition;
-                lastTouchPos = touchPos;
-
+                JoystickState joystick;
+                if (GameRoot.screenJoystickIndex != -1 && Input.GetJoystick(GameRoot.screenJoystickIndex, out joystick))
+                {
+                    direction = new Vector2(joystick.GetAxisPosition(JoystickState.AxisLeft_X), -joystick.GetAxisPosition(JoystickState.AxisLeft_Y));
+                }
+            }
+            else
+            {
+                if (Input.GetKeyDown(Key.A))
+                    direction.X -= 1;
+                if (Input.GetKeyDown(Key.D))
+                    direction.X += 1;
+                if (Input.GetKeyDown(Key.S))
+                    direction.Y -= 1;
+                if (Input.GetKeyDown(Key.W))
+                    direction.Y += 1;
             }
 
-            if (touchPos != IntVector2.Zero)
-            {
-                direction = new Vector2((float)touchPos.X, (float)touchPos.Y);
-            }
-
-
-            Vector2 shipPos = PlayerShip.Instance.Position;
-
-            shipPos.Y = ShapeBlaster.ScreenBounds.Height() - shipPos.Y;
-
-            direction -= shipPos;
-
-            direction.Y = -direction.Y;
-
-            if (touchPos == IntVector2.Zero || direction.Length < 4.0f)
-                direction = Vector2.Zero;
-
-#endif
-
-#if ATOMIC_IOS
-            uint numJoySticks = 0;
-#else
-            uint numJoySticks = input.NumJoysticks;
-#endif
-
-            if (numJoySticks > 0)
-            {
-                input.GetJoystickByIndex(0, out var state);
-
-                float x = state.GetAxisPosition(0);
-                float y = state.GetAxisPosition(1);
-
-                if (x < -0.15f)
-                    direction.X = x;
-                if (x > 0.15f)
-                    direction.X = x;
-
-                if (y < -0.15f)
-                    direction.Y = -y;
-                if (y > 0.15f)
-                    direction.Y = -y;
-
-            }
-
+            
             // Clamp the length of the vector to a maximum of 1.
             if (direction.LengthSquared > 1)
                 direction.Normalize();
@@ -103,7 +57,18 @@ namespace ShapeBlaster
 
         public static Vector2 GetAimDirection()
         {
-            return GetMouseAimDirection();
+            if (GameRoot.IsMobile)
+            {
+                JoystickState joystick;
+                if (GameRoot.screenJoystickIndex != -1 && Application.Current.Input.GetJoystick(GameRoot.screenJoystickIndex, out joystick))
+                {
+                    return  Vector2.Normalize(new Vector2(joystick.GetAxisPosition(JoystickState.AxisRight_X), -joystick.GetAxisPosition(JoystickState.AxisRight_Y)));
+                }
+                else
+                return Vector2.Zero;
+            }
+            else
+                return GetMouseAimDirection();
         }
 
         private static Vector2 GetMouseAimDirection()
@@ -140,18 +105,12 @@ namespace ShapeBlaster
 
             }
 
-
-#if !_MOBILE_
             Vector2 direction = new Vector2((float)input.MousePosition.X, (float)input.MousePosition.Y);
-#else
-            
-            Vector2 direction = PlayerShip.Instance.Velocity;
-            return Vector2.Normalize(direction);  
-#endif
+
 
             Vector2 shipPos = PlayerShip.Instance.Position;
 
-            shipPos.Y = ShapeBlaster.ScreenBounds.Height() - shipPos.Y;          
+            shipPos.Y = GameRoot.ScreenBounds.Height() - shipPos.Y;          
 
             direction -= shipPos;
 

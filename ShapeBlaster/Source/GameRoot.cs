@@ -11,10 +11,10 @@ namespace ShapeBlaster
 {
 
 
-    public class ShapeBlaster : Sample
+    public class GameRoot : Sample
     {
         [Preserve]
-        public ShapeBlaster() : base(new ApplicationOptions(assetsFolder: "Data;CoreData"){ Height=600 ,Width=800,Orientation=ApplicationOptions.OrientationType.Landscape}) { }
+        public GameRoot() : base(new ApplicationOptions(assetsFolder: "Data;CoreData"){ Height=600 ,Width=800,Orientation=ApplicationOptions.OrientationType.Landscape}) { }
 
 
         protected override void Start()
@@ -92,6 +92,11 @@ namespace ShapeBlaster
 
             SoundManager.PlayMusic();
 
+            if (IsMobile)
+            {
+                CreateScreenJoystick();
+            }
+
         }
 
 
@@ -105,8 +110,12 @@ namespace ShapeBlaster
 
             ElapsedTime += deltaTime;
             accDeltaTime += deltaTime;
-            if (accDeltaTime < 1.0f / 60.0f)
-                return;
+
+            if (!IsMobile && Platform != Platforms.Web)
+            {
+                if (accDeltaTime < 1.0f / 60.0f)
+                    return;
+            }
 
             ShipInput.Update();
 

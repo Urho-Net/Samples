@@ -225,7 +225,7 @@ namespace ShapeBlaster
         public void Draw(/*SpriteBatch spriteBatch*/)
         {
             var graphics = Application.Current.Graphics;
-            screenSize = ShapeBlaster.ScreenSize;
+            screenSize = GameRoot.ScreenSize;
 
             int width = points.GetLength(0);
             int height = points.GetLength(1);

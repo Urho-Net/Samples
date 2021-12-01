@@ -45,7 +45,7 @@ namespace ShapeBlaster
             }
 
             // The black holes spray some orbiting particles. The spray toggles on and off every quarter second.
-            if ((ShapeBlaster.ElapsedTime * 1000 / 250) % 2 == 0)
+            if ((GameRoot.ElapsedTime * 1000 / 250) % 2 == 0)
             {
                 Vector2 sprayVel = MathUtil.FromPolar(sprayAngle, rand.NextFloat(12, 15));
                 Color color = ColorUtil.HSVToColor(5, 0.5f, 0.8f);  // light purple
@@ -57,13 +57,13 @@ namespace ShapeBlaster
                     Type = ParticleType.Enemy
                 };
 
-                ShapeBlaster.ParticleManager.CreateParticle(Art.LineParticle, pos, color, 190, 1.5f, state);
+                GameRoot.ParticleManager.CreateParticle(Art.LineParticle, pos, color, 190, 1.5f, state);
             }
 
             // rotate the spray direction
             sprayAngle -= MathHelper.TwoPi / 50f;
 
-            ShapeBlaster.Grid.ApplyImplosiveForce((float)Math.Sin(sprayAngle / 2) * 10 + 20, Position, 200);
+            GameRoot.Grid.ApplyImplosiveForce((float)Math.Sin(sprayAngle / 2) * 10 + 20, Position, 200);
         }
 
         public void WasShot()
@@ -77,7 +77,7 @@ namespace ShapeBlaster
             }
 
 
-            float hue = (float)((3 * ShapeBlaster.ElapsedTime) % 6);
+            float hue = (float)((3 * GameRoot.ElapsedTime) % 6);
             Color color = ColorUtil.HSVToColor(hue, 0.25f, 1);
             const int numParticles = 150;
             float startOffset = rand.NextFloat(0, MathHelper.TwoPi / numParticles);
@@ -93,7 +93,7 @@ namespace ShapeBlaster
                     Type = ParticleType.IgnoreGravity
                 };
 
-                ShapeBlaster.ParticleManager.CreateParticle(Art.LineParticle, pos, color, 90, 1.5f, state);
+                GameRoot.ParticleManager.CreateParticle(Art.LineParticle, pos, color, 90, 1.5f, state);
             }
             SoundManager.PlayExplosion();
             //Sound.Explosion.Play(0.5f, rand.NextFloat(-0.2f, 0.2f), 0);
@@ -108,7 +108,7 @@ namespace ShapeBlaster
         public override void Draw(/*SpriteBatch spriteBatch*/)
         {
             // make the size of the black hole pulsate
-            float scale = 1 + 0.1f * (float)Math.Sin(10 * ShapeBlaster.ElapsedTime);
+            float scale = 1 + 0.1f * (float)Math.Sin(10 * GameRoot.ElapsedTime);
             CustomRenderer.Draw(image, Position, color, Orientation, Size / 2f, scale, 0);
         }
     }

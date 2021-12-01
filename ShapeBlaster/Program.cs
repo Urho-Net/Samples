@@ -10,7 +10,7 @@ namespace ShapeBlaster
             var applicationPath = System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
             System.IO.Directory.SetCurrentDirectory(applicationPath);
 #endif          
-            new ShapeBlaster().Run();
+            new GameRoot().Run();
         }
     }
 }

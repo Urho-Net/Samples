@@ -61,8 +61,8 @@ namespace ShapeBlaster
             particle.Orientation = vel.ToAngle();
 
             var pos = particle.Position;
-            int width = (int)ShapeBlaster.ScreenSize.X;
-            int height = (int)ShapeBlaster.ScreenSize.Y;
+            int width = (int)GameRoot.ScreenSize.X;
+            int height = (int)GameRoot.ScreenSize.Y;
 
             // collide with the edges of the screen
             if (pos.X < 0)

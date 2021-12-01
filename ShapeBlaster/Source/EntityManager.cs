@@ -125,7 +125,7 @@ namespace ShapeBlaster
 
         private static void KillPlayer()
         {
-            if (ShapeBlaster.GodMode)
+            if (GameRoot.GodMode)
                 return;
 
             PlayerShip.Instance.Kill();

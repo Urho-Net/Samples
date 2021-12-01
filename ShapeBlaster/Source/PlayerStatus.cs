@@ -43,7 +43,7 @@ namespace ShapeBlaster
             if (Multiplier > 1)
             {
                 // update the multiplier timer
-                if ((multiplierTimeLeft -= (float)ShapeBlaster.ElapsedTime) <= 0)
+                if ((multiplierTimeLeft -= (float)GameRoot.ElapsedTime) <= 0)
                 {
                     multiplierTimeLeft = multiplierExpiryTime;
                     ResetMultiplier();

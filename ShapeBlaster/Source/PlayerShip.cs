@@ -34,7 +34,7 @@ namespace ShapeBlaster
         private PlayerShip()
         {
             image = Art.Player;
-            Position = ShapeBlaster.ScreenSize / 2;
+            Position = GameRoot.ScreenSize / 2;
             Radius = 10;
         }
 
@@ -47,9 +47,9 @@ namespace ShapeBlaster
                     if (PlayerStatus.Lives == 0)
                     {
                         PlayerStatus.Reset();
-                        Position = ShapeBlaster.ScreenSize / 2;
+                        Position = GameRoot.ScreenSize / 2;
                     }
-                    ShapeBlaster.Grid.ApplyDirectedForce(new Vector3(0, 0, 5000), new Vector3(Position.X, Position.Y, 0), 50);
+                    GameRoot.Grid.ApplyDirectedForce(new Vector3(0, 0, 5000), new Vector3(Position.X, Position.Y, 0), 50);
                 }
 
                 return;
@@ -60,7 +60,7 @@ namespace ShapeBlaster
             Velocity += speed * ShipInput.GetMovementDirection();
 
             Position += Velocity;
-            Position = Vector2.Clamp(Position, Size / 2, ShapeBlaster.ScreenSize - Size / 2);
+            Position = Vector2.Clamp(Position, Size / 2, GameRoot.ScreenSize - Size / 2);
 
             if (Velocity.LengthSquared > 0)
                 Orientation = Velocity.ToAngle();
@@ -102,7 +102,7 @@ namespace ShapeBlaster
                 Orientation = Velocity.ToAngle();
                 Quaternion rot = MathUtil.CreateFromYawPitchRoll(0f, 0f, Orientation);
 
-                double t = ShapeBlaster.ElapsedTime;
+                double t = GameRoot.ElapsedTime;
                 // The primary velocity of the particles is 3 pixels/frame in the direction opposite to which the ship is travelling.
                 Vector2 baseVel = Velocity.ScaleTo(-3);
                 // Calculate the sideways velocity for the two side streams. The direction is perpendicular to the ship's velocity and the
@@ -117,22 +117,22 @@ namespace ShapeBlaster
 
                 // middle particle stream
                 Vector2 velMid = baseVel + rand.NextVector2(0, 1);
-                ShapeBlaster.ParticleManager.CreateParticle(Art.LineParticle, pos, Color.White * alpha, 60f, new Vector2(0.5f, 1),
+                GameRoot.ParticleManager.CreateParticle(Art.LineParticle, pos, Color.White * alpha, 60f, new Vector2(0.5f, 1),
                     new ParticleState(velMid, ParticleType.Enemy));
-                ShapeBlaster.ParticleManager.CreateParticle(Art.Glow, pos, midColor * alpha, 60f, new Vector2(0.5f, 1),
+                GameRoot.ParticleManager.CreateParticle(Art.Glow, pos, midColor * alpha, 60f, new Vector2(0.5f, 1),
                     new ParticleState(velMid, ParticleType.Enemy));
 
                 // side particle streams
                 Vector2 vel1 = baseVel + perpVel + rand.NextVector2(0, 0.3f);
                 Vector2 vel2 = baseVel - perpVel + rand.NextVector2(0, 0.3f);
-                ShapeBlaster.ParticleManager.CreateParticle(Art.LineParticle, pos, Color.White * alpha, 60f, new Vector2(0.5f, 1),
+                GameRoot.ParticleManager.CreateParticle(Art.LineParticle, pos, Color.White * alpha, 60f, new Vector2(0.5f, 1),
                     new ParticleState(vel1, ParticleType.Enemy));
-                ShapeBlaster.ParticleManager.CreateParticle(Art.LineParticle, pos, Color.White * alpha, 60f, new Vector2(0.5f, 1),
+                GameRoot.ParticleManager.CreateParticle(Art.LineParticle, pos, Color.White * alpha, 60f, new Vector2(0.5f, 1),
                     new ParticleState(vel2, ParticleType.Enemy));
 
-                ShapeBlaster.ParticleManager.CreateParticle(Art.Glow, pos, sideColor * alpha, 60f, new Vector2(0.5f, 1),
+                GameRoot.ParticleManager.CreateParticle(Art.Glow, pos, sideColor * alpha, 60f, new Vector2(0.5f, 1),
                     new ParticleState(vel1, ParticleType.Enemy));
-                ShapeBlaster.ParticleManager.CreateParticle(Art.Glow, pos, sideColor * alpha, 60f, new Vector2(0.5f, 1),
+                GameRoot.ParticleManager.CreateParticle(Art.Glow, pos, sideColor * alpha, 60f, new Vector2(0.5f, 1),
                     new ParticleState(vel2, ParticleType.Enemy));
             }
         }
@@ -170,7 +170,7 @@ namespace ShapeBlaster
                     LengthMultiplier = 1
                 };
 
-                ShapeBlaster.ParticleManager.CreateParticle(Art.LineParticle, Position, color, 190, 1.5f, state);
+                GameRoot.ParticleManager.CreateParticle(Art.LineParticle, Position, color, 190, 1.5f, state);
             }
         }
     }

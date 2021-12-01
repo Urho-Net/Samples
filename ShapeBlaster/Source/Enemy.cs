@@ -58,7 +58,7 @@ namespace ShapeBlaster
             }
 
             Position += Velocity;
-            Position = Vector2.Clamp(Position, Size / 2, ShapeBlaster.ScreenSize - Size / 2);
+            Position = Vector2.Clamp(Position, Size / 2, GameRoot.ScreenSize - Size / 2);
 
             Velocity *= 0.8f;
         }
@@ -117,7 +117,7 @@ namespace ShapeBlaster
                 };
 
                 Color color = MathUtil.Lerp(color1, color2, rand.NextFloat(0, 1));
-                ShapeBlaster.ParticleManager.CreateParticle(Art.LineParticle, Position, color, 190, 1.5f, state);
+                GameRoot.ParticleManager.CreateParticle(Art.LineParticle, Position, color, 190, 1.5f, state);
             }
             SoundManager.PlayExplosion();
             //Sound.Explosion.Play(0.5f, rand.NextFloat(-0.2f, 0.2f), 0);
@@ -152,12 +152,12 @@ namespace ShapeBlaster
                     Velocity += MathUtil.FromPolar(direction, 0.4f);
                     Orientation -= 0.05f;
 
-                    var bounds = ShapeBlaster.ScreenBounds;
+                    var bounds = GameRoot.ScreenBounds;
                     bounds.Inflate(-image.Width / 2 - 1, -image.Height / 2 - 1);
 
                     // if the enemy is outside the bounds, make it move away from the edge
                     if (!bounds.Contains(Position))
-                        direction = (ShapeBlaster.ScreenSize / 2 - Position).ToAngle() + rand.NextFloat(-MathHelper.PiOver2, MathHelper.PiOver2);
+                        direction = (GameRoot.ScreenSize / 2 - Position).ToAngle() + rand.NextFloat(-MathHelper.PiOver2, MathHelper.PiOver2);
 
                     yield return 0;
                 }

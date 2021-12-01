@@ -40,7 +40,7 @@ namespace ShapeBlaster
             Vector2 pos;
             do
             {
-                pos = new Vector2(rand.Next((int)ShapeBlaster.ScreenSize.X), rand.Next((int)ShapeBlaster.ScreenSize.Y));
+                pos = new Vector2(rand.Next((int)GameRoot.ScreenSize.X), rand.Next((int)GameRoot.ScreenSize.Y));
             }
             while (pos.Distance(PlayerShip.Instance.Position) < 250);
 
