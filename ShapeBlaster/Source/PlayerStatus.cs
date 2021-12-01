@@ -12,7 +12,7 @@ namespace ShapeBlaster
     static class PlayerStatus
     {
         // amount of time it takes, in seconds, for a multiplier to expire.
-        private const float multiplierExpiryTime = 0.8f;
+        private const uint  multiplierExpiryTime = 500;
         private const int maxMultiplier = 20;
 
         public static int Lives { get; private set; }
@@ -21,7 +21,6 @@ namespace ShapeBlaster
         public static int Multiplier { get; private set; }
         public static bool IsGameOver { get { return Lives == 0; } }
 
-        private static float multiplierTimeLeft;    // time until the current multiplier expires
         private static int scoreForExtraLife;       // score required to gain an extra life
 
         // Static constructor
@@ -35,12 +34,12 @@ namespace ShapeBlaster
         {
             if (Score > HighScore)
 				SaveHighScore(HighScore = Score);
-                
+
             Score = 0;
             Multiplier = 1;
             Lives = 4;
             scoreForExtraLife = 2000;
-            multiplierTimeLeft = 0;
+            GameRoot.MultiplierTimer.Reset();
         }
 
         public static void Update()
@@ -48,9 +47,10 @@ namespace ShapeBlaster
             if (Multiplier > 1)
             {
                 // update the multiplier timer
-                if ((multiplierTimeLeft -= (float)GameRoot.ElapsedTime) <= 0)
+   
+                if (GameRoot.MultiplierTimer.GetMSec(false) > multiplierExpiryTime)
                 {
-                    multiplierTimeLeft = multiplierExpiryTime;
+                    GameRoot.MultiplierTimer.Reset();
                     ResetMultiplier();
                 }
             }
@@ -74,7 +74,7 @@ namespace ShapeBlaster
             if (PlayerShip.Instance.IsDead)
                 return;
 
-            multiplierTimeLeft = multiplierExpiryTime;
+            GameRoot.MultiplierTimer.Reset();
             if (Multiplier < maxMultiplier)
                 Multiplier++;
         }
@@ -82,6 +82,7 @@ namespace ShapeBlaster
         public static void ResetMultiplier()
         {
             Multiplier = 1;
+            GameRoot.MultiplierTimer.Reset();
         }
 
         public static void RemoveLife()

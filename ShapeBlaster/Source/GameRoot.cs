@@ -17,6 +17,7 @@ namespace ShapeBlaster
         public GameRoot() : base(new ApplicationOptions(assetsFolder: "Data;CoreData") { Height = 600, Width = 800, Orientation = ApplicationOptions.OrientationType.Landscape }) { }
 
 
+        public static Timer MultiplierTimer = null;
         protected override void Start()
         {
             base.Start();
@@ -100,6 +101,9 @@ namespace ShapeBlaster
 
             CreatePlayerStatusUI();
 
+            MultiplierTimer = new Timer();
+            MultiplierTimer.Reset();
+
         }
 
 
@@ -141,7 +145,7 @@ namespace ShapeBlaster
             {
                 string text = "Game Over\n" +
                     "Your Score: " + PlayerStatus.Score + "\n" +
-                    "High Score: " + ((PlayerStatus.HighScore != 0) ? PlayerStatus.HighScore : PlayerStatus.Score);
+                    "High Score: " + ((PlayerStatus.HighScore > PlayerStatus.Score) ? PlayerStatus.HighScore : PlayerStatus.Score);
                 playerStatusText.Value = text;
             }
 

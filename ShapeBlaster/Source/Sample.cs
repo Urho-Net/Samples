@@ -252,15 +252,15 @@ namespace ShapeBlaster
             }
             else if (Graphics.Width <= 1024)
             {
-                playerStatusText.SetFont(ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 16);
+                playerStatusText.SetFont(ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 20);
             }
             else if (Graphics.Width <= 1440)
             {
-                playerStatusText.SetFont(ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 20);
+                playerStatusText.SetFont(ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 25);
             }
             else
             {
-                playerStatusText.SetFont(ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 25);
+                playerStatusText.SetFont(ResourceCache.GetFont("Fonts/Anonymous Pro.ttf"), 35);
             }
       
             UI.Root.AddChild(playerStatusText);
@@ -375,14 +375,14 @@ namespace ShapeBlaster
                     break;
 
 
-                case Key.N9:
-                    if (Platform != Platforms.Android && Platform != Platforms.iOS)
-                    {
-                        Image screenshot = new Image();
-                        Graphics.TakeScreenShot(screenshot);
-                        screenshot.SavePNG(FileSystem.CurrentDir + $"Assets/Data/Screenshot_{GetType().Name}_{DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss", CultureInfo.InvariantCulture)}.png");
-                    }
-                    break;
+                // case Key.N9:
+                //     if (Platform != Platforms.Android && Platform != Platforms.iOS)
+                //     {
+                //         Image screenshot = new Image();
+                //         Graphics.TakeScreenShot(screenshot);
+                //         screenshot.SavePNG(FileSystem.CurrentDir + $"Assets/Data/Screenshot_{GetType().Name}_{DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss", CultureInfo.InvariantCulture)}.png");
+                //     }
+                //     break;
             }
         }
 
@@ -471,7 +471,13 @@ namespace ShapeBlaster
             IntVector2 sizeLStick = new IntVector2(multiplier * 10 + 5, multiplier * 10 + 5);
             IntVector2 positionLStick = new IntVector2(multiplier * 2, multiplier * -2);
             IntVector2 sizeInnerLButton = new IntVector2(multiplier * 8, multiplier * 8);
-            IntVector2 positionInnerButton = new IntVector2(positionLStick.X / 2 + 3, Math.Abs(positionLStick.Y / 2) + 4);
+            IntVector2 positionInnerLButton = new IntVector2(positionLStick.X / 2 + 3, Math.Abs(positionLStick.Y / 2) + 4);
+
+
+            IntVector2 sizeRStick = new IntVector2(multiplier * 10 + 5, multiplier * 10 + 5);
+            IntVector2 positionRStick = new IntVector2(- multiplier * 2, multiplier * -2);
+            IntVector2 sizeInnerRButton = new IntVector2(multiplier * 8, multiplier * 8);
+            IntVector2 positionInnerRButton = new IntVector2(-(positionRStick.X / 2 - 3), Math.Abs(positionRStick.Y / 2) + 4);
 
             string patch = "<patch>";
 
@@ -479,7 +485,14 @@ namespace ShapeBlaster
             patch += string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/attribute[@name='Position']/@value\">{0} {1}</replace>", positionLStick.X, positionLStick.Y);
 
             patch += string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/element[./attribute[@name='Name' and @value='InnerButton']]/attribute[@name='Size']/@value\">{0} {1}</replace>", sizeInnerLButton.X, sizeInnerLButton.Y);
-            patch += string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/element[./attribute[@name='Name' and @value='InnerButton']]/attribute[@name='Position']/@value\">{0} {1}</replace>", positionInnerButton.X, positionInnerButton.Y);
+            patch += string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis0']]/element[./attribute[@name='Name' and @value='InnerButton']]/attribute[@name='Position']/@value\">{0} {1}</replace>", positionInnerLButton.X, positionInnerLButton.Y);
+
+
+            patch += string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis1']]/attribute[@name='Size']/@value\">{0} {1}</replace>", sizeRStick.X, sizeRStick.Y);
+            patch += string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis1']]/attribute[@name='Position']/@value\">{0} {1}</replace>", positionRStick.X, positionRStick.Y);
+
+            patch += string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis1']]/element[./attribute[@name='Name' and @value='InnerButton']]/attribute[@name='Size']/@value\">{0} {1}</replace>", sizeInnerRButton.X, sizeInnerRButton.Y);
+            patch += string.Format("<replace sel=\"/element/element[./attribute[@name='Name' and @value='Axis1']]/element[./attribute[@name='Name' and @value='InnerButton']]/attribute[@name='Position']/@value\">{0} {1}</replace>", positionInnerRButton.X, positionInnerRButton.Y);
 
             if (JoystickType == E_JoystickType.OneJoyStick_OneButton)
             {
