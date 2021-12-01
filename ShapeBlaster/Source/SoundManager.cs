@@ -19,8 +19,8 @@ namespace ShapeBlaster
 
          private static readonly Random rand = new Random();
 
-         private static float explosingGain = 0.5f;
-         private static float shotGain = 0.5f;
+         private static float explosingGain = 0.3f;
+         private static float shotGain = 0.3f;
 
         public static void Init()
         {
