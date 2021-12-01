@@ -58,7 +58,8 @@ namespace ShapeBlaster
             ParticleManager = new ParticleManager<ParticleState>(1024 * 20, ParticleState.UpdateParticle);
 
 #if _MOBILE_
-            const int maxGridPoints = 400
+            const int maxGridPoints = 400;
+
 #else
             const int maxGridPoints = 1600;
 #endif
@@ -73,17 +74,19 @@ namespace ShapeBlaster
             EntityManager.Add(PlayerShip.Instance);
 
             Engine.SubscribeToEvent(new StringHash("RenderPathEvent"), (arg) =>
-      {
-          string name = arg.EventData["Name"].variant;
+            {
+                string name = arg.EventData["Name"].variant;
 
-          if (name != "customrender") return;
-          CustomRenderer.Begin();
+                if (name != "customrender") return;
+                CustomRenderer.Begin();
 
-          Draw();
+                Draw();
 
-          CustomRenderer.End();
+                CustomRenderer.End();
 
-      });
+            });
+
+            Input.SetMouseVisible(true);
 
 
         }
@@ -131,7 +134,7 @@ namespace ShapeBlaster
         }
 
         // GodMode by default as the game is really hard :)
-        public static bool GodMode = true;
+        public static bool GodMode = false;
 
         public static Scene Scene { get; private set; }
 

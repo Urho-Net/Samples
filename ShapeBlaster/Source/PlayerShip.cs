@@ -74,15 +74,15 @@ namespace ShapeBlaster
                 cooldowmRemaining = cooldownFrames;
                 float aimAngle = aim.ToAngle();
                 
-                Quaternion aimQuat = Extensions.CreateFromYawPitchRoll(0, 0, aimAngle);
+                Quaternion aimQuat = MathUtil.CreateFromYawPitchRoll(0, 0, aimAngle);
 
                 float randomSpread = rand.NextFloat(-0.04f, 0.04f) + rand.NextFloat(-0.04f, 0.04f);
                 Vector2 vel = MathUtil.FromPolar(aimAngle + randomSpread, 11f);
 
-                Vector2 offset = Extensions.Transform(new Vector2(35, -8), aimQuat);
+                Vector2 offset = MathUtil.Transform(new Vector2(35, -8), aimQuat);
                 EntityManager.Add(new Bullet(Position + offset, vel));
 
-                offset = Extensions.Transform(new Vector2(35, 8), aimQuat);
+                offset = MathUtil.Transform(new Vector2(35, 8), aimQuat);
                 EntityManager.Add(new Bullet(Position + offset, vel));
 
                 // Sound.Shot.Play(0.2f, rand.NextFloat(-0.2f, 0.2f), 0);
@@ -100,7 +100,7 @@ namespace ShapeBlaster
             {
                 // set up some variables
                 Orientation = Velocity.ToAngle();
-                Quaternion rot = Extensions.CreateFromYawPitchRoll(0f, 0f, Orientation);
+                Quaternion rot = MathUtil.CreateFromYawPitchRoll(0f, 0f, Orientation);
 
                 double t = ShapeBlaster.ElapsedTime;
                 // The primary velocity of the particles is 3 pixels/frame in the direction opposite to which the ship is travelling.
@@ -112,7 +112,7 @@ namespace ShapeBlaster
                 Color sideColor = new Color(200.0f/255.0f, 38.0f/255.0f, 9.0f/255.0f);    // deep red
                 Color midColor = new Color(255/255.0f, 187/255.0f, 30/255.0f);   // orange-yellow
 
-                Vector2 pos = Position + Extensions.Transform(new Vector2(-25, 0), rot);   // position of the ship's exhaust pipe.
+                Vector2 pos = Position + MathUtil.Transform(new Vector2(-25, 0), rot);   // position of the ship's exhaust pipe.
                 const float alpha = 0.7f;
 
                 // middle particle stream
@@ -140,7 +140,16 @@ namespace ShapeBlaster
         public override void Draw(/*SpriteBatch spriteBatch*/)
         {
             if (!IsDead)
+            {
                 base.Draw();
+
+                // Draw the aiming pointer
+                var aim = ShipInput.GetAimDirection();
+                float aimAngle = aim.ToAngle();
+                Quaternion aimQuat = MathUtil.CreateFromYawPitchRoll(0, 0, aimAngle);
+                Vector2 offset = MathUtil.Transform(new Vector2(Size.X +10, Art.Pointer.Height/2), aimQuat);
+                CustomRenderer.Draw(Art.Pointer, Position + offset, Color.Green, aimAngle -2.1f,  Vector2.Zero, 1, 0f);
+            }
         }
 
         public void Kill()
@@ -153,7 +162,7 @@ namespace ShapeBlaster
             for (int i = 0; i < 1200; i++)
             {
                 float speed = 18f * (1f - 1 / rand.NextFloat(1f, 10f));
-                Color color = Extensions.Lerp(Color.White, explosionColor, rand.NextFloat(0, 1));
+                Color color = MathUtil.Lerp(Color.White, explosionColor, rand.NextFloat(0, 1));
                 var state = new ParticleState()
                 {
                     Velocity = rand.NextVector2(speed, speed),

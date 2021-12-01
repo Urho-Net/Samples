@@ -116,7 +116,7 @@ namespace ShapeBlaster
                     LengthMultiplier = 1
                 };
 
-                Color color = Extensions.Lerp(color1, color2, rand.NextFloat(0, 1));
+                Color color = MathUtil.Lerp(color1, color2, rand.NextFloat(0, 1));
                 ShapeBlaster.ParticleManager.CreateParticle(Art.LineParticle, Position, color, 190, 1.5f, state);
             }
 
@@ -145,7 +145,7 @@ namespace ShapeBlaster
             while (true)
             {
                 direction += rand.NextFloat(-0.1f, 0.1f);
-                direction = Extensions.WrapAngle(direction);
+                direction = MathUtil.WrapAngle(direction);
 
                 for (int i = 0; i < 6; i++)
                 {

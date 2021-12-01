@@ -137,7 +137,7 @@ namespace ShapeBlaster
 
         public void ApplyDirectedForce(Vector2 force, Vector2 position, float radius)
         {
-            ApplyDirectedForce(new Vector3(force.X,force.Y, 0), new Vector3(position.X,position.Y, 0), radius);
+            ApplyDirectedForce(new Vector3(force.X, force.Y, 0), new Vector3(position.X, position.Y, 0), radius);
         }
 
         public void ApplyDirectedForce(Vector3 force, Vector3 position, float radius)
@@ -149,7 +149,7 @@ namespace ShapeBlaster
 
         public void ApplyImplosiveForce(float force, Vector2 position, float radius)
         {
-            ApplyImplosiveForce(force, new Vector3(position.X,position.Y, 0), radius);
+            ApplyImplosiveForce(force, new Vector3(position.X, position.Y, 0), radius);
         }
 
         public void ApplyImplosiveForce(float force, Vector3 position, float radius)
@@ -167,7 +167,7 @@ namespace ShapeBlaster
 
         public void ApplyExplosiveForce(float force, Vector2 position, float radius)
         {
-            ApplyExplosiveForce(force, new Vector3(position.X,position.Y, 0), radius);
+            ApplyExplosiveForce(force, new Vector3(position.X, position.Y, 0), radius);
         }
 
         public void ApplyExplosiveForce(float force, Vector3 position, float radius)
@@ -185,21 +185,47 @@ namespace ShapeBlaster
 
         public void Update()
         {
-            foreach (var spring in springs)
-                spring.Update();
+            // foreach (var spring in springs)
+            //     spring.Update();
 
-            foreach (var mass in points)
-                mass.Update();
+            // foreach (var mass in points)
+            //     mass.Update();
         }
 
+        public void Draw2()
+        {
+            int width = points.GetLength(0);
+            int height = points.GetLength(1);
+             Color color = new Color(30 / 255.0f, 30 / 255.0f, 139 / 255.0f, 100 / 255.0f);   // dark blue
+
+            for (int y = 1; y < height; y++)
+            {
+                for (int x = 1; x < width; x++)
+                {
+                    Vector2 left = new Vector2(), up = new Vector2(); Vector2 p = ToVec2(points[x, y].Position); 
+                    if (x > 1)
+                    {
+                        left = ToVec2(points[x - 1, y].Position);
+                        float thickness = y % 3 == 1 ? 3f : 1f;
+                        CustomRenderer.DrawLine(left, p, color, thickness);
+                    }
+                    if (y > 1)
+                    {
+                        up = ToVec2(points[x, y - 1].Position);
+                        float thickness = x % 3 == 1 ? 3f : 1f;
+                        CustomRenderer.DrawLine(up, p, color, thickness);
+                    }
+                }
+            }
+        }
         public void Draw(/*SpriteBatch spriteBatch*/)
         {
             var graphics = Application.Current.Graphics;
-            screenSize = new Vector2(graphics.Width,graphics.Height);// GameRoot.ScreenSize;
+            screenSize = ShapeBlaster.ScreenSize;
 
             int width = points.GetLength(0);
             int height = points.GetLength(1);
-            Color color = new Color(30/255.0f, 30/255.0f, 139/255.0f, 100/255.0f);   // dark blue
+            Color color = new Color(30 / 255.0f, 30 / 255.0f, 139 / 255.0f, 100 / 255.0f);   // dark blue
 
             for (int y = 1; y < height; y++)
             {
@@ -214,12 +240,12 @@ namespace ShapeBlaster
 
                         // use Catmull-Rom interpolation to help smooth bends in the grid
                         int clampedX = Math.Min(x + 1, width - 1);
-                      
-                        Vector2 mid = Extensions.CatmullRom(ToVec2(points[x - 2, y].Position), left, p, ToVec2(points[clampedX, y].Position), 0.5f);
+
+                        Vector2 mid = MathUtil.CatmullRom(ToVec2(points[x - 2, y].Position), left, p, ToVec2(points[clampedX, y].Position), 0.5f);
 
                         // If the grid is very straight here, draw a single straight line. Otherwise, draw lines to our
                         // new interpolated midpoint
-                        if (mid.Distance( (left + p) / 2) > 1)
+                        if (mid.Distance((left + p) / 2) > 1)
                         {
                             CustomRenderer.DrawLine(left, mid, color, thickness);
                             CustomRenderer.DrawLine(mid, p, color, thickness);
@@ -232,7 +258,7 @@ namespace ShapeBlaster
                         up = ToVec2(points[x, y - 1].Position);
                         float thickness = x % 3 == 1 ? 3f : 1f;
                         int clampedY = Math.Min(y + 1, height - 1);
-                        Vector2 mid = Extensions.CatmullRom(ToVec2(points[x, y - 2].Position), up, p, ToVec2(points[x, clampedY].Position), 0.5f);
+                        Vector2 mid = MathUtil.CatmullRom(ToVec2(points[x, y - 2].Position), up, p, ToVec2(points[x, clampedY].Position), 0.5f);
 
                         if (mid.Distance((up + p) / 2) > 1)
                         {

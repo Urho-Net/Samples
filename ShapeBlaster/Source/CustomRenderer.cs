@@ -11,7 +11,7 @@ using Urho.Urho2D;
 namespace ShapeBlaster
 {
 
-    
+
     [StructLayout(LayoutKind.Sequential)]
     struct PositionColorUVVertex
     {
@@ -81,7 +81,7 @@ namespace ShapeBlaster
         }
 
 
-        unsafe public static void End()
+        public static void End()
         {
 
             List<DrawItem> drawList = new List<DrawItem>();
@@ -90,12 +90,12 @@ namespace ShapeBlaster
             if (totalVertex == 0)
                 return;
 
-            IntPtr vertexData = vertexBuffer.Lock(0, totalVertex, true);
+            IntPtr vertexDataPtr = vertexBuffer.Lock(0, totalVertex, true);
 
-            if (vertexData == IntPtr.Zero)
+            if (vertexDataPtr == IntPtr.Zero)
                 return;
-            
-             PositionColorUVVertex* vout = (PositionColorUVVertex*)vertexData;
+
+            //  PositionColorUVVertex* vout = (PositionColorUVVertex*)vertexData;
 
             uint startVertex = 0;
             uint vertexSize = vertexBuffer.VertexSize;
@@ -113,12 +113,12 @@ namespace ShapeBlaster
                         continue;
 
                     // faster blit possible?
-                    for (int i = 0; i < batch.VertexCount; i++, vout++)
+                    for (int i = 0; i < batch.VertexCount; i++)
                     {
-                        
-                        // IntPtr dest = IntPtr.Add(vertexData, i * (int)vertexSize);
-                        // Marshal.StructureToPtr(batch.Vertices[i], dest, true);
-                        *vout = batch.Vertices[i];
+                        Marshal.StructureToPtr(batch.Vertices[i], vertexDataPtr, true);
+                        vertexDataPtr = IntPtr.Add(vertexDataPtr, (int)vertexSize);
+                        // *vout = batch.Vertices[i];
+                        // vout++;
                     }
 
                     var item = new DrawItem();
@@ -149,7 +149,7 @@ namespace ShapeBlaster
             graphics.CullMode = CullMode.None;
             graphics.FillMode = FillMode.Solid;
             graphics.DepthTest = CompareMode.Always;
-      
+
 
             graphics.SetShaders(vertexShader, pixelShader);
 
@@ -162,7 +162,7 @@ namespace ShapeBlaster
 
             foreach (var item in drawList)
             {
-                graphics.SetTexture((int) TextureUnit.Diffuse, item.Texture);
+                graphics.SetTexture((int)TextureUnit.Diffuse, item.Texture);
                 graphics.Draw(PrimitiveType.TriangleList, item.StartVertex, item.VertexCount);
             }
 
@@ -202,7 +202,7 @@ namespace ShapeBlaster
         public static void DrawLine(Vector2 start, Vector2 end, Color color, float thickness = 2f)
         {
             Vector2 delta = end - start;
-            Draw(Art.Pixel, start, color, Vector2.Angle(start,end)/*delta.ToAngle()*/, new Vector2(0, 0.5f), new Vector2(delta.Length, thickness), 0f);
+            Draw(Art.Pixel, start, color, delta.ToAngle(), new Vector2(0, 0.5f), new Vector2(delta.Length, thickness), 0f);
         }
 
 

@@ -38,13 +38,14 @@ namespace ShapeBlaster
                 direction.Y += 1;
 #endif      
 
+        
 #if _MOBILE_
 
             var touchPos = lastTouchPos;
 
             if (input.NumTouches == 1)
             {
-                touchPos = input.GetTouchPosition(0);
+                touchPos = input.GetTouch(0).LastPosition;
                 lastTouchPos = touchPos;
 
             }
@@ -57,7 +58,7 @@ namespace ShapeBlaster
 
             Vector2 shipPos = PlayerShip.Instance.Position;
 
-            shipPos.Y = GameRoot.ScreenBounds.Height - shipPos.Y;
+            shipPos.Y = ShapeBlaster.ScreenBounds.Height() - shipPos.Y;
 
             direction -= shipPos;
 
@@ -109,12 +110,6 @@ namespace ShapeBlaster
         {
             var input = Application.Current.Input;
 
-            Vector2 direction = new Vector2();
-
-#if !_MOBILE__
-            direction = new Vector2((float)input.MousePosition.X, (float)input.MousePosition.Y);            
-
-#endif
 
             uint numJoySticks = input.NumJoysticks;
 
@@ -145,13 +140,13 @@ namespace ShapeBlaster
 
             }
 
+
 #if !_MOBILE_
-                direction = new Vector2((float)input.MousePosition.X, (float)input.MousePosition.Y);
+            Vector2 direction = new Vector2((float)input.MousePosition.X, (float)input.MousePosition.Y);
 #else
-            {
-                direction = PlayerShip.Instance.Velocity;
-                return Vector2.Normalize(direction);
-            }
+            
+            Vector2 direction = PlayerShip.Instance.Velocity;
+            return Vector2.Normalize(direction);  
 #endif
 
             Vector2 shipPos = PlayerShip.Instance.Position;

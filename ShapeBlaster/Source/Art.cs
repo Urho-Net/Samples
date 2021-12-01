@@ -6,7 +6,7 @@
 
 using Urho;
 using Urho.Urho2D;
-
+using System;
 
 namespace ShapeBlaster
 {
@@ -21,9 +21,8 @@ namespace ShapeBlaster
             TexCoordTL = rect.Min;
             TexCoordBR = rect.Max;
 
-            Height = (int)((rect.Height()) * 128);
-            Width = (int)((rect.Width()) * 128);
-
+            Height = Math.Max(1,(int)(rect.Height() * 128.0f));
+            Width = Math.Max(1,(int)(rect.Width() * 128.0f));
 
         }
 
