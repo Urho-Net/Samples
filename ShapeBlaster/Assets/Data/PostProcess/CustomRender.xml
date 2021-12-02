@@ -1,0 +1,3 @@
+<renderpath>
+    <command type="sendevent" name="customrender" />
+</renderpath>
