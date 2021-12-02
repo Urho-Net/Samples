@@ -7,6 +7,8 @@ Originally written for XNA by Michael Hoffman
 
 This is a complete game , verified to be runnning on all supported platforms , Web browsers , desktop (Linux,Mac,Windows) and mobile devices (Android and iOS GLES2/Metal)
 
+Web Demo can be found in  this link [Web demo](https://elix22.itch.io/shape-blaster)
+
 License
 -----------------------------------------------------------------------------------
 The MIT License (MIT)

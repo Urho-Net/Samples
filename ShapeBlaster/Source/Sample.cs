@@ -129,8 +129,7 @@ namespace ShapeBlaster
             }
 
             base.Start();
-            if (Platform == Platforms.Android ||
-                Platform == Platforms.iOS ||
+            if (IsMobile || 
                 Options.TouchEmulation)
             {
                 InitTouchInput();
