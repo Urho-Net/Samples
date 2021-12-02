@@ -14,13 +14,15 @@ namespace ShapeBlaster
     public class GameRoot : Sample
     {
         [Preserve]
-        public GameRoot() : base(new ApplicationOptions(assetsFolder: "Data;CoreData") { Height = 600, Width = 800, Orientation = ApplicationOptions.OrientationType.Landscape }) { }
+        public GameRoot() : base(new ApplicationOptions(assetsFolder: "Data;CoreData") {Orientation = ApplicationOptions.OrientationType.Landscape }) { }
 
 
         public static Timer MultiplierTimer = null;
         protected override void Start()
         {
             base.Start();
+
+            Log.LogLevel = LogLevel.Info;
 
             PlayerPrefs.Init(this);
 
@@ -47,23 +49,27 @@ namespace ShapeBlaster
             camera.Orthographic = true;
             camera.OrthoSize = height;
 
-            var viewport = new Viewport(Scene, camera, null);
-            Renderer.SetViewport(0, viewport);
+            Viewport = new Viewport(Scene, camera, null);
+            Renderer.SetViewport(0, Viewport);
 
+          
 
-            var renderpath = viewport.RenderPath.Clone();
-            renderpath.Append(cache.GetXmlFile("PostProcess/CustomBloomHDR.xml"));
-            renderpath.Append(cache.GetXmlFile("PostProcess/BlurLight.xml"));
-            viewport.RenderPath = renderpath;
+            var renderpath = Viewport.RenderPath.Clone();
+            renderpath.Append(cache.GetXmlFile("PostProcess/CustomRender.xml"));
+            Viewport.RenderPath = renderpath;
 
             CustomRenderer.Initialize();
 
             ParticleManager = new ParticleManager<ParticleState>(1024 * 20, ParticleState.UpdateParticle);
 
             int maxGridPoints = 1600;
-            if (IsMobile)
+            if (IsMobile && Platform != Platforms.Web)
             {
                 maxGridPoints = 400;
+            }
+            else if (Platform == Platforms.Web)
+            {
+                maxGridPoints = 100;
             }
 
             float amt = (float)Math.Sqrt(ScreenBounds.Width() * ScreenBounds.Height() / (float)maxGridPoints);
@@ -89,6 +95,8 @@ namespace ShapeBlaster
             });
 
             Input.SetMouseVisible(true);
+
+            
 
             SoundManager.Init();
 
@@ -173,6 +181,8 @@ namespace ShapeBlaster
         public static ParticleManager<ParticleState> ParticleManager { get; private set; }
 
         bool paused = false;
+
+        public static Viewport Viewport { get; private set; }
 
 
     }

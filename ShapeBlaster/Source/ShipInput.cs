@@ -7,6 +7,7 @@
 using System;
 using System.IO;
 using Urho;
+using Urho.IO;
 
 namespace ShapeBlaster
 {
@@ -73,16 +74,16 @@ namespace ShapeBlaster
 
         private static Vector2 GetMouseAimDirection()
         {
-            var input = Application.Current.Input;
+            var Input = Application.Current.Input;
 
 
-            uint numJoySticks = input.NumJoysticks;
+            uint numJoySticks = Input.NumJoysticks;
 
             if (numJoySticks > 0)
             {
                 Vector2 dir = new Vector2(0, 0);
 
-                input.GetJoystickByIndex(0,out var state);
+                Input.GetJoystickByIndex(0,out var state);
 
                 float x = state.GetAxisPosition(0);
                 float y = state.GetAxisPosition(1);
@@ -105,12 +106,13 @@ namespace ShapeBlaster
 
             }
 
-            Vector2 direction = new Vector2((float)input.MousePosition.X, (float)input.MousePosition.Y);
 
+            Vector3 screenToWorld = GameRoot.Viewport.ScreenToWorldPoint(Input.MousePosition.X, Input.MousePosition.Y, 0);
+            Vector2 direction = new Vector2(screenToWorld.X, GameRoot.ScreenBounds.Height() - screenToWorld.Y);
 
             Vector2 shipPos = PlayerShip.Instance.Position;
 
-            shipPos.Y = GameRoot.ScreenBounds.Height() - shipPos.Y;          
+            shipPos.Y = GameRoot.ScreenBounds.Height() - shipPos.Y;
 
             direction -= shipPos;
 
