@@ -95,7 +95,6 @@ namespace ShapeBlaster
             if (vertexDataPtr == IntPtr.Zero)
                 return;
 
-            //  PositionColorUVVertex* vout = (PositionColorUVVertex*)vertexData;
 
             uint startVertex = 0;
             uint vertexSize = vertexBuffer.VertexSize;
@@ -112,13 +111,21 @@ namespace ShapeBlaster
                     if (batch.VertexCount == 0)
                         continue;
 
-                    // faster blit possible?
-                    for (int i = 0; i < batch.VertexCount; i++)
+                    if (Application.Platform == Platforms.Web)
                     {
-                        Marshal.StructureToPtr(batch.Vertices[i], vertexDataPtr, true);
-                        vertexDataPtr = IntPtr.Add(vertexDataPtr, (int)vertexSize);
-                        // *vout = batch.Vertices[i];
-                        // vout++;
+                        // Looks like this one is faster on Web 
+                        byte[] bytes = ToByteArray(batch.Vertices);
+                        Marshal.Copy(bytes, 0, vertexDataPtr, (int)(vertexSize * batch.VertexCount));
+                        vertexDataPtr = IntPtr.Add(vertexDataPtr, (int)(vertexSize * batch.VertexCount));
+                    }
+                    else
+                    {
+                        // faster blit possible?
+                        for (int i = 0; i < batch.VertexCount; i++)
+                        {
+                            Marshal.StructureToPtr(batch.Vertices[i], vertexDataPtr, true);
+                            vertexDataPtr = IntPtr.Add(vertexDataPtr, (int)vertexSize);
+                        }
                     }
 
                     var item = new DrawItem();
@@ -362,6 +369,41 @@ namespace ShapeBlaster
             vertices[vertexCount++] = vertexBR;
             vertices[vertexCount++] = vertexBL;
 
+        }
+
+
+        private static byte[] ToByteArray<T>(T[] source) where T : struct
+        {
+            GCHandle handle = GCHandle.Alloc(source, GCHandleType.Pinned);
+            try
+            {
+                IntPtr pointer = handle.AddrOfPinnedObject();
+                byte[] destination = new byte[source.Length * Marshal.SizeOf(typeof(T))];
+                Marshal.Copy(pointer, destination, 0, destination.Length);
+                return destination;
+            }
+            finally
+            {
+                if (handle.IsAllocated)
+                    handle.Free();
+            }
+        }
+
+        private static T[] FromByteArray<T>(byte[] source) where T : struct
+        {
+            T[] destination = new T[source.Length / Marshal.SizeOf(typeof(T))];
+            GCHandle handle = GCHandle.Alloc(destination, GCHandleType.Pinned);
+            try
+            {
+                IntPtr pointer = handle.AddrOfPinnedObject();
+                Marshal.Copy(source, 0, pointer, source.Length);
+                return destination;
+            }
+            finally
+            {
+                if (handle.IsAllocated)
+                    handle.Free();
+            }
         }
 
     }
