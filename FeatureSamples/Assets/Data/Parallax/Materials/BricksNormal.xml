@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<material>
+	<technique name="Techniques/DiffParallaxNormal.xml" />
+	<texture unit="diffuse" name="Textures/wall.jpg" />
+	<texture unit="normal" name="Textures/saint_normal.png" />
+	<cull value="none" />
+</material>

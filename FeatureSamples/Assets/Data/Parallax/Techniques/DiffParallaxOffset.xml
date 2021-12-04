@@ -1,0 +1,10 @@
+<technique vs="LitSolidParallax" ps="LitSolidParallax" psdefines="DIFFMAP PARALLAX_OFFSET">
+    <pass name="base" />
+    <pass name="litbase" vsdefines="PARALLAXMAP" psdefines="AMBIENT PARALLAXMAP" />
+    <pass name="light" vsdefines="PARALLAXMAP" psdefines="PARALLAXMAP" depthtest="equal" depthwrite="false" blend="add" />
+    <pass name="prepass" vsdefines="PARALLAXMAP" psdefines="PREPASS PARALLAXMAP" />
+    <pass name="material" psdefines="MATERIAL" depthtest="equal" depthwrite="false" />
+    <pass name="deferred" vsdefines="PARALLAXMAP" psdefines="DEFERRED PARALLAXMAP" />
+    <pass name="depth" vs="Depth" ps="Depth" psexcludes="PACKEDNORMAL" />
+    <pass name="shadow" vs="Shadow" ps="Shadow" psexcludes="PACKEDNORMAL" />
+</technique>

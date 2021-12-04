@@ -1,0 +1,11 @@
+<material>
+    <technique name="Techniques/TerrainBlendDuo.xml" />
+    <texture unit="0" name="Textures/terraindetail.jpg" />
+    <texture unit="1" name="Textures/rocksMixHeight1.png" />
+    <texture unit="2" name="Textures/snowMixHeight1.png" />
+    <texture unit="3" name="Textures/rocks_normal.png" />
+    <texture unit="4" name="Textures/Four_normal.png" />
+    <parameter name="MatSpecColor" value="0.2 0.2 0.2 16" />
+    <parameter name="DetailTiling" value="32 32" />
+    <parameter name="HeightScale" value="0.1" />
+</material>

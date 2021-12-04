@@ -1,0 +1,8 @@
+<material>
+    <technique name="Techniques/DiffParallaxOffset.xml" />
+    <texture unit="diffuse" name="Textures/wall.jpg" />
+    <texture unit="normal" name="Textures/saint_normal.png" />
+    <texture unit="specular" name="Textures/saint_displace.png" />
+    <parameter name="HeightScale" value="0.1" />
+	<cull value="none" />
+</material>

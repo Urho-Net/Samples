@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<material>
+	<technique name="Techniques/DiffParallaxNormal.xml" />
+	<texture unit="diffuse" name="Textures/rocks.jpg" />
+	<texture unit="normal" name="Textures/rocks_normal.png" />
+	<cull value="none" />
+</material>

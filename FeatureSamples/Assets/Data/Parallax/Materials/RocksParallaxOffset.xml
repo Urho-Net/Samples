@@ -1,0 +1,10 @@
+<material>
+    <!-- The water example will assign the reflection texture to the diffuse unit -->
+    <!-- The engine will automatically assign the refraction (viewport) texture to the environment unit during refract pass -->
+    <technique name="Techniques/DiffParallaxOffset.xml" />
+    <texture unit="diffuse" name="Textures/rocks.jpg" />
+    <texture unit="normal" name="Textures/rocks_normal.png" />
+    <texture unit="specular" name="Textures/rocks_displace.png" />
+    <parameter name="HeightScale" value="0.1" />
+	<cull value="none" />
+</material>
