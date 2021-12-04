@@ -76,7 +76,7 @@ namespace UrhoNetSamples
 
 
 
-        public UrhoNetSamples() : base(new ApplicationOptions(assetsFolder: "Data;CoreData;Data/FlappyUrho;Data/MaterialEffects") { ResizableWindow = true }) { }
+        public UrhoNetSamples() : base(new ApplicationOptions(assetsFolder: "Data;CoreData;Data/FlappyUrho;Data/MaterialEffects;;Data/Parallax") { ResizableWindow = true }) { }
 
 
 
