@@ -36,7 +36,7 @@ Link: http://opengameart.org/content/car-tire-squeal-skid-loop
 Code, Clouds, Particles, Suspension Sounds and other assets by AlanGameDev for the Atomic Game Engine
 License: Public Domain
 
-Uro.Net Samples
+Urho.Net Samples
 The MIT License (MIT)
 
 
