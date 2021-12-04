@@ -115,6 +115,7 @@ namespace Racer2D
         {
             // We create a node and position where the chunk starts
             Node node = _scene.CreateChild();
+            node.Name = "Terrain";
             node.SetPosition2D(startx, 0);
 
             // We create components to render the geometries of the surface and the ground

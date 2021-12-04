@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Urho;
 using Urho.Urho2D;
 using Urho.Audio;
+using UrhoNetSamples;
 
 namespace Racer2D
 {
@@ -162,6 +163,7 @@ namespace Racer2D
         public Node CreateHead(Sprite2D sprite, Vector3 relativePosition, float colliderRadius, Vector2 neckAnchor)
         {
             Node head = Racer2D.CreateSpriteNode(sprite);
+            head.Name = "Head";
             head.Position = (relativePosition);
             Racer2D.AddCollider<CollisionCircle2D>(head).Radius = (colliderRadius);
 
@@ -237,11 +239,23 @@ namespace Racer2D
                 }
             }
 
+
             // Roll controls
-            if (_input.GetKeyDown(Key.W))
-                _rigidBody.ApplyTorque(_rollForce, true);
-            if (_input.GetKeyDown(Key.S))
-                _rigidBody.ApplyTorque(_rollForce  * -1, true);
+            if (Sample.IsMobile)
+            {
+                if (_input.GetKeyDown(Key.R))
+                    _rigidBody.ApplyTorque(_rollForce, true);
+                if (_input.GetKeyDown(Key.F))
+                    _rigidBody.ApplyTorque(_rollForce * -1, true);
+            }
+            else
+            {
+                if (_input.GetKeyDown(Key.W))
+                    _rigidBody.ApplyTorque(_rollForce, true);
+                if (_input.GetKeyDown(Key.S))
+                    _rigidBody.ApplyTorque(_rollForce * -1, true);
+            }
+
             // Debug control for when you rolled over
             if (_input.GetKeyDown(Key.Space))
                 _rigidBody.AngularVelocity = (2);
