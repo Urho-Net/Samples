@@ -63,7 +63,7 @@ namespace ShapeBlaster
             // rotate the spray direction
             sprayAngle -= MathHelper.TwoPi / 50f;
 
-            GameRoot.Grid.ApplyImplosiveForce((float)Math.Sin(sprayAngle / 2) * 10 + 20, Position, 200);
+            GameRoot.Grid.ApplyImplosiveForce((float)Math.Sin(sprayAngle / 2) * 5 + 10, Position, 100);
         }
 
         public void WasShot()
