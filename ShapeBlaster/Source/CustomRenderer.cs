@@ -2,11 +2,15 @@
 
 // Custom Renderer
 
+#define USE_UNSAFE
+
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Urho;
 using Urho.Urho2D;
+
+
 
 namespace ShapeBlaster
 {
@@ -81,7 +85,7 @@ namespace ShapeBlaster
         }
 
 
-        public static void End()
+        public unsafe static void End()
         {
 
             List<DrawItem> drawList = new List<DrawItem>();
@@ -111,22 +115,24 @@ namespace ShapeBlaster
                     if (batch.VertexCount == 0)
                         continue;
 
-                    // if (Application.Platform == Platforms.Web)
-                    // {
-                    // Looks like this one is faster on Web 
+#if USE_UNSAFE
+                    GCHandle handle = GCHandle.Alloc(batch.Vertices, GCHandleType.Pinned);
+                    try
+                    {
+                        IntPtr pointer = handle.AddrOfPinnedObject();
+                        Buffer.MemoryCopy((void*)pointer, (void*)vertexDataPtr, (int)(vertexSize * totalVertex), (int)(vertexSize * batch.VertexCount));
+                        vertexDataPtr = IntPtr.Add(vertexDataPtr, (int)(vertexSize * batch.VertexCount));
+                    }
+                    finally
+                    {
+                        if (handle.IsAllocated)
+                            handle.Free();
+                    }
+#else
                     byte[] bytes = ToByteArray(batch.Vertices);
                     Marshal.Copy(bytes, 0, vertexDataPtr, (int)(vertexSize * batch.VertexCount));
                     vertexDataPtr = IntPtr.Add(vertexDataPtr, (int)(vertexSize * batch.VertexCount));
-                    // }
-                    // else
-                    // {
-                    //     // faster blit possible?
-                    //     for (int i = 0; i < batch.VertexCount; i++)
-                    //     {
-                    //         Marshal.StructureToPtr(batch.Vertices[i], vertexDataPtr, true);
-                    //         vertexDataPtr = IntPtr.Add(vertexDataPtr, (int)vertexSize);
-                    //     }
-                    // }
+#endif
 
                     var item = new DrawItem();
                     item.Texture = batch.Texture;
