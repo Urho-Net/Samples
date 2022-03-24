@@ -64,6 +64,7 @@ namespace PBRMaterials
 
         protected override void OnUpdate(float timeStep)
         {
+            base.OnUpdate(timeStep);
             SimpleMoveCamera3D(timeStep);
         }
 

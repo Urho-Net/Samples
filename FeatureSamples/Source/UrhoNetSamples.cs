@@ -140,9 +140,6 @@ namespace UrhoNetSamples
             {
                 string SampleName = ExtractSampleName(sample);
 
-                // PBRMaterials doesn't work well on mobiles
-                if ((Application.Platform == Platforms.Web || IsMobile) && SampleName == "PBRMaterials") continue;
-
                 if(Application.Platform == Platforms.Web)
                 {
                     // TBD ELI , Networking is not supported on Browser
@@ -159,9 +156,6 @@ namespace UrhoNetSamples
             foreach (var sample in samples)
             {
                 string SampleName = ExtractSampleName(sample);
-
-                // PBRMaterials doesn't work well on mobiles
-                if ((Application.Platform == Platforms.Web || IsMobile ) && SampleName == "PBRMaterials") continue;
 
                 if (Application.Platform == Platforms.Web)
                 {
