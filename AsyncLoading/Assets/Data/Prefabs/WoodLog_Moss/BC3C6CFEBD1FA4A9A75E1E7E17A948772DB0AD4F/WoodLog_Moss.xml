@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="2">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="WoodLog_Moss.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="0 0 -0" />
+	<attribute name="Rotation" value="1 0 0 0" />
+	<attribute name="Scale" value="1 1 1" />
+	<attribute name="Variables" />
+	<node id="3">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="WoodLog_Moss_Cylinder.011" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1">
+			<attribute name="Model" value="Model;Prefabs/WoodLog_Moss/BC3C6CFEBD1FA4A9A75E1E7E17A948772DB0AD4F/Models/WoodLog_Moss_Cylinder.011.mdl" />
+			<attribute name="Material" value="Material;Prefabs/WoodLog_Moss/BC3C6CFEBD1FA4A9A75E1E7E17A948772DB0AD4F/Materials/Wood.xml;Prefabs/WoodLog_Moss/BC3C6CFEBD1FA4A9A75E1E7E17A948772DB0AD4F/Materials/Green.xml;Prefabs/WoodLog_Moss/BC3C6CFEBD1FA4A9A75E1E7E17A948772DB0AD4F/Materials/Mushroom_Top.xml;Prefabs/WoodLog_Moss/BC3C6CFEBD1FA4A9A75E1E7E17A948772DB0AD4F/Materials/Mushroom_Bottom.xml;Prefabs/WoodLog_Moss/BC3C6CFEBD1FA4A9A75E1E7E17A948772DB0AD4F/Materials/DarkGreen.xml" />
+		</component>
+	</node>
+</node>

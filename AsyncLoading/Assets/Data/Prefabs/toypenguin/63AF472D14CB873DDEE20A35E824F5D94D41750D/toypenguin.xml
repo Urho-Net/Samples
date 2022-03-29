@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<node id="951">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="toypenguin" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="10.9248 4.39944 -19.7668" />
+	<attribute name="Rotation" value="0.258819 0 0.965926 0" />
+	<attribute name="Scale" value="0.05 0.05 0.05" />
+	<attribute name="Variables" />
+	<node id="952">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="penguin" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 -16.5495 0" />
+		<attribute name="Rotation" value="0.798364 0 0.602176 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="940">
+			<attribute name="Model" value="Model;Prefabs/toypenguin/63AF472D14CB873DDEE20A35E824F5D94D41750D/Models/penguin.mdl" />
+			<attribute name="Material" value="Material;Prefabs/toypenguin/63AF472D14CB873DDEE20A35E824F5D94D41750D/Materials/penguin.xml" />
+		</component>
+		<component type="CollisionShape" id="941">
+			<attribute name="Size" value="150 150 150" />
+		</component>
+		<component type="RigidBody" id="942">
+			<attribute name="Physics Rotation" value="0.798364 0 0.602176 0" />
+			<attribute name="Physics Position" value="-90.596 3.2991 33.1547" />
+		</component>
+	</node>
+</node>

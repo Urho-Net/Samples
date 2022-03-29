@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<material>
+	<technique name="Techniques/Diff.xml" />
+	<texture unit="diffuse" name="Prefabs/toymonkey/9A42FD6FD2C567B7A12FD9B14C1FE9F3D4BAC75F/Textures/toymonkey_Default_color.jpg" />
+	<parameter name="MatDiffColor" value="1 1 1 1" />
+	<parameter name="MatSpecColor" value="0 0 0 1" />
+	<parameter name="MatEmissiveColor" value="0 0 0 1" />
+</material>

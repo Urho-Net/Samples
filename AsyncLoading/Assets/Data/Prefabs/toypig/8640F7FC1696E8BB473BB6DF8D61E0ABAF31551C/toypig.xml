@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<node id="953">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="toypig" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="-10.535 2.12254 -17.8692" />
+	<attribute name="Rotation" value="0.195056 0 -0.980757 0" />
+	<attribute name="Scale" value="0.05 0.05 0.05" />
+	<attribute name="Variables" />
+	<node id="954">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="pig" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="943">
+			<attribute name="Model" value="Model;Prefabs/toypig/8640F7FC1696E8BB473BB6DF8D61E0ABAF31551C/Models/pig.mdl" />
+			<attribute name="Material" value="Material;Prefabs/toypig/8640F7FC1696E8BB473BB6DF8D61E0ABAF31551C/Materials/piggy.xml" />
+		</component>
+		<component type="CollisionShape" id="944">
+			<attribute name="Size" value="150 150 150" />
+			<attribute name="Offset Position" value="0 20 0" />
+		</component>
+		<component type="RigidBody" id="945">
+			<attribute name="Physics Rotation" value="0.896885 0 0.442263 0" />
+			<attribute name="Physics Position" value="-72.9601 1.84968 20.7815" />
+		</component>
+	</node>
+</node>

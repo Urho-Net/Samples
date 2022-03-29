@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<material>
+	<technique name="Techniques/Diff.xml" />
+	<texture unit="diffuse" name="Prefabs/toypig/8640F7FC1696E8BB473BB6DF8D61E0ABAF31551C/Textures/toypig_Default_color.jpg" />
+	<parameter name="MatDiffColor" value="1 1 1 1" />
+	<parameter name="MatSpecColor" value="0 0 0 1" />
+	<parameter name="MatEmissiveColor" value="0 0 0 1" />
+</material>

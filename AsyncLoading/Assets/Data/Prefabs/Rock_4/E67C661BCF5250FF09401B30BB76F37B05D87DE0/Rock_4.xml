@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="2">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="Rock_4.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="0 0 -0" />
+	<attribute name="Rotation" value="1 0 0 0" />
+	<attribute name="Scale" value="1 1 1" />
+	<attribute name="Variables" />
+	<node id="3">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Rock_4_Cube.022" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1">
+			<attribute name="Model" value="Model;Prefabs/Rock_4/E67C661BCF5250FF09401B30BB76F37B05D87DE0/Models/Rock_4_Cube.022.mdl" />
+			<attribute name="Material" value="Material;Prefabs/Rock_4/E67C661BCF5250FF09401B30BB76F37B05D87DE0/Materials/Rock.xml" />
+		</component>
+	</node>
+</node>

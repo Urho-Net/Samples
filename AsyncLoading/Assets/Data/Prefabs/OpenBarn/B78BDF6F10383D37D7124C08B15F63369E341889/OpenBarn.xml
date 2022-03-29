@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="1052">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="OpenBarn" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="20.9519 0 -10.4474" />
+	<attribute name="Rotation" value="0.707107 -0 0.707107 0" />
+	<attribute name="Scale" value="10 10 10" />
+	<attribute name="Variables" />
+	<node id="1053">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="OpenBarn_Cube.045" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1028">
+			<attribute name="Model" value="Model;Prefabs/OpenBarn/B78BDF6F10383D37D7124C08B15F63369E341889/Models/OpenBarn_Cube.045.mdl" />
+			<attribute name="Material" value="Material;Prefabs/OpenBarn/B78BDF6F10383D37D7124C08B15F63369E341889/Materials/DarkRed.xml;Prefabs/OpenBarn/B78BDF6F10383D37D7124C08B15F63369E341889/Materials/White.xml;Prefabs/OpenBarn/B78BDF6F10383D37D7124C08B15F63369E341889/Materials/LightRed.xml;Prefabs/OpenBarn/B78BDF6F10383D37D7124C08B15F63369E341889/Materials/Brown.xml;Prefabs/OpenBarn/B78BDF6F10383D37D7124C08B15F63369E341889/Materials/RoofBlack.xml" />
+		</component>
+	</node>
+</node>

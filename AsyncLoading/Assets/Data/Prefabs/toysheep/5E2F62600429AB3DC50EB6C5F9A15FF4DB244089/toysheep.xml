@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<node id="955">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="toysheep" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="1.12344 2.33044 -21.6411" />
+	<attribute name="Rotation" value="-0.157208 -0.00206819 0.98755 0.00384398" />
+	<attribute name="Scale" value="0.05 0.05 0.05" />
+	<attribute name="Variables" />
+	<node id="956">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="sheep" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="946">
+			<attribute name="Model" value="Model;Prefabs/toysheep/5E2F62600429AB3DC50EB6C5F9A15FF4DB244089/Models/sheep.mdl" />
+			<attribute name="Material" value="Material;Prefabs/toysheep/5E2F62600429AB3DC50EB6C5F9A15FF4DB244089/Materials/sheep.xml" />
+		</component>
+		<component type="CollisionShape" id="947">
+			<attribute name="Size" value="150 150 150" />
+			<attribute name="Offset Position" value="0 20 0" />
+		</component>
+		<component type="RigidBody" id="948">
+			<attribute name="Physics Rotation" value="0.913217 -0.00424831 0.40745 -0.00100283" />
+			<attribute name="Physics Position" value="-81.1706 2.05758 29.8772" />
+		</component>
+	</node>
+</node>

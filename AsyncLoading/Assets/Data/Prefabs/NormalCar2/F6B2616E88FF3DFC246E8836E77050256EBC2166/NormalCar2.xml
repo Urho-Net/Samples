@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<node id="2">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="NormalCar2.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="0 0 -0" />
+	<attribute name="Rotation" value="1 0 0 0" />
+	<attribute name="Scale" value="1 1 1" />
+	<attribute name="Variables" />
+	<node id="3">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="NormalCar2_Cube.002" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1">
+			<attribute name="Model" value="Model;Prefabs/NormalCar2/F6B2616E88FF3DFC246E8836E77050256EBC2166/Models/NormalCar2_Cube.002.mdl" />
+			<attribute name="Material" value="Material;Prefabs/NormalCar2/F6B2616E88FF3DFC246E8836E77050256EBC2166/Materials/LightBlue.xml;Prefabs/NormalCar2/F6B2616E88FF3DFC246E8836E77050256EBC2166/Materials/Windows.xml;Prefabs/NormalCar2/F6B2616E88FF3DFC246E8836E77050256EBC2166/Materials/Black.xml;Prefabs/NormalCar2/F6B2616E88FF3DFC246E8836E77050256EBC2166/Materials/Grey.xml;Prefabs/NormalCar2/F6B2616E88FF3DFC246E8836E77050256EBC2166/Materials/Headlights.xml;Prefabs/NormalCar2/F6B2616E88FF3DFC246E8836E77050256EBC2166/Materials/Material.007.xml;Prefabs/NormalCar2/F6B2616E88FF3DFC246E8836E77050256EBC2166/Materials/TailLights.xml" />
+		</component>
+	</node>
+	<node id="4">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="NormalCar2_BackWheels_Cylinder.003" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="2">
+			<attribute name="Model" value="Model;Prefabs/NormalCar2/F6B2616E88FF3DFC246E8836E77050256EBC2166/Models/NormalCar2_BackWheels_Cylinder.003.mdl" />
+			<attribute name="Material" value="Material;Prefabs/NormalCar2/F6B2616E88FF3DFC246E8836E77050256EBC2166/Materials/Black.xml;Prefabs/NormalCar2/F6B2616E88FF3DFC246E8836E77050256EBC2166/Materials/Grey.xml" />
+		</component>
+	</node>
+	<node id="5">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="NormalCar2_FrontLeftWheel_Cylinder.015" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="3">
+			<attribute name="Model" value="Model;Prefabs/NormalCar2/F6B2616E88FF3DFC246E8836E77050256EBC2166/Models/NormalCar2_FrontLeftWheel_Cylinder.015.mdl" />
+			<attribute name="Material" value="Material;Prefabs/NormalCar2/F6B2616E88FF3DFC246E8836E77050256EBC2166/Materials/Black.xml;Prefabs/NormalCar2/F6B2616E88FF3DFC246E8836E77050256EBC2166/Materials/Grey.xml" />
+		</component>
+	</node>
+	<node id="6">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="NormalCar2_FrontRightWheel_Cylinder.016" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="4">
+			<attribute name="Model" value="Model;Prefabs/NormalCar2/F6B2616E88FF3DFC246E8836E77050256EBC2166/Models/NormalCar2_FrontRightWheel_Cylinder.016.mdl" />
+			<attribute name="Material" value="Material;Prefabs/NormalCar2/F6B2616E88FF3DFC246E8836E77050256EBC2166/Materials/Black.xml;Prefabs/NormalCar2/F6B2616E88FF3DFC246E8836E77050256EBC2166/Materials/Grey.xml" />
+		</component>
+	</node>
+</node>

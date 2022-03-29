@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<node id="919">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="NormalCar1.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="-5.30603 0 -4.3999" />
+	<attribute name="Rotation" value="0.866025 0 0.5 0" />
+	<attribute name="Scale" value="5 5 5" />
+	<attribute name="Variables" />
+	<component type="CollisionShape" id="921">
+		<attribute name="Size" value="1.98 1 3.92" />
+		<attribute name="Offset Position" value="0 0.6 0" />
+	</component>
+	<component type="RigidBody" id="922">
+		<attribute name="Physics Rotation" value="1 0 -3.27826e-07 0" />
+		<attribute name="Physics Position" value="-139.467 -0.0728581 269.954" />
+	</component>
+	<node id="920">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="NormalCar1_Cube.012" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="917">
+			<attribute name="Model" value="Model;Prefabs/NormalCar1/18FD4F027D992FF88499ABD9558667E9D8FB11B7/Models/NormalCar1_Cube.012.mdl" />
+			<attribute name="Material" value="Material;Prefabs/NormalCar1/18FD4F027D992FF88499ABD9558667E9D8FB11B7/Materials/Blue.xml;Prefabs/NormalCar1/18FD4F027D992FF88499ABD9558667E9D8FB11B7/Materials/Windows.xml;Prefabs/NormalCar1/18FD4F027D992FF88499ABD9558667E9D8FB11B7/Materials/Black.xml;Prefabs/NormalCar1/18FD4F027D992FF88499ABD9558667E9D8FB11B7/Materials/Grey.xml;Prefabs/NormalCar1/18FD4F027D992FF88499ABD9558667E9D8FB11B7/Materials/Headlights.xml;Prefabs/NormalCar1/18FD4F027D992FF88499ABD9558667E9D8FB11B7/Materials/TailLights.xml" />
+		</component>
+	</node>
+	<node id="921">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="NormalCar1_BackWheels_Cube.011" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="918">
+			<attribute name="Model" value="Model;Prefabs/NormalCar1/18FD4F027D992FF88499ABD9558667E9D8FB11B7/Models/NormalCar1_BackWheels_Cube.011.mdl" />
+			<attribute name="Material" value="Material;Prefabs/NormalCar1/18FD4F027D992FF88499ABD9558667E9D8FB11B7/Materials/Black.xml;Prefabs/NormalCar1/18FD4F027D992FF88499ABD9558667E9D8FB11B7/Materials/Grey.xml" />
+		</component>
+	</node>
+	<node id="922">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="NormalCar1_FrontLeftWheel_Cube.007" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="919">
+			<attribute name="Model" value="Model;Prefabs/NormalCar1/18FD4F027D992FF88499ABD9558667E9D8FB11B7/Models/NormalCar1_FrontLeftWheel_Cube.007.mdl" />
+			<attribute name="Material" value="Material;Prefabs/NormalCar1/18FD4F027D992FF88499ABD9558667E9D8FB11B7/Materials/Black.xml;Prefabs/NormalCar1/18FD4F027D992FF88499ABD9558667E9D8FB11B7/Materials/Grey.xml" />
+		</component>
+	</node>
+	<node id="923">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="NormalCar1_FrontRightWheel_Cube.008" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="920">
+			<attribute name="Model" value="Model;Prefabs/NormalCar1/18FD4F027D992FF88499ABD9558667E9D8FB11B7/Models/NormalCar1_FrontRightWheel_Cube.008.mdl" />
+			<attribute name="Material" value="Material;Prefabs/NormalCar1/18FD4F027D992FF88499ABD9558667E9D8FB11B7/Materials/Black.xml;Prefabs/NormalCar1/18FD4F027D992FF88499ABD9558667E9D8FB11B7/Materials/Grey.xml" />
+		</component>
+	</node>
+</node>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<material>
+	<technique name="Techniques/Diff.xml" />
+	<texture unit="diffuse" name="Prefabs/toypenguin/63AF472D14CB873DDEE20A35E824F5D94D41750D/Textures/toypenguin_Default_color.jpg" />
+	<parameter name="MatDiffColor" value="1 1 1 1" />
+	<parameter name="MatSpecColor" value="0.1 0.1 0.1 50" />
+	<parameter name="MatEmissiveColor" value="0 0 0 1" />
+</material>

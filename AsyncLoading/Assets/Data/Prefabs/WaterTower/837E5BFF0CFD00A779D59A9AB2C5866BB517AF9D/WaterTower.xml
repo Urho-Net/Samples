@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="1031">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="WaterTower.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="-6.34091 0 -49.1208" />
+	<attribute name="Rotation" value="0.866025 0 0.5 0" />
+	<attribute name="Scale" value="10 10 10" />
+	<attribute name="Variables" />
+	<node id="1032">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="WaterTower_Cube.006" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1007">
+			<attribute name="Model" value="Model;Prefabs/WaterTower/837E5BFF0CFD00A779D59A9AB2C5866BB517AF9D/Models/WaterTower_Cube.006.mdl" />
+			<attribute name="Material" value="Material;Prefabs/WaterTower/837E5BFF0CFD00A779D59A9AB2C5866BB517AF9D/Materials/Brown.xml;Prefabs/WaterTower/837E5BFF0CFD00A779D59A9AB2C5866BB517AF9D/Materials/Grey.xml;Prefabs/WaterTower/837E5BFF0CFD00A779D59A9AB2C5866BB517AF9D/Materials/DarkGrey.xml" />
+		</component>
+	</node>
+</node>

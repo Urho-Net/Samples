@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="2">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="Lilypad.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="0 0 -0" />
+	<attribute name="Rotation" value="1 0 0 0" />
+	<attribute name="Scale" value="1 1 1" />
+	<attribute name="Variables" />
+	<node id="3">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Lilypad_Cylinder.016" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1">
+			<attribute name="Model" value="Model;Prefabs/Lilypad/0DA6B9CE351B30213B4252761C546B37D0C395A0/Models/Lilypad_Cylinder.016.mdl" />
+			<attribute name="Material" value="Material;Prefabs/Lilypad/0DA6B9CE351B30213B4252761C546B37D0C395A0/Materials/Green.xml;Prefabs/Lilypad/0DA6B9CE351B30213B4252761C546B37D0C395A0/Materials/Pink.xml" />
+		</component>
+	</node>
+</node>

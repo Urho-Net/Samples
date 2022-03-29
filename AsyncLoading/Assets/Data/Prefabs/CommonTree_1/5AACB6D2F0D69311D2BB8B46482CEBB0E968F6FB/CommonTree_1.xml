@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="894">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="CommonTree_1.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="3.82821 0 -13.0116" />
+	<attribute name="Rotation" value="1 0 0 0" />
+	<attribute name="Scale" value="10 10 10" />
+	<attribute name="Variables" />
+	<node id="895">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="CommonTree_1_Cube.049" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="899">
+			<attribute name="Model" value="Model;Prefabs/CommonTree_1/5AACB6D2F0D69311D2BB8B46482CEBB0E968F6FB/Models/CommonTree_1_Cube.049.mdl" />
+			<attribute name="Material" value="Material;Prefabs/CommonTree_1/5AACB6D2F0D69311D2BB8B46482CEBB0E968F6FB/Materials/Wood.xml;Prefabs/CommonTree_1/5AACB6D2F0D69311D2BB8B46482CEBB0E968F6FB/Materials/Green.xml" />
+		</component>
+	</node>
+</node>

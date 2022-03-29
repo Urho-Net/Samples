@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="2">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="Mushroom.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="0 0 -0" />
+	<attribute name="Rotation" value="1 0 0 0" />
+	<attribute name="Scale" value="1 1 1" />
+	<attribute name="Variables" />
+	<node id="3">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Mushroom_Cylinder.012" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1">
+			<attribute name="Model" value="Model;Prefabs/Mushroom/DECDF5D676D5443FB719C3AB0F3356021FB768EA/Models/Mushroom_Cylinder.012.mdl" />
+			<attribute name="Material" value="Material;Prefabs/Mushroom/DECDF5D676D5443FB719C3AB0F3356021FB768EA/Materials/White.xml;Prefabs/Mushroom/DECDF5D676D5443FB719C3AB0F3356021FB768EA/Materials/LightRed.xml" />
+		</component>
+	</node>
+</node>

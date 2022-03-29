@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<node id="1007">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="SmallBarn" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="-22.157 0 -77.2647" />
+	<attribute name="Rotation" value="-4.37114e-08 0 1 -0" />
+	<attribute name="Scale" value="10 10 10" />
+	<attribute name="Variables" />
+	<component type="CollisionShape" id="985">
+		<attribute name="Size" value="6 4 6" />
+		<attribute name="Offset Position" value="0 2 0" />
+	</component>
+	<component type="RigidBody" id="986">
+		<attribute name="Physics Rotation" value="-4.37114e-08 0 1 0" />
+		<attribute name="Physics Position" value="-22.157 0 -77.2647" />
+	</component>
+	<node id="1008">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Small_Barn_Cube.013" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="980">
+			<attribute name="Model" value="Model;Prefabs/SmallBarn/E775E6ADDCCCCE6B405D61AC18C012F9B1CF5B5C/Models/Small_Barn_Cube.013.mdl" />
+			<attribute name="Material" value="Material;Prefabs/SmallBarn/E775E6ADDCCCCE6B405D61AC18C012F9B1CF5B5C/Materials/DarkRed.xml;Prefabs/SmallBarn/E775E6ADDCCCCE6B405D61AC18C012F9B1CF5B5C/Materials/White.xml;Prefabs/SmallBarn/E775E6ADDCCCCE6B405D61AC18C012F9B1CF5B5C/Materials/LightRed.xml;Prefabs/SmallBarn/E775E6ADDCCCCE6B405D61AC18C012F9B1CF5B5C/Materials/RoofBlack.xml" />
+		</component>
+	</node>
+	<node id="1009">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Small_Barn_Door_Cube.008" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="981">
+			<attribute name="Model" value="Model;Prefabs/SmallBarn/E775E6ADDCCCCE6B405D61AC18C012F9B1CF5B5C/Models/Small_Barn_Door_Cube.008.mdl" />
+			<attribute name="Material" value="Material;Prefabs/SmallBarn/E775E6ADDCCCCE6B405D61AC18C012F9B1CF5B5C/Materials/DarkRed.xml;Prefabs/SmallBarn/E775E6ADDCCCCE6B405D61AC18C012F9B1CF5B5C/Materials/White.xml;Prefabs/SmallBarn/E775E6ADDCCCCE6B405D61AC18C012F9B1CF5B5C/Materials/LightRed.xml" />
+		</component>
+	</node>
+	<node id="1010">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="SmallBarn_Window_Cube.023" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="982">
+			<attribute name="Model" value="Model;Prefabs/SmallBarn/E775E6ADDCCCCE6B405D61AC18C012F9B1CF5B5C/Models/SmallBarn_Window_Cube.023.mdl" />
+			<attribute name="Material" value="Material;Prefabs/SmallBarn/E775E6ADDCCCCE6B405D61AC18C012F9B1CF5B5C/Materials/White.xml;Prefabs/SmallBarn/E775E6ADDCCCCE6B405D61AC18C012F9B1CF5B5C/Materials/LightRed.xml" />
+		</component>
+	</node>
+	<node id="1011">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="SmallBarn_Window2_Cube.022" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="983">
+			<attribute name="Model" value="Model;Prefabs/SmallBarn/E775E6ADDCCCCE6B405D61AC18C012F9B1CF5B5C/Models/SmallBarn_Window2_Cube.022.mdl" />
+			<attribute name="Material" value="Material;Prefabs/SmallBarn/E775E6ADDCCCCE6B405D61AC18C012F9B1CF5B5C/Materials/White.xml;Prefabs/SmallBarn/E775E6ADDCCCCE6B405D61AC18C012F9B1CF5B5C/Materials/LightRed.xml" />
+		</component>
+	</node>
+</node>

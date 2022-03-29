@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="2">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="Platform_BottomRight.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="0 0 -0" />
+	<attribute name="Rotation" value="1 0 0 0" />
+	<attribute name="Scale" value="1 1 1" />
+	<attribute name="Variables" />
+	<node id="3">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Platform_BottomRight_Cube.054" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1">
+			<attribute name="Model" value="Model;Prefabs/Platform_BottomRight/981804E600CE261B68E018529FC7FF2BC3CB5B46/Models/Platform_BottomRight_Cube.054.mdl" />
+			<attribute name="Material" value="Material;Prefabs/Platform_BottomRight/981804E600CE261B68E018529FC7FF2BC3CB5B46/Materials/LightBrown.xml" />
+		</component>
+	</node>
+</node>

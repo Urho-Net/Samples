@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="2">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="PineTree_5.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="0 0 -0" />
+	<attribute name="Rotation" value="1 0 0 0" />
+	<attribute name="Scale" value="1 1 1" />
+	<attribute name="Variables" />
+	<node id="3">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="PineTree_5_Cylinder.028" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1">
+			<attribute name="Model" value="Model;Prefabs/PineTree_5/4E6EF0FDF6A9F8796938D45091FA1E1AB6F975A3/Models/PineTree_5_Cylinder.028.mdl" />
+			<attribute name="Material" value="Material;Prefabs/PineTree_5/4E6EF0FDF6A9F8796938D45091FA1E1AB6F975A3/Materials/Wood.xml;Prefabs/PineTree_5/4E6EF0FDF6A9F8796938D45091FA1E1AB6F975A3/Materials/Green.xml" />
+		</component>
+	</node>
+</node>

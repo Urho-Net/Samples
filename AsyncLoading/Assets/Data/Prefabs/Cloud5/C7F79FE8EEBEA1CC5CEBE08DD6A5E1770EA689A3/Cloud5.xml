@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="2">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="Cloud5.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="0 0 -0" />
+	<attribute name="Rotation" value="1 0 0 0" />
+	<attribute name="Scale" value="1 1 1" />
+	<attribute name="Variables" />
+	<node id="3">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Cloud5_Icosphere.007" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1">
+			<attribute name="Model" value="Model;Prefabs/Cloud5/C7F79FE8EEBEA1CC5CEBE08DD6A5E1770EA689A3/Models/Cloud5_Icosphere.007.mdl" />
+			<attribute name="Material" value="Material;Prefabs/Cloud5/C7F79FE8EEBEA1CC5CEBE08DD6A5E1770EA689A3/Materials/White.xml" />
+		</component>
+	</node>
+</node>

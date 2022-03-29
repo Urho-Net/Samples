@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="2">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="WoodLog_Snow.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="0 0 -0" />
+	<attribute name="Rotation" value="1 0 0 0" />
+	<attribute name="Scale" value="1 1 1" />
+	<attribute name="Variables" />
+	<node id="3">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="WoodLog_Snow_Cylinder.019" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1">
+			<attribute name="Model" value="Model;Prefabs/WoodLog_Snow/FBD6A2E8F7DFD64A76BA1EB5DE2C8DB64BBFDF85/Models/WoodLog_Snow_Cylinder.019.mdl" />
+			<attribute name="Material" value="Material;Prefabs/WoodLog_Snow/FBD6A2E8F7DFD64A76BA1EB5DE2C8DB64BBFDF85/Materials/Wood.xml;Prefabs/WoodLog_Snow/FBD6A2E8F7DFD64A76BA1EB5DE2C8DB64BBFDF85/Materials/Snow.xml" />
+		</component>
+	</node>
+</node>

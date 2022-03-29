@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="803">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="BirchTree_Snow_3.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="11.8156 0 -8.21652" />
+	<attribute name="Rotation" value="0.965926 0 0.258819 0" />
+	<attribute name="Scale" value="10 10 10" />
+	<attribute name="Variables" />
+	<node id="804">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="BirchTree_Snow_3_Cube.120" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0.435791 0 -2.30408" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="852">
+			<attribute name="Model" value="Model;Prefabs/BirchTree_Snow_3/19C04363F8868D283DEAA20DCC9ED95BB5342450/Models/BirchTree_Snow_3_Cube.120.mdl" />
+			<attribute name="Material" value="Material;Prefabs/BirchTree_Snow_3/19C04363F8868D283DEAA20DCC9ED95BB5342450/Materials/White.xml;Prefabs/BirchTree_Snow_3/19C04363F8868D283DEAA20DCC9ED95BB5342450/Materials/Black.xml;Prefabs/BirchTree_Snow_3/19C04363F8868D283DEAA20DCC9ED95BB5342450/Materials/Green.xml;Prefabs/BirchTree_Snow_3/19C04363F8868D283DEAA20DCC9ED95BB5342450/Materials/DarkGreen.xml;Prefabs/BirchTree_Snow_3/19C04363F8868D283DEAA20DCC9ED95BB5342450/Materials/Snow.xml" />
+		</component>
+	</node>
+</node>

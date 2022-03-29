@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<node id="1028">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="Windmill.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="48.386 0 70.5414" />
+	<attribute name="Rotation" value="0.5 -0 0.866025 0" />
+	<attribute name="Scale" value="10 10 10" />
+	<attribute name="Variables" />
+	<node id="1029">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Windmill_Cube.020" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1005">
+			<attribute name="Model" value="Model;Prefabs/Windmill/625E711F34C5912100EBC2028B4AC535F542AB6E/Models/Windmill_Cube.020.mdl" />
+			<attribute name="Material" value="Material;Prefabs/Windmill/625E711F34C5912100EBC2028B4AC535F542AB6E/Materials/Brown.xml;Prefabs/Windmill/625E711F34C5912100EBC2028B4AC535F542AB6E/Materials/Grey.xml" />
+		</component>
+	</node>
+	<node id="1030">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Windmill_Blades_Cube.021" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1006">
+			<attribute name="Model" value="Model;Prefabs/Windmill/625E711F34C5912100EBC2028B4AC535F542AB6E/Models/Windmill_Blades_Cube.021.mdl" />
+			<attribute name="Material" value="Material;Prefabs/Windmill/625E711F34C5912100EBC2028B4AC535F542AB6E/Materials/Brown.xml;Prefabs/Windmill/625E711F34C5912100EBC2028B4AC535F542AB6E/Materials/Grey.xml" />
+		</component>
+	</node>
+</node>

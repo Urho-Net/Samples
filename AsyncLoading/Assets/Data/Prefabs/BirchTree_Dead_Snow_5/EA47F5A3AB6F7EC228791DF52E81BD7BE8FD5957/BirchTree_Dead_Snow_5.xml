@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="799">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="BirchTree_Dead_Snow_5.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="7.29946 0 18.3723" />
+	<attribute name="Rotation" value="1 0 0 0" />
+	<attribute name="Scale" value="10 10 10" />
+	<attribute name="Variables" />
+	<node id="800">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="BirchTree_Dead_Snow_5_Cube.040" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="850">
+			<attribute name="Model" value="Model;Prefabs/BirchTree_Dead_Snow_5/EA47F5A3AB6F7EC228791DF52E81BD7BE8FD5957/Models/BirchTree_Dead_Snow_5_Cube.040.mdl" />
+			<attribute name="Material" value="Material;Prefabs/BirchTree_Dead_Snow_5/EA47F5A3AB6F7EC228791DF52E81BD7BE8FD5957/Materials/White.xml;Prefabs/BirchTree_Dead_Snow_5/EA47F5A3AB6F7EC228791DF52E81BD7BE8FD5957/Materials/Black.xml;Prefabs/BirchTree_Dead_Snow_5/EA47F5A3AB6F7EC228791DF52E81BD7BE8FD5957/Materials/Snow.xml" />
+		</component>
+	</node>
+</node>

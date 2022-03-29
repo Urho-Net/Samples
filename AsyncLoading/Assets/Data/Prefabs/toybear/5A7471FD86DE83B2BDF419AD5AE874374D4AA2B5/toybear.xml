@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="936">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="toybear" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="-0.189713 4.15447 -11.9461" />
+	<attribute name="Rotation" value="0.707107 -0 0.707107 0" />
+	<attribute name="Scale" value="0.05 0.05 0.05" />
+	<attribute name="Variables" />
+	<node id="937">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="bear" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="-28.7087 -14.3374 28.7087" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="929">
+			<attribute name="Model" value="Model;Prefabs/toybear/5A7471FD86DE83B2BDF419AD5AE874374D4AA2B5/Models/bear.mdl" />
+			<attribute name="Material" value="Material;Prefabs/toybear/5A7471FD86DE83B2BDF419AD5AE874374D4AA2B5/Materials/bear.xml" />
+		</component>
+	</node>
+</node>

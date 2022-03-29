@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="2">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="Platform_CenterRight.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="0 0 -0" />
+	<attribute name="Rotation" value="1 0 0 0" />
+	<attribute name="Scale" value="1 1 1" />
+	<attribute name="Variables" />
+	<node id="3">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Platform_CenterRight_Cube.053" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1">
+			<attribute name="Model" value="Model;Prefabs/Platform_CenterRight/4A297AE00F48524A9C4D25BD69296E9DAC441780/Models/Platform_CenterRight_Cube.053.mdl" />
+			<attribute name="Material" value="Material;Prefabs/Platform_CenterRight/4A297AE00F48524A9C4D25BD69296E9DAC441780/Materials/LightBrown.xml" />
+		</component>
+	</node>
+</node>

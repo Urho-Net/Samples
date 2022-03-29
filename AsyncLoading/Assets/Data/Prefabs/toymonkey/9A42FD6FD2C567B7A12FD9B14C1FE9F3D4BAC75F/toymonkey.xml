@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="949">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="toymonkey" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="20.4834 0 -24.1073" />
+	<attribute name="Rotation" value="0.5 -0 0.866025 0" />
+	<attribute name="Scale" value="0.05 0.05 0.05" />
+	<attribute name="Variables" />
+	<node id="950">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="monkey" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="939">
+			<attribute name="Model" value="Model;Prefabs/toymonkey/9A42FD6FD2C567B7A12FD9B14C1FE9F3D4BAC75F/Models/monkey.mdl" />
+			<attribute name="Material" value="Material;Prefabs/toymonkey/9A42FD6FD2C567B7A12FD9B14C1FE9F3D4BAC75F/Materials/monkey.xml" />
+		</component>
+	</node>
+</node>

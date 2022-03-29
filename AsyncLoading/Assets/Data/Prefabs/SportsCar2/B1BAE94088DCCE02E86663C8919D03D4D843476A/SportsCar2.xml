@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<node id="2">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="SportsCar2.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="0 0 -0" />
+	<attribute name="Rotation" value="1 0 0 0" />
+	<attribute name="Scale" value="1 1 1" />
+	<attribute name="Variables" />
+	<node id="3">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="SportsCar2_Cube.006" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1">
+			<attribute name="Model" value="Model;Prefabs/SportsCar2/B1BAE94088DCCE02E86663C8919D03D4D843476A/Models/SportsCar2_Cube.006.mdl" />
+			<attribute name="Material" value="Material;Prefabs/SportsCar2/B1BAE94088DCCE02E86663C8919D03D4D843476A/Materials/White.xml;Prefabs/SportsCar2/B1BAE94088DCCE02E86663C8919D03D4D843476A/Materials/Windows.xml;Prefabs/SportsCar2/B1BAE94088DCCE02E86663C8919D03D4D843476A/Materials/Grey.xml;Prefabs/SportsCar2/B1BAE94088DCCE02E86663C8919D03D4D843476A/Materials/Headlights.xml;Prefabs/SportsCar2/B1BAE94088DCCE02E86663C8919D03D4D843476A/Materials/TailLights.xml" />
+		</component>
+	</node>
+	<node id="4">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="SportsCar2_BackWheels_Cylinder.002" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="2">
+			<attribute name="Model" value="Model;Prefabs/SportsCar2/B1BAE94088DCCE02E86663C8919D03D4D843476A/Models/SportsCar2_BackWheels_Cylinder.002.mdl" />
+			<attribute name="Material" value="Material;Prefabs/SportsCar2/B1BAE94088DCCE02E86663C8919D03D4D843476A/Materials/Black.xml;Prefabs/SportsCar2/B1BAE94088DCCE02E86663C8919D03D4D843476A/Materials/Grey.xml" />
+		</component>
+	</node>
+	<node id="5">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="SportsCar2_FrontLeftWheel_Cylinder.017" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="3">
+			<attribute name="Model" value="Model;Prefabs/SportsCar2/B1BAE94088DCCE02E86663C8919D03D4D843476A/Models/SportsCar2_FrontLeftWheel_Cylinder.017.mdl" />
+			<attribute name="Material" value="Material;Prefabs/SportsCar2/B1BAE94088DCCE02E86663C8919D03D4D843476A/Materials/Black.xml;Prefabs/SportsCar2/B1BAE94088DCCE02E86663C8919D03D4D843476A/Materials/Grey.xml" />
+		</component>
+	</node>
+	<node id="6">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="SportsCar2_FrontRightWheel_Cylinder.018" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="4">
+			<attribute name="Model" value="Model;Prefabs/SportsCar2/B1BAE94088DCCE02E86663C8919D03D4D843476A/Models/SportsCar2_FrontRightWheel_Cylinder.018.mdl" />
+			<attribute name="Material" value="Material;Prefabs/SportsCar2/B1BAE94088DCCE02E86663C8919D03D4D843476A/Materials/Black.xml;Prefabs/SportsCar2/B1BAE94088DCCE02E86663C8919D03D4D843476A/Materials/Grey.xml" />
+		</component>
+	</node>
+</node>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="2">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="CactusFlowers_3.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="0 0 -0" />
+	<attribute name="Rotation" value="1 0 0 0" />
+	<attribute name="Scale" value="1 1 1" />
+	<attribute name="Variables" />
+	<node id="3">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="CactusFlowers_3_Cube.002" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1">
+			<attribute name="Model" value="Model;Prefabs/CactusFlowers_3/251756C00C92CCD04FD70911B5EB292C597939D4/Models/CactusFlowers_3_Cube.002.mdl" />
+			<attribute name="Material" value="Material;Prefabs/CactusFlowers_3/251756C00C92CCD04FD70911B5EB292C597939D4/Materials/Green.xml;Prefabs/CactusFlowers_3/251756C00C92CCD04FD70911B5EB292C597939D4/Materials/Pink.xml" />
+		</component>
+	</node>
+</node>

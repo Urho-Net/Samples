@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<node id="2">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="SUV.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="0 0 -0" />
+	<attribute name="Rotation" value="1 0 0 0" />
+	<attribute name="Scale" value="1 1 1" />
+	<attribute name="Variables" />
+	<node id="3">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="SUV_Cube" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1">
+			<attribute name="Model" value="Model;Prefabs/SUV/265B5088816027F33032F0A4A15B9B8C5D4B4ADF/Models/SUV_Cube.mdl" />
+			<attribute name="Material" value="Material;Prefabs/SUV/265B5088816027F33032F0A4A15B9B8C5D4B4ADF/Materials/White.xml;Prefabs/SUV/265B5088816027F33032F0A4A15B9B8C5D4B4ADF/Materials/Windows.xml;Prefabs/SUV/265B5088816027F33032F0A4A15B9B8C5D4B4ADF/Materials/Black.xml;Prefabs/SUV/265B5088816027F33032F0A4A15B9B8C5D4B4ADF/Materials/Grey.xml;Prefabs/SUV/265B5088816027F33032F0A4A15B9B8C5D4B4ADF/Materials/Headlights.xml;Prefabs/SUV/265B5088816027F33032F0A4A15B9B8C5D4B4ADF/Materials/TailLights.xml" />
+		</component>
+	</node>
+	<node id="4">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="SUV_BackWheels_Cylinder.009" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="2">
+			<attribute name="Model" value="Model;Prefabs/SUV/265B5088816027F33032F0A4A15B9B8C5D4B4ADF/Models/SUV_BackWheels_Cylinder.009.mdl" />
+			<attribute name="Material" value="Material;Prefabs/SUV/265B5088816027F33032F0A4A15B9B8C5D4B4ADF/Materials/Black.xml;Prefabs/SUV/265B5088816027F33032F0A4A15B9B8C5D4B4ADF/Materials/Grey.xml" />
+		</component>
+	</node>
+	<node id="5">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="SUV_FrontLeftWheel_Cylinder.010" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="3">
+			<attribute name="Model" value="Model;Prefabs/SUV/265B5088816027F33032F0A4A15B9B8C5D4B4ADF/Models/SUV_FrontLeftWheel_Cylinder.010.mdl" />
+			<attribute name="Material" value="Material;Prefabs/SUV/265B5088816027F33032F0A4A15B9B8C5D4B4ADF/Materials/Black.xml;Prefabs/SUV/265B5088816027F33032F0A4A15B9B8C5D4B4ADF/Materials/Grey.xml" />
+		</component>
+	</node>
+	<node id="6">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="SUV_FrontRightWheel_Cylinder.005" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="4">
+			<attribute name="Model" value="Model;Prefabs/SUV/265B5088816027F33032F0A4A15B9B8C5D4B4ADF/Models/SUV_FrontRightWheel_Cylinder.005.mdl" />
+			<attribute name="Material" value="Material;Prefabs/SUV/265B5088816027F33032F0A4A15B9B8C5D4B4ADF/Materials/Black.xml;Prefabs/SUV/265B5088816027F33032F0A4A15B9B8C5D4B4ADF/Materials/Grey.xml" />
+		</component>
+	</node>
+</node>

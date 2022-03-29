@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<material>
+	<technique name="Techniques/Diff.xml" />
+	<texture unit="diffuse" name="Prefabs/toybunny/A4FFAD06D71316E567C38A18955DD5D9FB4C7848/Textures/toyrabbit_Default_color.jpg" />
+	<parameter name="MatDiffColor" value="1 1 1 1" />
+	<parameter name="MatSpecColor" value="0.03 0.03 0.03 70" />
+	<parameter name="MatEmissiveColor" value="0 0 0 1" />
+</material>

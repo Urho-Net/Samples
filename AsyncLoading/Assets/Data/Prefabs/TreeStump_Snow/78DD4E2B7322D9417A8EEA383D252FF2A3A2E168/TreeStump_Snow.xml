@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="2">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="TreeStump_Snow.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="0 0 -0" />
+	<attribute name="Rotation" value="1 0 0 0" />
+	<attribute name="Scale" value="1 1 1" />
+	<attribute name="Variables" />
+	<node id="3">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="TreeStump_Snow_Cylinder.021" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1">
+			<attribute name="Model" value="Model;Prefabs/TreeStump_Snow/78DD4E2B7322D9417A8EEA383D252FF2A3A2E168/Models/TreeStump_Snow_Cylinder.021.mdl" />
+			<attribute name="Material" value="Material;Prefabs/TreeStump_Snow/78DD4E2B7322D9417A8EEA383D252FF2A3A2E168/Materials/Wood.xml;Prefabs/TreeStump_Snow/78DD4E2B7322D9417A8EEA383D252FF2A3A2E168/Materials/Snow.xml" />
+		</component>
+	</node>
+</node>

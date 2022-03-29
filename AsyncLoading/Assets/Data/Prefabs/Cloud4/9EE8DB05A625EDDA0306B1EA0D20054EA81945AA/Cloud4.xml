@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="2">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="Cloud4.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="0 0 -0" />
+	<attribute name="Rotation" value="1 0 0 0" />
+	<attribute name="Scale" value="1 1 1" />
+	<attribute name="Variables" />
+	<node id="3">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Cloud4_Icosphere.006" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1">
+			<attribute name="Model" value="Model;Prefabs/Cloud4/9EE8DB05A625EDDA0306B1EA0D20054EA81945AA/Models/Cloud4_Icosphere.006.mdl" />
+			<attribute name="Material" value="Material;Prefabs/Cloud4/9EE8DB05A625EDDA0306B1EA0D20054EA81945AA/Materials/White.xml" />
+		</component>
+	</node>
+</node>

@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<node id="1058">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="BigBarn" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="8.1628 0 81.3577" />
+	<attribute name="Rotation" value="0.965926 0 0.258819 0" />
+	<attribute name="Scale" value="10 10 10" />
+	<attribute name="Variables" />
+	<node id="1059">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="BigBarn_Cube.034" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="-0.326283 0 0.573307" />
+		<attribute name="Rotation" value="0.96689 0 -0.255195 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1031">
+			<attribute name="Model" value="Model;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Models/BigBarn_Cube.034.mdl" />
+			<attribute name="Material" value="Material;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/DarkRed.xml;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/White.xml;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/LightRed.xml;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/RoofBlack.xml" />
+		</component>
+	</node>
+	<node id="1060">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="BigBarn_Door_Cube.009" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1032">
+			<attribute name="Model" value="Model;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Models/BigBarn_Door_Cube.009.mdl" />
+			<attribute name="Material" value="Material;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/DarkRed.xml;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/White.xml;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/LightRed.xml" />
+		</component>
+	</node>
+	<node id="1061">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="BigBarn_Door2_Cube.012" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1033">
+			<attribute name="Model" value="Model;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Models/BigBarn_Door2_Cube.012.mdl" />
+			<attribute name="Material" value="Material;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/DarkRed.xml;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/White.xml;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/LightRed.xml" />
+		</component>
+	</node>
+	<node id="1062">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="BigBarn_Window_Cube.017" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1034">
+			<attribute name="Model" value="Model;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Models/BigBarn_Window_Cube.017.mdl" />
+			<attribute name="Material" value="Material;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/White.xml;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/LightRed.xml" />
+		</component>
+	</node>
+	<node id="1063">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="BigBarn_Window2_Cube.016" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1035">
+			<attribute name="Model" value="Model;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Models/BigBarn_Window2_Cube.016.mdl" />
+			<attribute name="Material" value="Material;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/White.xml;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/LightRed.xml" />
+		</component>
+	</node>
+</node>

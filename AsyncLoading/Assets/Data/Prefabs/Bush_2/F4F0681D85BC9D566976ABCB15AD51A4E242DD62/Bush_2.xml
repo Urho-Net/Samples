@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="832">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="Bush_2.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="-37.9481 0 -31.3054" />
+	<attribute name="Rotation" value="0.707107 -0 0.707107 0" />
+	<attribute name="Scale" value="5 5 5" />
+	<attribute name="Variables" />
+	<node id="833">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Bush_2_Cube.042" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="868">
+			<attribute name="Model" value="Model;Prefabs/Bush_2/F4F0681D85BC9D566976ABCB15AD51A4E242DD62/Models/Bush_2_Cube.042.mdl" />
+			<attribute name="Material" value="Material;Prefabs/Bush_2/F4F0681D85BC9D566976ABCB15AD51A4E242DD62/Materials/Green.xml" />
+		</component>
+	</node>
+</node>

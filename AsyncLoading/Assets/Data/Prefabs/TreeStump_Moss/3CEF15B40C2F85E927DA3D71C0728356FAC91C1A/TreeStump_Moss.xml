@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="2">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="TreeStump_Moss.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="0 0 -0" />
+	<attribute name="Rotation" value="1 0 0 0" />
+	<attribute name="Scale" value="1 1 1" />
+	<attribute name="Variables" />
+	<node id="3">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="TreeStump_Moss_Cylinder.010" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1">
+			<attribute name="Model" value="Model;Prefabs/TreeStump_Moss/3CEF15B40C2F85E927DA3D71C0728356FAC91C1A/Models/TreeStump_Moss_Cylinder.010.mdl" />
+			<attribute name="Material" value="Material;Prefabs/TreeStump_Moss/3CEF15B40C2F85E927DA3D71C0728356FAC91C1A/Materials/Wood.xml;Prefabs/TreeStump_Moss/3CEF15B40C2F85E927DA3D71C0728356FAC91C1A/Materials/Green.xml" />
+		</component>
+	</node>
+</node>

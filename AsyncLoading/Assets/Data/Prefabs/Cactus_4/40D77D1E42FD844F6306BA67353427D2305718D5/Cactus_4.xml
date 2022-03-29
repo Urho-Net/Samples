@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="854">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="Cactus_4.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="-38.4505 0 -25.3977" />
+	<attribute name="Rotation" value="0.258819 0 0.965926 0" />
+	<attribute name="Scale" value="20 10 10" />
+	<attribute name="Variables" />
+	<node id="855">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Cactus_4_Cube.006" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="879">
+			<attribute name="Model" value="Model;Prefabs/Cactus_4/40D77D1E42FD844F6306BA67353427D2305718D5/Models/Cactus_4_Cube.006.mdl" />
+			<attribute name="Material" value="Material;Prefabs/Cactus_4/40D77D1E42FD844F6306BA67353427D2305718D5/Materials/Green.xml" />
+		</component>
+	</node>
+</node>

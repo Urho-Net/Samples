@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<node id="625">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="Rock1" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="-8.66931 -0.57906 -0.611985" />
+	<attribute name="Rotation" value="1 0 0 0" />
+	<attribute name="Scale" value="1 1 1" />
+	<attribute name="Variables" />
+	<node id="626">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Rock1_Cube.001" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="5 5 5" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="746">
+			<attribute name="Model" value="Model;Prefabs/Rock1/306F6130E5B10FB3D51A78B0E028E19ECB5B70EC/Models/Rock1_Cube.001.mdl" />
+			<attribute name="Material" value="Material;Prefabs/Rock1/306F6130E5B10FB3D51A78B0E028E19ECB5B70EC/Materials/Grey.xml" />
+		</component>
+		<component type="CollisionShape" id="843" />
+		<component type="RigidBody" id="844">
+			<attribute name="Physics Position" value="-3.40215 0.93281 -1.09179" />
+		</component>
+	</node>
+</node>

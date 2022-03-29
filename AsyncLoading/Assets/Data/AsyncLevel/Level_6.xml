@@ -1,0 +1,742 @@
+<?xml version="1.0"?>
+<node id="265">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="Level_6" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="279.046 -0.272858 261.543" />
+	<attribute name="Rotation" value="0.5 0 -0.866025 0" />
+	<attribute name="Scale" value="1 1 1" />
+	<attribute name="Variables" />
+	<node id="266">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="gnd1" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="311">
+			<attribute name="Model" value="Model;AsyncLevel/Models/gnd1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/whiteMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+		<component type="RigidBody" id="312">
+			<attribute name="Physics Rotation" value="0.5 0 -0.866025 0" />
+			<attribute name="Physics Position" value="279.046 -0.272858 261.543" />
+		</component>
+		<component type="CollisionShape" id="313">
+			<attribute name="Shape Type" value="TriangleMesh" />
+			<attribute name="Model" value="Model;AsyncLevel/Models/gnd1.mdl" />
+		</component>
+	</node>
+	<node id="267">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Torus1" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="-9.61295 1.63375 -33.8527" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="314">
+			<attribute name="Model" value="Model;AsyncLevel/Models/Torus1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/blueMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="268">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Torus2" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="-9.61295 4.65135 -33.8527" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="315">
+			<attribute name="Model" value="Model;AsyncLevel/Models/Torus1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/blueMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="269">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Torus3" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="-9.61295 7.84802 -33.8527" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="316">
+			<attribute name="Model" value="Model;AsyncLevel/Models/Torus1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/blueMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="270">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Torus4" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="-9.61295 10.7195 -33.8527" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="317">
+			<attribute name="Model" value="Model;AsyncLevel/Models/Torus1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/blueMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="271">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Torus5" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="-9.61295 13.5909 -33.8527" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="318">
+			<attribute name="Model" value="Model;AsyncLevel/Models/Torus1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/blueMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="272">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Torus6" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="-9.61295 16.4624 -33.8527" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="319">
+			<attribute name="Model" value="Model;AsyncLevel/Models/Torus1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/blueMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="273">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Torus7" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="-9.61295 19.3338 -33.8527" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="320">
+			<attribute name="Model" value="Model;AsyncLevel/Models/Torus1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/blueMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="274">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="pPipe1" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 1.32768 34.4327" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="321">
+			<attribute name="Model" value="Model;AsyncLevel/Models/pPipe1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/yellowMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="275">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="pPipe2" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 3.46952 34.4327" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="322">
+			<attribute name="Model" value="Model;AsyncLevel/Models/pPipe1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/yellowMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="276">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="pPipe3" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 5.61135 34.4327" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="323">
+			<attribute name="Model" value="Model;AsyncLevel/Models/pPipe1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/yellowMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="277">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="pPipe4" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 7.75318 34.4327" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="324">
+			<attribute name="Model" value="Model;AsyncLevel/Models/pPipe1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/yellowMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="278">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="pPipe5" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 9.89501 34.4327" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="325">
+			<attribute name="Model" value="Model;AsyncLevel/Models/pPipe1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/yellowMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="279">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="pPyramid1" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="22.1091 1.64063 41.5105" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="326">
+			<attribute name="Model" value="Model;AsyncLevel/Models/pPyramid1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/redMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="280">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="pPyramid2" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="22.1091 3.44727 41.5105" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="327">
+			<attribute name="Model" value="Model;AsyncLevel/Models/pPyramid1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/redMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="281">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="pPyramid3" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="22.1091 5.2539 41.5105" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="328">
+			<attribute name="Model" value="Model;AsyncLevel/Models/pPyramid1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/redMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="282">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="pPyramid4" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="22.1091 7.06054 41.5105" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="329">
+			<attribute name="Model" value="Model;AsyncLevel/Models/pPyramid1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/redMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="283">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="pPyramid5" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="22.1091 8.86717 41.5105" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="330">
+			<attribute name="Model" value="Model;AsyncLevel/Models/pPyramid1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/redMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="284">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="pSphere1" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="-24.6994 6.10109 35.198" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="331">
+			<attribute name="Model" value="Model;AsyncLevel/Models/pSphere1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/greenMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="285">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="pSphere2" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="-24.6994 17.9324 35.198" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="332">
+			<attribute name="Model" value="Model;AsyncLevel/Models/pSphere1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/greenMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="286">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="pSphere3" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="-24.6994 29.7636 35.198" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="333">
+			<attribute name="Model" value="Model;AsyncLevel/Models/pSphere1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/greenMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="287">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="pSphere4" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="-24.6994 41.5949 35.198" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="334">
+			<attribute name="Model" value="Model;AsyncLevel/Models/pSphere1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/greenMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="288">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="pSphere5" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="-24.6994 53.4262 35.198" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="335">
+			<attribute name="Model" value="Model;AsyncLevel/Models/pSphere1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/greenMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="289">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Torus8" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="19.208 1.89486 -34.7027" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="336">
+			<attribute name="Model" value="Model;AsyncLevel/Models/TorusA2_01.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/greenMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="290">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Torus9" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="19.208 6.1848 -34.7027" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="337">
+			<attribute name="Model" value="Model;AsyncLevel/Models/TorusA2_02.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/greenMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="291">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Torus10" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="19.208 10.4747 -34.7027" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="338">
+			<attribute name="Model" value="Model;AsyncLevel/Models/TorusA2_03.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/greenMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="292">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Torus11" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="19.208 14.7647 -34.7027" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="339">
+			<attribute name="Model" value="Model;AsyncLevel/Models/TorusA2_04.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/greenMattemp.xml" />
+		</component>
+	</node>
+	<node id="293">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Torus12" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="19.208 19.0546 -34.7027" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="340">
+			<attribute name="Model" value="Model;AsyncLevel/Models/TorusA2_05.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/greenMattemp.xml" />
+		</component>
+	</node>
+	<node id="294">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Torus13" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="19.208 23.3446 -34.7027" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="341">
+			<attribute name="Model" value="Model;AsyncLevel/Models/TorusA2_06.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/greenMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+	</node>
+	<node id="295">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="" />
+		<attribute name="Tags">
+			<string value="levelLoadTrigger" />
+			<string value="levelName=Level_6" />
+			<string value="loadLevel=Level_7" />
+		</attribute>
+		<attribute name="Position" value="25.27 4.54337 -1.34818" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="10 10 50" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="342">
+			<attribute name="Model" value="Model;Models/Box.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/triggerMat.xml" />
+		</component>
+		<component type="RigidBody" id="343">
+			<attribute name="Physics Rotation" value="0.5 0 -0.866025 0" />
+			<attribute name="Physics Position" value="267.579 4.27051 284.102" />
+			<attribute name="Collision Layer" value="8" />
+			<attribute name="Is Trigger" value="true" />
+		</component>
+		<component type="CollisionShape" id="344" />
+	</node>
+	<node id="296">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="" />
+		<attribute name="Tags">
+			<string value="levelLoadTrigger" />
+			<string value="levelName=Level_6" />
+			<string value="loadLevel=Level_5" />
+		</attribute>
+		<attribute name="Position" value="-28.4074 4.54337 -1.34818" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="10 10 50" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="345">
+			<attribute name="Model" value="Model;Models/Box.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/triggerMat.xml" />
+		</component>
+		<component type="RigidBody" id="346">
+			<attribute name="Physics Rotation" value="0.5 0 -0.866025 0" />
+			<attribute name="Physics Position" value="294.417 4.27051 237.616" />
+			<attribute name="Collision Layer" value="8" />
+			<attribute name="Is Trigger" value="true" />
+		</component>
+		<component type="CollisionShape" id="347" />
+	</node>
+	<node id="555">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="gnd1" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="-58.0271 0 -25.1803" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="0.4 1 0.725" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="650">
+			<attribute name="Model" value="Model;AsyncLevel/Models/gnd1.mdl" />
+			<attribute name="Material" value="Material;AsyncLevel/Materials/whiteMattemp.xml" />
+			<attribute name="Cast Shadows" value="true" />
+		</component>
+		<component type="RigidBody" id="651">
+			<attribute name="Physics Rotation" value="0.5 0 -0.866025 0" />
+			<attribute name="Physics Position" value="329.866 -0.272858 223.88" />
+		</component>
+		<component type="CollisionShape" id="652">
+			<attribute name="Shape Type" value="TriangleMesh" />
+			<attribute name="Model" value="Model;AsyncLevel/Models/gnd1.mdl" />
+		</component>
+	</node>
+	<node id="838">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="BushBerries_1.obj" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="-17.9309 0 -38.5292" />
+		<attribute name="Rotation" value="0.5 -0 0.866025 0" />
+		<attribute name="Scale" value="5 5 5" />
+		<attribute name="Variables" />
+		<node id="839">
+			<attribute name="Is Enabled" value="true" />
+			<attribute name="Name" value="BushBerries_1_Cube.044" />
+			<attribute name="Tags" />
+			<attribute name="Position" value="0 0 -0" />
+			<attribute name="Rotation" value="1 0 0 0" />
+			<attribute name="Scale" value="1 1 1" />
+			<attribute name="Variables" />
+			<component type="StaticModel" id="871">
+				<attribute name="Model" value="Model;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Models/BushBerries_1_Cube.044.mdl" />
+				<attribute name="Material" value="Material;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Materials/Green.xml;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Materials/Berry.xml" />
+			</component>
+		</node>
+	</node>
+	<node id="840">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="BushBerries_1.obj" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="3.81551 0 -33.4551" />
+		<attribute name="Rotation" value="0.5 -0 0.866025 0" />
+		<attribute name="Scale" value="5 5 5" />
+		<attribute name="Variables" />
+		<node id="841">
+			<attribute name="Is Enabled" value="true" />
+			<attribute name="Name" value="BushBerries_1_Cube.044" />
+			<attribute name="Tags" />
+			<attribute name="Position" value="0 0 -0" />
+			<attribute name="Rotation" value="1 0 0 0" />
+			<attribute name="Scale" value="1 1 1" />
+			<attribute name="Variables" />
+			<component type="StaticModel" id="872">
+				<attribute name="Model" value="Model;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Models/BushBerries_1_Cube.044.mdl" />
+				<attribute name="Material" value="Material;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Materials/Green.xml;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Materials/Berry.xml" />
+			</component>
+		</node>
+	</node>
+	<node id="842">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="BushBerries_1.obj" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="9.80406 0 22.0947" />
+		<attribute name="Rotation" value="0.5 -0 0.866025 0" />
+		<attribute name="Scale" value="5 5 5" />
+		<attribute name="Variables" />
+		<node id="843">
+			<attribute name="Is Enabled" value="true" />
+			<attribute name="Name" value="BushBerries_1_Cube.044" />
+			<attribute name="Tags" />
+			<attribute name="Position" value="0 0 -0" />
+			<attribute name="Rotation" value="1 0 0 0" />
+			<attribute name="Scale" value="1 1 1" />
+			<attribute name="Variables" />
+			<component type="StaticModel" id="873">
+				<attribute name="Model" value="Model;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Models/BushBerries_1_Cube.044.mdl" />
+				<attribute name="Material" value="Material;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Materials/Green.xml;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Materials/Berry.xml" />
+			</component>
+		</node>
+	</node>
+	<node id="844">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="BushBerries_1.obj" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="-12.2196 0 34.811" />
+		<attribute name="Rotation" value="0.5 -0 0.866025 0" />
+		<attribute name="Scale" value="5 5 5" />
+		<attribute name="Variables" />
+		<node id="845">
+			<attribute name="Is Enabled" value="true" />
+			<attribute name="Name" value="BushBerries_1_Cube.044" />
+			<attribute name="Tags" />
+			<attribute name="Position" value="0 0 -0" />
+			<attribute name="Rotation" value="1 0 0 0" />
+			<attribute name="Scale" value="1 1 1" />
+			<attribute name="Variables" />
+			<component type="StaticModel" id="874">
+				<attribute name="Model" value="Model;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Models/BushBerries_1_Cube.044.mdl" />
+				<attribute name="Material" value="Material;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Materials/Green.xml;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Materials/Berry.xml" />
+			</component>
+		</node>
+	</node>
+	<node id="846">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="BushBerries_1.obj" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="-27.1625 0 -34.5633" />
+		<attribute name="Rotation" value="0.5 -0 0.866025 0" />
+		<attribute name="Scale" value="5 5 5" />
+		<attribute name="Variables" />
+		<node id="847">
+			<attribute name="Is Enabled" value="true" />
+			<attribute name="Name" value="BushBerries_1_Cube.044" />
+			<attribute name="Tags" />
+			<attribute name="Position" value="0 0 -0" />
+			<attribute name="Rotation" value="1 0 0 0" />
+			<attribute name="Scale" value="1 1 1" />
+			<attribute name="Variables" />
+			<component type="StaticModel" id="875">
+				<attribute name="Model" value="Model;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Models/BushBerries_1_Cube.044.mdl" />
+				<attribute name="Material" value="Material;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Materials/Green.xml;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Materials/Berry.xml" />
+			</component>
+		</node>
+	</node>
+	<node id="848">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="BushBerries_1.obj" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="-15.8137 0 -14.9058" />
+		<attribute name="Rotation" value="0.5 -0 0.866025 0" />
+		<attribute name="Scale" value="5 5 5" />
+		<attribute name="Variables" />
+		<node id="849">
+			<attribute name="Is Enabled" value="true" />
+			<attribute name="Name" value="BushBerries_1_Cube.044" />
+			<attribute name="Tags" />
+			<attribute name="Position" value="0 0 -0" />
+			<attribute name="Rotation" value="1 0 0 0" />
+			<attribute name="Scale" value="1 1 1" />
+			<attribute name="Variables" />
+			<component type="StaticModel" id="876">
+				<attribute name="Model" value="Model;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Models/BushBerries_1_Cube.044.mdl" />
+				<attribute name="Material" value="Material;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Materials/Green.xml;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Materials/Berry.xml" />
+			</component>
+		</node>
+	</node>
+	<node id="850">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="BushBerries_1.obj" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="-2.2509 0 -22.7361" />
+		<attribute name="Rotation" value="0.5 -0 0.866025 0" />
+		<attribute name="Scale" value="5 5 5" />
+		<attribute name="Variables" />
+		<node id="851">
+			<attribute name="Is Enabled" value="true" />
+			<attribute name="Name" value="BushBerries_1_Cube.044" />
+			<attribute name="Tags" />
+			<attribute name="Position" value="0 0 -0" />
+			<attribute name="Rotation" value="1 0 0 0" />
+			<attribute name="Scale" value="1 1 1" />
+			<attribute name="Variables" />
+			<component type="StaticModel" id="877">
+				<attribute name="Model" value="Model;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Models/BushBerries_1_Cube.044.mdl" />
+				<attribute name="Material" value="Material;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Materials/Green.xml;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Materials/Berry.xml" />
+			</component>
+		</node>
+	</node>
+	<node id="852">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="BushBerries_1.obj" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="6.0007 0 -21.9691" />
+		<attribute name="Rotation" value="0.5 -0 0.866025 0" />
+		<attribute name="Scale" value="5 5 5" />
+		<attribute name="Variables" />
+		<node id="853">
+			<attribute name="Is Enabled" value="true" />
+			<attribute name="Name" value="BushBerries_1_Cube.044" />
+			<attribute name="Tags" />
+			<attribute name="Position" value="0 0 -0" />
+			<attribute name="Rotation" value="1 0 0 0" />
+			<attribute name="Scale" value="1 1 1" />
+			<attribute name="Variables" />
+			<component type="StaticModel" id="878">
+				<attribute name="Model" value="Model;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Models/BushBerries_1_Cube.044.mdl" />
+				<attribute name="Material" value="Material;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Materials/Green.xml;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Materials/Berry.xml" />
+			</component>
+		</node>
+	</node>
+	<node id="1064">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="BigBarn" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0.168045 0 -85.0457" />
+		<attribute name="Rotation" value="0.5 -0 0.866025 0" />
+		<attribute name="Scale" value="10 10 10" />
+		<attribute name="Variables" />
+		<node id="1065">
+			<attribute name="Is Enabled" value="true" />
+			<attribute name="Name" value="BigBarn_Cube.034" />
+			<attribute name="Tags" />
+			<attribute name="Position" value="-0.326283 0 0.573307" />
+			<attribute name="Rotation" value="0.96689 0 -0.255195 0" />
+			<attribute name="Scale" value="1 1 1" />
+			<attribute name="Variables" />
+			<component type="StaticModel" id="1036">
+				<attribute name="Model" value="Model;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Models/BigBarn_Cube.034.mdl" />
+				<attribute name="Material" value="Material;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/DarkRed.xml;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/White.xml;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/LightRed.xml;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/RoofBlack.xml" />
+			</component>
+		</node>
+		<node id="1066">
+			<attribute name="Is Enabled" value="true" />
+			<attribute name="Name" value="BigBarn_Door_Cube.009" />
+			<attribute name="Tags" />
+			<attribute name="Position" value="0 0 -0" />
+			<attribute name="Rotation" value="1 0 0 0" />
+			<attribute name="Scale" value="1 1 1" />
+			<attribute name="Variables" />
+			<component type="StaticModel" id="1037">
+				<attribute name="Model" value="Model;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Models/BigBarn_Door_Cube.009.mdl" />
+				<attribute name="Material" value="Material;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/DarkRed.xml;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/White.xml;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/LightRed.xml" />
+			</component>
+		</node>
+		<node id="1067">
+			<attribute name="Is Enabled" value="true" />
+			<attribute name="Name" value="BigBarn_Door2_Cube.012" />
+			<attribute name="Tags" />
+			<attribute name="Position" value="0 0 -0" />
+			<attribute name="Rotation" value="1 0 0 0" />
+			<attribute name="Scale" value="1 1 1" />
+			<attribute name="Variables" />
+			<component type="StaticModel" id="1038">
+				<attribute name="Model" value="Model;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Models/BigBarn_Door2_Cube.012.mdl" />
+				<attribute name="Material" value="Material;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/DarkRed.xml;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/White.xml;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/LightRed.xml" />
+			</component>
+		</node>
+		<node id="1068">
+			<attribute name="Is Enabled" value="true" />
+			<attribute name="Name" value="BigBarn_Window_Cube.017" />
+			<attribute name="Tags" />
+			<attribute name="Position" value="0 0 -0" />
+			<attribute name="Rotation" value="1 0 0 0" />
+			<attribute name="Scale" value="1 1 1" />
+			<attribute name="Variables" />
+			<component type="StaticModel" id="1039">
+				<attribute name="Model" value="Model;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Models/BigBarn_Window_Cube.017.mdl" />
+				<attribute name="Material" value="Material;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/White.xml;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/LightRed.xml" />
+			</component>
+		</node>
+		<node id="1069">
+			<attribute name="Is Enabled" value="true" />
+			<attribute name="Name" value="BigBarn_Window2_Cube.016" />
+			<attribute name="Tags" />
+			<attribute name="Position" value="0 0 -0" />
+			<attribute name="Rotation" value="1 0 0 0" />
+			<attribute name="Scale" value="1 1 1" />
+			<attribute name="Variables" />
+			<component type="StaticModel" id="1040">
+				<attribute name="Model" value="Model;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Models/BigBarn_Window2_Cube.016.mdl" />
+				<attribute name="Material" value="Material;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/White.xml;Prefabs/BigBarn/7B207B42767B6313F34410EB3E3463E00CE251FD/Materials/LightRed.xml" />
+			</component>
+		</node>
+	</node>
+</node>

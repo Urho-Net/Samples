@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="797">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="BirchTree_1.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="41.0427 3.0728 -33.8452" />
+	<attribute name="Rotation" value="1 0 0 0" />
+	<attribute name="Scale" value="10 10 10" />
+	<attribute name="Variables" />
+	<node id="798">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="BirchTree_1_Cube" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="849">
+			<attribute name="Model" value="Model;Prefabs/BirchTree_1/0C334545A43087F90A7991ECAD82B1735071489E/Models/BirchTree_1_Cube.mdl" />
+			<attribute name="Material" value="Material;Prefabs/BirchTree_1/0C334545A43087F90A7991ECAD82B1735071489E/Materials/White.xml;Prefabs/BirchTree_1/0C334545A43087F90A7991ECAD82B1735071489E/Materials/Black.xml;Prefabs/BirchTree_1/0C334545A43087F90A7991ECAD82B1735071489E/Materials/Green.xml;Prefabs/BirchTree_1/0C334545A43087F90A7991ECAD82B1735071489E/Materials/DarkGreen.xml" />
+		</component>
+	</node>
+</node>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<node id="1012">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="Silo_House" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="33.2763 0 -58.9843" />
+	<attribute name="Rotation" value="-4.37114e-08 0 1 -0" />
+	<attribute name="Scale" value="10 10 10" />
+	<attribute name="Variables" />
+	<node id="1013">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Silo_House_Cylinder.003" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="984">
+			<attribute name="Model" value="Model;Prefabs/Silo_House/05C51A31E32F0FA95B94F1E65E81D32B3D087F2A/Models/Silo_House_Cylinder.003.mdl" />
+			<attribute name="Material" value="Material;Prefabs/Silo_House/05C51A31E32F0FA95B94F1E65E81D32B3D087F2A/Materials/LightRed.xml;Prefabs/Silo_House/05C51A31E32F0FA95B94F1E65E81D32B3D087F2A/Materials/Grey.xml;Prefabs/Silo_House/05C51A31E32F0FA95B94F1E65E81D32B3D087F2A/Materials/DarkRed.xml;Prefabs/Silo_House/05C51A31E32F0FA95B94F1E65E81D32B3D087F2A/Materials/Brown.xml;Prefabs/Silo_House/05C51A31E32F0FA95B94F1E65E81D32B3D087F2A/Materials/White.xml;Prefabs/Silo_House/05C51A31E32F0FA95B94F1E65E81D32B3D087F2A/Materials/DarkGrey.xml;Prefabs/Silo_House/05C51A31E32F0FA95B94F1E65E81D32B3D087F2A/Materials/Black.xml" />
+		</component>
+		<component type="CollisionShape" id="987">
+			<attribute name="Size" value="5 5 3" />
+			<attribute name="Offset Position" value="-0.8 2 0" />
+		</component>
+		<component type="RigidBody" id="988">
+			<attribute name="Physics Rotation" value="-4.37114e-08 0 1 0" />
+			<attribute name="Physics Position" value="33.2763 0 -58.9843" />
+		</component>
+	</node>
+</node>

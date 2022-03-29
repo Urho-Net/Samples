@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="2">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="BushBerries_1.obj" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="0 0 -0" />
+	<attribute name="Rotation" value="1 0 0 0" />
+	<attribute name="Scale" value="1 1 1" />
+	<attribute name="Variables" />
+	<node id="3">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="BushBerries_1_Cube.044" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1">
+			<attribute name="Model" value="Model;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Models/BushBerries_1_Cube.044.mdl" />
+			<attribute name="Material" value="Material;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Materials/Green.xml;Prefabs/BushBerries_1/4C6FBA073952377599ED2797AC41D88B9591428C/Materials/Berry.xml" />
+		</component>
+	</node>
+</node>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<node id="1033">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="Silo" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="0.635284 0 63.1243" />
+	<attribute name="Rotation" value="0.702588 0 0.711597 0" />
+	<attribute name="Scale" value="10 10 10" />
+	<attribute name="Variables" />
+	<node id="1034">
+		<attribute name="Is Enabled" value="true" />
+		<attribute name="Name" value="Silo_Cylinder.007" />
+		<attribute name="Tags" />
+		<attribute name="Position" value="0 0 -0" />
+		<attribute name="Rotation" value="1 0 0 0" />
+		<attribute name="Scale" value="1 1 1" />
+		<attribute name="Variables" />
+		<component type="StaticModel" id="1008">
+			<attribute name="Model" value="Model;Prefabs/Silo/6AE0BB1B70E40AA68A7311EDD5D96F46EABE78C3/Models/Silo_Cylinder.007.mdl" />
+			<attribute name="Material" value="Material;Prefabs/Silo/6AE0BB1B70E40AA68A7311EDD5D96F46EABE78C3/Materials/LightRed.xml;Prefabs/Silo/6AE0BB1B70E40AA68A7311EDD5D96F46EABE78C3/Materials/White.xml;Prefabs/Silo/6AE0BB1B70E40AA68A7311EDD5D96F46EABE78C3/Materials/DarkRed.xml;Prefabs/Silo/6AE0BB1B70E40AA68A7311EDD5D96F46EABE78C3/Materials/Brown.xml;Prefabs/Silo/6AE0BB1B70E40AA68A7311EDD5D96F46EABE78C3/Materials/Grey.xml" />
+		</component>
+	</node>
+</node>
