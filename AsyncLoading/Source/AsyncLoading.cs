@@ -23,9 +23,7 @@
 using Urho;
 using Urho.Physics;
 using Urho.Gui;
-using Urho.Urho2D;
 using System;
-using System.Runtime.InteropServices;
 using Urho.Resources;
 
 namespace AsyncLoading
@@ -81,7 +79,11 @@ namespace AsyncLoading
 
         protected override void Start()
         {
+            
             base.Start();
+
+            // Log.LogLevel = LogLevel.Debug;
+
             if (TouchEnabled)
                 touch = new Touch(TouchSensitivity, Input);
 
@@ -105,40 +107,49 @@ namespace AsyncLoading
 
         private void CreateAsyncLoader()
         {
-            // asyncLoader = UrhoNetSamples.UrhoNetSamples.asyncLoader;
+            DisposAsyncLoader();
 
             asyncLoader = new AsyncLoader();
-            asyncLoader.AsyncLoadProgress += HandleLoadProgress;
-            asyncLoader.AsyncLoadFinished += HandleLevelLoaded;
             asyncLoader.AsyncLoadingMs = 5;
             asyncLoader.AsyncIntervalMs = 20;
+            asyncLoader.AsyncResourceLoadProgress += HandleLoadResourceProgress;
+            asyncLoader.AsyncResourceLoadFinished += HandleResourceLoaded;
+            asyncLoader.AsyncNodeLoadProgress += HandleNodeLoadProgress;
+            asyncLoader.AsyncNodeLoadFinished += HandleLevelLoaded;
+        }
 
+        private void DisposAsyncLoader()
+        {
+            if (asyncLoader != null)
+            {
+                asyncLoader.AsyncResourceLoadProgress -= HandleLoadResourceProgress;
+                asyncLoader.AsyncResourceLoadFinished -= HandleResourceLoaded;
+                asyncLoader.AsyncNodeLoadProgress -= HandleNodeLoadProgress;
+                asyncLoader.AsyncNodeLoadFinished -= HandleLevelLoaded;
+
+                asyncLoader.Dispose();
+                asyncLoader = null;
+            }
         }
 
         protected override void Stop()
         {
+            DisposAsyncLoader();
             UnSubscribeFromEvents();
             base.Stop();
         }
-
-
 
         void SubscribeToEvents()
         {
             Engine.PostUpdate += OnPostUpdate;
             Engine.PostRenderUpdate += OnPostRenderUpdate;
+   
         }
 
         void UnSubscribeFromEvents()
         {
             Engine.PostUpdate -= OnPostUpdate;
             Engine.PostRenderUpdate -= OnPostRenderUpdate;
-
-            if (asyncLoader != null)
-            {
-                asyncLoader.AsyncLoadProgress -= HandleLoadProgress;
-                asyncLoader.AsyncLoadFinished -= HandleLevelLoaded;
-            }
 
             if (nextLevel_ != null)
             {
@@ -159,14 +170,6 @@ namespace AsyncLoading
             XmlFile uiStyle = cache.GetXmlFile("UI/DefaultStyle.xml");
             // Set style to the UI root so that elements will inherit it
             root.SetDefaultStyle(uiStyle);
-            // if (IsMobile)
-            // {
-            //     SimpleCreateInstructionsWithWasd("Button A to jump", Color.Black);
-            // }
-            // else
-            // {
-            //     SimpleCreateInstructionsWithWasd("Space to jump, F to toggle 1st/3rd person\nF5 to save scene, F7 to load", Color.Black);
-            // }
 
             levelText_ = CreateTextLabel(new IntVector2(Graphics.Width / 4, 0), Color.Black);
             triggerText_ = CreateTextLabel(new IntVector2(Graphics.Width / 4, 30), Color.Black);
@@ -202,7 +205,7 @@ namespace AsyncLoading
             return labelText;
         }
 
-        void CreateScene()
+        async void CreateScene()
         {
             var cache = ResourceCache;
             var renderer = Renderer;
@@ -230,6 +233,15 @@ namespace AsyncLoading
 
 
             levelPathName_ = "AsyncLevel/";
+
+            // Preload resources , not sure if it helps optimize
+        
+            // for (int i = 2; i <= 14; i++)
+            // {
+            //     string level_name = levelPathName_ + "Level_" + i.ToString() + ".xml";
+            //     asyncLoader.LoadAsynResourceXml(level_name);
+            // }
+
             xmlLevel = cache.GetXmlFile(levelPathName_ + "Level_1.xml");
 
             if (xmlLevel != null)
@@ -334,30 +346,44 @@ namespace AsyncLoading
                         nextLevel_ = null;
                     }
 
-                
+
                     String levelPathFile = levelPathName_ + loadLevel + ".xml";
+
                     asyncLoader.LoadAsyncNodeXml(levelPathFile);
-         
+
                 }
 
             }
 
         }
 
-        private void HandleLevelLoaded(AsyncLoadFinishedEventArgs args)
+
+        private void HandleResourceLoaded(AsyncLoadFinishedEventArgs arg1, string levelPathFile)
+        {
+    
+        }
+
+        private void HandleLoadResourceProgress(AsyncLoadProgressEventArgs arg1, string arg2)
+        {
+            
+        }
+
+        private void HandleLevelLoaded(AsyncLoadFinishedEventArgs args,string path)
         {
             scene.AddChild(args.Node);
             nextLevel_ = args.Node;
             NodeRegisterLoadTriggers(nextLevel_);
         }
 
-        private void HandleLoadProgress(AsyncLoadProgressEventArgs args)
+        private void HandleNodeLoadProgress(AsyncLoadProgressEventArgs args,string path)
         {
             string progressStr = "progress=" + ((int)(args.Progress *100)).ToString();
             progressStr += " nodes: "+ args.LoadedNodes.ToString()+"/"+args.TotalNodes.ToString();
             progressStr += " resources: "+args.LoadedResources.ToString()+"/"+args.TotalResources.ToString();
             progressText_.Value = progressStr;
         }
+
+   
 
         void CreateCharacter()
         {

@@ -121,12 +121,6 @@ namespace AsyncLoading
 
         protected override void Start()
         {
-            if (Platform != Platforms.Android)
-            {
-                // TBD elix22 ,  crashing on Android
-                Log.LogMessage += e => Debug.WriteLine($"[{e.Level}] {e.Message}");
-            }
-
             base.Start();
             if (IsMobile ||
                 Options.TouchEmulation)
@@ -371,8 +365,6 @@ namespace AsyncLoading
                     break;
             }
         }
-
-
 
 
         protected void AdjuistJoystickSize(XmlFile layout)
