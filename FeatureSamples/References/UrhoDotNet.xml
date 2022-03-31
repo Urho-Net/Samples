@@ -9,6 +9,251 @@
              Path to a folder containing "Data" folder. CurrentDirectory if null
              </summary>
             </member>
+        <member name="T:Urho.Animation">
+             <summary>
+             Skeletal animation resource.
+             </summary>
+             <summary>
+             Skeletal animation resource.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.RegisterObject(Urho.Context)">
+             <summary>
+             Register object factory.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.BeginLoad(Urho.IO.File)">
+             <summary>
+             Load resource from stream. May be called from a worker thread. Return true if successful.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.BeginLoad(Urho.MemoryBuffer)">
+             <summary>
+             Load resource from stream. May be called from a worker thread. Return true if successful.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.Save(Urho.IO.File)">
+             <summary>
+             Save resource. Return true if successful.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.Save(Urho.MemoryBuffer)">
+             <summary>
+             Save resource. Return true if successful.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.SetAnimationName(System.String)">
+             <summary>
+             Set animation name.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.SetLength(System.Single)">
+             <summary>
+             Set animation length.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.CreateTrack(System.String)">
+             <summary>
+             Create and return a track by name. If track by same name already exists, returns the existing.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.RemoveTrack(System.String)">
+             <summary>
+             Remove a track by name. Return true if was found and removed successfully. This is unsafe if the animation is currently used in playback.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.RemoveAllTracks">
+             <summary>
+             Remove all tracks. This is unsafe if the animation is currently used in playback.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,Urho.Vector3)">
+             <summary>
+             Add a trigger point.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,Urho.IntRect)">
+             <summary>
+             Add a trigger point.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,Urho.Color)">
+             <summary>
+             Add a trigger point.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,Urho.Vector2)">
+             <summary>
+             Add a trigger point.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,Urho.Vector4)">
+             <summary>
+             Add a trigger point.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,Urho.IntVector2)">
+             <summary>
+             Add a trigger point.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,Urho.Quaternion)">
+             <summary>
+             Add a trigger point.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,Urho.Matrix4)">
+             <summary>
+             Add a trigger point.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,Urho.Matrix3)">
+             <summary>
+             Add a trigger point.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,Urho.Matrix3x4)">
+             <summary>
+             Add a trigger point.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,System.Int32)">
+             <summary>
+             Add a trigger point.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,System.UInt32)">
+             <summary>
+             Add a trigger point.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,System.Single)">
+             <summary>
+             Add a trigger point.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,System.String)">
+             <summary>
+             Add a trigger point.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,System.Boolean)">
+             <summary>
+             Add a trigger point.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.RemoveTrigger(System.UInt32)">
+             <summary>
+             Remove a trigger point by index.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.RemoveAllTriggers">
+             <summary>
+             Remove all trigger points.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.SetNumTriggers(System.UInt32)">
+             <summary>
+             Resize trigger point vector.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.Clone(System.String)">
+             <summary>
+             Clone the animation.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.GetAnimationName">
+             <summary>
+             Return animation name.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.GetAnimationNameHash">
+             <summary>
+             Return animation name hash.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.GetLength">
+             <summary>
+             Return animation length.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.GetNumTracks">
+             <summary>
+             Return number of animation tracks.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.GetTrack(System.UInt32)">
+             <summary>
+             Return animation track by index.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.GetTrack(System.String)">
+             <summary>
+             Return animation track by name.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.GetTrack(Urho.StringHash)">
+             <summary>
+             Return animation track by name hash.
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.GetNumTriggers">
+             <summary>
+             Return number of animation trigger points.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Animation.GetTrigger(System.UInt32)">
+             <summary>
+             Return a trigger point by index.
+             </summary>
+            </member>
+        <member name="P:Urho.Animation.AnimationName">
+             <summary>
+             Return animation name.
+             
+             Or
+             Set animation name.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Animation.Length">
+             <summary>
+             Return animation length.
+             
+             Or
+             Set animation length.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Animation.NumTriggers">
+             <summary>
+             Return number of animation trigger points.
+             
+             Or
+             Resize trigger point vector.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Animation.AnimationNameHash">
+             <summary>
+             Return animation name hash.
+             </summary>
+            </member>
+        <member name="P:Urho.Animation.NumTracks">
+             <summary>
+             Return number of animation tracks.
+             
+             </summary>
+            </member>
         <member name="T:Urho.Application">
              <summary>
              Base class for creating applications which initialize the Urho3D engine and run a main loop until exited.
@@ -990,6 +1235,11 @@
              Base class for components. Components can be created to scene nodes.
              </summary>
             </member>
+        <member name="M:Urho.Component.OnStart">
+             <summary>
+             Called before the first update. At this point all other components of the node should exist.
+             </summary>
+            </member>
         <member name="M:Urho.Component.OnUpdate(System.Single)">
              <summary>
              Make sure you set SubscribeToSceneUpdate property to true in order to receive Update events
@@ -1491,6 +1741,184 @@
              
              </summary>
             </member>
+        <member name="T:Urho.Context">
+             <summary>
+             Urho3D execution context. Provides access to subsystems, object factories and attributes, and event receivers.
+             </summary>
+             <summary>
+             Urho3D execution context. Provides access to subsystems, object factories and attributes, and event receivers.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.CreateObject(Urho.StringHash)">
+             <summary>
+             Create an object by type hash. Return pointer to it or null if no factory found.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.RegisterFactory(Urho.ObjectFactory)">
+             <summary>
+             Register a factory for an object type.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.RegisterSubsystem(Urho.UrhoObject)">
+             <summary>
+             Register a subsystem.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.RemoveSubsystem(Urho.StringHash)">
+             <summary>
+             Remove a subsystem.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.RemoveAllAttributes(Urho.StringHash)">
+             <summary>
+             Remove all object attributes.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.RequireSDL(System.UInt32)">
+             <summary>
+             Initialises the specified SDL systems, if not already. Returns true if successful. This call must be matched with ReleaseSDL() when SDL functions are no longer required, even if this call fails.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.ReleaseSDL">
+             <summary>
+             Indicate that you are done with using SDL. Must be called after using RequireSDL().
+             </summary>
+            </member>
+        <member name="M:Urho.Context.CopyBaseAttributes(Urho.StringHash,Urho.StringHash)">
+             <summary>
+             Copy base class attributes to derived class.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.GetSubsystem(Urho.StringHash)">
+             <summary>
+             Return subsystem by type.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,Urho.Vector3)">
+             <summary>
+             Set global variable with the respective key and value.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,Urho.IntRect)">
+             <summary>
+             Set global variable with the respective key and value.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,Urho.Color)">
+             <summary>
+             Set global variable with the respective key and value.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,Urho.Vector2)">
+             <summary>
+             Set global variable with the respective key and value.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,Urho.Vector4)">
+             <summary>
+             Set global variable with the respective key and value.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,Urho.IntVector2)">
+             <summary>
+             Set global variable with the respective key and value.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,Urho.Quaternion)">
+             <summary>
+             Set global variable with the respective key and value.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,Urho.Matrix4)">
+             <summary>
+             Set global variable with the respective key and value.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,Urho.Matrix3)">
+             <summary>
+             Set global variable with the respective key and value.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,Urho.Matrix3x4)">
+             <summary>
+             Set global variable with the respective key and value.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,System.Int32)">
+             <summary>
+             Set global variable with the respective key and value.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,System.UInt32)">
+             <summary>
+             Set global variable with the respective key and value.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,System.Single)">
+             <summary>
+             Set global variable with the respective key and value.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,System.String)">
+             <summary>
+             Set global variable with the respective key and value.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,System.Boolean)">
+             <summary>
+             Set global variable with the respective key and value.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.GetEventSender">
+             <summary>
+             Return active event sender. Null outside event handling.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.GetEventHandler">
+             <summary>
+             Return active event handler. Set by Object. Null outside event handling.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.GetTypeName(Urho.StringHash)">
+             <summary>
+             Return object type name from hash, or empty if unknown.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.GetEventReceivers(Urho.UrhoObject,Urho.StringHash)">
+             <summary>
+             Return event receivers for a sender and event type, or null if they do not exist.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.GetEventReceivers(Urho.StringHash)">
+             <summary>
+             Return event receivers for an event type, or null if they do not exist.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.RegisterPlugin(Urho.Plugin)">
+             <summary>
+             Register a subsystem.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.RemovePlugin(Urho.StringHash)">
+             <summary>
+             Remove a subsystem.
+             </summary>
+            </member>
+        <member name="M:Urho.Context.GetPlugin(Urho.StringHash)">
+             <summary>
+             Return subsystem by type.
+             </summary>
+            </member>
+        <member name="P:Urho.Context.EventSender">
+             <summary>
+             Return active event sender. Null outside event handling.
+             </summary>
+            </member>
+        <member name="P:Urho.Context.EventHandler">
+             <summary>
+             Return active event handler. Set by Object. Null outside event handling.
+             </summary>
+            </member>
         <member name="T:Urho.CoreAssets.Models.LinePrimitives">
              <summary>
              Line primitives. Could be very useful models for debug, user interface etc.
@@ -1928,6 +2356,11 @@
              
              </summary>
             </member>
+        <member name="M:Urho.IO.File.GetName">
+             <summary>
+             Return the file name.
+             </summary>
+            </member>
         <member name="P:Urho.IO.File.Checksum">
              <summary>
              Return a checksum of the file contents using the SDBM hash algorithm.
@@ -1947,6 +2380,270 @@
         <member name="P:Urho.IO.File.Packaged">
              <summary>
              Return whether the file originates from a package.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.IO.File.Name">
+             <summary>
+             Return the file name.
+             </summary>
+            </member>
+        <member name="T:Urho.Gui.FileSelector">
+             <summary>
+             %File selector dialog.
+             </summary>
+             <summary>
+             %File selector dialog.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.RegisterObject(Urho.Context)">
+             <summary>
+             Register object factory.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.SetDefaultStyle(Urho.Resources.XmlFile)">
+             <summary>
+             Set fileselector UI style.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.SetTitle(System.String)">
+             <summary>
+             Set title text.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.SetButtonTexts(System.String,System.String)">
+             <summary>
+             Set button texts.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.SetPath(System.String)">
+             <summary>
+             Set current path.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.SetFileName(System.String)">
+             <summary>
+             Set current filename.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.SetDirectoryMode(System.Boolean)">
+             <summary>
+             Set directory selection mode. Default false.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.UpdateElements">
+             <summary>
+             Update elements to layout properly. Call this after manually adjusting the sub-elements.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.GetDefaultStyle">
+             <summary>
+             Return the UI style file.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.GetWindow">
+             <summary>
+             Return fileselector window.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.GetTitleText">
+             <summary>
+             Return window title text element.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.GetFileList">
+             <summary>
+             Return file list.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.GetPathEdit">
+             <summary>
+             Return path editor.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.GetFileNameEdit">
+             <summary>
+             Return filename editor.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.GetFilterList">
+             <summary>
+             Return filter dropdown.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.GetOKButton">
+             <summary>
+             Return OK button.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.GetCancelButton">
+             <summary>
+             Return cancel button.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.GetCloseButton">
+             <summary>
+             Return close button.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.GetTitle">
+             <summary>
+             Return window title.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.GetPath">
+             <summary>
+             Return current path.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.GetFileName">
+             <summary>
+             Return current filename.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.GetFilter">
+             <summary>
+             Return current filter.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.GetFilterIndex">
+             <summary>
+             Return current filter index.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.FileSelector.GetDirectoryMode">
+             <summary>
+             Return directory mode flag.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.FileSelector.DefaultStyle">
+             <summary>
+             Return the UI style file.
+             
+             Or
+             Set fileselector UI style.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.FileSelector.Title">
+             <summary>
+             Return window title.
+             
+             Or
+             Set title text.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.FileSelector.Path">
+             <summary>
+             Return current path.
+             
+             Or
+             Set current path.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.FileSelector.FileName">
+             <summary>
+             Return current filename.
+             
+             Or
+             Set current filename.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.FileSelector.DirectoryMode">
+             <summary>
+             Return directory mode flag.
+             
+             Or
+             Set directory selection mode. Default false.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.FileSelector.Window">
+             <summary>
+             Return fileselector window.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.FileSelector.TitleText">
+             <summary>
+             Return window title text element.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.FileSelector.FileList">
+             <summary>
+             Return file list.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.FileSelector.PathEdit">
+             <summary>
+             Return path editor.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.FileSelector.FileNameEdit">
+             <summary>
+             Return filename editor.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.FileSelector.FilterList">
+             <summary>
+             Return filter dropdown.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.FileSelector.OKButton">
+             <summary>
+             Return OK button.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.FileSelector.CancelButton">
+             <summary>
+             Return cancel button.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.FileSelector.CloseButton">
+             <summary>
+             Return close button.
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.FileSelector.Filter">
+             <summary>
+             Return current filter.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.FileSelector.FilterIndex">
+             <summary>
+             Return current filter index.
              
              </summary>
             </member>
@@ -3612,6 +4309,11 @@
              %Image resource.
              </summary>
             </member>
+        <member name="M:Urho.Resources.Image.SetData(System.Byte[])">
+             <summary>
+             Set new image data safe.
+             </summary>
+            </member>
         <member name="M:Urho.Resources.Image.RegisterObject(Urho.Context)">
              <summary>
              Register object factory.
@@ -3656,6 +4358,11 @@
         <member name="M:Urho.Resources.Image.SetData(System.Byte*)">
              <summary>
              Set new image data.
+             </summary>
+            </member>
+        <member name="M:Urho.Resources.Image.SetData(System.Byte*,System.Int32)">
+             <summary>
+             Set new image data , might be  png or jpeg.
              </summary>
             </member>
         <member name="M:Urho.Resources.Image.SetPixel(System.Int32,System.Int32,Urho.Color)">
@@ -4405,6 +5112,11 @@
              Return whether application window is minimized.
              </summary>
             </member>
+        <member name="P:Urho.Input.MapCtrlQualifierToCommandKey">
+             <summary>
+             OSX , maps Ctrl Qualifier to Command Key.
+             </summary>
+            </member>
         <member name="P:Urho.Input.ToggleFullscreen">
              <summary>
              Return whether fullscreen toggle is enabled.
@@ -4794,6 +5506,325 @@
              Return linear velocity.
              </summary>
             </member>
+        <member name="T:Urho.Gui.ListView">
+             <summary>
+             Scrollable list %UI element.
+             </summary>
+             <summary>
+             Scrollable list %UI element.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.GetSelections">
+             <summary>
+             Return all selected indices.
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.ListView.Selections">
+             <summary>
+             Return all selected indices.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.RegisterObject(Urho.Context)">
+             <summary>
+             Register object factory.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.OnResize(Urho.IntVector2,Urho.IntVector2)">
+             <summary>
+             React to resize.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.UpdateInternalLayout">
+             <summary>
+             Manually update layout on internal elements.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.DisableInternalLayoutUpdate">
+             <summary>
+             Disable automatic layout update for internal elements.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.EnableInternalLayoutUpdate">
+             <summary>
+             Enable automatic layout update for internal elements.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.AddItem(Urho.Gui.UIElement)">
+             <summary>
+             Add item to the end of the list.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.InsertItem(System.UInt32,Urho.Gui.UIElement,Urho.Gui.UIElement)">
+             <summary>
+             
+             Insert item at a specific index. In hierarchy mode, the optional parameter will be used to determine the child's indent level in respect to its parent.
+             If index is greater than the total items then the new item is inserted at the end of the list.
+             In hierarchy mode, if index is greater than the index of last children of the specified parent item then the new item is inserted next to the last children.
+             And if the index is lesser than the index of the parent item itself then the new item is inserted before the first child item.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.RemoveItem(Urho.Gui.UIElement,System.UInt32)">
+             <summary>
+             Remove specific item, starting search at the specified index if provided. In hierarchy mode will also remove any children.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.RemoveItem(System.UInt32)">
+             <summary>
+             Remove item at index. In hierarchy mode will also remove any children.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.RemoveAllItems">
+             <summary>
+             Remove all items.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.SetSelection(System.UInt32)">
+             <summary>
+             Set selection.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.AddSelection(System.UInt32)">
+             <summary>
+             Add item to the selection, multiselect mode only.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.RemoveSelection(System.UInt32)">
+             <summary>
+             Remove item from the selection.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.ToggleSelection(System.UInt32)">
+             <summary>
+             Toggle selection of an item.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.ChangeSelection(System.Int32,System.Boolean)">
+             <summary>
+             Move selection by a delta and clamp at list ends. If additive (multiselect only), will add to the existing selection.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.ClearSelection">
+             <summary>
+             Clear selection.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.SetHighlightMode(Urho.Gui.HighlightMode)">
+             <summary>
+             Set selected items' highlight mode.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.SetMultiselect(System.Boolean)">
+             <summary>
+             Enable multiselect.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.SetHierarchyMode(System.Boolean)">
+             <summary>
+             
+             Enable hierarchy mode. Allows items to have parent-child relationship at different indent level and the ability to expand/collapse child items.
+             All items in the list will be lost during mode change.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.SetBaseIndent(System.Int32)">
+             <summary>
+             Set base indent, i.e. the indent level of the ultimate parent item.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.SetClearSelectionOnDefocus(System.Boolean)">
+             <summary>
+             Enable clearing of selection on defocus.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.SetSelectOnClickEnd(System.Boolean)">
+             <summary>
+             Enable reacting to click end instead of click start for item selection. Default false.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.Expand(System.UInt32,System.Boolean,System.Boolean)">
+             <summary>
+             Expand item at index. Only has effect in hierarchy mode.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.ToggleExpand(System.UInt32,System.Boolean)">
+             <summary>
+             Toggle item's expanded flag at index. Only has effect in hierarchy mode.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.GetNumItems">
+             <summary>
+             Return number of items.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.GetItem(System.UInt32)">
+             <summary>
+             Return item at index.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.FindItem(Urho.Gui.UIElement)">
+             <summary>
+             Return index of item, or M_MAX_UNSIGNED If not found.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.GetSelection">
+             <summary>
+             Return first selected index, or M_MAX_UNSIGNED if none selected.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.CopySelectedItemsToClipboard">
+             <summary>
+             Copy selected items to system clipboard. Currently only applicable to Text items.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.GetSelectedItem">
+             <summary>
+             Return first selected item, or null if none selected.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.IsSelected(System.UInt32)">
+             <summary>
+             Return whether an item at index is selected.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.IsExpanded(System.UInt32)">
+             <summary>
+             Return whether an item at index has its children expanded (in hierarchy mode only).
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.GetHighlightMode">
+             <summary>
+             Return highlight mode.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.GetMultiselect">
+             <summary>
+             Return whether multiselect enabled.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.GetClearSelectionOnDefocus">
+             <summary>
+             Return whether selection is cleared on defocus.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.GetSelectOnClickEnd">
+             <summary>
+             Return whether reacts to click end instead of click start for item selection.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.GetHierarchyMode">
+             <summary>
+             Return whether hierarchy mode enabled.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.GetBaseIndent">
+             <summary>
+             Return base indent.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.EnsureItemVisibility(System.UInt32)">
+             <summary>
+             Ensure full visibility of the item.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.ListView.EnsureItemVisibility(Urho.Gui.UIElement)">
+             <summary>
+             Ensure full visibility of the item.
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.ListView.Selection">
+             <summary>
+             Return first selected index, or M_MAX_UNSIGNED if none selected.
+             
+             Or
+             Set selection.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.ListView.HighlightMode">
+             <summary>
+             Return highlight mode.
+             
+             Or
+             Set selected items' highlight mode.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.ListView.Multiselect">
+             <summary>
+             Return whether multiselect enabled.
+             
+             Or
+             Enable multiselect.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.ListView.HierarchyMode">
+             <summary>
+             Return whether hierarchy mode enabled.
+             
+             Or
+             
+             Enable hierarchy mode. Allows items to have parent-child relationship at different indent level and the ability to expand/collapse child items.
+             All items in the list will be lost during mode change.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.ListView.BaseIndent">
+             <summary>
+             Return base indent.
+             
+             Or
+             Set base indent, i.e. the indent level of the ultimate parent item.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.ListView.ClearSelectionOnDefocus">
+             <summary>
+             Return whether selection is cleared on defocus.
+             
+             Or
+             Enable clearing of selection on defocus.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.ListView.SelectOnClickEnd">
+             <summary>
+             Return whether reacts to click end instead of click start for item selection.
+             
+             Or
+             Enable reacting to click end instead of click start for item selection. Default false.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.ListView.NumItems">
+             <summary>
+             Return number of items.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.ListView.SelectedItem">
+             <summary>
+             Return first selected item, or null if none selected.
+             
+             </summary>
+            </member>
         <member name="T:Urho.IO.Log">
              <summary>
              Logging subsystem.
@@ -4906,11 +5937,6 @@
         <member name="M:Urho.LogicComponent.OnUpdate(System.Single)">
              <summary>
              Make sure you set ReceiveSceneUpdates property to true in order to receive Update events (this porperty is true by default)
-             </summary>
-            </member>
-        <member name="M:Urho.LogicComponent.OnStart">
-             <summary>
-             Called before the first update. At this point all other components of the node should exist.
              </summary>
             </member>
         <member name="M:Urho.LogicComponent.OnFixedUpdate(Urho.Physics.PhysicsPreStepEventArgs)">
@@ -5113,6 +6139,12 @@
              
              </summary>
             </member>
+        <member name="M:Urho.Material.SetShaderParameter(System.String,System.UInt32)">
+             <summary>
+             Set shader parameter.
+             
+             </summary>
+            </member>
         <member name="M:Urho.Material.SetShaderParameter(System.String,System.Single)">
              <summary>
              Set shader parameter.
@@ -5253,6 +6285,21 @@
              
              </summary>
             </member>
+        <member name="M:Urho.Material.GetTechniqueOriginal(System.UInt32)">
+             <summary>
+             Return technique by index.
+             </summary>
+            </member>
+        <member name="M:Urho.Material.GetTechniqueLodDistance(System.UInt32)">
+             <summary>
+             Return technique lod distance.
+             </summary>
+            </member>
+        <member name="M:Urho.Material.GetTechniqueQualityLevel(System.UInt32)">
+             <summary>
+             Return technique lod Quality Level.
+             </summary>
+            </member>
         <member name="M:Urho.Material.GetPass(System.UInt32,System.String)">
              <summary>
              Return pass by technique index and pass name.
@@ -5273,6 +6320,12 @@
         <member name="M:Urho.Material.GetPixelShaderDefines">
              <summary>
              Return additional pixel shader defines.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Material.GetShaderParameterPtr(System.String)">
+             <summary>
+             Return shader parameter.
              
              </summary>
             </member>
@@ -5636,6 +6689,26 @@
         <member name="M:Urho.Model.GetMorphRangeCount(System.UInt32)">
              <summary>
              Return vertex buffer morph range vertex count.
+             </summary>
+            </member>
+        <member name="M:Urho.Model.AddVertexBuffer(Urho.VertexBuffer,System.UInt32,System.UInt32)">
+             <summary>
+             Add vertex buffer and its morph ranges.
+             </summary>
+            </member>
+        <member name="M:Urho.Model.AddIndexBuffer(Urho.IndexBuffer)">
+             <summary>
+             Add index buffer .
+             </summary>
+            </member>
+        <member name="M:Urho.Model.ClearGeometryBoneMappings">
+             <summary>
+             clear all bone mappings
+             </summary>
+            </member>
+        <member name="M:Urho.Model.AddGeometryBoneMapping(System.UInt32*,System.UInt32)">
+             <summary>
+             Add bone mapping.
              </summary>
             </member>
         <member name="P:Urho.Model.BoundingBox">
@@ -6456,6 +7529,26 @@
              Load from binary data. Return true if successful.
              </summary>
             </member>
+        <member name="M:Urho.Node.LoadXml(Urho.IO.File)">
+             <summary>
+             Load from an XML file. Return true if successful.
+             </summary>
+            </member>
+        <member name="M:Urho.Node.LoadXml(Urho.MemoryBuffer)">
+             <summary>
+             Load from an XML file. Return true if successful.
+             </summary>
+            </member>
+        <member name="M:Urho.Node.LoadJson(Urho.IO.File)">
+             <summary>
+             Load from a JSON file. Return true if successful.
+             </summary>
+            </member>
+        <member name="M:Urho.Node.LoadJson(Urho.MemoryBuffer)">
+             <summary>
+             Load from a JSON file. Return true if successful.
+             </summary>
+            </member>
         <member name="M:Urho.Node.LoadXml(Urho.Resources.XmlElement)">
              <summary>
              Load from XML data. Return true if successful.
@@ -6964,6 +8057,11 @@
              Set a user variable.
              </summary>
             </member>
+        <member name="M:Urho.Node.SetVar(Urho.StringHash,System.UInt32)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
         <member name="M:Urho.Node.SetVar(Urho.StringHash,System.Single)">
              <summary>
              Set a user variable.
@@ -6975,6 +8073,81 @@
              </summary>
             </member>
         <member name="M:Urho.Node.SetVar(Urho.StringHash,System.Boolean)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Node.SetVar(System.String,Urho.Vector3)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Node.SetVar(System.String,Urho.IntRect)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Node.SetVar(System.String,Urho.Color)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Node.SetVar(System.String,Urho.Vector2)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Node.SetVar(System.String,Urho.Vector4)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Node.SetVar(System.String,Urho.IntVector2)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Node.SetVar(System.String,Urho.Quaternion)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Node.SetVar(System.String,Urho.Matrix4)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Node.SetVar(System.String,Urho.Matrix3)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Node.SetVar(System.String,Urho.Matrix3x4)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Node.SetVar(System.String,System.Int32)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Node.SetVar(System.String,System.UInt32)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Node.SetVar(System.String,System.Single)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Node.SetVar(System.String,System.String)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Node.SetVar(System.String,System.Boolean)">
              <summary>
              Set a user variable.
              </summary>
@@ -7267,6 +8440,11 @@
         <member name="M:Urho.Node.HasComponent(Urho.StringHash)">
              <summary>
              Return whether has a specific component.
+             </summary>
+            </member>
+        <member name="M:Urho.Node.GetVar(System.String)">
+             <summary>
+             Return a user variable.
              </summary>
             </member>
         <member name="M:Urho.Node.SetID(System.UInt32)">
@@ -7732,6 +8910,12 @@
              </summary>
             </member>
         <member name="M:Urho.UrhoObject.SetGlobalVar(Urho.StringHash,System.Int32)">
+             <summary>
+             Set global variable with the respective key and value.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.UrhoObject.SetGlobalVar(Urho.StringHash,System.UInt32)">
              <summary>
              Set global variable with the respective key and value.
              
@@ -8598,6 +9782,12 @@
              
              </summary>
             </member>
+        <member name="M:Urho.RenderPath.SetShaderParameter(System.String,System.UInt32)">
+             <summary>
+             Set a shader parameter in all commands that define it.
+             
+             </summary>
+            </member>
         <member name="M:Urho.RenderPath.SetShaderParameter(System.String,System.Single)">
              <summary>
              Set a shader parameter in all commands that define it.
@@ -8934,6 +10124,12 @@
              
              </summary>
             </member>
+        <member name="F:Urho.ResourceRefList.Type">
+             Object type.
+            </member>
+        <member name="F:Urho.ResourceRefList.Names">
+             List of object names.
+            </member>
         <member name="F:Urho.SDL_Scancode.SDL_SCANCODE_A">
             
             
@@ -9115,6 +10311,38 @@
              Load from a JSON file asynchronously. Return true if started successfully. The LOAD_RESOURCES_ONLY mode can also be used to preload resources from object prefab files.
              </summary>
             </member>
+        <member name="M:Urho.Scene.LoadAsyncNodeXml(System.String,Urho.CreateMode)">
+             <summary>
+             Load a Node prefab from an XML file asynchronously into an exsiting scene. Return true if started successfully.
+             </summary>
+            </member>
+        <member name="M:Urho.Scene.LoadAsyncNodeXml(Urho.IO.File,Urho.CreateMode)">
+             <summary>
+             Load a Node prefab from a XML file asynchronously into an exsiting scene. Return true if started successfully.
+             </summary>
+            </member>
+        <member name="M:Urho.Scene.LoadAsyncNodeJson(System.String,Urho.CreateMode)">
+             <summary>
+             Load a Node prefab from a JSON file asynchronously into an exsiting scene. Return true if started successfully.
+             </summary>
+            </member>
+        <member name="M:Urho.Scene.LoadAsyncNodeJson(Urho.IO.File,Urho.CreateMode)">
+             <summary>
+             Load a Node prefab from a JSON file asynchronously into an exsiting scene. Return true if started successfully.
+             </summary>
+            </member>
+        <member name="M:Urho.Scene.LoadAsyncNode(System.String,Urho.CreateMode)">
+             <summary>
+             Load a Node prefab from a binary file asynchronously into an exsiting scene. Return true if started
+             successfully.
+             </summary>
+            </member>
+        <member name="M:Urho.Scene.LoadAsyncNode(Urho.IO.File,Urho.CreateMode)">
+             <summary>
+             Load a Node prefab from a binary file asynchronously into an exsiting scene. Return true if started
+             successfully.
+             </summary>
+            </member>
         <member name="M:Urho.Scene.StopAsyncLoading">
              <summary>
              Stop asynchronous loading.
@@ -9193,6 +10421,12 @@
         <member name="M:Urho.Scene.SetAsyncLoadingMs(System.Int32)">
              <summary>
              Set maximum milliseconds per frame to spend on async scene loading.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Scene.SetAsyncIntervalMs(System.Int32)">
+             <summary>
+             Set inerval milliseconds between consequtive loads.
              
              </summary>
             </member>
@@ -9294,6 +10528,12 @@
         <member name="M:Urho.Scene.GetAsyncLoadingMs">
              <summary>
              Return maximum milliseconds per frame to spend on async loading.
+             
+             </summary>
+            </member>
+        <member name="M:Urho.Scene.GetAsyncIntervalMs">
+             <summary>
+             Return Maximum milliseconds interval between qonsequtive asynLoad calls.
              
              </summary>
             </member>
@@ -9445,6 +10685,15 @@
              
              Or
              Set maximum milliseconds per frame to spend on async scene loading.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Scene.AsyncIntervalMs">
+             <summary>
+             Return Maximum milliseconds interval between qonsequtive asynLoad calls.
+             
+             Or
+             Set inerval milliseconds between consequtive loads.
              
              </summary>
             </member>
@@ -9613,6 +10862,12 @@
              
              </summary>
             </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.UInt32,System.UInt32)">
+             <summary>
+             Set attribute by index. Return true if successfully set.
+             
+             </summary>
+            </member>
         <member name="M:Urho.Serializable.SetAttribute(System.UInt32,System.Single)">
              <summary>
              Set attribute by index. Return true if successfully set.
@@ -9682,6 +10937,11 @@
              </summary>
             </member>
         <member name="M:Urho.Serializable.SetAttribute(System.String,System.Int32)">
+             <summary>
+             Set attribute by name. Return true if successfully set.
+             </summary>
+            </member>
+        <member name="M:Urho.Serializable.SetAttribute(System.String,System.UInt32)">
              <summary>
              Set attribute by name. Return true if successfully set.
              </summary>
@@ -9922,6 +11182,11 @@
         <member name="M:Urho.Skeleton.ResetSilent">
              <summary>
              Reset all animating bones to initial positions without marking the nodes dirty. Requires the node dirtying to be performed later.
+             </summary>
+            </member>
+        <member name="M:Urho.Skeleton.CreateBone">
+             <summary>
+             Create new bone and return it
              </summary>
             </member>
         <member name="P:Urho.Skeleton.NumBones">
@@ -10196,6 +11461,12 @@
              Return model attribute.
              </summary>
             </member>
+        <member name="P:Urho.IntRect.Width">
+             Return width.
+            </member>
+        <member name="P:Urho.IntRect.Height">
+             Return height.
+            </member>
         <!--FIXME: Invalid documentation markup was found for member M:Urho.IntRect.ToString-->
         <!--FIXME: Invalid documentation markup was found for member M:Urho.Rect.ToString-->
         <member name="M:Urho.Matrix3x4.#ctor(Urho.Vector4,Urho.Vector4,Urho.Vector4)">
@@ -10231,6 +11502,39 @@
              <summary>
              Offset of element from vertex start. Filled by VertexBuffer once the vertex declaration is built.
              </summary>
+            </member>
+        <member name="T:Urho.AnimationKeyFrame">
+             Skeletal animation keyframe.
+            </member>
+        <member name="F:Urho.AnimationKeyFrame.Time">
+             Keyframe time.
+            </member>
+        <member name="F:Urho.AnimationKeyFrame.Position">
+             Bone position.
+            </member>
+        <member name="F:Urho.AnimationKeyFrame.Rotation">
+             Bone rotation.
+            </member>
+        <member name="F:Urho.AnimationKeyFrame.Scale">
+             Bone scale.
+            </member>
+        <member name="F:Urho.AnimationTrack.Name">
+             AnimationTrack name.
+            </member>
+        <member name="F:Urho.AnimationTrack.NameHash">
+             Name hash.
+            </member>
+        <member name="F:Urho.AnimationTrack.channelMask_">
+             Bitmask of included data (position, rotation, scale).
+            </member>
+        <member name="F:Urho.AnimationTrack.KeyFrames">
+             Keyframes.
+            </member>
+        <member name="F:Urho.MaterialShaderParameter.name_">
+             Name.
+            </member>
+        <member name="F:Urho.MaterialShaderParameter.value_">
+             Value.
             </member>
         <member name="T:Urho.Urho2D.Texture2D">
              <summary>
@@ -10902,6 +12206,11 @@
              Base class for %UI elements.
              </summary>
             </member>
+        <member name="M:Urho.Gui.UIElement.SetVar(Urho.StringHash,System.IntPtr)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
         <member name="M:Urho.Gui.UIElement.RegisterObject(Urho.Context)">
              <summary>
              Register object factory.
@@ -11285,6 +12594,12 @@
              
              </summary>
             </member>
+        <member name="M:Urho.Gui.UIElement.SetDragDropMode(Urho.DragAndDropMode)">
+             <summary>
+             Set drag and drop flags.
+             
+             </summary>
+            </member>
         <member name="M:Urho.Gui.UIElement.SetStyle(System.String,Urho.Resources.XmlFile)">
              <summary>
              Set style from an XML file. Find the style element by name. If the style file is not explicitly provided, use the default style from parental chain. Return true if the style is applied successfully. See also
@@ -11467,6 +12782,11 @@
              Set a user variable.
              </summary>
             </member>
+        <member name="M:Urho.Gui.UIElement.SetVar(Urho.StringHash,System.UInt32)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
         <member name="M:Urho.Gui.UIElement.SetVar(Urho.StringHash,System.Single)">
              <summary>
              Set a user variable.
@@ -11478,6 +12798,81 @@
              </summary>
             </member>
         <member name="M:Urho.Gui.UIElement.SetVar(Urho.StringHash,System.Boolean)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.UIElement.SetVar(System.String,Urho.Vector3)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.UIElement.SetVar(System.String,Urho.IntRect)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.UIElement.SetVar(System.String,Urho.Color)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.UIElement.SetVar(System.String,Urho.Vector2)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.UIElement.SetVar(System.String,Urho.Vector4)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.UIElement.SetVar(System.String,Urho.IntVector2)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.UIElement.SetVar(System.String,Urho.Quaternion)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.UIElement.SetVar(System.String,Urho.Matrix4)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.UIElement.SetVar(System.String,Urho.Matrix3)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.UIElement.SetVar(System.String,Urho.Matrix3x4)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.UIElement.SetVar(System.String,System.Int32)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.UIElement.SetVar(System.String,System.UInt32)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.UIElement.SetVar(System.String,System.Single)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.UIElement.SetVar(System.String,System.String)">
+             <summary>
+             Set a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.UIElement.SetVar(System.String,System.Boolean)">
              <summary>
              Set a user variable.
              </summary>
@@ -11777,6 +13172,12 @@
              
              </summary>
             </member>
+        <member name="M:Urho.Gui.UIElement.GetDragDropMode">
+             <summary>
+             Return drag and drop flags.
+             
+             </summary>
+            </member>
         <member name="M:Urho.Gui.UIElement.GetAppliedStyle">
              <summary>
              Return applied style name. Return an empty string when the applied style is an 'auto' style (i.e. style derived from instance's type).
@@ -11849,6 +13250,16 @@
         <member name="M:Urho.Gui.UIElement.GetDerivedColor">
              <summary>
              Return derived color. Only valid when no gradient.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.UIElement.GetVar(Urho.StringHash)">
+             <summary>
+             Return a user variable.
+             </summary>
+            </member>
+        <member name="M:Urho.Gui.UIElement.GetVar(System.String)">
+             <summary>
+             Return a user variable.
              </summary>
             </member>
         <member name="M:Urho.Gui.UIElement.HasTag(System.String)">
@@ -12244,6 +13655,15 @@
              
              Or
              Set focus mode.
+             
+             </summary>
+            </member>
+        <member name="P:Urho.Gui.UIElement.DragDropMode">
+             <summary>
+             Return drag and drop flags.
+             
+             Or
+             Set drag and drop flags.
              
              </summary>
             </member>
@@ -12676,157 +14096,6 @@
              Helper functions to return elements from a VariantMap
              </summary>
             </member>
-        <member name="T:Urho.UrhoString">
-             <summary>
-             %String class.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.Replace(System.String,System.String,System.Boolean)">
-             <summary>
-             Replace all occurrences of a string.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.Replace(System.UInt32,System.UInt32,System.String)">
-             <summary>
-             Replace a substring.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.Replaced(System.String,System.String,System.Boolean)">
-             <summary>
-             Return a string with all occurrences of a string replaced.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.Insert(System.UInt32,System.String)">
-             <summary>
-             Insert a string.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.Erase(System.UInt32,System.UInt32)">
-             <summary>
-             Erase a substring.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.Resize(System.UInt32)">
-             <summary>
-             Resize the string.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.Reserve(System.UInt32)">
-             <summary>
-             Set new capacity.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.Compact">
-             <summary>
-             Reallocate so that no extra memory is used.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.Clear">
-             <summary>
-             Clear the string.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.Substring(System.UInt32)">
-             <summary>
-             Return a substring from position to end.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.Substring(System.UInt32,System.UInt32)">
-             <summary>
-             Return a substring with length from position.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.Trimmed">
-             <summary>
-             Return string with whitespace trimmed from the beginning and the end.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.ToUpper">
-             <summary>
-             Return string in uppercase.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.ToLower">
-             <summary>
-             Return string in lowercase.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.Find(System.String,System.UInt32,System.Boolean)">
-             <summary>
-             Return index to the first occurrence of a string, or NPOS if not found.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.FindLast(System.String,System.UInt32,System.Boolean)">
-             <summary>
-             Return index to the last occurrence of a string, or NPOS if not found.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.StartsWith(System.String,System.Boolean)">
-             <summary>
-             Return whether starts with a string.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.EndsWith(System.String,System.Boolean)">
-             <summary>
-             Return whether ends with a string.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.Length">
-             <summary>
-             Return length.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.Capacity">
-             <summary>
-             Return buffer capacity.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.Empty">
-             <summary>
-             Return whether the string is empty.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.Compare(System.String,System.Boolean)">
-             <summary>
-             Return comparison result with a string.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.Contains(System.String,System.Boolean)">
-             <summary>
-             Return whether contains a specific occurrence of a string.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.LengthUTF8">
-             <summary>
-             Calculate number of characters in UTF8 content.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.ByteOffsetUTF8(System.UInt32)">
-             <summary>
-             Return byte offset to char in UTF8 content.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.AtUTF8(System.UInt32)">
-             <summary>
-             Return Unicode character at index from UTF8 content.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.ReplaceUTF8(System.UInt32,System.UInt32)">
-             <summary>
-             Replace Unicode character at index from UTF8 content.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.SubstringUTF8(System.UInt32)">
-             <summary>
-             Return a UTF8 substring from position to end.
-             </summary>
-            </member>
-        <member name="M:Urho.UrhoString.SubstringUTF8(System.UInt32,System.UInt32)">
-             <summary>
-             Return a UTF8 substring with length from position.
-             </summary>
-            </member>
-        <!--FIXME: Invalid documentation markup was found for member M:Urho.UrhoString.ToHash-->
         <member name="T:Urho.VGComponent">
              <summary>
              Return child VGComponent.
@@ -12928,6 +14197,11 @@
              Hardware vertex buffer.
              </summary>
             </member>
+        <member name="M:Urho.VertexBuffer.SetSize(System.UInt32,System.Collections.Generic.List{Urho.VertexElement},System.Boolean)">
+             <summary>
+             Set size, vertex elements and dynamic mode. Previous data will be lost.
+             </summary>
+            </member>
         <member name="M:Urho.VertexBuffer.OnDeviceLost">
              <summary>
              Mark the buffer destroyed on graphics context destruction. May be a no-op depending on the API.
@@ -12947,6 +14221,11 @@
         <member name="M:Urho.VertexBuffer.SetSize(System.UInt32,Urho.ElementMask,System.Boolean)">
              <summary>
              Set size and vertex elements and dynamic mode using legacy element bitmask. Previous data will be lost.
+             </summary>
+            </member>
+        <member name="M:Urho.VertexBuffer.SetSize(System.UInt32,Urho.VertexElement*,System.Int32,System.Boolean)">
+             <summary>
+             Set size, vertex elements and dynamic mode. Previous data will be lost.
              </summary>
             </member>
         <member name="M:Urho.VertexBuffer.SetData(System.Void*)">
@@ -13444,6 +14723,11 @@
              Set a variant attribute.
              </summary>
             </member>
+        <member name="M:Urho.Resources.XmlElement.SetVariant(System.UInt32)">
+             <summary>
+             Set a variant attribute.
+             </summary>
+            </member>
         <member name="M:Urho.Resources.XmlElement.SetVariant(System.Single)">
              <summary>
              Set a variant attribute.
@@ -13510,6 +14794,11 @@
              </summary>
             </member>
         <member name="M:Urho.Resources.XmlElement.SetVariantValue(System.Int32)">
+             <summary>
+             Set a variant attribute excluding the type.
+             </summary>
+            </member>
+        <member name="M:Urho.Resources.XmlElement.SetVariantValue(System.UInt32)">
              <summary>
              Set a variant attribute excluding the type.
              </summary>
@@ -13595,6 +14884,11 @@
              </summary>
             </member>
         <member name="M:Urho.Resources.XmlElement.SetVectorVariant(System.String,System.Int32)">
+             <summary>
+             Set a float, Vector or Matrix attribute stored in a variant.
+             </summary>
+            </member>
+        <member name="M:Urho.Resources.XmlElement.SetVectorVariant(System.String,System.UInt32)">
              <summary>
              Set a float, Vector or Matrix attribute stored in a variant.
              </summary>
@@ -20767,243 +22061,6 @@
              Return animation set attribute.
              </summary>
             </member>
-        <member name="T:Urho.Animation">
-             <summary>
-             Skeletal animation resource.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.RegisterObject(Urho.Context)">
-             <summary>
-             Register object factory.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.BeginLoad(Urho.IO.File)">
-             <summary>
-             Load resource from stream. May be called from a worker thread. Return true if successful.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.BeginLoad(Urho.MemoryBuffer)">
-             <summary>
-             Load resource from stream. May be called from a worker thread. Return true if successful.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.Save(Urho.IO.File)">
-             <summary>
-             Save resource. Return true if successful.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.Save(Urho.MemoryBuffer)">
-             <summary>
-             Save resource. Return true if successful.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.SetAnimationName(System.String)">
-             <summary>
-             Set animation name.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.SetLength(System.Single)">
-             <summary>
-             Set animation length.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.CreateTrack(System.String)">
-             <summary>
-             Create and return a track by name. If track by same name already exists, returns the existing.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.RemoveTrack(System.String)">
-             <summary>
-             Remove a track by name. Return true if was found and removed successfully. This is unsafe if the animation is currently used in playback.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.RemoveAllTracks">
-             <summary>
-             Remove all tracks. This is unsafe if the animation is currently used in playback.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,Urho.Vector3)">
-             <summary>
-             Add a trigger point.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,Urho.IntRect)">
-             <summary>
-             Add a trigger point.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,Urho.Color)">
-             <summary>
-             Add a trigger point.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,Urho.Vector2)">
-             <summary>
-             Add a trigger point.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,Urho.Vector4)">
-             <summary>
-             Add a trigger point.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,Urho.IntVector2)">
-             <summary>
-             Add a trigger point.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,Urho.Quaternion)">
-             <summary>
-             Add a trigger point.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,Urho.Matrix4)">
-             <summary>
-             Add a trigger point.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,Urho.Matrix3)">
-             <summary>
-             Add a trigger point.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,Urho.Matrix3x4)">
-             <summary>
-             Add a trigger point.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,System.Int32)">
-             <summary>
-             Add a trigger point.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,System.Single)">
-             <summary>
-             Add a trigger point.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,System.String)">
-             <summary>
-             Add a trigger point.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.AddTrigger(System.Single,System.Boolean,System.Boolean)">
-             <summary>
-             Add a trigger point.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.RemoveTrigger(System.UInt32)">
-             <summary>
-             Remove a trigger point by index.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.RemoveAllTriggers">
-             <summary>
-             Remove all trigger points.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.SetNumTriggers(System.UInt32)">
-             <summary>
-             Resize trigger point vector.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.Clone(System.String)">
-             <summary>
-             Clone the animation.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.GetAnimationName">
-             <summary>
-             Return animation name.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.GetAnimationNameHash">
-             <summary>
-             Return animation name hash.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.GetLength">
-             <summary>
-             Return animation length.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.GetNumTracks">
-             <summary>
-             Return number of animation tracks.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.GetTrack(System.UInt32)">
-             <summary>
-             Return animation track by index.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.GetTrack(System.String)">
-             <summary>
-             Return animation track by name.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.GetTrack(Urho.StringHash)">
-             <summary>
-             Return animation track by name hash.
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.GetNumTriggers">
-             <summary>
-             Return number of animation trigger points.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Animation.GetTrigger(System.UInt32)">
-             <summary>
-             Return a trigger point by index.
-             </summary>
-            </member>
-        <member name="P:Urho.Animation.AnimationName">
-             <summary>
-             Return animation name.
-             
-             Or
-             Set animation name.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Animation.Length">
-             <summary>
-             Return animation length.
-             
-             Or
-             Set animation length.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Animation.NumTriggers">
-             <summary>
-             Return number of animation trigger points.
-             
-             Or
-             Resize trigger point vector.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Animation.AnimationNameHash">
-             <summary>
-             Return animation name hash.
-             </summary>
-            </member>
-        <member name="P:Urho.Animation.NumTracks">
-             <summary>
-             Return number of animation tracks.
-             
-             </summary>
-            </member>
         <member name="T:Urho.AnimationBlendMode">
              <summary>
              %Animation blending mode.
@@ -21631,6 +22688,11 @@
              Set the attribute.
              </summary>
             </member>
+        <member name="M:Urho.AttributeAccessor.Set(Urho.Serializable,System.UInt32)">
+             <summary>
+             Set the attribute.
+             </summary>
+            </member>
         <member name="M:Urho.AttributeAccessor.Set(Urho.Serializable,System.Single)">
              <summary>
              Set the attribute.
@@ -21785,6 +22847,16 @@
         <member name="M:Urho.Audio.Audio.MixOutput(System.IntPtr,System.UInt32)">
              <summary>
              Mix sound sources into the buffer.
+             </summary>
+            </member>
+        <member name="M:Urho.Audio.Audio.RefreshMode">
+             <summary>
+             Re-initialize sound output with same parameters.
+             </summary>
+            </member>
+        <member name="M:Urho.Audio.Audio.Close">
+             <summary>
+             Close Audio device.
              </summary>
             </member>
         <member name="P:Urho.Audio.Audio.Listener">
@@ -24792,176 +25864,6 @@
              
              </summary>
             </member>
-        <member name="T:Urho.Context">
-             <summary>
-             Urho3D execution context. Provides access to subsystems, object factories and attributes, and event receivers.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.CreateObject(Urho.StringHash)">
-             <summary>
-             Create an object by type hash. Return pointer to it or null if no factory found.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.RegisterFactory(Urho.ObjectFactory)">
-             <summary>
-             Register a factory for an object type.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.RegisterSubsystem(Urho.UrhoObject)">
-             <summary>
-             Register a subsystem.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.RemoveSubsystem(Urho.StringHash)">
-             <summary>
-             Remove a subsystem.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.RemoveAllAttributes(Urho.StringHash)">
-             <summary>
-             Remove all object attributes.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.RequireSDL(System.UInt32)">
-             <summary>
-             Initialises the specified SDL systems, if not already. Returns true if successful. This call must be matched with ReleaseSDL() when SDL functions are no longer required, even if this call fails.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.ReleaseSDL">
-             <summary>
-             Indicate that you are done with using SDL. Must be called after using RequireSDL().
-             </summary>
-            </member>
-        <member name="M:Urho.Context.CopyBaseAttributes(Urho.StringHash,Urho.StringHash)">
-             <summary>
-             Copy base class attributes to derived class.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.GetSubsystem(Urho.StringHash)">
-             <summary>
-             Return subsystem by type.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,Urho.Vector3)">
-             <summary>
-             Set global variable with the respective key and value.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,Urho.IntRect)">
-             <summary>
-             Set global variable with the respective key and value.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,Urho.Color)">
-             <summary>
-             Set global variable with the respective key and value.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,Urho.Vector2)">
-             <summary>
-             Set global variable with the respective key and value.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,Urho.Vector4)">
-             <summary>
-             Set global variable with the respective key and value.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,Urho.IntVector2)">
-             <summary>
-             Set global variable with the respective key and value.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,Urho.Quaternion)">
-             <summary>
-             Set global variable with the respective key and value.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,Urho.Matrix4)">
-             <summary>
-             Set global variable with the respective key and value.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,Urho.Matrix3)">
-             <summary>
-             Set global variable with the respective key and value.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,Urho.Matrix3x4)">
-             <summary>
-             Set global variable with the respective key and value.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,System.Int32)">
-             <summary>
-             Set global variable with the respective key and value.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,System.Single)">
-             <summary>
-             Set global variable with the respective key and value.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,System.String)">
-             <summary>
-             Set global variable with the respective key and value.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.SetGlobalVar(Urho.StringHash,System.Boolean)">
-             <summary>
-             Set global variable with the respective key and value.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.GetEventSender">
-             <summary>
-             Return active event sender. Null outside event handling.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.GetEventHandler">
-             <summary>
-             Return active event handler. Set by Object. Null outside event handling.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.GetTypeName(Urho.StringHash)">
-             <summary>
-             Return object type name from hash, or empty if unknown.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.GetEventReceivers(Urho.UrhoObject,Urho.StringHash)">
-             <summary>
-             Return event receivers for a sender and event type, or null if they do not exist.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.GetEventReceivers(Urho.StringHash)">
-             <summary>
-             Return event receivers for an event type, or null if they do not exist.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.RegisterPlugin(Urho.Plugin)">
-             <summary>
-             Register a subsystem.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.RemovePlugin(Urho.StringHash)">
-             <summary>
-             Remove a subsystem.
-             </summary>
-            </member>
-        <member name="M:Urho.Context.GetPlugin(Urho.StringHash)">
-             <summary>
-             Return subsystem by type.
-             </summary>
-            </member>
-        <member name="P:Urho.Context.EventSender">
-             <summary>
-             Return active event sender. Null outside event handling.
-             </summary>
-            </member>
-        <member name="P:Urho.Context.EventHandler">
-             <summary>
-             Return active event handler. Set by Object. Null outside event handling.
-             </summary>
-            </member>
         <member name="T:Urho.ConvexData">
              <summary>
              Convex hull geometry data.
@@ -27544,262 +28446,6 @@
              File open mode.
              </summary>
             </member>
-        <member name="T:Urho.Gui.FileSelector">
-             <summary>
-             %File selector dialog.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.RegisterObject(Urho.Context)">
-             <summary>
-             Register object factory.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.SetDefaultStyle(Urho.Resources.XmlFile)">
-             <summary>
-             Set fileselector UI style.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.SetTitle(System.String)">
-             <summary>
-             Set title text.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.SetButtonTexts(System.String,System.String)">
-             <summary>
-             Set button texts.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.SetPath(System.String)">
-             <summary>
-             Set current path.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.SetFileName(System.String)">
-             <summary>
-             Set current filename.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.SetDirectoryMode(System.Boolean)">
-             <summary>
-             Set directory selection mode. Default false.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.UpdateElements">
-             <summary>
-             Update elements to layout properly. Call this after manually adjusting the sub-elements.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.GetDefaultStyle">
-             <summary>
-             Return the UI style file.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.GetWindow">
-             <summary>
-             Return fileselector window.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.GetTitleText">
-             <summary>
-             Return window title text element.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.GetFileList">
-             <summary>
-             Return file list.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.GetPathEdit">
-             <summary>
-             Return path editor.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.GetFileNameEdit">
-             <summary>
-             Return filename editor.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.GetFilterList">
-             <summary>
-             Return filter dropdown.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.GetOKButton">
-             <summary>
-             Return OK button.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.GetCancelButton">
-             <summary>
-             Return cancel button.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.GetCloseButton">
-             <summary>
-             Return close button.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.GetTitle">
-             <summary>
-             Return window title.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.GetPath">
-             <summary>
-             Return current path.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.GetFileName">
-             <summary>
-             Return current filename.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.GetFilter">
-             <summary>
-             Return current filter.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.GetFilterIndex">
-             <summary>
-             Return current filter index.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.FileSelector.GetDirectoryMode">
-             <summary>
-             Return directory mode flag.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.FileSelector.DefaultStyle">
-             <summary>
-             Return the UI style file.
-             
-             Or
-             Set fileselector UI style.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.FileSelector.Title">
-             <summary>
-             Return window title.
-             
-             Or
-             Set title text.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.FileSelector.Path">
-             <summary>
-             Return current path.
-             
-             Or
-             Set current path.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.FileSelector.FileName">
-             <summary>
-             Return current filename.
-             
-             Or
-             Set current filename.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.FileSelector.DirectoryMode">
-             <summary>
-             Return directory mode flag.
-             
-             Or
-             Set directory selection mode. Default false.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.FileSelector.Window">
-             <summary>
-             Return fileselector window.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.FileSelector.TitleText">
-             <summary>
-             Return window title text element.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.FileSelector.FileList">
-             <summary>
-             Return file list.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.FileSelector.PathEdit">
-             <summary>
-             Return path editor.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.FileSelector.FileNameEdit">
-             <summary>
-             Return filename editor.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.FileSelector.FilterList">
-             <summary>
-             Return filter dropdown.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.FileSelector.OKButton">
-             <summary>
-             Return OK button.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.FileSelector.CancelButton">
-             <summary>
-             Return cancel button.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.FileSelector.CloseButton">
-             <summary>
-             Return close button.
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.FileSelector.Filter">
-             <summary>
-             Return current filter.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.FileSelector.FilterIndex">
-             <summary>
-             Return current filter index.
-             
-             </summary>
-            </member>
         <member name="T:Urho.IO.FileSystem">
              <summary>
              Subsystem for file and directory operations and access control.
@@ -28461,6 +29107,11 @@
         <member name="T:Urho.HeightfieldData">
              <summary>
              Heightfield geometry data.
+             </summary>
+            </member>
+        <member name="T:Urho.HierarchyContainer">
+             <summary>
+             Hierarchy container (used by ListView internally when in hierarchy mode).
              </summary>
             </member>
         <member name="T:Urho.Gui.HighlightMode">
@@ -30190,312 +30841,6 @@
         <member name="P:Urho.Gui.LineEdit.Cursor">
              <summary>
              Return cursor element.
-             
-             </summary>
-            </member>
-        <member name="T:Urho.Gui.ListView">
-             <summary>
-             Scrollable list %UI element.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.RegisterObject(Urho.Context)">
-             <summary>
-             Register object factory.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.OnResize(Urho.IntVector2,Urho.IntVector2)">
-             <summary>
-             React to resize.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.UpdateInternalLayout">
-             <summary>
-             Manually update layout on internal elements.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.DisableInternalLayoutUpdate">
-             <summary>
-             Disable automatic layout update for internal elements.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.EnableInternalLayoutUpdate">
-             <summary>
-             Enable automatic layout update for internal elements.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.AddItem(Urho.Gui.UIElement)">
-             <summary>
-             Add item to the end of the list.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.InsertItem(System.UInt32,Urho.Gui.UIElement,Urho.Gui.UIElement)">
-             <summary>
-             
-             Insert item at a specific index. In hierarchy mode, the optional parameter will be used to determine the child's indent level in respect to its parent.
-             If index is greater than the total items then the new item is inserted at the end of the list.
-             In hierarchy mode, if index is greater than the index of last children of the specified parent item then the new item is inserted next to the last children.
-             And if the index is lesser than the index of the parent item itself then the new item is inserted before the first child item.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.RemoveItem(Urho.Gui.UIElement,System.UInt32)">
-             <summary>
-             Remove specific item, starting search at the specified index if provided. In hierarchy mode will also remove any children.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.RemoveItem(System.UInt32)">
-             <summary>
-             Remove item at index. In hierarchy mode will also remove any children.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.RemoveAllItems">
-             <summary>
-             Remove all items.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.SetSelection(System.UInt32)">
-             <summary>
-             Set selection.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.AddSelection(System.UInt32)">
-             <summary>
-             Add item to the selection, multiselect mode only.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.RemoveSelection(System.UInt32)">
-             <summary>
-             Remove item from the selection.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.ToggleSelection(System.UInt32)">
-             <summary>
-             Toggle selection of an item.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.ChangeSelection(System.Int32,System.Boolean)">
-             <summary>
-             Move selection by a delta and clamp at list ends. If additive (multiselect only), will add to the existing selection.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.ClearSelection">
-             <summary>
-             Clear selection.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.SetHighlightMode(Urho.Gui.HighlightMode)">
-             <summary>
-             Set selected items' highlight mode.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.SetMultiselect(System.Boolean)">
-             <summary>
-             Enable multiselect.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.SetHierarchyMode(System.Boolean)">
-             <summary>
-             
-             Enable hierarchy mode. Allows items to have parent-child relationship at different indent level and the ability to expand/collapse child items.
-             All items in the list will be lost during mode change.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.SetBaseIndent(System.Int32)">
-             <summary>
-             Set base indent, i.e. the indent level of the ultimate parent item.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.SetClearSelectionOnDefocus(System.Boolean)">
-             <summary>
-             Enable clearing of selection on defocus.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.SetSelectOnClickEnd(System.Boolean)">
-             <summary>
-             Enable reacting to click end instead of click start for item selection. Default false.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.Expand(System.UInt32,System.Boolean,System.Boolean)">
-             <summary>
-             Expand item at index. Only has effect in hierarchy mode.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.ToggleExpand(System.UInt32,System.Boolean)">
-             <summary>
-             Toggle item's expanded flag at index. Only has effect in hierarchy mode.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.GetNumItems">
-             <summary>
-             Return number of items.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.GetItem(System.UInt32)">
-             <summary>
-             Return item at index.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.FindItem(Urho.Gui.UIElement)">
-             <summary>
-             Return index of item, or M_MAX_UNSIGNED If not found.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.GetSelection">
-             <summary>
-             Return first selected index, or M_MAX_UNSIGNED if none selected.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.CopySelectedItemsToClipboard">
-             <summary>
-             Copy selected items to system clipboard. Currently only applicable to Text items.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.GetSelectedItem">
-             <summary>
-             Return first selected item, or null if none selected.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.IsSelected(System.UInt32)">
-             <summary>
-             Return whether an item at index is selected.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.IsExpanded(System.UInt32)">
-             <summary>
-             Return whether an item at index has its children expanded (in hierarchy mode only).
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.GetHighlightMode">
-             <summary>
-             Return highlight mode.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.GetMultiselect">
-             <summary>
-             Return whether multiselect enabled.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.GetClearSelectionOnDefocus">
-             <summary>
-             Return whether selection is cleared on defocus.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.GetSelectOnClickEnd">
-             <summary>
-             Return whether reacts to click end instead of click start for item selection.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.GetHierarchyMode">
-             <summary>
-             Return whether hierarchy mode enabled.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.GetBaseIndent">
-             <summary>
-             Return base indent.
-             
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.EnsureItemVisibility(System.UInt32)">
-             <summary>
-             Ensure full visibility of the item.
-             </summary>
-            </member>
-        <member name="M:Urho.Gui.ListView.EnsureItemVisibility(Urho.Gui.UIElement)">
-             <summary>
-             Ensure full visibility of the item.
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.ListView.Selection">
-             <summary>
-             Return first selected index, or M_MAX_UNSIGNED if none selected.
-             
-             Or
-             Set selection.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.ListView.HighlightMode">
-             <summary>
-             Return highlight mode.
-             
-             Or
-             Set selected items' highlight mode.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.ListView.Multiselect">
-             <summary>
-             Return whether multiselect enabled.
-             
-             Or
-             Enable multiselect.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.ListView.HierarchyMode">
-             <summary>
-             Return whether hierarchy mode enabled.
-             
-             Or
-             
-             Enable hierarchy mode. Allows items to have parent-child relationship at different indent level and the ability to expand/collapse child items.
-             All items in the list will be lost during mode change.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.ListView.BaseIndent">
-             <summary>
-             Return base indent.
-             
-             Or
-             Set base indent, i.e. the indent level of the ultimate parent item.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.ListView.ClearSelectionOnDefocus">
-             <summary>
-             Return whether selection is cleared on defocus.
-             
-             Or
-             Enable clearing of selection on defocus.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.ListView.SelectOnClickEnd">
-             <summary>
-             Return whether reacts to click end instead of click start for item selection.
-             
-             Or
-             Enable reacting to click end instead of click start for item selection. Default false.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.ListView.NumItems">
-             <summary>
-             Return number of items.
-             
-             </summary>
-            </member>
-        <member name="P:Urho.Gui.ListView.SelectedItem">
-             <summary>
-             Return first selected item, or null if none selected.
              
              </summary>
             </member>
@@ -35188,6 +35533,11 @@
              Remove color frame at index.
              </summary>
             </member>
+        <member name="M:Urho.ParticleEffect.SetColorFrame(System.UInt32,Urho.ColorFrame*)">
+             <summary>
+             Set color animation frame at index. If index is greater than number of color frames, new color frames are added.
+             </summary>
+            </member>
         <member name="M:Urho.ParticleEffect.SetNumColorFrames(System.UInt32)">
              <summary>
              Set number of color frames.
@@ -35202,6 +35552,11 @@
         <member name="M:Urho.ParticleEffect.RemoveTextureFrame(System.UInt32)">
              <summary>
              Remove texture frame at index.
+             </summary>
+            </member>
+        <member name="M:Urho.ParticleEffect.SetTextureFrame(System.UInt32,Urho.TextureFrame*)">
+             <summary>
+             Set number of texture animation frames.
              </summary>
             </member>
         <member name="M:Urho.ParticleEffect.SetNumTextureFrames(System.UInt32)">
@@ -37818,6 +38173,12 @@
              
              </summary>
             </member>
+        <member name="M:Urho.ResourceWithMetadata.AddMetadata(System.String,System.UInt32)">
+             <summary>
+             Add new metadata variable or overwrite old value.
+             
+             </summary>
+            </member>
         <member name="M:Urho.ResourceWithMetadata.AddMetadata(System.String,System.Single)">
              <summary>
              Add new metadata variable or overwrite old value.
@@ -40353,6 +40714,33 @@
              Return point on the sphere.
              </summary>
             </member>
+        <member name="M:Urho.Sphere.GetCenter">
+             <summary>
+             Return center of the sphere.
+             </summary>
+            </member>
+        <member name="M:Urho.Sphere.GetRadius">
+             <summary>
+             Return radius of the sphere.
+             </summary>
+            </member>
+        <member name="M:Urho.Sphere.SetRadius(System.Single)">
+             <summary>
+             Set radius of the sphere.
+             </summary>
+            </member>
+        <member name="P:Urho.Sphere.Center">
+             <summary>
+             Return center of the sphere.
+             </summary>
+            </member>
+        <member name="P:Urho.Sphere.Radius">
+             <summary>
+             Return radius of the sphere.
+             Or
+             Set radius of the sphere.
+             </summary>
+            </member>
         <member name="T:Urho.Spline">
              <summary>
              Spline class to get a point on it based off the interpolation mode.
@@ -40436,6 +40824,11 @@
              Set the value of an existing knot.
              </summary>
             </member>
+        <member name="M:Urho.Spline.SetKnot(System.UInt32,System.UInt32)">
+             <summary>
+             Set the value of an existing knot.
+             </summary>
+            </member>
         <member name="M:Urho.Spline.SetKnot(System.Single,System.UInt32)">
              <summary>
              Set the value of an existing knot.
@@ -40506,6 +40899,11 @@
              Add a knot to the end of the spline.
              </summary>
             </member>
+        <member name="M:Urho.Spline.AddKnot(System.UInt32)">
+             <summary>
+             Add a knot to the end of the spline.
+             </summary>
+            </member>
         <member name="M:Urho.Spline.AddKnot(System.Single)">
              <summary>
              Add a knot to the end of the spline.
@@ -40572,6 +40970,11 @@
              </summary>
             </member>
         <member name="M:Urho.Spline.AddKnot(System.Int32,System.UInt32)">
+             <summary>
+             Add a knot to the spline at a specific index.
+             </summary>
+            </member>
+        <member name="M:Urho.Spline.AddKnot(System.UInt32,System.UInt32)">
              <summary>
              Add a knot to the spline at a specific index.
              </summary>
@@ -44895,6 +45298,11 @@
              </summary>
             </member>
         <member name="M:Urho.ValueAnimation.SetKeyFrame(System.Single,System.Int32)">
+             <summary>
+             Set key frame.
+             </summary>
+            </member>
+        <member name="M:Urho.ValueAnimation.SetKeyFrame(System.Single,System.UInt32)">
              <summary>
              Set key frame.
              </summary>

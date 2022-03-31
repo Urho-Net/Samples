@@ -1,0 +1,6 @@
+<renderpath>
+    <command type="quad" tag="Outline" vs="Outline" ps="Outline" output="viewport">
+        <texture unit="diffuse" name="viewport" />
+        <texture unit="normal" name="OutlineMask" />
+    </command>
+</renderpath>
