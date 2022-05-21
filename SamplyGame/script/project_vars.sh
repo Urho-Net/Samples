@@ -24,3 +24,9 @@
 export PROJECT_UUID='com.elix22.samplygame'
 export PROJECT_NAME='SamplyGame' 
 export JAVA_PACKAGE_PATH='java/com/elix22/samplygame' 
+
+# Supported Android architectures  , remove any architecture that is not needed inorder to redcue apk size.
+# The minimal ABI on ARM devices is armeabi-v7a , that's the minimal one  to make is work on ARM based devices
+# In case of an Intel based processor (x86/x86_64) , one must add 'x86' or and 'x86_64' to mkae it work on such device
+# export ANDROID_ARCHITECTURE=('arm64-v8a' 'armeabi-v7a' 'x86' 'x86_64')
+export ANDROID_ARCHITECTURE=('arm64-v8a' 'armeabi-v7a')

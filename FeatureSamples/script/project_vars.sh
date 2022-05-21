@@ -28,3 +28,10 @@ export JAVA_PACKAGE_PATH='java/com/elix22/urhonetsamples'
 # Add Android permissions
 # export ANDROID_PERMISSIONS=('permission 1' 'permission 2' 'permission 3' ... )
 export ANDROID_PERMISSIONS=('android.permission.INTERNET' 'android.permission.ACCESS_NETWORK_STATE')
+
+# Supported Android architectures  , remove any architecture that is not needed inorder to redcue apk size.
+# The minimal ABI on ARM devices is armeabi-v7a , that's the minimal one  to make is work on ARM based devices
+# In case of an Intel based processor (x86/x86_64) , one must add 'x86' or and 'x86_64' to mkae it work on such device
+# export ANDROID_ARCHITECTURE=('arm64-v8a' 'armeabi-v7a' 'x86' 'x86_64')
+#
+export ANDROID_ARCHITECTURE=('arm64-v8a' 'armeabi-v7a')
