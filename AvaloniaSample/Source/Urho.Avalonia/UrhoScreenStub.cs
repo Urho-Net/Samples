@@ -46,6 +46,23 @@ namespace Urho.Avalonia
             return GetEnumerator();
         }
 
+        public Screen ScreenFromWindow(IWindowBaseImpl window)
+        {
+            return ScreenHelper.ScreenFromWindow(window, AllScreens);
+        }
 
+    public IReadOnlyList<Screen> AllScreens { get; } =
+            new[] { new Screen(96, new PixelRect(0, 0, 4000, 4000), new PixelRect(0, 0, 4000, 4000), true) };
+
+
+        public Screen ScreenFromPoint(PixelPoint point)
+        {
+            return ScreenHelper.ScreenFromPoint(point, AllScreens);
+        }
+
+        public Screen ScreenFromRect(PixelRect rect)
+        {
+            return ScreenHelper.ScreenFromRect(rect, AllScreens);
+        }
     }
 }

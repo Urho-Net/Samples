@@ -56,9 +56,7 @@ namespace AvaloniaSample
         {
             // InitializeAvaloniaTodoDemo();
             // InitializeAvaloniaDockDemo();
-            // InitializeAvaloniaDockDemo2();
             //  InitializeAvaloniaNotePadDemo();
-
             InitializeAvaloniaControlCatalogDemo();
         }
 
@@ -110,21 +108,6 @@ namespace AvaloniaSample
 	   }
 
 
-        void InitializeAvaloniaDockDemo2()
-        {
-
-            avaloniaContext = Context.ConfigureAvalonia<AvaloniaDemo.App>();
-			avaloniaContext.RenderScaling = 2.0;
-
-            var mainWindowViewModel = new AvaloniaDemo.ViewModels.MainWindowViewModel();
-            var mainWindow = new AvaloniaDemo.Views.MainWindow
-            {
-                DataContext = mainWindowViewModel
-            };
-
-            mainWindow.Show(UI.Root);
-            mainWindow.Position = new Avalonia.PixelPoint(0, 0);
-        }
 
 		void InitializeAvaloniaNotePadDemo()
 		{

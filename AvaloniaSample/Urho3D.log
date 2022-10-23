@@ -1,61 +1,28 @@
-[Sun Sep 12 17:45:26 2021] INFO: Opened log file Urho3D.log
-[Sun Sep 12 17:45:26 2021] INFO: Created 7 worker threads
-[Sun Sep 12 17:45:26 2021] INFO: Added resource path /Users/elialoni/Development/Samples/AvaloniaSample/bin/Debug/netcoreapp3.1/CoreData/
-[Sun Sep 12 17:45:26 2021] INFO: Added resource path /Users/elialoni/Development/Samples/AvaloniaSample/bin/Debug/netcoreapp3.1/Data/
-[Sun Sep 12 17:45:28 2021] INFO: Adapter used ATI Technologies Inc. AMD Radeon Pro 5500M OpenGL Engine
-[Sun Sep 12 17:45:28 2021] INFO: Set screen mode 3584x1980 rate 60 Hz windowed monitor 0 resizable highDPI
-[Sun Sep 12 17:45:28 2021] INFO: Initialized input
-[Sun Sep 12 17:45:28 2021] INFO: Initialized user interface
-[Sun Sep 12 17:45:28 2021] INFO: Initialized renderer
-[Sun Sep 12 17:45:28 2021] INFO: Set audio mode 44100 Hz stereo interpolated
-[Sun Sep 12 17:45:28 2021] INFO: Initialized VectorGraphics subsystem
-[Sun Sep 12 17:45:28 2021] INFO: Initialized engine
-[Sun Sep 12 17:45:28 2021] DEBUG: Loading resource Models/Plane.mdl
-[Sun Sep 12 17:45:28 2021] DEBUG: Loading resource Materials/StoneTiled.xml
-[Sun Sep 12 17:45:28 2021] DEBUG: Loading resource Techniques/DiffNormal.xml
-[Sun Sep 12 17:45:28 2021] DEBUG: Loading resource Techniques/Diff.xml
-[Sun Sep 12 17:45:28 2021] DEBUG: Loading resource Textures/StoneDiffuse.dds
-[Sun Sep 12 17:45:28 2021] DEBUG: Loading resource Textures/StoneNormal.dds
-[Sun Sep 12 17:45:28 2021] DEBUG: Loading resource Models/Box.mdl
-[Sun Sep 12 17:45:28 2021] DEBUG: Loading resource Materials/Skybox.xml
-[Sun Sep 12 17:45:28 2021] DEBUG: Loading resource Techniques/DiffSkybox.xml
-[Sun Sep 12 17:45:28 2021] DEBUG: Loading resource Textures/Skybox.xml
-[Sun Sep 12 17:45:28 2021] DEBUG: Loading temporary resource Textures/BrightDay1_PosX.dds
-[Sun Sep 12 17:45:28 2021] DEBUG: Loading temporary resource Textures/BrightDay1_NegX.dds
-[Sun Sep 12 17:45:28 2021] DEBUG: Loading temporary resource Textures/BrightDay1_PosY.dds
-[Sun Sep 12 17:45:28 2021] DEBUG: Loading temporary resource Textures/BrightDay1_NegY.dds
-[Sun Sep 12 17:45:28 2021] DEBUG: Loading temporary resource Textures/BrightDay1_PosZ.dds
-[Sun Sep 12 17:45:28 2021] DEBUG: Loading temporary resource Textures/BrightDay1_NegZ.dds
-[Sun Sep 12 17:45:28 2021] DEBUG: Loading resource Models/Mushroom.mdl
-[Sun Sep 12 17:45:28 2021] DEBUG: Loading resource Materials/Mushroom.xml
-[Sun Sep 12 17:45:28 2021] DEBUG: Loading resource Textures/Mushroom.dds
-[Sun Sep 12 17:45:28 2021] DEBUG: Font face Anonymous Pro (15pt) has 624 glyphs
-[Sun Sep 12 17:45:33 2021] DEBUG: Reloading shaders
-[Sun Sep 12 17:45:33 2021] DEBUG: Loading resource Shaders/GLSL/LitSolid.glsl
-[Sun Sep 12 17:45:33 2021] DEBUG: Loading resource Shaders/GLSL/Skybox.glsl
-[Sun Sep 12 17:45:33 2021] DEBUG: Allocated scratch buffer with size 1920
-[Sun Sep 12 17:45:33 2021] DEBUG: Compiled vertex shader LitSolid(DIRLIGHT NORMALMAP PERPIXEL)
-[Sun Sep 12 17:45:33 2021] DEBUG: Compiled pixel shader LitSolid(AMBIENT DIFFMAP DIRLIGHT NORMALMAP PACKEDNORMAL PERPIXEL SPECULAR)
-[Sun Sep 12 17:45:33 2021] DEBUG: Linked vertex shader LitSolid(DIRLIGHT NORMALMAP PERPIXEL) and pixel shader LitSolid(AMBIENT DIFFMAP DIRLIGHT NORMALMAP PACKEDNORMAL PERPIXEL SPECULAR)
-[Sun Sep 12 17:45:33 2021] DEBUG: Compiled vertex shader LitSolid(DIRLIGHT INSTANCED PERPIXEL)
-[Sun Sep 12 17:45:33 2021] DEBUG: Compiled pixel shader LitSolid(AMBIENT DIFFMAP DIRLIGHT PERPIXEL SPECULAR)
-[Sun Sep 12 17:45:33 2021] DEBUG: Linked vertex shader LitSolid(DIRLIGHT INSTANCED PERPIXEL) and pixel shader LitSolid(AMBIENT DIFFMAP DIRLIGHT PERPIXEL SPECULAR)
-[Sun Sep 12 17:45:33 2021] DEBUG: Compiled vertex shader Skybox()
-[Sun Sep 12 17:45:33 2021] DEBUG: Compiled pixel shader Skybox()
-[Sun Sep 12 17:45:33 2021] DEBUG: Linked vertex shader Skybox() and pixel shader Skybox()
-[Sun Sep 12 17:45:33 2021] DEBUG: Loading resource Shaders/GLSL/Basic.glsl
-[Sun Sep 12 17:45:33 2021] DEBUG: Compiled vertex shader Basic(DIFFMAP VERTEXCOLOR)
-[Sun Sep 12 17:45:33 2021] DEBUG: Compiled pixel shader Basic(DIFFMAP VERTEXCOLOR)
-[Sun Sep 12 17:45:33 2021] DEBUG: Linked vertex shader Basic(DIFFMAP VERTEXCOLOR) and pixel shader Basic(DIFFMAP VERTEXCOLOR)
-[Sun Sep 12 17:45:33 2021] DEBUG: Compiled pixel shader Basic(ALPHAMAP VERTEXCOLOR)
-[Sun Sep 12 17:45:33 2021] DEBUG: Linked vertex shader Basic(DIFFMAP VERTEXCOLOR) and pixel shader Basic(ALPHAMAP VERTEXCOLOR)
-[Sun Sep 12 17:45:33 2021] DEBUG: Compiled pixel shader Basic(ALPHAMASK DIFFMAP VERTEXCOLOR)
-[Sun Sep 12 17:45:33 2021] DEBUG: Linked vertex shader Basic(DIFFMAP VERTEXCOLOR) and pixel shader Basic(ALPHAMASK DIFFMAP VERTEXCOLOR)
-[Sun Sep 12 17:45:34 2021] DEBUG: Compiled vertex shader LitSolid(DIRLIGHT PERPIXEL)
-[Sun Sep 12 17:45:34 2021] DEBUG: Linked vertex shader LitSolid(DIRLIGHT PERPIXEL) and pixel shader LitSolid(AMBIENT DIFFMAP DIRLIGHT PERPIXEL SPECULAR)
-[Sun Sep 12 17:45:34 2021] DEBUG: Resized scratch buffer to size 2064
-[Sun Sep 12 17:45:34 2021] DEBUG: Resized scratch buffer to size 2160
-[Sun Sep 12 17:45:34 2021] DEBUG: Resized scratch buffer to size 2256
-[Sun Sep 12 17:45:34 2021] DEBUG: Resized scratch buffer to size 2352
-[Sun Sep 12 17:45:34 2021] DEBUG: Resized scratch buffer to size 2400
-[Sun Sep 12 17:45:34 2021] DEBUG: Resized scratch buffer to size 2448
+[Sun Oct 23 12:34:28 2022] INFO: Opened log file Urho3D.log
+[Sun Oct 23 12:34:28 2022] INFO: Created 5 worker threads
+[Sun Oct 23 12:34:28 2022] INFO: Added resource path E:/Development/Samples/AvaloniaSample/bin/Debug/net6.0/CoreData/
+[Sun Oct 23 12:34:28 2022] INFO: Added resource path E:/Development/Samples/AvaloniaSample/bin/Debug/net6.0/Data/
+[Sun Oct 23 12:34:29 2022] INFO: Adapter used NVIDIA Corporation NVIDIA GeForce GTX 1050 Ti with Max-Q Design/PCIe/SSE2
+[Sun Oct 23 12:34:29 2022] INFO: Set screen mode 3840x2004 rate 60 Hz windowed monitor 0 resizable
+[Sun Oct 23 12:34:29 2022] INFO: Initialized input
+[Sun Oct 23 12:34:29 2022] INFO: Initialized user interface
+[Sun Oct 23 12:34:29 2022] DEBUG: Loading resource Textures/Ramp.png
+[Sun Oct 23 12:34:29 2022] DEBUG: Loading temporary resource Textures/Ramp.xml
+[Sun Oct 23 12:34:29 2022] DEBUG: Loading resource Textures/Spot.png
+[Sun Oct 23 12:34:29 2022] DEBUG: Loading temporary resource Textures/Spot.xml
+[Sun Oct 23 12:34:29 2022] DEBUG: Loading resource Techniques/NoTexture.xml
+[Sun Oct 23 12:34:29 2022] DEBUG: Loading resource RenderPaths/Forward.xml
+[Sun Oct 23 12:34:29 2022] INFO: Initialized renderer
+[Sun Oct 23 12:34:29 2022] INFO: Set audio mode 44100 Hz stereo interpolated
+[Sun Oct 23 12:34:29 2022] INFO: Initialized VectorGraphics subsystem
+[Sun Oct 23 12:34:29 2022] INFO: Initialized engine
+[Sun Oct 23 12:34:29 2022] DEBUG: Loading resource Fonts/Anonymous Pro.ttf
+[Sun Oct 23 12:34:29 2022] DEBUG: Font face Anonymous Pro (18pt) has 624 glyphs
+[Sun Oct 23 12:34:29 2022] DEBUG: Loading resource Textures/LogoLarge.png
+[Sun Oct 23 12:34:29 2022] DEBUG: Loading temporary resource Textures/LogoLarge.xml
+[Sun Oct 23 12:34:29 2022] DEBUG: Loading resource Textures/UrhoIcon.png
+[Sun Oct 23 12:34:29 2022] DEBUG: Loading resource UI/DefaultStyle.xml
+[Sun Oct 23 12:34:29 2022] DEBUG: Loading resource Textures/UI.png
+[Sun Oct 23 12:34:29 2022] DEBUG: Loading temporary resource Textures/UI.xml
+[Sun Oct 23 12:34:29 2022] DEBUG: Font face Anonymous Pro (11pt) has 624 glyphs
+[Sun Oct 23 12:34:34 2022] INFO: Set audio mode 44100 Hz stereo interpolated

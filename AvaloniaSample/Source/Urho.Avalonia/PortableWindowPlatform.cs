@@ -63,5 +63,10 @@ namespace Urho.Avalonia
         {
             return new UrhoWindowImpl(_context);
         }
+
+        public ITrayIconImpl CreateTrayIcon()
+        {
+            return null;
+        }
     }
 }

@@ -121,7 +121,7 @@ namespace ControlCatalog.Pages
                 {
                     new StyleInclude(new Uri("avares://AvaloniaSample/Styles"))
                     {
-                        Source = new Uri("avares://Dock.Avalonia/Themes/FluentTheme.axaml")
+                        Source = new Uri("avares://Dock.Avalonia/Themes/DockFluentTheme.axaml")
                     }
                 };
 
@@ -133,22 +133,22 @@ namespace ControlCatalog.Pages
                 window.Position = new Avalonia.PixelPoint(300, 50);
             };
 
-            this.FindControl<Button>("DockWindow").Click += delegate
-            {
-                Styles FluentLight = new Styles
-                {
-                    new StyleInclude(new Uri("avares://AvaloniaSample/Styles"))
-                    {
-                        Source = new Uri("avares://Game/Source/Demos/DockDemo2/Themes/FluentLight.axaml")
-                    }
-                };
+            // this.FindControl<Button>("DockWindow").Click += delegate
+            // {
+            //     Styles FluentLight = new Styles
+            //     {
+            //         new StyleInclude(new Uri("avares://AvaloniaSample/Styles"))
+            //         {
+            //             Source = new Uri("avares://Game/Source/Demos/DockDemo/Themes/FluentLight.axaml")
+            //         }
+            //     };
 
-                var window = new AvaloniaDemo.Views.MainWindow();
-                window.Styles.Insert(0, FluentLight);
-                window.DataContext = new AvaloniaDemo.ViewModels.MainWindowViewModel();
-                window.Show();
-                window.Position = new Avalonia.PixelPoint(300, 50);
-            };
+            //     var window = new AvaloniaDockApplication.Views.MainWindow();
+            //     window.Styles.Insert(0, FluentLight);
+            //     window.DataContext = new AvaloniaDockApplication.ViewModels.MainWindowViewModel();
+            //     window.Show();
+            //     window.Position = new Avalonia.PixelPoint(300, 50);
+            // };
         }
 
         private Window CreateSampleWindow()
