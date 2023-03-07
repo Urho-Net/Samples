@@ -1,6 +1,7 @@
 var System = importNamespace('System');
 var Urho = importNamespace('Urho');
 var IO = importNamespace('Urho.IO');
+var Gui = importNamespace('Urho.Gui');
 
 
 // some shorthand variable declarations , to make life easy
@@ -88,9 +89,6 @@ function OnUpdate(timeStep) {
 
 function SimpleMoveCamera3D(timeStep, moveSpeed = 10.0) {
     const mouseSensitivity = 0.1;
-
-    if (UI.FocusElement != null)
-        return;
 
     var mouseMove = Input.MouseMove;
     Yaw += mouseSensitivity * mouseMove.X;

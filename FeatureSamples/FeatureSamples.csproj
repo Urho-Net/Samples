@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <PropertyGroup>          
@@ -97,7 +98,7 @@
   </ItemGroup>
 
 
-  <Target Name="CustomBeforeBuild" BeforeTargets="BeforeBuild">
+  <Target Name="CustomBeforeBuild" BeforeTargets="BeforeBuild" >
     <Error Condition="! Exists('$(UrhoNetHome)')" Text="Urho.Net is not configured , please run configure.sh (configure.bat on Windows) from the Urho.Net installation folder " /> 
     <XmlPeek XmlInputPath="$(UrhoNetHome)" Query="UrhoNetHome/add[@key='UrhoNetHome']/@value">
         <Output TaskParameter="Result" ItemName="URHONET_HOME_ROOT" />
@@ -113,7 +114,7 @@
     </PropertyGroup>  
     <Copy SourceFiles="$(UrhoDotNetDLL)" DestinationFolder="References" ContinueOnError="true" />
     <PropertyGroup>
-      <UrhoDotNetXML>@(URHONET_HOME_ROOT)\template\libs\dotnet\urho\desktop\UrhoDotNet.xml</UrhoDotNetXML>
+    <UrhoDotNetXML>@(URHONET_HOME_ROOT)\template\libs\dotnet\urho\desktop\UrhoDotNet.xml</UrhoDotNetXML>
     </PropertyGroup>  
     <Copy SourceFiles="$(UrhoDotNetXML)" DestinationFolder="References" ContinueOnError="true" />
     <Delete Files="Android/app/src/main/assets/Data/DotNet/Game.dll" />
@@ -126,10 +127,7 @@
     <Error Condition="! Exists('$(libUrho3D)')" Text="Urho3D.dll not found are you sure URHONET_HOME_ROOT is pointing to the right place ?" /> 
     <Copy SourceFiles="@(AssetsSourceFiles)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="true" Retries="3" RetryDelayMilliseconds="300" />
     <Copy SourceFiles="$(libUrho3D)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
-    <Copy SourceFiles="$(OutDir)/Game.dll" DestinationFolder="Assets/Data/DotNet" SkipUnchangedFiles="true" />
-    <Copy SourceFiles="$(OutDir)/Game.dll" DestinationFolder="@(AndroidAssetsDestinationDir)" SkipUnchangedFiles="true" />
   </Target>
-
 
   <Target Name="CopyCustomContentMacOS" AfterTargets="AfterBuild" Condition="'$(IsOSX)'=='true'">
     <PropertyGroup>
@@ -138,11 +136,8 @@
     <Error Condition="! Exists('$(libUrho3D)')" Text="libUrho3D.dylib not found are you sure URHONET_HOME_ROOT is pointing to the right place ?" /> 
     <Copy SourceFiles="@(AssetsSourceFiles)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="true" Retries="3" RetryDelayMilliseconds="300" />
     <Copy SourceFiles="$(libUrho3D)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
-    <Copy SourceFiles="$(OutDir)/Game.dll" DestinationFolder="Assets/Data/DotNet" SkipUnchangedFiles="true" />
-    <Copy SourceFiles="$(OutDir)/Game.dll" DestinationFolder="@(AndroidAssetsDestinationDir)" SkipUnchangedFiles="true" />
   </Target>
-
-
+  
   <Target Name="CopyCustomContentLinux" AfterTargets="AfterBuild" Condition="'$(IsLinux)'=='true'">
     <PropertyGroup>
       <libUrho3D>@(URHONET_HOME_ROOT)/template/libs/linux/libUrho3D.so</libUrho3D>
@@ -150,8 +145,6 @@
     <Error Condition="! Exists('$(libUrho3D)')" Text="libUrho3D.so not found are you sure URHONET_HOME_ROOT is pointing to the right place ?" /> 
     <Copy SourceFiles="@(AssetsSourceFiles)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="true" Retries="3" RetryDelayMilliseconds="300" />
     <Copy SourceFiles="$(libUrho3D)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
-    <Copy SourceFiles="$(OutDir)/Game.dll" DestinationFolder="Assets/Data/DotNet" SkipUnchangedFiles="true" />
-    <Copy SourceFiles="$(OutDir)/Game.dll" DestinationFolder="@(AndroidAssetsDestinationDir)" SkipUnchangedFiles="true" />
   </Target>
 
   <Target Name="CopyCustomContentPublish" AfterTargets="Publish" Condition="'$(PublishFlavor)'=='linux-x64' Or '$(PublishFlavor)'=='win-x64' Or '$(PublishFlavor)'=='osx-x64'">
@@ -164,8 +157,13 @@
     <Copy SourceFiles="@(AssetsSourceFiles)" DestinationFolder="$(OutDir)\publish\%(RecursiveDir)" SkipUnchangedFiles="true" Retries="3" RetryDelayMilliseconds="300" />
     <Copy SourceFiles="$(libUrho3D)" DestinationFolder="$(OutDir)\publish" SkipUnchangedFiles="true" />
   </Target>
-  
-  <Target Name="CustomAfterClean" AfterTargets="AfterClean">
+
+
+  <Target Name="CopyGameAssembly" AfterTargets="AfterBuild">
+    <Copy SourceFiles="$(OutDir)/Game.dll" DestinationFolder="Intermediate/" SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name = "CustomAfterClean" AfterTargets="AfterClean">
         <Message Text="Urho.Net clean all" Importance="high" />
         <RemoveDir Directories="bin" />
         <RemoveDir Directories="Android" />
@@ -173,13 +171,14 @@
         <RemoveDir Directories="libs" />
         <RemoveDir Directories="output" />
         <RemoveDir Directories="obj" />
-        <RemoveDir Directories="Assets/Data/DotNet" />
+        <RemoveDir Directories= "Assets/Data/DotNet" />
         <RemoveDir Directories="Web" />
+        <RemoveDir Directories="Intermediate" />
   </Target>
 
   <!-- needed for intellisense -->
   <ItemGroup>
-    <Reference Include="UrhoDotNet">
+    <Reference Include="UrhoDotNet" >
         <HintPath>References\UrhoDotNet.dll</HintPath>
     </Reference>
   </ItemGroup>

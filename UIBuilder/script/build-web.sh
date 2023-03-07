@@ -93,7 +93,7 @@ fi
     fi 
 
     cp -f ${URHONET_HOME_ROOT}/template/libs/dotnet/bcl/wasm/netstandard.dll ./Web/DotNet
-
+    
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # TBD ELI Compression fails on linux 
     ${PYTHON} ${URHONET_HOME_ROOT}/tools/ems_tools/tools/file_packager.py  Web/UrhoNetFileSystem.data  --preload "Assets@/"  --preload "Web/DotNet@/Data/DotNet/web"    --js-output=Web/UrhoNetFileSystemPreloader.js --use-preload-cache

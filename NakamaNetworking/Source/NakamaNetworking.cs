@@ -154,7 +154,8 @@ namespace NakamaNetworking
 
         void UnSubscribeFromEvents()
         {
-            Engine.PostUpdate -= (HandlePostUpdate);
+            if (!Application.isExiting)
+                Engine.PostUpdate -= (HandlePostUpdate);
         }
 
         void HandlePostUpdate(PostUpdateEventArgs args)

@@ -75,12 +75,25 @@ fi
             cp -R ${URHONET_HOME_ROOT}/template/libs/web/* Web/
     fi 
 
-    dotnet build --configuration Release 
+    dotnet build --configuration Release -p:DefineConstants=_WEB_
 
     rm -rf Assets/Data/DotNet/ios
 
     dotnet tools/ReferenceAssemblyResolver/ReferenceAssemblyResolver.dll --assembly Assets/Data/DotNet/Game.dll   --output Web/DotNet  --search ${URHONET_HOME_ROOT}/template/libs/dotnet/urho/web,${URHONET_HOME_ROOT}/template/libs/dotnet/bcl/wasm,${URHONET_HOME_ROOT}/template/libs/dotnet/bcl/wasm/Facades
 
+    if [ -n "$DOTNET_REFERENCE_DLL" ] ; then
+            for i in "${DOTNET_REFERENCE_DLL[@]}"
+            do
+                if [ -f ./References/${i} ]; then
+                    cp -f ./References/${i} ./Web/DotNet
+                else 
+                    echo "${i} not found !!"
+                fi
+            done
+    fi 
+
+    cp -f ${URHONET_HOME_ROOT}/template/libs/dotnet/bcl/wasm/netstandard.dll ./Web/DotNet
+    
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # TBD ELI Compression fails on linux 
     ${PYTHON} ${URHONET_HOME_ROOT}/tools/ems_tools/tools/file_packager.py  Web/UrhoNetFileSystem.data  --preload "Assets@/"  --preload "Web/DotNet@/Data/DotNet/web"    --js-output=Web/UrhoNetFileSystemPreloader.js --use-preload-cache

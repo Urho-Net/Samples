@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [Sun Oct 23 12:34:28 2022] INFO: Opened log file Urho3D.log
 [Sun Oct 23 12:34:28 2022] INFO: Created 5 worker threads
 [Sun Oct 23 12:34:28 2022] INFO: Added resource path E:/Development/Samples/AvaloniaSample/bin/Debug/net6.0/CoreData/
@@ -26,3 +27,18 @@
 [Sun Oct 23 12:34:29 2022] DEBUG: Loading temporary resource Textures/UI.xml
 [Sun Oct 23 12:34:29 2022] DEBUG: Font face Anonymous Pro (11pt) has 624 glyphs
 [Sun Oct 23 12:34:34 2022] INFO: Set audio mode 44100 Hz stereo interpolated
+=======
+[Mon Mar  6 21:45:01 2023] INFO: Opened log file Urho3D.log
+[Mon Mar  6 21:45:01 2023] INFO: Created 7 worker threads
+[Mon Mar  6 21:45:01 2023] INFO: Added resource path /Users/elialoni/Development/Samples/AvaloniaSample/bin/Debug/net6.0/CoreData/
+[Mon Mar  6 21:45:01 2023] INFO: Added resource path /Users/elialoni/Development/Samples/AvaloniaSample/bin/Debug/net6.0/Data/
+[Mon Mar  6 21:45:02 2023] INFO: Adapter used ATI Technologies Inc. AMD Radeon Pro 5500M OpenGL Engine
+[Mon Mar  6 21:45:02 2023] INFO: Set screen mode 3584x1974 rate 60 Hz windowed monitor 0 resizable highDPI
+[Mon Mar  6 21:45:02 2023] INFO: Initialized input
+[Mon Mar  6 21:45:02 2023] INFO: Initialized user interface
+[Mon Mar  6 21:45:02 2023] INFO: Initialized renderer
+[Mon Mar  6 21:45:02 2023] INFO: Set audio mode 44100 Hz stereo interpolated
+[Mon Mar  6 21:45:02 2023] INFO: Initialized VectorGraphics subsystem
+[Mon Mar  6 21:45:02 2023] INFO: Initialized engine
+[Mon Mar  6 21:45:07 2023] INFO: Set audio mode 44100 Hz stereo interpolated
+>>>>>>> b492513 (Update all samples to dotnet-6.x , synced with the Urho.Net dotnet-6.x branch)

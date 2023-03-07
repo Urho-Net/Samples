@@ -24,6 +24,7 @@ using Jint;
 using Urho.IO;
 using System.Reflection;
 using System.Text;
+using Urho.Gui;
 
 namespace JavaScriptSample
 {
@@ -41,6 +42,13 @@ namespace JavaScriptSample
 			base.Start ();
 
 			Log.LogLevel = LogLevel.Info;
+
+			var t1 = Input.MouseMove;
+
+			
+
+			var t = Application.Current.UI.FocusElement;
+
 
             jintEngine = new Jint.Engine(cfg => cfg.AllowClr(UrhoDotNet));
 			jintEngine.SetValue("Application", Application.Current);

@@ -95,8 +95,11 @@ namespace NakamaNetworking
 
         protected override void OnDeleted()
         {
-            physicsWorld.PhysicsPreStep -= OnPhysicsPreStep;
-            Application.Engine.PostUpdate -= HandlePostUpdate;
+            if (!Application.isExiting)
+            {
+                physicsWorld.PhysicsPreStep -= OnPhysicsPreStep;
+                Application.Engine.PostUpdate -= HandlePostUpdate;
+            }
         }
 
         private void OnPhysicsPreStep(PhysicsPreStepEventArgs obj)

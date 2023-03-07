@@ -1,12 +1,13 @@
-[Wed Dec  1 19:47:37 2021] INFO: Opened log file Urho3D.log
-[Wed Dec  1 19:47:37 2021] INFO: Created 7 worker threads
-[Wed Dec  1 19:47:37 2021] INFO: Added resource path /Users/elialoni/Development/Samples/ShapeBlaster/bin/Debug/netcoreapp3.1/CoreData/
-[Wed Dec  1 19:47:37 2021] INFO: Added resource path /Users/elialoni/Development/Samples/ShapeBlaster/bin/Debug/netcoreapp3.1/Data/
-[Wed Dec  1 19:47:37 2021] INFO: Adapter used ATI Technologies Inc. AMD Radeon Pro 5500M OpenGL Engine
-[Wed Dec  1 19:47:37 2021] INFO: Set screen mode 1600x1200 rate 60 Hz windowed monitor 0 highDPI
-[Wed Dec  1 19:47:37 2021] INFO: Initialized input
-[Wed Dec  1 19:47:37 2021] INFO: Initialized user interface
-[Wed Dec  1 19:47:37 2021] INFO: Initialized renderer
-[Wed Dec  1 19:47:37 2021] INFO: Set audio mode 44100 Hz stereo interpolated
-[Wed Dec  1 19:47:37 2021] INFO: Initialized VectorGraphics subsystem
-[Wed Dec  1 19:47:37 2021] INFO: Initialized engine
+[Tue Mar  7 18:23:45 2023] INFO: Opened log file Urho3D.log
+[Tue Mar  7 18:23:45 2023] INFO: Created 7 worker threads
+[Tue Mar  7 18:23:45 2023] INFO: Added resource path /Users/elialoni/Development/Samples/ShapeBlaster/bin/Debug/net6.0/CoreData/
+[Tue Mar  7 18:23:45 2023] INFO: Added resource path /Users/elialoni/Development/Samples/ShapeBlaster/bin/Debug/net6.0/Data/
+[Tue Mar  7 18:23:45 2023] INFO: Adapter used ATI Technologies Inc. AMD Radeon Pro 5500M OpenGL Engine
+[Tue Mar  7 18:23:45 2023] INFO: Set screen mode 2048x1536 rate 60 Hz windowed monitor 0 highDPI
+[Tue Mar  7 18:23:45 2023] INFO: Initialized input
+[Tue Mar  7 18:23:45 2023] INFO: Initialized user interface
+[Tue Mar  7 18:23:45 2023] INFO: Initialized renderer
+[Tue Mar  7 18:23:45 2023] INFO: Set audio mode 44100 Hz stereo interpolated
+[Tue Mar  7 18:23:46 2023] INFO: Initialized VectorGraphics subsystem
+[Tue Mar  7 18:23:46 2023] INFO: Initialized engine
+[Tue Mar  7 18:23:46 2023] INFO: Set audio mode 44100 Hz stereo interpolated

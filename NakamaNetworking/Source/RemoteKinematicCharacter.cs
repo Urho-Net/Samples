@@ -124,9 +124,12 @@ namespace NakamaNetworking
 
         protected override void OnDeleted()
         {
-            physicsWorld.PhysicsPreStep -= OnPhysicsPreStep;
-            Application.Engine.PostUpdate -= HandlePostUpdate;
-            Global.NakamaConnection.Socket.ReceivedMatchState -= EnqueueOnReceivedMatchState;
+            if (!Application.isExiting)
+            {
+                physicsWorld.PhysicsPreStep -= OnPhysicsPreStep;
+                Application.Engine.PostUpdate -= HandlePostUpdate;
+                Global.NakamaConnection.Socket.ReceivedMatchState -= EnqueueOnReceivedMatchState;
+            }
         }
 
         private void OnPhysicsPreStep(PhysicsPreStepEventArgs obj)

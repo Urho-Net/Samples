@@ -75,7 +75,7 @@ fi
             cp -R ${URHONET_HOME_ROOT}/template/libs/web/* Web/
     fi 
 
-    dotnet build --configuration Release 
+    dotnet build --configuration Release -p:DefineConstants=_WEB_
 
     rm -rf Assets/Data/DotNet/ios
 
