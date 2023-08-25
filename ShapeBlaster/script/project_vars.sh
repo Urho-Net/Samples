@@ -24,3 +24,6 @@
 export PROJECT_UUID='com.elix22.shapeblaster'
 export PROJECT_NAME='ShapeBlaster' 
 export JAVA_PACKAGE_PATH='java/com/elix22/shapeblaster' 
+
+# either portrait or landscape , relevant only to mobile platforms such as Android or iOS.
+export SCREEN_ORIENTATION='landscape'

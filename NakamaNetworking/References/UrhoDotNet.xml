@@ -14095,6 +14095,18 @@
             Return effective minimum size, also considering layout. Used internally.
             </summary>
         </member>
+        <member name="M:Urho.Gui.UIElement.RunActionsAsync(Urho.UIActions.FiniteTimeAction)">
+            <summary>
+            Runs an Action that can be awaited.
+            </summary>
+            <param name="action">A FiniteTimeAction.</param>
+        </member>
+        <member name="M:Urho.Gui.UIElement.RunActionsAsync(Urho.UIActions.FiniteTimeAction[])">
+            <summary>
+            Runs a sequence of Actions so that it can be awaited.
+            </summary>
+            <param name="actions">An array of FiniteTimeAction objects.</param>
+        </member>
         <member name="T:Urho.Gui.BorderImage">
             <summary>
             %Image %UI element with optional border.
@@ -21874,6 +21886,18 @@
             Draw debug geometry.
             </summary>
         </member>
+        <member name="M:Urho.KinematicCharacterController.SetPosition(Urho.Vector3)">
+            <summary>
+            Set  position in world space.
+            
+            </summary>
+        </member>
+        <member name="M:Urho.KinematicCharacterController.SetRotation(Urho.Quaternion)">
+            <summary>
+            Set rotation in world space.
+            
+            </summary>
+        </member>
         <member name="P:Urho.KinematicCharacterController.Position">
             <summary>
             Return character position in world space.
@@ -28978,6 +29002,13 @@
             <param name="other">A vector to compare with this vector.</param>
             <returns>true if the current vector is equal to the vector parameter; otherwise, false.</returns>
         </member>
+        <member name="P:Urho.IntVector2.Item(System.Int32)">
+            <summary>
+            Gets or sets the value at the index of the Vector.
+            </summary>
+            <param name="index">The index of the component from the Vector.</param>
+            <exception cref="T:System.IndexOutOfRangeException">Thrown if the index is less than 0 or greater than 1.</exception>
+        </member>
         <member name="M:Urho.IntVector2.Distance(Urho.IntVector2,Urho.IntVector2)">
             <summary>
             Distance between two 2D points (should be moved to IntVector2).
@@ -29473,6 +29504,13 @@
             <summary>Indicates whether the current vector is equal to another vector.</summary>
             <param name="other">A vector to compare with this vector.</param>
             <returns>true if the current vector is equal to the vector parameter; otherwise, false.</returns>
+        </member>
+        <member name="P:Urho.IntVector3.Item(System.Int32)">
+            <summary>
+            Gets or sets the value at the index of the Vector.
+            </summary>
+            <param name="index">The index of the component from the Vector.</param>
+            <exception cref="T:System.IndexOutOfRangeException">Thrown if the index is less than 0 or greater than 2.</exception>
         </member>
         <member name="M:Urho.IntVector3.Distance(Urho.IntVector3,Urho.IntVector3)">
             <summary>
@@ -55149,6 +55187,50 @@
             <returns>
             	<c>true</c> if the string is all white space; otherwise, <c>false</c>.
             </returns>
+        </member>
+        <member name="P:Urho.UIActions.ActionState.Target">
+            <summary>
+            Gets or sets the target.
+            
+            Will be set with the 'StartAction' method of the corresponding Action. 
+            When the 'Stop' method is called, Target will be set to null. 
+            
+            </summary>
+            <value>The target.</value>
+        </member>
+        <member name="P:Urho.UIActions.ActionState.IsDone">
+            <summary>
+            Gets a value indicating whether this instance is done.
+            </summary>
+            <value><c>true</c> if this instance is done; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:Urho.UIActions.ActionState.Stop">
+            <summary>
+            Called after the action has finished.
+            It will set the 'Target' to null. 
+            IMPORTANT: You should never call this method manually. Instead, use: "target.StopAction(actionState);"
+            </summary>
+        </member>
+        <member name="M:Urho.UIActions.ActionState.Step(System.Single)">
+            <summary>
+            Called every frame with it's delta time. 
+            
+            DON'T override unless you know what you are doing.
+            
+            </summary>
+            <param name="dt">Delta Time</param>
+        </member>
+        <member name="M:Urho.UIActions.ActionState.Update(System.Single)">
+             <summary>
+             Called once per frame.
+             </summary>
+             <param name="time">A value between 0 and 1
+            
+             For example:
+            
+             0 means that the action just started
+             0.5 means that the action is in the middle
+             1 means that the action is over</param>
         </member>
         <member name="T:Java.Interop.IJavaPeerable">
             <!-- Failed to insert some or all of included XML --><include file="../Documentation/Java.Interop/IJavaPeerable.xml" path="/docs/member[@name='T:IJavaPeerable']/*" />

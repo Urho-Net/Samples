@@ -30,3 +30,6 @@ export JAVA_PACKAGE_PATH='java/com/elix22/samplygame'
 # In case of an Intel based processor (x86/x86_64) , one must add 'x86' or and 'x86_64' to mkae it work on such device
 # export ANDROID_ARCHITECTURE=('arm64-v8a' 'armeabi-v7a' 'x86' 'x86_64')
 export ANDROID_ARCHITECTURE=('arm64-v8a' 'armeabi-v7a')
+
+# either portrait or landscape , relevant only to mobile platforms such as Android or iOS.
+export SCREEN_ORIENTATION='portrait'

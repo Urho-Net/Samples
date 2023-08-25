@@ -30,3 +30,6 @@ export ANDROID_PERMISSIONS=('android.permission.INTERNET' 'android.permission.AC
 
 # add external reference dll's that should be part of the build , the dll's must be present in the References folder
 export DOTNET_REFERENCE_DLL=('Nakama.dll')
+
+# either portrait or landscape , relevant only to mobile platforms such as Android or iOS.
+export SCREEN_ORIENTATION='landscape'
