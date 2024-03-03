@@ -34,7 +34,7 @@ export ANDROID_PERMISSIONS=('android.permission.INTERNET' 'android.permission.AC
 # In case of an Intel based processor (x86/x86_64) , one must add 'x86' or and 'x86_64' to mkae it work on such device
 # export ANDROID_ARCHITECTURE=('arm64-v8a' 'armeabi-v7a' 'x86' 'x86_64')
 #
-export ANDROID_ARCHITECTURE=('arm64-v8a' 'armeabi-v7a')
+export ANDROID_ARCHITECTURE=('arm64-v8a' 'armeabi-v7a' 'x86' 'x86_64')
 
 # either portrait or landscape , relevant only to mobile platforms such as Android or iOS.
 export SCREEN_ORIENTATION='landscape'

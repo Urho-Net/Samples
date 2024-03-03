@@ -131,7 +131,7 @@ namespace AvaloniaSample
 		void InitializeAvaloniaControlCatalogDemo()
 		{
             avaloniaContext = Context.ConfigureAvalonia<ControlCatalog.App>();
-            avaloniaContext.RenderScaling = 2.0;
+            avaloniaContext.RenderScaling = 1;
 
             var mainWindow = new ControlCatalog.MainWindow();
             AvaloniaUrhoContext.MainWindow = mainWindow;

@@ -1,44 +1,13 @@
-<<<<<<< HEAD
-[Sun Oct 23 12:34:28 2022] INFO: Opened log file Urho3D.log
-[Sun Oct 23 12:34:28 2022] INFO: Created 5 worker threads
-[Sun Oct 23 12:34:28 2022] INFO: Added resource path E:/Development/Samples/AvaloniaSample/bin/Debug/net6.0/CoreData/
-[Sun Oct 23 12:34:28 2022] INFO: Added resource path E:/Development/Samples/AvaloniaSample/bin/Debug/net6.0/Data/
-[Sun Oct 23 12:34:29 2022] INFO: Adapter used NVIDIA Corporation NVIDIA GeForce GTX 1050 Ti with Max-Q Design/PCIe/SSE2
-[Sun Oct 23 12:34:29 2022] INFO: Set screen mode 3840x2004 rate 60 Hz windowed monitor 0 resizable
-[Sun Oct 23 12:34:29 2022] INFO: Initialized input
-[Sun Oct 23 12:34:29 2022] INFO: Initialized user interface
-[Sun Oct 23 12:34:29 2022] DEBUG: Loading resource Textures/Ramp.png
-[Sun Oct 23 12:34:29 2022] DEBUG: Loading temporary resource Textures/Ramp.xml
-[Sun Oct 23 12:34:29 2022] DEBUG: Loading resource Textures/Spot.png
-[Sun Oct 23 12:34:29 2022] DEBUG: Loading temporary resource Textures/Spot.xml
-[Sun Oct 23 12:34:29 2022] DEBUG: Loading resource Techniques/NoTexture.xml
-[Sun Oct 23 12:34:29 2022] DEBUG: Loading resource RenderPaths/Forward.xml
-[Sun Oct 23 12:34:29 2022] INFO: Initialized renderer
-[Sun Oct 23 12:34:29 2022] INFO: Set audio mode 44100 Hz stereo interpolated
-[Sun Oct 23 12:34:29 2022] INFO: Initialized VectorGraphics subsystem
-[Sun Oct 23 12:34:29 2022] INFO: Initialized engine
-[Sun Oct 23 12:34:29 2022] DEBUG: Loading resource Fonts/Anonymous Pro.ttf
-[Sun Oct 23 12:34:29 2022] DEBUG: Font face Anonymous Pro (18pt) has 624 glyphs
-[Sun Oct 23 12:34:29 2022] DEBUG: Loading resource Textures/LogoLarge.png
-[Sun Oct 23 12:34:29 2022] DEBUG: Loading temporary resource Textures/LogoLarge.xml
-[Sun Oct 23 12:34:29 2022] DEBUG: Loading resource Textures/UrhoIcon.png
-[Sun Oct 23 12:34:29 2022] DEBUG: Loading resource UI/DefaultStyle.xml
-[Sun Oct 23 12:34:29 2022] DEBUG: Loading resource Textures/UI.png
-[Sun Oct 23 12:34:29 2022] DEBUG: Loading temporary resource Textures/UI.xml
-[Sun Oct 23 12:34:29 2022] DEBUG: Font face Anonymous Pro (11pt) has 624 glyphs
-[Sun Oct 23 12:34:34 2022] INFO: Set audio mode 44100 Hz stereo interpolated
-=======
-[Mon Mar  6 21:45:01 2023] INFO: Opened log file Urho3D.log
-[Mon Mar  6 21:45:01 2023] INFO: Created 7 worker threads
-[Mon Mar  6 21:45:01 2023] INFO: Added resource path /Users/elialoni/Development/Samples/AvaloniaSample/bin/Debug/net6.0/CoreData/
-[Mon Mar  6 21:45:01 2023] INFO: Added resource path /Users/elialoni/Development/Samples/AvaloniaSample/bin/Debug/net6.0/Data/
-[Mon Mar  6 21:45:02 2023] INFO: Adapter used ATI Technologies Inc. AMD Radeon Pro 5500M OpenGL Engine
-[Mon Mar  6 21:45:02 2023] INFO: Set screen mode 3584x1974 rate 60 Hz windowed monitor 0 resizable highDPI
-[Mon Mar  6 21:45:02 2023] INFO: Initialized input
-[Mon Mar  6 21:45:02 2023] INFO: Initialized user interface
-[Mon Mar  6 21:45:02 2023] INFO: Initialized renderer
-[Mon Mar  6 21:45:02 2023] INFO: Set audio mode 44100 Hz stereo interpolated
-[Mon Mar  6 21:45:02 2023] INFO: Initialized VectorGraphics subsystem
-[Mon Mar  6 21:45:02 2023] INFO: Initialized engine
-[Mon Mar  6 21:45:07 2023] INFO: Set audio mode 44100 Hz stereo interpolated
->>>>>>> b492513 (Update all samples to dotnet-6.x , synced with the Urho.Net dotnet-6.x branch)
+[Sun Mar  3 10:31:09 2024] INFO: Opened log file Urho3D.log
+[Sun Mar  3 10:31:09 2024] INFO: Created 7 worker threads
+[Sun Mar  3 10:31:09 2024] INFO: Added resource path /Users/elialoni/Development/Samples/AvaloniaSample/bin/Debug/net6.0/CoreData/
+[Sun Mar  3 10:31:09 2024] INFO: Added resource path /Users/elialoni/Development/Samples/AvaloniaSample/bin/Debug/net6.0/Data/
+[Sun Mar  3 10:31:09 2024] INFO: Adapter used Google Inc. ANGLE (Metal Renderer: Apple M2 Pro)
+[Sun Mar  3 10:31:09 2024] INFO: Set screen mode 1728x981 rate 120 Hz windowed monitor 0 resizable
+[Sun Mar  3 10:31:09 2024] INFO: Initialized input
+[Sun Mar  3 10:31:09 2024] INFO: Initialized user interface
+[Sun Mar  3 10:31:09 2024] INFO: Initialized renderer
+[Sun Mar  3 10:31:09 2024] INFO: Set audio mode 44100 Hz stereo interpolated
+[Sun Mar  3 10:31:09 2024] INFO: Initialized VectorGraphics subsystem
+[Sun Mar  3 10:31:09 2024] INFO: Initialized engine
+[Sun Mar  3 10:31:12 2024] INFO: Set audio mode 44100 Hz stereo interpolated

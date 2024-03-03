@@ -24,3 +24,5 @@
 export PROJECT_UUID='com.elix22.hotreload'
 export PROJECT_NAME='HotReload' 
 export JAVA_PACKAGE_PATH='java/com/elix22/hotreload' 
+
+export ANDROID_ARCHITECTURE=('arm64-v8a' 'armeabi-v7a' 'x86' 'x86_64')

@@ -1,14 +1,14 @@
-[Mon Mar  6 21:42:04 2023] INFO: Opened log file Urho3D.log
-[Mon Mar  6 21:42:04 2023] INFO: Created 7 worker threads
-[Mon Mar  6 21:42:04 2023] INFO: Added resource path /Users/elialoni/Development/Samples/Admob/bin/Debug/net6.0/CoreData/
-[Mon Mar  6 21:42:04 2023] INFO: Added resource path /Users/elialoni/Development/Samples/Admob/bin/Debug/net6.0/Data/FlappyUrho/
-[Mon Mar  6 21:42:04 2023] INFO: Added resource path /Users/elialoni/Development/Samples/Admob/bin/Debug/net6.0/Data/
-[Mon Mar  6 21:42:04 2023] INFO: Adapter used ATI Technologies Inc. AMD Radeon Pro 5500M OpenGL Engine
-[Mon Mar  6 21:42:04 2023] INFO: Set screen mode 2048x1536 rate 60 Hz windowed monitor 0 highDPI
-[Mon Mar  6 21:42:04 2023] INFO: Initialized input
-[Mon Mar  6 21:42:04 2023] INFO: Initialized user interface
-[Mon Mar  6 21:42:04 2023] INFO: Initialized renderer
-[Mon Mar  6 21:42:04 2023] INFO: Set audio mode 44100 Hz stereo interpolated
-[Mon Mar  6 21:42:04 2023] INFO: Initialized VectorGraphics subsystem
-[Mon Mar  6 21:42:04 2023] INFO: Initialized engine
-[Mon Mar  6 21:42:05 2023] INFO: Set audio mode 44100 Hz stereo interpolated
+[Sun Mar  3 08:54:32 2024] INFO: Opened log file Urho3D.log
+[Sun Mar  3 08:54:32 2024] INFO: Created 7 worker threads
+[Sun Mar  3 08:54:32 2024] INFO: Added resource path /Users/elialoni/Development/Samples/Admob/bin/Debug/net6.0/CoreData/
+[Sun Mar  3 08:54:32 2024] INFO: Added resource path /Users/elialoni/Development/Samples/Admob/bin/Debug/net6.0/Data/FlappyUrho/
+[Sun Mar  3 08:54:32 2024] INFO: Added resource path /Users/elialoni/Development/Samples/Admob/bin/Debug/net6.0/Data/
+[Sun Mar  3 08:54:32 2024] INFO: Adapter used Google Inc. ANGLE (Metal Renderer: Apple M2 Pro)
+[Sun Mar  3 08:54:32 2024] INFO: Set screen mode 1024x768 rate 120 Hz windowed monitor 0
+[Sun Mar  3 08:54:32 2024] INFO: Initialized input
+[Sun Mar  3 08:54:32 2024] INFO: Initialized user interface
+[Sun Mar  3 08:54:32 2024] INFO: Initialized renderer
+[Sun Mar  3 08:54:33 2024] INFO: Set audio mode 44100 Hz stereo interpolated
+[Sun Mar  3 08:54:33 2024] INFO: Initialized VectorGraphics subsystem
+[Sun Mar  3 08:54:33 2024] INFO: Initialized engine
+[Sun Mar  3 08:54:34 2024] INFO: Set audio mode 44100 Hz stereo interpolated

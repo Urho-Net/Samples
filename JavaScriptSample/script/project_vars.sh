@@ -28,5 +28,6 @@ export JAVA_PACKAGE_PATH='java/com/elix22/javascriptsample'
 # add external reference dll's that should be part of the build for iOS and Android , the dll's must be present in the References folder
 export DOTNET_REFERENCE_DLL=('Jint.dll' 'Esprima.dll')
 
+export ANDROID_ARCHITECTURE=('arm64-v8a' 'armeabi-v7a' 'x86' 'x86_64')
 # either portrait or landscape , relevant only to mobile platforms such as Android or iOS.
 export SCREEN_ORIENTATION='landscape'

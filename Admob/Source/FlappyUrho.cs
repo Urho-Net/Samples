@@ -475,7 +475,7 @@ namespace Admob
                 */
 
                 var json = new JsonFile();
-                json.SetString("adUnitId","ca-app-pub-3940256099942544/1712485313");
+                json.SetString("adUnitId","ca-app-pub-3940256099942544/5224354917");
                 PostCommandToPlugin("AdmobPlugin", "loadRewardedAd",json);
             }
         }

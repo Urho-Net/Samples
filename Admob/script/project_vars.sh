@@ -43,11 +43,13 @@ export ANDROID_PERMISSIONS=('android.permission.INTERNET' 'android.permission.AC
 
 # Add dependcies for Android
 # export ANDROID_DEPENDENCIES=('dependency 1' 'dependency 2' 'dependency 3' ... )
-export ANDROID_DEPENDENCIES=('com.google.android.gms:play-services-ads:20.1.0')
+export ANDROID_DEPENDENCIES=('com.google.android.gms:play-services-ads:22.6.0' 'androidx.work:work-runtime:2.7.1')
 
 
 # either portrait or landscape , relevant only to mobile platforms such as Android or iOS.
 export SCREEN_ORIENTATION='landscape'
+
+export ANDROID_ARCHITECTURE=('arm64-v8a' 'armeabi-v7a' 'x86' 'x86_64')
 
 # Uncomment if you want to Specify specific Android NDK  version
 # export ANDROID_NDK_VERSION='21.0.6113669'

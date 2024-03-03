@@ -27,3 +27,5 @@ export JAVA_PACKAGE_PATH='java/com/elix22/shapeblaster'
 
 # either portrait or landscape , relevant only to mobile platforms such as Android or iOS.
 export SCREEN_ORIENTATION='landscape'
+
+export ANDROID_ARCHITECTURE=('arm64-v8a' 'armeabi-v7a' 'x86' 'x86_64')

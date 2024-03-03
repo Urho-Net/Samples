@@ -82,13 +82,15 @@ namespace SamplyGame
 			cameraNode.CreateComponent<Camera>();
 			Viewport = new Viewport(Context, scene, cameraNode.GetComponent<Camera>(), null);
 
-			if (Platform != Platforms.Android && Platform != Platforms.iOS && Platform != Platforms.Web)
-			{
-				RenderPath effectRenderPath = Viewport.RenderPath.Clone();
-				var fxaaRp = ResourceCache.GetXmlFile(Assets.PostProcess.FXAA3);
-				effectRenderPath.Append(fxaaRp);
-				Viewport.RenderPath = effectRenderPath;
-			}
+			// TBD ELI , FXAA3.glsl fails to compile  Metal backend
+
+			// if (Platform != Platforms.Android && Platform != Platforms.iOS && Platform != Platforms.Web)
+			// {
+			// 	RenderPath effectRenderPath = Viewport.RenderPath.Clone();
+			// 	var fxaaRp = ResourceCache.GetXmlFile(Assets.PostProcess.FXAA3);
+			// 	effectRenderPath.Append(fxaaRp);
+			// 	Viewport.RenderPath = effectRenderPath;
+			// }
 			Renderer.SetViewport(0, Viewport);
 
 			var zoneNode = scene.CreateChild();

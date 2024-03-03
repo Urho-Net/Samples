@@ -1,17 +1,17 @@
-[Tue Mar  7 18:48:40 2023] INFO: Opened log file Urho3D.log
-[Tue Mar  7 18:48:40 2023] INFO: Created 7 worker threads
-[Tue Mar  7 18:48:40 2023] INFO: Added resource path /Users/elialoni/Development/Samples/UIBuilder/bin/Debug/net6.0/CoreData/
-[Tue Mar  7 18:48:40 2023] INFO: Added resource path /Users/elialoni/Development/Samples/UIBuilder/bin/Debug/net6.0/Data/
-[Tue Mar  7 18:48:40 2023] INFO: Adapter used ATI Technologies Inc. AMD Radeon Pro 5500M OpenGL Engine
-[Tue Mar  7 18:48:40 2023] INFO: Set screen mode 800x1600 rate 60 Hz windowed monitor 0 resizable highDPI
-[Tue Mar  7 18:48:40 2023] INFO: Initialized input
-[Tue Mar  7 18:48:40 2023] INFO: Initialized user interface
-[Tue Mar  7 18:48:40 2023] INFO: Initialized renderer
-[Tue Mar  7 18:48:40 2023] INFO: Set audio mode 44100 Hz stereo interpolated
-[Tue Mar  7 18:48:40 2023] INFO: Initialized VectorGraphics subsystem
-[Tue Mar  7 18:48:40 2023] INFO: Initialized engine
-[Tue Mar  7 18:48:41 2023] INFO: Added resource path /Users/elialoni/Development/Samples/UIBuilder/Assets/Data/
-[Tue Mar  7 18:48:41 2023] INFO: Added resource path /Users/elialoni/Development/Samples/UIBuilder/Assets/CoreData/
-[Tue Mar  7 18:48:41 2023] INFO: Added resource path /Users/elialoni/Development/Samples/UIBuilder/Source/HotReload/Builder/
-[Tue Mar  7 18:48:41 2023] INFO: Added resource path /Users/elialoni/Development/Samples/UIBuilder/Source/HotReload/UI/
-[Tue Mar  7 18:48:41 2023] INFO: Set audio mode 44100 Hz stereo interpolated
+[Sun Mar  3 10:27:47 2024] INFO: Opened log file Urho3D.log
+[Sun Mar  3 10:27:47 2024] INFO: Created 7 worker threads
+[Sun Mar  3 10:27:47 2024] INFO: Added resource path /Users/elialoni/Development/Samples/UIBuilder/bin/Debug/net6.0/CoreData/
+[Sun Mar  3 10:27:47 2024] INFO: Added resource path /Users/elialoni/Development/Samples/UIBuilder/bin/Debug/net6.0/Data/
+[Sun Mar  3 10:27:47 2024] INFO: Adapter used Google Inc. ANGLE (Metal Renderer: Apple M2 Pro)
+[Sun Mar  3 10:27:47 2024] INFO: Set screen mode 400x800 rate 120 Hz windowed monitor 0 resizable
+[Sun Mar  3 10:27:47 2024] INFO: Initialized input
+[Sun Mar  3 10:27:47 2024] INFO: Initialized user interface
+[Sun Mar  3 10:27:47 2024] INFO: Initialized renderer
+[Sun Mar  3 10:27:48 2024] INFO: Set audio mode 44100 Hz stereo interpolated
+[Sun Mar  3 10:27:48 2024] INFO: Initialized VectorGraphics subsystem
+[Sun Mar  3 10:27:48 2024] INFO: Initialized engine
+[Sun Mar  3 10:27:48 2024] INFO: Added resource path /Users/elialoni/Development/Samples/UIBuilder/Assets/Data/
+[Sun Mar  3 10:27:48 2024] INFO: Added resource path /Users/elialoni/Development/Samples/UIBuilder/Assets/CoreData/
+[Sun Mar  3 10:27:48 2024] INFO: Added resource path /Users/elialoni/Development/Samples/UIBuilder/Source/HotReload/Builder/
+[Sun Mar  3 10:27:48 2024] INFO: Added resource path /Users/elialoni/Development/Samples/UIBuilder/Source/HotReload/UI/
+[Sun Mar  3 10:27:48 2024] INFO: Set audio mode 44100 Hz stereo interpolated
