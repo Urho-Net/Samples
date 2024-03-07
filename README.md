@@ -16,8 +16,7 @@ On Windows it's **update-project.bat project-path**\
  [Urho.Net Live Web Browser Feature Samples](https://elix22.itch.io/urhonet-feature-samples)
 
 # Google Play  
-[Urho.Net Feature Samples](https://play.google.com/store/apps/details?id=com.elix22.urhonetsamples)
-
+[Urho.Net Feature Samples](https://play.google.com/store/apps/details?id=com.elialoni.urhonetsamples&hl=en&gl=US)
 
 # Running the Feature Samples on Desktop.
 Make sure that you followed the instructions and installed all the required dependencies as described in [Urho.Net](https://github.com/Urho-Net/Urho.Net/tree/dotnet-6.x).\
