@@ -1,3 +1,0 @@
-Materials/Gold.xml
-Materials/Emerald.xml
-Materials/Green.xml

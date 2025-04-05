@@ -25,6 +25,7 @@ using Urho.Physics;
 using Urho.Resources;
 using System.Collections.Generic;
 using System.Reflection;
+using Timer = Urho.Timer;
 
 namespace MaterialEffects
 {

@@ -1,3 +1,0 @@
-<technique vs="WaterDiffAlpha" ps="WaterDiffAlpha">
-    <pass name="refract" blend="alpha" />
-</technique>

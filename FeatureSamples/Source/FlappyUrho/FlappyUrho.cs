@@ -25,9 +25,11 @@ using Urho.Audio;
 using Urho.Resources;
 using Urho.Physics;
 using Urho.Gui;
+using Urho.IO;
+using File = Urho.IO.File;
+using FileMode = Urho.IO.FileMode;
 using System;
 using System.Collections.Generic;
-using Urho.IO;
 
 namespace FlappyUrho
 {

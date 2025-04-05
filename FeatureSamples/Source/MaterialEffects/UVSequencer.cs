@@ -22,7 +22,7 @@
 using Urho;
 using System;
 using Urho.Physics;
-
+using Timer = Urho.Timer;
 namespace MaterialEffects
 {
     public class UVSequencer : LogicComponent

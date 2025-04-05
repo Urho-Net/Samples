@@ -23,6 +23,8 @@ using Urho;
 using System;
 using Urho.IO;
 using Urho.Resources;
+using File = Urho.IO.File;
+using FileMode = Urho.IO.FileMode;
 
 public static  class PlayerPrefs
 {

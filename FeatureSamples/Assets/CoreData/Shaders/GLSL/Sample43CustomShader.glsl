@@ -27,5 +27,5 @@ void PS()
     vec3 camera = normalize(vEyeVec.xyz);
 
     float f = dot(camera, normal);
-    gl_FragColor = vec4(1, 1, 1, 1 - f);
+    gl_FragColor = vec4(1, 1, 1, 1.0 - f);
 }

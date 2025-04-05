@@ -27,6 +27,7 @@
 
 using System;
 using Urho;
+using Timer = Urho.Timer;
 
 namespace ShapeBlaster
 {

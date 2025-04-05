@@ -27,7 +27,7 @@ using Urho.Gui;
 using Urho.Urho2D;
 using System;
 using System.Runtime.InteropServices;
-
+using Timer = Urho.Timer;
 namespace MaterialEffects
 {
     public class MaterialEffects : Sample
